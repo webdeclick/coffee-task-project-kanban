@@ -8,7 +8,7 @@
 
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <link type="text/css" rel="stylesheet" href="">
+    <link type="text/css" rel="stylesheet" href="/style/normalize.css">
     <link type="text/css" rel="stylesheet" href="/style/style.css">
 
     <!-- HTML5 -->
@@ -16,6 +16,10 @@
 		['header', 'nav', 'section', 'article', 'aside', 'footer', 'time', 'comment']
 		.forEach(function( value, key, arr ){ document.createElement(value) });
     </script>
+
+    <script type="text/javascript" src="/jscripts/utils/dom.js"></script>
+
+    <script type="text/javascript" src="/jscripts/index.js"></script>
 
 </head>
 <body>
