@@ -1,0 +1,7 @@
+
+git clone --recursive https://github.com/rivetchip/kanban-project.git www
+
+cd www
+
+git checkout develop
+
