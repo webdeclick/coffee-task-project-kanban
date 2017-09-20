@@ -16,7 +16,7 @@ function nohtml( $input )
 
 function render( $template, array $data = [] )
 {
-    $file = 'themes/'.$template.'.php';
+    $file = 'templates/'.$template.'.php';
 
     if( !is_readable($file) )
     {
