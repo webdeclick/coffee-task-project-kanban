@@ -3,30 +3,38 @@
 // common classes to preload as an optimization to bypass autoloader 
 
 $corePreloads = [
-    'Slim/src/ResolveCallableTrait.php',
-    'Slim/src/MiddlewareAwareTrait.php',
-    'Slim/src/Slim.php',
-    'Slim/src/Interfaces/CollectionInterface.php',
-    'Slim/src/Collection.php',
-    'Slim/src/Http/Interfaces/EnvironmentInterface.php',
-    'Slim/src/Http/Environment.php',
-    'Slim/src/Http/Interfaces/HeadersInterface.php',
-    'Slim/src/Http/Headers.php',
-    'Slim/src/Http/Interfaces/RequestInterface.php',
-    'Slim/src/Http/Request.php',
-    'Slim/src/Http/Interfaces/ResponseInterface.php',
-    'Slim/src/Http/Response.php',
-    'Slim/src/Routing/Interfaces/RouterInterface.php',
-    'Slim/src/Routing/Router.php',
-    'Slim/src/Routing/Interfaces/RouteInterface.php',
-    'Slim/src/Routing/Route.php',
-    'Slim/src/Routing/Interfaces/RouteInvocationStrategyInterface.php',
-    'Slim/src/Routing/RouteInvocationStrategy.php',
+    'Slim/src/ResolveCallableTrait',
+    'Slim/src/MiddlewareAwareTrait',
+    'Slim/src/Slim',
+    'Slim/src/Interfaces/CollectionInterface',
+    'Slim/src/Collection',
+    'Slim/src/Http/Interfaces/EnvironmentInterface',
+    'Slim/src/Http/Environment',
+    'Slim/src/Http/Interfaces/HeadersInterface',
+    'Slim/src/Http/Headers',
+    'Slim/src/Http/Interfaces/RequestInterface',
+    'Slim/src/Http/Request',
+    'Slim/src/Http/Interfaces/ResponseInterface',
+    'Slim/src/Http/Response',
+    'Slim/src/Routing/Interfaces/RouterInterface',
+    'Slim/src/Routing/Router',
+    'Slim/src/Routing/Interfaces/RouteInterface',
+    'Slim/src/Routing/Route',
+    'Slim/src/Routing/Interfaces/RouteInvocationStrategyInterface',
+    'Slim/src/Routing/RouteInvocationStrategy',
+
+    'Database/src/Interfaces\ConnectionResolverInterface',
+    'Database/src/DatabaseManager',
+    'Database/src/ConnectionRetrieveTrait',
+    'Database/src/Interfaces\ConnectorInterface',
+    'Database/src/Connector',
+    'Database/src/Interfaces\ConnectionInterface',
+    'Database/src/Connection',
 ];
 
 foreach( $corePreloads as $file )
 {
-	require_once 'src/' . $file;
+	require_once 'src/'.$file.'.php';
 }
 
 // class autoloader
