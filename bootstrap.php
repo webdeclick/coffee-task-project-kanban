@@ -12,7 +12,7 @@ autoloader([
 ]);
 
 use Slim\Slim as SlimApp;
-//use Database\DatabaseManager;
+use Database\DatabaseManager;
 
 
 // session
@@ -25,13 +25,13 @@ $app = new SlimApp($config);
 
 // add middlewares
 
-// $app->add(function( $request, $response, $next ) {
-//     // create the database manager
-//     $dbm = new DatabaseManager;
-//     $dbm->addConnection($this->getSetting('database'));
+$app->add(function( $request, $response, $next ) {
+    // create the database manager
+    $dbm = new DatabaseManager;
+    $dbm->addConnection($this->getSetting('database'));
 
-//     return $next($request, $response);
-// });
+    return $next($request, $response);
+});
 
 // register routes
 

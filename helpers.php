@@ -104,21 +104,23 @@ function __( $phrase )
 
 function session( $key, $value = null )
 {
+    $sess = $_SESSION;
+
     if( is_array($key) ) // set array to session
     {
-        $_SESSION = array_merge($_SESSION, $key);
+        $sess = array_merge($sess, $key);
     }
     elseif( isset($key, $value) ) // simple set
     {
-        $_SESSION[$key] = $value;
+        $sess[$key] = $value;
     }
     elseif( isset($key) ) // try to get a prop
     {
-        return ( isset($_SESSION[$key]) ) ? $_SESSION[$key] : null;
+        return ( isset($sess[$key]) ) ? $sess[$key] : null;
     }
     else // return the session
     {
-        return $_SESSION;
+        return $sess;
     }
 }
 
