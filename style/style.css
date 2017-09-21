@@ -1,0 +1,23 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    text-shadow: 0 0 1px rgba(0,0,0, 0.3); /*fake-smoothing*/
+}
+
+* {
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.5s ease;
+}
+
+
+
+
+/* templates elements , used in jscripts */
+
+.component-template {
+    display: none;
+}
+
+
