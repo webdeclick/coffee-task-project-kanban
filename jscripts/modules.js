@@ -18,6 +18,11 @@
 
     xmodule.prototype = {
         
+        getElementById: function( selector )
+        {
+            return doc.getElementById(selector);
+        },
+
         querySelector: function( selector )
         {
             return doc.querySelector(selector);
@@ -28,7 +33,10 @@
             return doc.querySelectorAll(selector);
         },
 
-
+        createFragment: function()
+        {
+            return doc.createDocumentFragment();
+        },
 
     };
 
@@ -43,7 +51,7 @@
 
     var moduleName = 'xtemplate';
 
-    win[moduleName] = new (factory(win, document)); // browsers
+    win[moduleName] = (factory()); // browsers
 
     // if( typeof define === 'function' && define.amd ) {
     //     define([], factory); // AMD
@@ -104,13 +112,9 @@
         '=': '&#x3D;'
     };
 
-    function xmodule(){ }
-
-    xmodule.prototype = {
-        // pipes: pipes,
-        pipe: addPipe,
-        render: compileTemplate
-    };
+    function xmodule(template, context){
+        return compileTemplate( template, context )
+    }
 
     return xmodule;
 
