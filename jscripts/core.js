@@ -1,10 +1,13 @@
 'use strict';
 
-(function( root, factory ) {
 
-    var moduleName = 'dom';
 
-    root[moduleName] = new (factory(root, document)); // browsers
+
+(function( win, factory ) {
+
+    var moduleName = 'xdom';
+
+    win[moduleName] = new (factory(win, document)); // browsers
 
     /*if( typeof define === 'function' && define.amd ) {
         define([], factory); // AMD
@@ -40,3 +43,7 @@
     return xmodule;
 
 }));
+
+
+
+
