@@ -1,44 +1,121 @@
 'use strict';
 
 
-
+// AJAX based operations
 
 (function( win, factory ) {
+    
+        var moduleName = 'xajax';
+    
+        win[moduleName] = (factory()); // browsers
+        
+}(this, function _factory() {
 
-    var moduleName = 'xdom';
-
-    win[moduleName] = new (factory(win, document)); // browsers
-
-}(this, function _factory( win, doc ) {
-
-    function xmodule()
+    function xmodule( method, url, successHandler, errorHandler, data, progressHandler )
     {
+        // private methods :
+    
+        function parse( response )
+        {
+            return JSON.parse( response );
+        }
+    
+        function stringify( data )
+        {
+            return JSON.stringify( data );
+        }
+    
+        function xhrReadyStateChange()
+        {
+            if ( this.readyState === this.DONE ) // DONE:4
+            {
+                var status = this.status;
+    
+                if ( status >= 200 && status < 300 ) // OK
+                {
+                    try
+                    {
+                        var response = parse(this.responseText);
+    
+                        successHandler && successHandler(response);
+                    }
+                    catch( e )
+                    {
+                        errorHandler && errorHandler('exception', e);
+    
+                        // console.log(e);
+                    }
+                }
+                else
+                {
+                    errorHandler && errorHandler('http');
+                }
+            }
+        }
+    
+        function xhrProgess( event )
+        {
+            if ( event.lengthComputable )
+            {
+                var percentComplete = Math.round(event.loaded * 100 / event.total);
+    
+                progressHandler && progressHandler(percentComplete);
+            }
+            else
+            {
+                progressHandler && progressHandler('unknown-size');
+            }
+        }
+    
+        function xhrTimeout( event )
+        {
+            errorHandler && errorHandler('timeout');
+        }
+    
+        function xhrError( event )
+        {
+            errorHandler && errorHandler('error');
+        }
+    
+        function xhrAbort( event )
+        {
+            errorHandler && errorHandler('abort');
+        }
+    
+        // main :
 
+        var x = new XMLHttpRequest();//new ActiveXObject('Microsoft.XMLHTTP');
+
+        x.open(method, url, true);
+
+        //x.withCredentials = true;
+
+        x.onerror = xhrError;
+        x.onabort = xhrAbort;
+        x.ontimeout = xhrTimeout;
+
+        x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+        x.onreadystatechange = xhrReadyStateChange;
+
+
+        if( data && typeof data !== 'undefined' ) // with datas
+        {
+            x.setRequestHeader('Content-Type', 'application/json;charset=utf-8'); // form data
+    
+            x.upload.onprogress = xhrProgess;
+    
+            x.send(stringify(data));
+        }
+        else // normal GET
+        {
+            x.onprogress = xhrProgess;
+    
+            x.send();
+        }
+    
     }
 
-    xmodule.prototype = {
-        
-        getElementById: function( selector )
-        {
-            return doc.getElementById(selector);
-        },
-
-        querySelector: function( selector )
-        {
-            return doc.querySelector(selector);
-        },
-
-        querySelectorAll: function( selector )
-        {
-            return doc.querySelectorAll(selector);
-        },
-
-        createFragment: function()
-        {
-            return doc.createDocumentFragment();
-        },
-
-    };
 
     return xmodule;
 
@@ -46,6 +123,10 @@
 
 
 
+
+
+
+// templating system
 
 (function( win, factory ) {
 
@@ -410,6 +491,4 @@
     }
 
 }));
-
-
 
