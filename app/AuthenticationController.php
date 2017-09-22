@@ -20,7 +20,7 @@ class AuthenticationController extends AbstractController {
      */
     public function login( Request $request, Response $response )
     {
-        if( $this->isLogged ) return redirect('/projects'); // logged-in
+        if( $this->isLogged ) return redirect('/projects'); // check logged
 
         return render('login', $this->container);
     }
@@ -33,7 +33,7 @@ class AuthenticationController extends AbstractController {
      */
     public function register( Request $request, Response $response )
     {
-        if( $this->isLogged ) return redirect('/projects'); // logged-in
+        if( $this->isLogged ) return redirect('/projects'); // check logged
 
         return render('register', $this->container);
     }
@@ -46,7 +46,7 @@ class AuthenticationController extends AbstractController {
      */
     public function validateLogin( Request $request, Response $response )
     {
-        if( $this->isLogged ) return redirect('/projects'); // logged-in
+        if( $this->isLogged ) return redirect('/projects'); // check logged
 
 
         $email = $request->input('email');
@@ -87,7 +87,7 @@ class AuthenticationController extends AbstractController {
      */
     public function validateRegister( Request $request, Response $response )
     {
-        if( $this->isLogged ) return redirect('/projects'); // logged-in
+        if( $this->isLogged ) return redirect('/projects'); // check logged
 
 
         $fullname = $request->input('fullname');
