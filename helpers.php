@@ -124,7 +124,7 @@ function __( $phrase )
 
 function session( $key, $value = null )
 {
-    $sess = $_SESSION;
+    $sess =& $_SESSION;
 
     if( isset($key, $value) ) // simple set
     {
@@ -133,10 +133,6 @@ function session( $key, $value = null )
     elseif( isset($key) ) // try to get a prop
     {
         return ( isset($sess[$key]) ) ? $sess[$key] : null;
-    }
-    else // return the session
-    {
-        return $sess;
     }
 }
 
