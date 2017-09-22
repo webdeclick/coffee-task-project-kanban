@@ -16,7 +16,7 @@ trait ConnectionRetrieveTrait
 
     /**
      * connection resolver instance
-     * @var \Fox\Database\Interfaces\ConnectionResolverInterface
+     * @var \Database\Interfaces\ConnectionResolverInterface
      */
     protected static $connectionResolver;
 
