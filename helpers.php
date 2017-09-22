@@ -34,6 +34,21 @@ function render( $template, array $data = [] )
     return ob_get_clean();
 }
 
+// pass word hash
+
+function passhash( $value, $salt = '' )
+{
+    // fixme: random salt
+
+    return hash('sha512', $value.$salt); // 128chars
+}
+
+// exit, and redrect to a page
+
+function redirect( $url )
+{
+    return exit(header('Location: '.$url));
+}
 
 // guess the prefered language based on http header
 
@@ -111,11 +126,7 @@ function session( $key, $value = null )
 {
     $sess = $_SESSION;
 
-    if( is_array($key) ) // set array to session
-    {
-        $sess = array_merge($sess, $key);
-    }
-    elseif( isset($key, $value) ) // simple set
+    if( isset($key, $value) ) // simple set
     {
         $sess[$key] = $value;
     }
@@ -151,12 +162,4 @@ function event( $event, $callback = null )
 
 		return $result;
     }
-}
-
-
-// exit, and redrect to a page
-
-function redirect( $url )
-{
-    return exit(header('Location: '.$url));
 }
