@@ -6,8 +6,7 @@ use Slim\Http\Interfaces\RequestInterface as Request;
 use Slim\Http\Interfaces\ResponseInterface as Response;
 
 
-class HomeController extends AbstractController {
-
+class ProjectsController extends AbstractController {
 
     /**
      * Index function
@@ -18,7 +17,10 @@ class HomeController extends AbstractController {
      */
     public function __invoke( Request $request, Response $response )
     {
-        return render('index');
+        // check logged
+
+
+        return render('projects');
     }
 
 
