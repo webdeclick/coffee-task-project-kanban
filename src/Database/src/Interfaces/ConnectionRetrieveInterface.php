@@ -14,7 +14,7 @@ interface ConnectionRetrieveInterface
      * @param  string  $connection
      * @return
      */
-    public function on( $connection );
+    public static function on( $connection );
 
     /**
      * Get the database connection for the model.
@@ -36,7 +36,7 @@ interface ConnectionRetrieveInterface
      * @param  string  $name
      * @return $this
      */
-    public function setConnection( $name );
+    public function setConnectionName( $name );
 
     /**
      * Resolve a connection instance.
@@ -44,26 +44,26 @@ interface ConnectionRetrieveInterface
      * @param  string  $connection
      * @return \Fox\Database\Connection
      */
-    public function resolveConnection( $connection );
+    public static function resolveConnection( $connection );
 
     /**
      * Get the connection resolver instance.
      *
      * @return \Fox\Database\Interfaces\ConnectionResolverInterface
      */
-    public function getConnectionResolver();
+    public static function getConnectionResolver();
 
     /**
      * Set the connection resolver instance.
      *
      * @param  \Fox\Database\Interfaces\ConnectionResolverInterface  $resolver
      */
-    public function setConnectionResolver( ConnectionResolver $resolver );
+    public static function setConnectionResolver( ConnectionResolver $resolver );
 
     /**
      * Unset the connection resolver for models.
      */
-    public function unsetConnectionResolver();
+    public static function unsetConnectionResolver();
 
 
 }
