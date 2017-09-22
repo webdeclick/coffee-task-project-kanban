@@ -131,7 +131,7 @@ class Connection implements ConnectionInterface
     {
         $statement = $this->statement($query, $bindings);
 
-        return ( $statement ? $statement->rowCount() : false );
+        return ( $statement ? $statement->rowCount() : null );
     }
 
     /**
@@ -145,7 +145,7 @@ class Connection implements ConnectionInterface
     {
         $statement = $this->statement($query, $bindings);
 
-        return ( $statement ? $statement->fetchColumn(0) : false );
+        return ( $statement ? $statement->fetchColumn(0) : null );
     }
 
     /**
@@ -159,7 +159,7 @@ class Connection implements ConnectionInterface
     {
         $statement = $this->statement($query, $bindings);
 
-        return ( $statement ? $statement->fetch() : false );
+        return ( $statement ? $statement->fetch() : null );
     }
 
     /**
@@ -173,7 +173,7 @@ class Connection implements ConnectionInterface
     {
         $statement = $this->statement($query, $bindings);
 
-        return ( $statement ? $statement->fetchAll() : false );
+        return ( $statement ? $statement->fetchAll() : null );
     }
 
     /**
