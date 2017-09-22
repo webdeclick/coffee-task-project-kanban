@@ -17,9 +17,15 @@ var components = {
 
 function appendTemplate( templateId, element, scope, events )
 {
+    // get <template> content
     var templateNode = document.getElementById('template-'+templateId);
     var template = templateNode.content;
 
+    // add events to scope
+    var scope = scope || {};
+    scope.events = events || {};
+
+    // create doc fragment and append tpl to it
     var fragment = document.createDocumentFragment();
 
     var compiled = compileTemplate(template, scope);

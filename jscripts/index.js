@@ -1,2 +1,9 @@
 'use strict';
 
+
+
+var events = {
+    '':''
+
+};
+
