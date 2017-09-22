@@ -17,7 +17,7 @@ return [
     'database' => [
         'driver'    => 'mysql',
         'host'      => '127.0.0.1',
-        'database'  => 'sys',
+        'database'  => 'kanban',
         'username'  => 'root',
         'password'  => 'helloworld',
         'prefix'    => '',
