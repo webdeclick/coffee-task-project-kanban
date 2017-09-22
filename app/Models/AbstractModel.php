@@ -18,12 +18,6 @@ abstract class AbstractModel implements ConnectionRetrieveInterface {
     protected $table;
 
     /**
-     * primary key for the model
-     * @var string
-     */
-    protected $primaryKey = 'id';
-
-    /**
      * attributes
      * @var array
      */
@@ -50,8 +44,10 @@ abstract class AbstractModel implements ConnectionRetrieveInterface {
     {
         $dbh = $this->connection();
 
+        $keys = array_keys($this->attributes);
+
         $results = $dbh->execute(
-            'INSERT INTO @'.$this->table.' ( '.implode(', ', $this->attributes).' ) VALUES ( :'.implode(', :', $this->attributes).' ) ',
+            'INSERT INTO @'.$this->table.' ( '.implode(', ', $keys).' ) VALUES ( :'.implode(', :', $keys).' ) ',
             $this->attributes
         );
 
@@ -65,7 +61,7 @@ abstract class AbstractModel implements ConnectionRetrieveInterface {
         $dbh = $this->connection();
 
         $results = $dbh->execute(
-            'DELETE FROM @'.$this->table.' WHERE '.$this->primaryKey.' = :primaryKey',
+            'DELETE FROM @'.$this->table.' WHERE id = :primaryKey',
             ['primaryKey' => $primaryKey]
         );
 
@@ -79,7 +75,7 @@ abstract class AbstractModel implements ConnectionRetrieveInterface {
         $dbh = $model->connection();
 
         $results = $dbh->single(
-            'SELECT * FROM @'.$this->table.' WHERE '.$this->primaryKey.' = :primaryKey',
+            'SELECT * FROM @'.$this->table.' WHERE id = :primaryKey',
             ['primaryKey' => $primaryKey]
         );
 

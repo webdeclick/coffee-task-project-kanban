@@ -14,6 +14,13 @@ abstract class AbstractController {
     public function __construct( array $container = [] )
     {
         $this->container = $container;
+
+        if( session('isLogged') )
+        {
+            $this->isLogged = true;
+
+            $this->userId = session('userId');
+        }
     }
 
 
@@ -39,7 +46,13 @@ abstract class AbstractController {
      */
     public function __set( $key, $value )
     {
-        $this->$container[$key] = $value;
+        //exceptions
+        // if( in_array($key, ['errors']) )
+        // {
+        //     $this->container[$key][] = $value;
+        // }
+
+        $this->container[$key] = $value;
     }
 
     /**
