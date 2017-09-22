@@ -8,14 +8,61 @@ use Slim\Http\Interfaces\ResponseInterface as Response;
 
 abstract class AbstractController {
 
+    protected $container = [];
 
-    public function __construct()
+
+    public function __construct( array $container = [] )
     {
-
+        $this->container = $container;
     }
 
 
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Dynamically get container attributes
+     *
+     * @param  string  $key
+     * @return mixed
+     */
+    public function __get( $key )
+    {
+        return ( isset($this->container[$key]) ? $this->container[$key] : null );
+    }
+
+    /**
+     * Dynamically set container attributes
+     *
+     * @param  string  $key
+     * @param  mixed   $value
+     */
+    public function __set( $key, $value )
+    {
+        $this->$container[$key] = $value;
+    }
+
+    /**
+     * Determine if a container attribute exists
+     *
+     * @param  string  $key
+     * @return bool
+     */
+    public function __isset( $key )
+    {
+        return isset($this->container[$key]);
+    }
+
+    /**
+     * Unset a container attribute
+     *
+     * @param  string  $key
+     * @return void
+     */
+    public function __unset( $key )
+    {
+        unset($this->container[$key]);
+    }
 
 
 }
