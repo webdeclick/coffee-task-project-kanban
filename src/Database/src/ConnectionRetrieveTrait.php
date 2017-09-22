@@ -22,16 +22,6 @@ trait ConnectionRetrieveTrait
 
 
     /**
-     * Create a new instance
-     * 
-     * @return static
-     */
-    public static function newInstance()
-    {
-        return ( new static );
-    }
-
-    /**
      * Start the model with a given connection
      *
      * @param  string  $connection
@@ -43,7 +33,7 @@ trait ConnectionRetrieveTrait
         // set the connection on the model so that it is be used for the queries
         // we execute, as well as being set on each relationship we retrieve.
 
-        $instance = static::newInstance();
+        $instance = ( new static );
 
         $instance->setConnectionName($name);
 
