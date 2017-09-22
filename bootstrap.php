@@ -45,7 +45,7 @@ foreach( $routes as $routeName => $route )
 
 // set translations
 
-$lang = getPreferedLanguage('fr');
+$lang = getPreferedLanguage('fr', $langsAvailable = ['fr','en']);
 
 if( file_exists($langfile = 'languages/'.$lang.'.php') )
 {

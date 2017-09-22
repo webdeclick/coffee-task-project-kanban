@@ -37,13 +37,13 @@ function render( $template, array $data = [] )
 
 // guess the prefered language based on http header
 
-function getPreferedLanguage( $default )
+function getPreferedLanguage( $default, array $langsAvailable = [] )
 {
     static $prefered;
 
     if( isset($prefered) )
     {
-        return  $prefered;
+        return $prefered;
     }
 
     $httpAccept = getenv('HTTP_ACCEPT_LANGUAGE');
@@ -71,7 +71,12 @@ function getPreferedLanguage( $default )
         }
     }
 
-    return $prefered = isset($prefered) ? $prefered : $default; 
+    if( !isset($prefered) && in_array($prefered, $langsAvailable) )
+    {
+        return $prefered;
+    }
+
+    return $prefered = $default;
 }
 
 
@@ -149,3 +154,9 @@ function event( $event, $callback = null )
 }
 
 
+// exit, and redrect to a page
+
+function redirect( $url )
+{
+    return exit(header('Location: '.$url));
+}
