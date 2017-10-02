@@ -23,11 +23,7 @@ $corePreloads = [
     'Slim/src/Routing/Interfaces/RouteInvocationStrategyInterface',
     'Slim/src/Routing/RouteInvocationStrategy',
 
-    'Database/src/Interfaces/ConnectionResolverInterface',
     'Database/src/DatabaseManager',
-    'Database/src/ConnectionRetrieveTrait',
-    'Database/src/Interfaces/ConnectorInterface',
-    'Database/src/Connector',
     'Database/src/Interfaces/ConnectionInterface',
     'Database/src/Connection',
 ];

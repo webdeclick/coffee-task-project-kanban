@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-use Database\Interfaces\ConnectionRetrieveInterface;
-use Database\ConnectionRetrieveTrait;
 
-
-abstract class AbstractModel implements ConnectionRetrieveInterface {
-
-    use ConnectionRetrieveTrait;
+abstract class AbstractModel {
 
     /**
      * The table associated with the model.
@@ -42,7 +37,7 @@ abstract class AbstractModel implements ConnectionRetrieveInterface {
      */
     public function create()
     {
-        $dbh = $this->connection();
+        $dbh = DatabaseFactory();
 
         $keys = array_keys($this->attributes);
 
@@ -56,9 +51,7 @@ abstract class AbstractModel implements ConnectionRetrieveInterface {
 
     public function delete( $primaryKey )
     {
-        // $model = ( new static );
-        
-        $dbh = $this->connection();
+        $dbh = DatabaseFactory();
 
         $results = $dbh->execute(
             'DELETE FROM @'.$this->table.' WHERE id = :primaryKey',
@@ -70,9 +63,7 @@ abstract class AbstractModel implements ConnectionRetrieveInterface {
 
     public static function find( $primaryKey )
     {
-        $model = ( new static );
-        
-        $dbh = $model->connection();
+        $dbh = DatabaseFactory();
 
         $results = $dbh->single(
             'SELECT * FROM @'.$this->table.' WHERE id = :primaryKey',
@@ -81,6 +72,8 @@ abstract class AbstractModel implements ConnectionRetrieveInterface {
 
         if( $results )
         {
+            $model = ( new static );
+
             return $model->attributes($results);
         }
 

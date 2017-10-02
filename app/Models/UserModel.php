@@ -10,9 +10,7 @@ class UserModel extends AbstractModel {
 
     public static function getIdByLogin( $email, $password )
     {
-        $model = ( new static );
-        
-        $dbh = $model->connection();
+        $dbh = DatabaseFactory();
 
         $results = $dbh->single(
             'SELECT id FROM @users WHERE email = :email AND BINARY password = :password',
@@ -24,9 +22,7 @@ class UserModel extends AbstractModel {
 
     public static function getIdByEmail( $email )
     {
-        $model = ( new static );
-        
-        $dbh = $model->connection();
+        $dbh = DatabaseFactory();
 
         $results = $dbh->single(
             'SELECT id FROM @users WHERE email = :email',
@@ -38,12 +34,10 @@ class UserModel extends AbstractModel {
 
     public static function getAllFromProject( $projectId )
     {
-        $model = ( new static );
-        
-        $dbh = $model->connection();
+        $dbh = DatabaseFactory();
 
         $results = $dbh->all(
-            'SELECT user_id FROM @users_has_projects WHERE project_id = :projectId',
+            'SELECT user_id FROM @users_has_projects WHERE project_id = :projectId AND is_deleted = "0" ',
             [ 'projectId' => $projectId ]
         );
 

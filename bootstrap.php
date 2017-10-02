@@ -27,8 +27,18 @@ $app = new SlimApp($config);
 
 $app->add(function( $request, $response, $next ) {
     // create the database manager
-    $dbm = new DatabaseManager;
-    $dbm->addConnection($this->getSetting('database'));
+
+    if( !function_exists('DatabaseFactory') )
+    {
+        function DatabaseFactory( $database = 'default', array $settings = [] )
+        {
+            return DatabaseManager::factory($database, $settings);
+        }
+    }
+
+    $settings = $this->getSetting('database');
+
+    $dbm = DatabaseFactory('default', $settings);
 
     return $next($request, $response);
 });

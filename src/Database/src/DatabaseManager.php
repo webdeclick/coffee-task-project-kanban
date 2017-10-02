@@ -8,31 +8,15 @@ use PDO;
 use InvalidArgumentException;
 
 
-class DatabaseManager implements ConnectionResolverInterface
+class DatabaseManager
 {
 
     /**
-     * Configurations container
-     */
-    protected $configurations = [];
-
-    /**
      * The active connection instances.
-     *
      * @var array
      */
-    protected $connections = [];
+    protected static $connections = [];
 
-
-    /**
-     * Create a new database manager instance.
-     */
-    public function __construct()
-    {
-        // bootstrap ConnectionRetrieveResolver so it is ready for usage anywhere
-
-        ConnectionRetrieveTrait::setConnectionResolver($this);
-    }
 
     /**
      * Get default application settings
@@ -51,77 +35,70 @@ class DatabaseManager implements ConnectionResolverInterface
             'charset'   => 'utf8',
             'prefix'    => '',
             'querylog' => false,
-            // 'strict'   => bool
-            // 'options'  => []
+            'options'  => []
         ];
     }
 
     /**
-     * Get the default connection name.
+     * The default PDO connection options.
      *
-     * @return string
+     * @var array
      */
-    protected static function getDefaultConnectionName()
+    public static function getDefaultSettingsOptions()
     {
-        return 'default';
+        return [
+            PDO::ATTR_CASE => PDO::CASE_NATURAL,
+            PDO::ATTR_ORACLE_NULLS => PDO::NULL_NATURAL,
+            PDO::ATTR_STRINGIFY_FETCHES => false,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_EMULATE_PREPARES => false
+        ];
     }
 
     /**
-     * Register a connection with the manager.
-     * 
-     * @param array  $settings 
-     * @param string $name
-     */
-    public function addConnection( array $settings, $name = null )
-    {
-		$name = $name ?: static::getDefaultConnectionName();
-		
-        $this->configurations[$name] = array_merge(static::getDefaultSettings(), $settings);
-
-        $this->connections[$name] = $this->makeConnection($name);
-    }
-
-    /**
-     * Open a connection and simply store its instance
-     * 
-     * @param  string $name
-     */
-    protected function makeConnection( $name = null )
-    {
-        $name = $name ?: static::getDefaultConnectionName();
-
-        $config = $this->configurations[$name];
-
-        // create the connection object // idea: factory switch 'driver'
-
-        $pdo = ( new Connector )->connect($config);
-
-        $connection = new Connection($pdo, $config['database'], $config['prefix'], $config['querylog']);
-
-        return $connection;
-    }
-
-    /**
-     * Get a database connection instance.
+     * Factory : create/get the databse connection
      *
-     * @param  string  $name
-     * @return \Fox\Database\Connection
+     * @param striong $name
+     * @param array $config
+     * @return Connection
      */
-    public function connection( $name = null )
+    public static function factory( $name, array $config = [] )
     {
-        $name = $name ?: static::getDefaultConnectionName();
+        if( !isset(static::$connections[$name]) )
+        {
+            $config = array_merge(static::getDefaultSettings(), $config);
 
-        return $this->connections[$name];
+            $options = array_merge(static::getDefaultSettingsOptions(), $config['options']);
+
+            $connector = static::createConnector($config);
+
+            $connection = static::createConnection($connector, $config);
+
+            static::$connections[$name] = $connection;
+        }
+
+        return static::$connections[$name];
     }
 
     /**
-     * Return all of the created connections.
+     * Establish a database connection.
      *
-     * @return array
+     * @param  array  $config
+     * @return \PDO
      */
-    public function getConnections()
+    protected static function createConnector( array $config = [], array $options = [] )
     {
-        return $this->connections;
+        // brand new connection with PDO options
+
+        $dsn = sprintf('%s:host=%s;port=%s;dbname=%s;charset=%s', $config['driver'], $config['host'], $config['port'], $config['database'], $config['charset']);
+
+        return ( new PDO($dsn, $config['username'], $config['password'], $options) );
+    }
+
+    protected static function createConnection( $connector, array $config = [] )
+    {
+        return ( new Connection($connector, $config['database'], $config['prefix'], $config['querylog']) );
     }
 
 

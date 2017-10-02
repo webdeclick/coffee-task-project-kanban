@@ -12,7 +12,7 @@ class ProjectsModel extends AbstractModel {
     {
         $model = ( new static );
         
-        $dbh = $model->connection();
+        $dbh = DatabaseFactory();
 
         $projects = [];
 
