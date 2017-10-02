@@ -72,9 +72,7 @@ abstract class AbstractModel {
 
         if( $results )
         {
-            $model = ( new static );
-
-            return $model->attributes($results);
+            return ( new static($results) );
         }
 
         return null;
@@ -90,8 +88,6 @@ abstract class AbstractModel {
     public function attributes( array $attributes = [] )
     {
         $this->attributes = $attributes;
-
-        return $this;
     }
 
     /**

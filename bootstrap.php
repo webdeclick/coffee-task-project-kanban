@@ -26,7 +26,6 @@ $app = new SlimApp($config);
 // add middlewares
 
 $app->add(function( $request, $response, $next ) {
-    // create the database manager
 
     if( !function_exists('DatabaseFactory') )
     {
@@ -35,6 +34,8 @@ $app->add(function( $request, $response, $next ) {
             return DatabaseManager::factory($database, $settings);
         }
     }
+
+    // create the database manager
 
     $settings = $this->getSetting('database');
 
