@@ -5,9 +5,9 @@
 
 (function( win, factory ) {
     
-        var moduleName = 'xajax';
+    var moduleName = 'xajax';
     
-        win[moduleName] = (factory()); // browsers
+    win[moduleName] = factory(); // browsers
         
 }(this, function _factory() {
 
@@ -122,17 +122,13 @@
 }));
 
 
-
-
-
-
 // templating system
 
 (function( win, factory ) {
 
     var moduleName = 'xtemplate';
 
-    win[moduleName] = (factory()); // browsers
+    win[moduleName] = factory(); // browsers
 
     // if( typeof define === 'function' && define.amd ) {
     //     define([], factory); // AMD
@@ -492,3 +488,146 @@
 
 }));
 
+
+// date prettier
+
+(function( win, factory ) {
+    
+    var moduleName = 'xprettyDate';
+    
+    win[moduleName] = factory(); // browsers
+
+}(this, function _factory() {
+
+    function xmodule( date )
+    {
+        var pretty = {
+
+            default: '---',
+
+            prefixAgo: 'il y a',
+            prefixFromNow: 'd\'ici',
+            prefixDate: 'le',
+
+            translateDateWhen: 60*60*24*31*5, // convert to date when > 5 months in seconds
+
+            wordSeparator: ' ',
+
+            seconds: 'moins d\'une minute',
+
+            minute: 'environ une minute',
+            minutes: 'environ %d minutes',
+
+            hour: 'environ une heure',
+            hours: 'environ %d heures',
+
+            day: 'environ un jour',
+            days: 'environ %d jours',
+
+            week: 'environ une semaine',
+            weeks: 'environ %d semaines',
+
+            month: 'environ un mois',
+            months: 'environ %d mois',
+
+            year: 'un an',
+            years: '%d ans',
+
+            dateMonths: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
+        };
+
+
+        function isValid( date )
+        {
+            return ( !isNaN(date.getTime()) );
+        }
+
+        function substitute( string, number ) 
+        {
+            number = Math.floor(number); //
+
+            return string.replace('%d', number);
+        }
+
+        function translateDate( date )
+        {
+            var day = date.getDate().toString();
+
+            day = ( day.length > 1 ? day : '0' + day );
+
+            var month = pretty.dateMonths[date.getMonth()];
+
+            var year = date.getFullYear();
+
+
+            return ([pretty.prefixDate, day, month, year].join(pretty.wordSeparator));
+        }
+
+        function translateWords( distance, isFuture )
+        {
+            var seconds = distance / 1000;
+            var minutes = seconds / 60;
+            var hours = minutes / 60;
+            var days = hours / 24;
+            var weeks = days / 7;
+            var months = days / 31;
+            var years = days / 365;
+
+            var words = (
+
+                seconds < 60 && substitute(pretty.seconds, seconds) || // almost now
+
+                minutes < 2  && substitute(pretty.minute, 1)        ||
+                minutes < 60 && substitute(pretty.minutes, minutes) ||
+
+                hours < 2  && substitute(pretty.hour, 1)      ||
+                hours < 24 && substitute(pretty.hours, hours) ||
+
+                days < 2 && substitute(pretty.day, 1)     ||
+                days < 7 && substitute(pretty.days, days) ||
+
+                weeks  < 2 && substitute(pretty.week, 1)      ||
+                months < 1 && substitute(pretty.weeks, weeks) ||
+
+                months < 2  && substitute(pretty.month, 1)       ||
+                months < 12 && substitute(pretty.months, months) ||
+
+                years < 2 && substitute(pretty.year, 1) || substitute(pretty.years, years)
+            );
+
+            if( !words ) return pretty.default;
+
+
+            return ( [(isFuture ? pretty.prefixFromNow : pretty.prefixAgo), words].join(pretty.wordSeparator) );
+        }
+
+        // parsing :
+
+        var date = (date instanceof Date) ? date : new Date(date);
+
+        if( !isValid(date) ) return pretty.default; // not a valid date
+
+
+        var diff = ( (new Date()).getTime() - date.getTime() );
+
+        var isFuture = ( diff < 0 ); // in the future
+
+        var distance = Math.abs(diff); // millis
+
+
+        // translate distance to words or date
+
+        if( !pretty.translateDateWhen || distance < pretty.translateDateWhen*1000 )
+        {
+            return translateWords(distance, isFuture);
+        }
+        else
+        {
+            return translateDate(date);
+        }
+    }
+
+
+    return xmodule;
+
+}));
