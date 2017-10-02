@@ -23,6 +23,7 @@ return [
 
     'api-heartbeat' => ['get', '/api/heartbeat', '\App\ApiController@heartbeat'],
 
+    'api-project.list'   => ['get', '/api/projects/list', '\App\ApiController@projectsList'],
     'api-project.create' => ['get', '/api/project/create', '\App\ApiController@projectCreate'],
     'api-project.update' => ['get', '/api/project/(\d+)/update', '\App\ApiController@projectUpdate'],
     'api-project.delete' => ['get', '/api/project/(\d+)/delete', '\App\ApiController@proejctDelete'],

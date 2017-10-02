@@ -17,7 +17,7 @@ class DashboardController extends AbstractController {
      */
     public function __invoke( Request $request, Response $response )
     {
-        if( !$this->isLogged ) return json(['error' => 'User not logged']); // check logged
+        if( !$this->isLogged ) return json(['error' => ['code' => 'NotLogged', 'message' => 'User not logged']]); // check logged
 
         return json([]);
     }
@@ -37,6 +37,23 @@ class DashboardController extends AbstractController {
 
 
 //////// PROJECTS
+
+    public function projectsList( Request $request, Response $response )
+    {
+        $data = [];
+
+        $projects = [];
+        
+        if( $tryProjects = ProjectsModel::getAllByUser($this->userId) )
+        {
+            $projects = $tryProjects;
+        }
+
+        $data['projects'] = $projects;
+
+
+        return json($data);
+    }
 
     public function projectCreate( Request $request, Response $response )
     {

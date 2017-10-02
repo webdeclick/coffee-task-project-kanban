@@ -21,17 +21,6 @@ class ProjectsController extends AbstractController {
     {
         if( !$this->isLogged ) return redirect('/login?back=1'); // check logged
 
-
-        $projects = [];
-
-        if( $tryProjects = ProjectsModel::getAllByUser($this->userId) )
-        {
-            $projects = $tryProjects;
-        }
-
-        $this->projects = $projects;
-
-
         return render('projects', $this->container);
     }
 
