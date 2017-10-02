@@ -34,6 +34,13 @@ function render( $template, array $data = [] )
     return ob_get_clean();
 }
 
+// json encode
+
+function json( $data = [], $options = 0 )
+{
+    return json_encode($data, $options);
+}
+
 // pass word hash
 
 function passhash( $value, $salt = '' )

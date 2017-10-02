@@ -1,7 +1,14 @@
 <?php include 'base/header.php'; ?>
 
+<?php include 'elements/apierror.php'; ?>
 
-projects
+
+<div id="projects-list">
+
+
+
+
+</div>
 
 
 
