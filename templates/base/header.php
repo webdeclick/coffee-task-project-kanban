@@ -28,5 +28,5 @@
 </head>
 <body>
 
-<div id="page">
+<div id="page" class="page-<?php echo $template; ?>">
 

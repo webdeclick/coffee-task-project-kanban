@@ -25,9 +25,7 @@ var events = {
 
         var successHandler = function( category )
         {
-            removeerror();
 
-            openModal(category);
         }
         
         var errorHandler = function( status )
@@ -36,7 +34,7 @@ var events = {
         }
 
 
-        AjaxSimple({ url: apiEndPoint+'project/list', successHandler, errorHandler });
+        AjaxSimple('GET', apiEndPoint+'projects/list', successHandler, errorHandler);
 
 
 
