@@ -5,7 +5,7 @@
 
 (function( win, factory ) {
     
-    var moduleName = 'xajax';
+    var moduleName = 'AjaxSimple';
     
     win[moduleName] = factory(); // browsers
         
@@ -99,9 +99,12 @@
         x.onreadystatechange = xhrReadyStateChange;
 
 
+        var mediaType = 'application/json';
+        var mediaCharset = 'charset=utf-8';
+
         if( data && typeof data !== 'undefined' ) // with datas
         {
-            x.setRequestHeader('Content-Type', 'application/json;charset=utf-8'); // form data
+            x.setRequestHeader('Content-Type', mediaType + ';' + mediaCharset); // REST hint
     
             x.upload.onprogress = xhrProgess;
     
@@ -109,6 +112,8 @@
         }
         else // normal GET
         {
+            x.setRequestHeader('Accept', mediaType); // REST hint
+
             x.onprogress = xhrProgess;
     
             x.send();
@@ -126,7 +131,7 @@
 
 (function( win, factory ) {
 
-    var moduleName = 'xtemplate';
+    var moduleName = 'TemplateSimple';
 
     win[moduleName] = factory(); // browsers
 
@@ -493,7 +498,7 @@
 
 (function( win, factory ) {
     
-    var moduleName = 'xprettyDate';
+    var moduleName = 'prettyDate';
     
     win[moduleName] = factory(); // browsers
 

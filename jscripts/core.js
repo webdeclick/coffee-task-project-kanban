@@ -41,7 +41,7 @@ function appendTemplate( templateId, element, scope, events )
 
 function compileTemplate( template, scope )
 {
-    return xtemplate(template, scope);
+    return TemplateSimple(template, scope);
 }
 
 function htmlToNode( html )
