@@ -5,8 +5,10 @@ namespace App;
 use Slim\Http\Interfaces\RequestInterface as Request;
 use Slim\Http\Interfaces\ResponseInterface as Response;
 
+use App\Models\ProjectsModel;
 
-class DashboardController extends AbstractController {
+
+class ApiController extends AbstractController {
 
     /**
      * Index function

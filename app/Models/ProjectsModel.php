@@ -16,13 +16,14 @@ class ProjectsModel extends AbstractModel {
 
         $projects = [];
 
+// BUG users_has_projects
+
         $results = $dbh->all(
             'SELECT p.id as project_id
             FROM @projects p, @users_has_projects has
             WHERE
-                has.user_id = :userId
-                AND has.is_deleted = 0
-                AND p.id = has.project_id
+                ( has.user_id = :userId AND has.is_deleted = 0 ) OR ( p.linked_admin = :userId )
+                AND p.id = has.project_id 
                 AND p.is_deleted = 0
             ORDER BY p.created_at',
 
