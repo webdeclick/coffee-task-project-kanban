@@ -26,14 +26,13 @@ return [
     'api-project.update' => ['patch',  '/api/project/(\d+)/update', '\App\ApiController@projectUpdate'],
     'api-project.delete' => ['delete', '/api/project/(\d+)/delete', '\App\ApiController@projectDelete'],
 
-    'api-category.list'   => ['get', '/api/project/(\d+)/categories/list', '\App\ApiController@categoriesList'],
-    'api-category.list'   => ['get', '/api/project/(\d+)/category/(\d+)/tasks/list', '\App\ApiController@categoriesList'],
+    'api-category.list' => ['get', '/api/project/(\d+)/categories/list', '\App\ApiController@categoriesList'],
+    'api-category.tasks.list' => ['get', '/api/project/(\d+)/category/(\d+)/tasks/list', '\App\ApiController@categoriesTasksList'],
 
     'api-category.create' => ['post',   '/api/category/create', '\App\ApiController@categoryCreate'],
     'api-category.update' => ['patch',  '/api/category/(\d+)/update', '\App\ApiController@categoryUpdate'],
     'api-category.delete' => ['delete', '/api/category/(\d+)/delete', '\App\ApiController@categoryDelete'],
 
-    //'api-task.get'    => ['get',  '/api/task/(\d+)', '\App\ApiController@taskGet'],
     'api-task.create' => ['post',  '/api/task/create', '\App\ApiController@taskCreate'],
     'api-task.update' => ['patch', '/api/task/(\d+)/update', '\App\ApiController@taskUpdate'],
     'api-task.delete' => ['delete', '/api/task/(\d+)/delete', '\App\ApiController@taskDelete'],

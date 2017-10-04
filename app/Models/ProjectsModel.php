@@ -194,12 +194,19 @@ class ProjectsModel extends AbstractModel {
             ['projectId' => $projectId]
         );
 
+        $categories = [];
+
         if( $results )
         {
-            return ($results);
+            foreach( $results as $result )
+            {
+                $categoryId = $result['id'];
+
+                $categories[$categoryId] = $result;
+            }
         }
 
-        return [];
+        return $categories;
     }
 
 

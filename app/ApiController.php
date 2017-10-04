@@ -137,6 +137,22 @@ class ApiController extends AbstractController {
         return $this->apiError('ProjectNotExist');
     }
 
+    public function categoriesTasksList( Request $request, Response $response, $projectId, $categoryId )
+    {
+        $data = [];
+        
+
+
+
+
+
+
+
+        
+        return json($data);
+    }
+
+
     public function categoryCreate( Request $request, Response $response )
     {
         $data = [];

@@ -46,6 +46,8 @@
                 var category = categories[id];
 
                 appendTemplate('category', categoriesList, category);
+
+                populateTasksList(id);
             }
         };
 
@@ -58,32 +60,29 @@
 
     function populateTasksList( categoryId ) {
 
-        var categoryList = document.getElementById('category-'+categoryId);
+        var categoryList = document.querySelector('#category-'+categoryId+' .category-tasks-container');
 
         if( categoryList ) {
 
-            categoriesList.classList.add('categories-list-loading');
-
             var successHandler = function( response ) {
 
-                categoriesList.innerHTML = '';
-                categoriesList.classList.remove('categories-list-loading');
+                categoryList.innerHTML = '';
 
-                var categories = response.categories;
+                var tasks = response.tasks;
 
-                for( var id in categories ) {
+                for( var id in tasks ) {
 
-                    var category = categories[id];
+                    var task = tasks[id];
 
-                    appendTemplate('category', categoriesList, category);
+                    appendTemplate('task', categoryList, task);
                 }
             };
 
             var errorHandler = function( status, exception ) {
-                error('Impossible de récupérer les catégories', status);
+                error('Impossible de récupérer les taches de la catégorie ('+categoryId+')', status);
             };
 
-            AjaxSimple('GET', api.endPoint+'project/'+projectId+'/categories/tasks/list', successHandler, errorHandler);
+            AjaxSimple('GET', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/tasks/list', successHandler, errorHandler);
         }
     }
 
