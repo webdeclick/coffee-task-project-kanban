@@ -14,11 +14,21 @@
 
     <!-- HTML5 -->
     <script type="text/javascript">
-		['header', 'nav', 'section', 'article', 'aside', 'footer', 'time', 'comment']
-		.forEach(function( value, key ){ document.createElement(value); });
+        ['header', 'nav', 'section', 'article', 'aside', 'footer', 'time', 'comment']
+        .forEach(function( value, key ){ document.createElement(value); });
     </script>
 
     <?php if(file_exists('jscripts/'.$template.'.js')): ?>
+
+        <?php if($template=='dashboard'): ?>
+            <!-- extra scripts-->
+            <script>
+                var dashboard = {
+                    projectId: '<?php echo $projectId; ?>'
+                }
+            </script>
+        <?php endif; ?>
+
         <script type="text/javascript" src="/jscripts/modules.js"></script>
         <script type="text/javascript" src="/jscripts/core.js"></script>
 

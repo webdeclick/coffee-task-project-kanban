@@ -5,6 +5,8 @@ namespace App;
 use Slim\Http\Interfaces\RequestInterface as Request;
 use Slim\Http\Interfaces\ResponseInterface as Response;
 
+use App\Models\ProjectsModel;
+
 
 class DashboardController extends AbstractController {
 
@@ -15,12 +17,23 @@ class DashboardController extends AbstractController {
      * @param Response $response
      * @return string
      */
-    public function __invoke( Request $request, Response $response )
+    public function __invoke( Request $request, Response $response, $projectId )
     {
-        // check logged
+        if( !$this->isLogged ) return redirect('/login?back=1'); // check logged
 
+        $this->projectId = $projectId;
 
-        return render('dashboard');
+        // find project :
+
+        $project = ProjectsModel::find($projectId);
+
+        if( !$project ) {
+            return redirect('/projects?back=1'); // ce projet n'existe pas
+        }
+
+        //todo : checker si l'user est dans ce projet
+
+        return render('dashboard', $this->container);
     }
 
 

@@ -3,6 +3,9 @@
 <?php include 'elements/apierror.php'; ?>
 
 
+
+
+
 <div id="projects-list" class="projects-list projects-list-loading">
 
 </div>
@@ -38,7 +41,6 @@
 
 
 
-
 <script id="template-project" class="component-template" type="text/template">
 
     <div id="project-{{ id }}" class="component-project" data-id="{{ id }}">
@@ -69,6 +71,8 @@
         {{ / }}
 
         <button class="project-delete">Supprimer</button>
+
+        <a href="/dashboard/{{ id }}">Aller à la liste des taches</a>
 
     </div>
 

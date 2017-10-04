@@ -38,13 +38,12 @@ body {
     opacity: 0; /* hide all projects when loading */
 }
 
-
 /* block projet */
 
 .page-projects .component-project {
     border: 1px solid black;
     padding: 10px;
-    height: 200px;
+    min-height: 200px;
     width: 200px;
 }
 
@@ -55,5 +54,63 @@ body {
 }
 
 
+
+
+
+/*//////////////////////////////// PAGE DASHBOARD : CATEGORIES/TASKS ////////////////////////////////*/
+
+/* liste des categories */
+
+.page-dashboard #categories-list {
+    width: 100%;
+    min-height: 200px;
+
+    display: flex;
+    flex-direction: row;
+}
+.page-dashboard #categories-list.categories-list-loading {
+    background: red;
+    /*image de chargement*/
+}
+.page-dashboard #projects-list.projects-list-loading .component-project {
+    opacity: 0; /* hide all projects when loading */
+}
+
+/* liste d'un catégorie ( colonne ) */
+
+.page-dashboard #categories-list .component-category  {
+    width: 100%;
+    margin: 10px;
+    border: 1px solid black;
+}
+
+/* color des catégories */
+
+.page-dashboard #categories-list .component-category.category-color-1  {
+    background: yellow;
+}
+.page-dashboard #categories-list .component-category.category-color-2  {
+    background: green;
+}
+
+
+
+/* lsite des taks dans une category */
+
+.page-dashboard #categories-list .tasks-list {
+    width: 200px;
+}
+
+.page-dashboard #categories-list .tasks-list.categories-list-loading {
+    background: red;
+    /*image de chargement*/
+}
+
+/* task indépendante */
+
+.page-dashboard #categories-list .tasks-list .component-task {
+    margin: 10px;
+    border: 1px solid black;
+}
 
 

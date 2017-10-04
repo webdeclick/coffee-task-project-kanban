@@ -108,9 +108,13 @@
         var projectId = projectBlock.getAttribute('data-id');
     
         // call ajax delete
+
+        categoryList.classList.add('projects-list-loading');
     
         var successHandler = function( response ) {
             projectBlock.remove();
+
+            categoryList.classList.remove('projects-list-loading');
         };
     
         var errorHandler = function( status, exception ) {

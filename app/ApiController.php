@@ -22,19 +22,12 @@ class ApiController extends AbstractController {
     }
 
     /**
-     * Index function
+     * Heartbeat function
      *
      * @param Request $request
      * @param Response $response
      * @return string
      */
-    public function __invoke( Request $request, Response $response )
-    {
-        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
-
-        return json([]);
-    }
-
     public function heartbeat( Request $request, Response $response )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
@@ -46,30 +39,17 @@ class ApiController extends AbstractController {
 
 
 
-
-
-
-
-
 //////// PROJECTS
 
     public function projectsList( Request $request, Response $response )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
-        $data = [];
+        $projects = ProjectsModel::getAllByUser($this->userId);
 
-        $projects = [];
-        
-        if( $tryProjects = ProjectsModel::getAllByUser($this->userId) )
-        {
-            $projects = $tryProjects;
-        }
-
-        $data['projects'] = $projects;
-
-
-        return json($data);
+        return json([
+            'projects' => $projects
+        ]);
     }
 
     public function projectCreate( Request $request, Response $response )
@@ -139,6 +119,24 @@ class ApiController extends AbstractController {
 
 //////// CATEGORIES
 
+    public function categoriesList( Request $request, Response $response, $projectId )
+    {
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+
+        $project = ProjectsModel::find($projectId);
+        
+        if( $project ) {
+
+            $categories = ProjectsModel::findCategories($projectId);
+
+            return json([
+                'categories' => $categories
+            ]);
+        }
+
+        return $this->apiError('ProjectNotExist');
+    }
+
     public function categoryCreate( Request $request, Response $response )
     {
         $data = [];
@@ -163,6 +161,12 @@ class ApiController extends AbstractController {
 
 //////// TASKS
 
+    public function taskGet( Request $request, Response $response, $taskId )
+    {
+        $data = [];
+
+        return json($data);
+    }
 
     public function taskCreate( Request $request, Response $response )
     {

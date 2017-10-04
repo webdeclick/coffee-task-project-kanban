@@ -33,7 +33,7 @@ class ProjectsModel extends AbstractModel {
                 OR
                 ( p.linked_manager = :userId OR p.linked_admin = :userId )
             )
-            AND p.is_deleted = "0"
+            AND p.is_deleted = 0
             ORDER BY p.created_at',
 
             [ 'userId' => $userId ]
@@ -179,6 +179,27 @@ class ProjectsModel extends AbstractModel {
         $results = parent::delete();
 
         return $results;
+    }
+
+    public static function findCategories( $projectId )
+    {
+        $dbh = DatabaseFactory();
+
+        $results = $dbh->all(
+            'SELECT * FROM @categories
+            WHERE
+                project_id = :projectId
+                AND is_deleted = 0',
+
+            ['projectId' => $projectId]
+        );
+
+        if( $results )
+        {
+            return ($results);
+        }
+
+        return [];
     }
 
 
