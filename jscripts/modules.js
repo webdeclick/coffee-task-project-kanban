@@ -11,7 +11,7 @@
         
 }(this, function _factory() {
 
-    function xmodule( method, url, successHandler, errorHandler, data, progressHandler )
+    return function( method, url, successHandler, errorHandler, data, progressHandler )
     {
         // private methods :
     
@@ -43,7 +43,7 @@
                     {
                         errorHandler && errorHandler('exception', e);
     
-                        // console.log(e);
+                        /*TODO DEBUG*/console.log(e);
                     }
                 }
                 else
@@ -121,9 +121,6 @@
     
     }
 
-
-    return xmodule;
-
 }));
 
 
@@ -194,11 +191,9 @@
         '=': '&#x3D;'
     };
 
-    function xmodule(template, context){
+    return function( template, context ){
         return compileTemplate( template, context )
     }
-
-    return xmodule;
 
 
     // private
@@ -242,7 +237,7 @@
     {
         var template = section; // original template
 
-        var regx = /{{\s*([a-zA-Z0-9\_.\-?!#\/&>\|\s]+?)\s*}}/g; // {{ aa.bb }} az09_.-?!#/&>|
+        var regx = /{{\s*([a-zA-Z0-9_.-\?!\#/&:|\s]+?)\s*}}/g; // {{ aa.bb }} az09_.-?!#/&>|
 
         var match, expr, matches = [];
         while( match = regx.exec(section) )
@@ -296,6 +291,9 @@
                 // set the child section
                 capture = template.substring(matchIndex, childLastIndex); // whole
                 childSection = template.substring(lastIndex, childLastMatchIndex); // inside
+
+// console.log(capture);
+// console.log(childSection);
 
                 // render the child, based on parent's expr
                 result = applySymbolCallback(symbol, expr, childSection, context);
@@ -434,7 +432,7 @@
     function renderLoop( symbol, expr, section, context )
     {
         var parts = [];
-        for( var op of expr.split('>', 3) ) {
+        for( var op of expr.split(':', 3) ) {
             if( op ) parts.push(op.trim()); // key as value, check exist & remove space
         }
 
@@ -504,7 +502,7 @@
 
 }(this, function _factory() {
 
-    function xmodule( date )
+    return function ( date )
     {
         var pretty = {
 
@@ -631,8 +629,5 @@
             return translateDate(date);
         }
     }
-
-
-    return xmodule;
 
 }));

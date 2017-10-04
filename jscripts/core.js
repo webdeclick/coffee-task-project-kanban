@@ -24,7 +24,7 @@ function appendTemplate( templateId, element, scope, events )
 {
     // get <template> content
     var templateNode = document.getElementById('template-'+templateId);
-    var template = templateNode.content;
+    var template = templateNode.innerHTML;//content
 
     // add events to scope
     var scope = scope || {};
@@ -34,6 +34,7 @@ function appendTemplate( templateId, element, scope, events )
     var fragment = document.createDocumentFragment();
 
     var compiled = compileTemplate(template, scope);
+    
     fragment.appendChild(htmlToNode(compiled));
 
     element.appendChild(fragment);
@@ -61,7 +62,7 @@ function error( text, status )
         return ( new Error().stack || '' );
     }
 
-    var div = document.getElementById('error');
+    var div = document.getElementById('api-error');
 
     var emessage = div.querySelector('.message');
 
@@ -76,10 +77,9 @@ function error( text, status )
         estatus.innerText = 'Code: ' + status;
     }
 
-    // show / hide stack, quick-dirty function
+    // show / hide stack, quick-dirty function ; for users
 
-    estatus.onclick = function( event )
-    {
+    estatus.onclick = function( event ) {
         estack.classList.toggle('show');
     };
 
