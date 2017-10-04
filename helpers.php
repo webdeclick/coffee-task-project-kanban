@@ -38,6 +38,8 @@ function render( $template, array $data = [] )
 
 function json( $data = [], $options = 0 )
 {
+    $options = JSON_PRETTY_PRINT; // debug
+
     return json_encode($data, $options);
 }
 
