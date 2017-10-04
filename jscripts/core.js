@@ -12,7 +12,9 @@ var components = {
 
 };
 
-var apiEndPoint = '/api/';
+var api = {
+    endPoint: '/api/'
+};
 
 
 
@@ -20,15 +22,11 @@ var apiEndPoint = '/api/';
 
 
 
-function appendTemplate( templateId, element, scope, events )
+function appendTemplate( templateId, element, scope )
 {
     // get <template> content
     var templateNode = document.getElementById('template-'+templateId);
     var template = templateNode.innerHTML;//content
-
-    // add events to scope
-    var scope = scope || {};
-    scope.events = events || {};
 
     // create doc fragment and append tpl to it
     var fragment = document.createDocumentFragment();
@@ -52,61 +50,6 @@ function htmlToNode( html )
 
     return e.firstElementChild;
 }
-
-// display an error message ( modal, page )
-
-function error( text, status )
-{
-    function stackTrace()
-    {
-        return ( new Error().stack || '' );
-    }
-
-    var div = document.getElementById('api-error');
-
-    var emessage = div.querySelector('.message');
-
-    var estatus = div.querySelector('.status');
-
-    var estack = div.querySelector('.stack');
-
-    emessage.innerText = 'Erreur: "' + text + '", essayez de recharger la page.';
-
-    if( !empty(status) )
-    {
-        estatus.innerText = 'Code: ' + status;
-    }
-
-    // show / hide stack, quick-dirty function ; for users
-
-    estatus.onclick = function( event ) {
-        estack.classList.toggle('show');
-    };
-
-    estack.innerText = stackTrace();
-
-    // show the message
-
-    div.classList.add('show');
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // types types :
 
@@ -212,7 +155,6 @@ function clone( target )
     return fusion({}, target);
 }
 
-
 // find the ancestor of an element || null
 
 function findAncestor( el, selector ) // element.closest polyfill
@@ -221,9 +163,6 @@ function findAncestor( el, selector ) // element.closest polyfill
 
     return el;
 }
-
-
-
 
 // function String.prototype.format = function()
 // {
@@ -234,7 +173,6 @@ function findAncestor( el, selector ) // element.closest polyfill
 //         return ( typeof args[number] != 'undefined' ? args[number] : match );
 //     });
 // }
-
 
 // function strip( number ) // binary float : 10 - 9.1 == 0.9000000000000004
 // {
@@ -281,4 +219,45 @@ function swapElements( obj1, obj2 )
             parent2.appendChild(obj1);
         }
     }
+}
+
+
+
+///////////////////////////////////////////////////////////////////////
+
+// display an error message ( modal, page )
+
+function error( text, status )
+{
+    function stackTrace()
+    {
+        return ( new Error().stack || '' );
+    }
+
+    var div = document.getElementById('api-error');
+
+    var emessage = div.querySelector('.message');
+
+    var estatus = div.querySelector('.status');
+
+    var estack = div.querySelector('.stack');
+
+    emessage.innerText = 'Erreur: "' + text + '", essayez de recharger la page.';
+
+    if( !empty(status) )
+    {
+        estatus.innerText = 'Code: ' + status;
+    }
+
+    // show / hide stack, quick-dirty function ; for users
+
+    estatus.onclick = function( event ) {
+        estack.classList.toggle('show');
+    };
+
+    estack.innerText = stackTrace();
+
+    // show the message
+
+    div.classList.add('show');
 }

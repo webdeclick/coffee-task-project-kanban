@@ -43,12 +43,14 @@
                     {
                         errorHandler && errorHandler('exception', e);
     
-                        /*TODO DEBUG*/console.log(e);
+                        /*TODO DEBUG*/console.log('ajax-exception',e);
                     }
                 }
                 else
                 {
                     errorHandler && errorHandler('http');
+
+                    /*TODO DEBUG*/console.log('ajax-http',status);
                 }
             }
         }
