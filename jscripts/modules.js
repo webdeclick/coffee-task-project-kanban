@@ -14,17 +14,17 @@
     return function( method, url, successHandler, errorHandler, data, progressHandler )
     {
         // private methods :
-    
+
         function parse( response )
         {
             return JSON.parse( response );
         }
-    
+
         function stringify( data )
         {
             return JSON.stringify( data );
         }
-    
+
         function xhrReadyStateChange()
         {
             if ( this.readyState === this.DONE ) // DONE:4
@@ -36,13 +36,13 @@
                     try
                     {
                         var response = parse(this.responseText);
-    
+
                         successHandler && successHandler(response);
                     }
                     catch( e )
                     {
                         errorHandler && errorHandler('exception', e);
-    
+
                         /*TODO DEBUG*/console.log('ajax-exception',e);
                     }
                 }
@@ -293,9 +293,6 @@
                 // set the child section
                 capture = template.substring(matchIndex, childLastIndex); // whole
                 childSection = template.substring(lastIndex, childLastMatchIndex); // inside
-
-// console.log(capture);
-// console.log(childSection);
 
                 // render the child, based on parent's expr
                 result = applySymbolCallback(symbol, expr, childSection, context);

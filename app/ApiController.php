@@ -13,8 +13,9 @@ class ApiController extends AbstractController {
     protected function apiError( $code )
     {
         $messages = [
-            'NotLogged' => 'User not logged',
+            'UserNotLogged' => 'User not logged',
             'ProjectNotExist' => 'Project does not exist',
+            'ProjectNotCreated' => 'Project cannot be created',
         ];
 
         return json(['error' => [ 'code' => $code, 'message' => $messages[$code] ]]);
@@ -29,14 +30,14 @@ class ApiController extends AbstractController {
      */
     public function __invoke( Request $request, Response $response )
     {
-        if( !$this->isLogged ) return $this->apiError('NotLogged');
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
         return json([]);
     }
 
     public function heartbeat( Request $request, Response $response )
     {
-        if( !$this->isLogged ) return $this->apiError('NotLogged');
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
         $data = [];
 
@@ -54,6 +55,8 @@ class ApiController extends AbstractController {
 
     public function projectsList( Request $request, Response $response )
     {
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+
         $data = [];
 
         $projects = [];
@@ -71,13 +74,41 @@ class ApiController extends AbstractController {
 
     public function projectCreate( Request $request, Response $response )
     {
-        $data = [];
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
-        return json($data);
+        $pTitle = $request->input('title', '');
+        $pDescription = $request->input('description', '');
+
+        $pUsers = $request->input('users', '');
+        $pUsers = preg_split("/\\r\\n|\\r|\\n/", $pUsers);
+
+        $pUsers = array_unique($pUsers);
+
+        $pManager = $request->input('manager', '');
+
+        $data = [
+            'title' => $pTitle,
+            'description' => $pDescription,
+            'manager' => $pManager,
+            'users' => $pUsers,
+        ];
+
+        $userId = $this->userId;
+
+        $project = ProjectsModel::createNew($userId, $data);
+
+        if( $project ) {
+
+            return json(['ok']);
+        }
+
+        return $this->apiError('ProjectNotCreated');
     }
 
     public function projectUpdate( Request $request, Response $response )
     {
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+
         $data = [];
 
         return json($data);
@@ -85,7 +116,7 @@ class ApiController extends AbstractController {
 
     public function projectDelete( Request $request, Response $response, $projectId )
     {
-        if( !$this->isLogged ) return $this->apiError('NotLogged');
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
         $data = [];
 

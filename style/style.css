@@ -11,10 +11,7 @@ body {
     transition: all 0.5s ease;
 }
 
-
-
-
-/* templates elements , used in jscripts */
+/* templates elements, jscripts */
 
 .component-template {
     display: none;
@@ -23,10 +20,40 @@ body {
 
 
 
-/********** TESTS **********/
 
-.component-project {
+
+/*//////////////////////////////// PAGE DES PROJETS ////////////////////////////////*/
+
+/* lsite des projets container */
+
+.page-projects #projects-list {
+    min-height: 300px;;
+    width: 300px;
+}
+.page-projects #projects-list.projects-list-loading {
+    background: red;
+    /*image de chargement*/
+}
+.page-projects #projects-list.projects-list-loading .component-project {
+    opacity: 0; /* hide all projects when loading */
+}
+
+
+/* block projet */
+
+.page-projects .component-project {
     border: 1px solid black;
     padding: 10px;
+    height: 200px;
+    width: 200px;
 }
+
+/* block projet nouveau */
+
+.page-projects .component-project.component-project-new {
+    background: blue;
+}
+
+
+
 

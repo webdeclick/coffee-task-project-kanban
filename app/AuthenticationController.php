@@ -67,12 +67,12 @@ class AuthenticationController extends AbstractController {
             }
             else
             {
-                $this->errors = __('login.authentication.failed');
+                $this->errors = 'Pseudo ou pass incorrect';
             }
         }
         else
         {
-            $this->errors = __('login.authentication.notset');
+            $this->errors = 'Veuillez renseigner des informations';
         }
 
 
@@ -99,31 +99,31 @@ class AuthenticationController extends AbstractController {
 
         if( empty($fullname) )
         {
-            $this->errors = __('register.fullname.notset');
+            $this->errors = 'Vous devez renseignervotre nom';
         }
 
         if( !empty($email) )
         {
             if( $tryUserId = UserModel::getIdByEmail($email) )
             {
-                $this->errors = __('register.email.notavailable');
+                $this->errors = 'Cet email est déjà utilisé';
             }
         }
         else
         {
-            $this->errors = __('register.email.notset');
+            $this->errors = 'Vous devez renseigner votre email';
         }
 
         if( !empty($password1) && !empty($password2) )
         {
             if( $password1 != $password2 )
             {
-                $this->errors = __('register.passwords.notsame');
+                $this->errors = 'Vos mots de passe ne correspondent pas';
             }
         }
         else
         {
-            $this->errors = __('register.passwords.notset');
+            $this->errors = 'Vous devez renseigner un mot de pass';
         }
 
         // no errors : validate

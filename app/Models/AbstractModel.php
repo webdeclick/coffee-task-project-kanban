@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use ArrayAccess;
 
-abstract class AbstractModel {
+
+abstract class AbstractModel implements ArrayAccess {
 
     /**
      * The table associated with the model.
@@ -43,6 +45,7 @@ abstract class AbstractModel {
 
         $results = $dbh->execute(
             'INSERT INTO @'.static::table.' ( '.implode(', ', $keys).' ) VALUES ( :'.implode(', :', $keys).' ) ',
+            
             $this->attributes
         );
 
@@ -54,8 +57,16 @@ abstract class AbstractModel {
         $dbh = DatabaseFactory();
 
         $results = $dbh->execute(
-            'DELETE FROM @'.static::table.' WHERE id = :primaryKey',
-            ['primaryKey' => $this->id]
+            'UPDATE @'.static::table.' SET
+                is_deleted = :is_deleted,
+                deleted_at = :deleted_at
+            WHERE id = :primaryKey',
+
+            [
+                'is_deleted' => '1',
+                'deleted_at' => DatabaseDatetime(),
+                'primaryKey' => $this->id
+            ]
         );
 
         return $results;
@@ -161,5 +172,66 @@ abstract class AbstractModel {
         unset($this->attributes[$key]);
     }
 
+
+
+    /********************************************************************************
+     * ArrayAccess interface
+     *******************************************************************************/
+
+
+    /**
+     * Does this collection have a given key?
+     *
+     * @param  string $key The data key
+     *
+     * @return bool
+     */
+    public function offsetExists( $key )
+    {
+        return isset($this->attributes[$key]);
+    }
+
+    /**
+     * Get collection item for key
+     *
+     * @param string $key The data key
+     *
+     * @return mixed The key's value, or the default value
+     */
+    public function offsetGet( $key )
+    {
+        return $this->getAttribute($key);
+    }
+
+    /**
+     * Set collection item
+     *
+     * @param string $key   The data key
+     * @param mixed  $value The data value
+     */
+    public function offsetSet( $key, $value )
+    {
+        $this->setAttribute($key, $value);
+    }
+
+    /**
+     * Remove item from collection
+     *
+     * @param string $key The data key
+     */
+    public function offsetUnset( $key )
+    {
+        unset($this->attributes[$key]);
+    }
+
+    /**
+     * Get number of items in collection
+     *
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->attributes);
+    }
 
 }

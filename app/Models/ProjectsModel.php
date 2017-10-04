@@ -28,18 +28,19 @@ class ProjectsModel extends AbstractModel {
             'SELECT DISTINCT p.id as project_id, p.*
             FROM projects p
             LEFT JOIN users_has_projects has ON p.id = has.project_id
-            WHERE
+            WHERE (
                 ( has.user_id = :userId AND has.is_deleted = 0 )
                 OR
                 ( p.linked_manager = :userId OR p.linked_admin = :userId )
- 
-            AND p.is_deleted = 0
+            )
+            AND p.is_deleted = "0"
             ORDER BY p.created_at',
 
             [ 'userId' => $userId ]
         );
 
         $projects = [];
+
 
         if( !empty($results) )
         {
@@ -56,15 +57,38 @@ class ProjectsModel extends AbstractModel {
 
                 $result['users'] = $users;
 
-                if( !empty($result['user_admin']) )
+
+                if( !empty($result['linked_admin']) )
                 {
-                    $result['user_admin'] = UserModel::find($result['user_admin']);
+                    $user_admin = UserModel::find($result['linked_admin']);
+
+                    if($user_admin)
+                    {
+                        $result['user_admin'] = [
+                            'id' => $user_admin['id'],
+                            'fullname' => $user_admin['fullname'],
+                            'email' => $user_admin['email'],
+                        ]; 
+                    }
                 }
 
-                if( !empty($result['user_manager']) )
+                unset($result['linked_admin']);
+
+                if( !empty($result['linked_manager']) )
                 {
-                    $result['user_manager'] = UserModel::find($result['user_manager']);
+                    $user_manager = UserModel::find($result['linked_manager']);
+
+                    if($user_manager)
+                    {
+                        $result['user_manager'] = [
+                            'id' => $user_manager['id'],
+                            'fullname' => $user_manager['fullname'],
+                            'email' => $user_manager['email'],
+                        ];  
+                    }
                 }
+
+                unset($result['linked_manager']);
 
                 $projects[$project_id] = $result;
             }
@@ -73,6 +97,89 @@ class ProjectsModel extends AbstractModel {
         return $projects;
     }
 
+    public static function createNew( $userId, array $data )
+    {
+        $dbh = DatabaseFactory();
+
+
+        $linked_manager = null;
+
+        if( !empty($data['manager']) )
+        {
+            $linked_manager = UserModel::getIdByEmail($data['manager']);
+        }
+
+        // create project
+
+        $projectId = $dbh->execute(
+            'INSERT INTO @projects SET
+                linked_admin = :linked_admin,
+                linked_manager = :linked_manager,
+                title = :title,
+                description = :description
+            ',
+            [
+                'linked_admin' => $userId,
+                'linked_manager' => $linked_manager,
+                'title' => $data['title'],
+                'description' => $data['description']
+            ]
+        );
+
+
+        if( $projectId && is_array($data['users']) && !empty($data['users']) )
+        {
+            foreach($data['users'] as $key => $user_email )
+            {
+                if( empty($user_email) ) continue;
+
+                $linked_user = UserModel::getIdByEmail($user_email);
+
+                if( $linked_user ) {
+
+                    $hasId = $dbh->execute(
+                        'INSERT INTO @users_has_projects SET
+                            user_id = :user_id,
+                            project_id = :project_id
+                        ',
+                        [
+                            'user_id' => $linked_user,
+                            'project_id' => $projectId,
+                        ]
+                    );
+                }
+            }
+        }
+
+        return $projectId;
+    }
+
+
+    public function delete()
+    {
+        $dbh = DatabaseFactory();
+
+        // delete has
+
+        $results = $dbh->execute(
+            'UPDATE @users_has_projects SET
+                is_deleted = :is_deleted,
+                deleted_at = :deleted_at
+            WHERE project_id = :primaryKey',
+
+            [
+                'is_deleted' => '1',
+                'deleted_at' => DatabaseDatetime(),
+                'primaryKey' => $this->id
+            ]
+        );
+
+        // delete project
+
+        $results = parent::delete();
+
+        return $results;
+    }
 
 
 

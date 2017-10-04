@@ -37,10 +37,11 @@ class UserModel extends AbstractModel {
         $dbh = DatabaseFactory();
 
         $results = $dbh->all(
-            'SELECT user_id
-            FROM @users_has_projects
-            WHERE project_id = :projectId
-            AND is_deleted = 0',
+            'SELECT u.id, u.fullname, u.email
+            FROM @users u, @users_has_projects has
+            WHERE has.project_id = :projectId
+            AND u.id = has.user_id
+            AND has.is_deleted = 0',
 
             [ 'projectId' => $projectId ]
         );
