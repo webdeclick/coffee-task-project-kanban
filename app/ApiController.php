@@ -10,6 +10,16 @@ use App\Models\ProjectsModel;
 
 class ApiController extends AbstractController {
 
+    protected function apiError( $code )
+    {
+        $messages = [
+            'NotLogged' => 'User not logged',
+            'ProjectNotExist' => 'Project does not exist',
+        ];
+
+        return json(['error' => [ 'code' => $code, 'message' => $messages[$code] ]]);
+    }
+
     /**
      * Index function
      *
@@ -19,13 +29,15 @@ class ApiController extends AbstractController {
      */
     public function __invoke( Request $request, Response $response )
     {
-        if( !$this->isLogged ) return json(['error' => ['code' => 'NotLogged', 'message' => 'User not logged']]); // check logged
+        if( !$this->isLogged ) return $this->apiError('NotLogged');
 
         return json([]);
     }
 
     public function heartbeat( Request $request, Response $response )
     {
+        if( !$this->isLogged ) return $this->apiError('NotLogged');
+
         $data = [];
 
         return json($data);
@@ -71,9 +83,23 @@ class ApiController extends AbstractController {
         return json($data);
     }
 
-    public function projectDelete( Request $request, Response $response )
+    public function projectDelete( Request $request, Response $response, $projectId )
     {
+        if( !$this->isLogged ) return $this->apiError('NotLogged');
+
         $data = [];
+
+        $project = ProjectsModel::find($projectId);
+
+        if( $project ) {
+
+            $project->delete();
+
+            return json(['ok']);
+        }
+        else {
+            return $this->apiError('ProjectNotExist');
+        }
 
         return json($data);
     }

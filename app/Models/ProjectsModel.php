@@ -5,7 +5,7 @@ namespace App\Models;
 
 class ProjectsModel extends AbstractModel {
 
-    protected $table = 'projects';
+    const table = 'projects';
 
 
     public static function getAllByUser( $userId )

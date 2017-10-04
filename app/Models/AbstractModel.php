@@ -10,7 +10,7 @@ abstract class AbstractModel {
      * @var string
      */
 
-    protected $table;
+    const table = null;
 
     /**
      * attributes
@@ -42,31 +42,32 @@ abstract class AbstractModel {
         $keys = array_keys($this->attributes);
 
         $results = $dbh->execute(
-            'INSERT INTO @'.$this->table.' ( '.implode(', ', $keys).' ) VALUES ( :'.implode(', :', $keys).' ) ',
+            'INSERT INTO @'.static::table.' ( '.implode(', ', $keys).' ) VALUES ( :'.implode(', :', $keys).' ) ',
             $this->attributes
         );
 
         return $dbh->lastInsertId();
     }
 
-    public function delete( $primaryKey )
+    public function delete()
     {
         $dbh = DatabaseFactory();
 
         $results = $dbh->execute(
-            'DELETE FROM @'.$this->table.' WHERE id = :primaryKey',
-            ['primaryKey' => $primaryKey]
+            'DELETE FROM @'.static::table.' WHERE id = :primaryKey',
+            ['primaryKey' => $this->id]
         );
 
-        return $result;
+        return $results;
     }
 
     public static function find( $primaryKey )
     {
         $dbh = DatabaseFactory();
 
-        $results = $dbh->single(
-            'SELECT * FROM @'.$this->table.' WHERE id = :primaryKey',
+        $results = $dbh->row(
+            'SELECT * FROM @'.static::table.' WHERE id = :primaryKey',
+
             ['primaryKey' => $primaryKey]
         );
 

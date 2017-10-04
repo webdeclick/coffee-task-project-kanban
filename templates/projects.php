@@ -12,22 +12,22 @@
 
 
 
+<script id="template-project" class="component-template" type="text/template">
 
-<template id="template-project" class="component-template">
+    <div id="project-{{ id }}" class="component-project" data-id="{{ id }}">
 
-    <div class="component-project">
-
-        {{ title }}
+        {{title}}
 
         {{ description }}
 
+        {{ #users : user }}
+            {{ user }}
+        {{/}}
 
-        {{ #users > user }}
-
-        {{ /users }}
+        <button class="project-delete">Supprimer</button>
 
     </div>
 
-</template>
+</script>
 
 <?php include 'base/footer.php'; ?>

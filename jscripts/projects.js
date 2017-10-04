@@ -1,77 +1,39 @@
 'use strict';
 
-
-var events = {
-    'addProject': 'addProjectEvent',
-    'updateProject': 'updateProjectEvent',
-    'deleteProject': 'deleteProjectEvent',
-};
-
-// main :
-
 (function( win, doc ) { 
 
-    // load projects list
+    var categoryList;
 
-    window.addEventListener('load', function( event ) {
+
+    win.addEventListener('load', function( event ) {
     
-        // lsit of tiems
+        categoryList = doc.getElementById('projects-list');
 
-        var categoryList = document.getElementById('projects-list');
-
-
+        delegate(categoryList, '.component-project .project-delete', 'click', deleteProjectEvent);
 
 
 
-        var successHandler = function( category )
+        // load projects list
+
+        var successHandler = function( response )
         {
+            var projects = response.projects;
 
-        }
+            for( var id in projects ) {
+                var project = projects[id];
+
+                appendTemplate('project', categoryList, project);
+            }
+        };
         
-        var errorHandler = function( status )
+        var errorHandler = function( status, exception )
         {
             error('Impossible de récupérer les projets', status);
-        }
+        };
 
-
-        AjaxSimple('GET', apiEndPoint+'projects/list', successHandler, errorHandler);
-
-
-
-
-
-
+        AjaxSimple('GET', api.endPoint+'projects/list', successHandler, errorHandler);
     });
 
-
-
-
-
-
-
-
-
-
-
-    function populateCategoriesList( categories )
-    {
-        if( !empty(categories) )
-        {
-            loop( categories, function( category )
-            {
-                var type = category.type;
-
-                var id = category.id;
-                var title = category.title;
-                var deleted = category.deleted;
-            });
-        }
-        else
-        {
-            addPlaceholder(categoryList, 'Il n\'y a aucunes catégories, créer-en !');
-        }
-    }
-        
 })(this, document);
 
 
@@ -79,7 +41,7 @@ var events = {
 
 function addProjectEvent( event )
 {
-
+    
 }
 
 function updateProjectEvent( event )
@@ -89,5 +51,24 @@ function updateProjectEvent( event )
 
 function deleteProjectEvent( event )
 {
+    var target = event.target;
 
+    var projectBlock = findAncestor(target, '.component-project');
+
+    var projectId = projectBlock.getAttribute('data-id');
+
+
+    // call ajax delete
+
+    var successHandler = function( response )
+    {
+        projectBlock.remove();
+    };
+
+    var errorHandler = function( status, exception )
+    {
+        error('Impossible de supprimer ce projet', status);
+    };
+
+    AjaxSimple('DELETE', api.endPoint+'project/'+projectId+'/delete', successHandler, errorHandler);
 }

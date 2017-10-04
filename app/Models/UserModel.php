@@ -5,7 +5,7 @@ namespace App\Models;
 
 class UserModel extends AbstractModel {
 
-    protected $table = 'users';
+    const table = 'users';
 
 
     public static function getIdByLogin( $email, $password )
