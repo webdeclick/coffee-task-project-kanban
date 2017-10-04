@@ -67,11 +67,11 @@ class DatabaseManager
     {
         if( !isset(static::$connections[$name]) )
         {
-            $config = array_merge(static::getDefaultSettings(), $config);
+            $config = array_replace(static::getDefaultSettings(), $config);
 
-            $options = array_merge(static::getDefaultSettingsOptions(), $config['options']);
+            $options = array_replace(static::getDefaultSettingsOptions(), $config['options']);
 
-            $connector = static::createConnector($config);
+            $connector = static::createConnector($config, $options);
 
             $connection = static::createConnection($connector, $config);
 
