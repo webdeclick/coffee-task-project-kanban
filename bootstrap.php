@@ -35,6 +35,14 @@ $app->add(function( $request, $response, $next ) {
         }
     }
 
+    if( !function_exists('DatabaseDatetime') )
+    {
+        function DatabaseDatetime( $format = null )
+        {
+            return date('Y-m-d H:i:s');
+        }
+    }
+
     // create the database manager
 
     $settings = $this->getSetting('database');
