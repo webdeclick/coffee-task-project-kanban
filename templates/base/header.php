@@ -11,6 +11,7 @@
 
     <link type="text/css" rel="stylesheet" href="/style/normalize.css">
     <link type="text/css" rel="stylesheet" href="/style/style.css">
+    <link type="text/css" rel="stylesheet" href="/style/responsive.css">
 
     <!-- HTML5 -->
     <script type="text/javascript">

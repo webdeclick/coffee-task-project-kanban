@@ -7,7 +7,7 @@
 
     window.addEventListener('load', function( event ) {
     
-        // projts list
+        // projects list
 
         categoryList = document.getElementById('projects-list');
 
@@ -39,11 +39,9 @@
             categoryList.innerHTML = '';
             categoryList.classList.remove('projects-list-loading');
 
-            var projects = response.projects;
+            for( var index in response ) {
 
-            for( var id in projects ) {
-
-                var project = projects[id];
+                var project = response[index];
 
                 appendTemplate('project', categoryList, project);
             }
@@ -112,9 +110,10 @@
         categoryList.classList.add('projects-list-loading');
     
         var successHandler = function( response ) {
-            projectBlock.remove();
 
             categoryList.classList.remove('projects-list-loading');
+
+            projectBlock.remove();
         };
     
         var errorHandler = function( status, exception ) {

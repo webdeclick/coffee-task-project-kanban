@@ -1,0 +1,13 @@
+
+@media screen and (max-width: 768px) {
+
+
+    .page-dashboard #categories-list {
+        flex-direction: column;
+    }
+
+    .page-dashboard #categories-list .component-category {
+        margin: 10px 0;
+    }
+
+}

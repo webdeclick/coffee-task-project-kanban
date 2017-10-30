@@ -6,10 +6,17 @@ use Slim\Http\Interfaces\RequestInterface as Request;
 use Slim\Http\Interfaces\ResponseInterface as Response;
 
 use App\Models\ProjectsModel;
+use App\Models\TasksModel;
 
 
 class ApiController extends AbstractController {
 
+    /**
+     * Api error message
+     *
+     * @param string $code
+     * @return string
+     */
     protected function apiError( $code )
     {
         $messages = [
@@ -41,15 +48,20 @@ class ApiController extends AbstractController {
 
 //////// PROJECTS
 
+    /**
+     * Get all projects
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return void
+     */
     public function projectsList( Request $request, Response $response )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
-        $projects = ProjectsModel::getAllByUser($this->userId);
+        $results = ProjectsModel::getAllByUser($this->userId);
 
-        return json([
-            'projects' => $projects
-        ]);
+        return json($results);
     }
 
     public function projectCreate( Request $request, Response $response )
@@ -137,25 +149,35 @@ class ApiController extends AbstractController {
         return $this->apiError('ProjectNotExist');
     }
 
+    /**
+     * Get tasks from a category and a project
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $projectId
+     * @param int $categoryId
+     * @return string
+     */
     public function categoriesTasksList( Request $request, Response $response, $projectId, $categoryId )
     {
-        $data = [];
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+
+        // get task
+
+        $userId = $this->userId;
+
+        $results = TasksModel::getAllFromProjectCategoryUser($projectId, $categoryId, $userId);
         
-
-
-
-
-
-
-
-        
-        return json($data);
+        return json($results);
     }
 
 
     public function categoryCreate( Request $request, Response $response )
     {
         $data = [];
+
+
+
 
         return json($data);
     }
@@ -164,12 +186,19 @@ class ApiController extends AbstractController {
     {
         $data = [];
 
+
+
+
         return json($data);
     }
 
     public function categoryDelete( Request $request, Response $response )
     {
         $data = [];
+
+
+
+
 
         return json($data);
     }
@@ -181,12 +210,17 @@ class ApiController extends AbstractController {
     {
         $data = [];
 
+
+
         return json($data);
     }
 
     public function taskCreate( Request $request, Response $response )
     {
         $data = [];
+
+
+
 
         return json($data);
     }
@@ -195,12 +229,19 @@ class ApiController extends AbstractController {
     {
         $data = [];
 
+
+
+
+
         return json($data);
     }
 
     public function taskDelete( Request $request, Response $response )
     {
         $data = [];
+
+
+
 
         return json($data);
     }

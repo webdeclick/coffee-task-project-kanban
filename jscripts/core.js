@@ -3,15 +3,7 @@
 // debug
 function l(t){console.log(t);}
 
-
-var components = {
-    'projects': '',
-    'dashboard.categories': '',
-    'dashboard.categories.tasks': '',
-    'user.profile': '',
-
-};
-
+//config
 var api = {
     endPoint: '/api/'
 };
@@ -93,18 +85,18 @@ function delegate( parent, target, eventType, callback )
     parent.addEventListener(eventType, function( event )
     {
         var element = event.target;
+        var matchesCallback = element.matches || element.matchesSelector;
 
-        if( (element.matches || element.matchesSelector).call(element, target) )
-        {
+        if( (matchesCallback).call(element, target) ) {
             callback.call(element, event);
         }
     });
 }
 
-function live( selector, eventType, callback )
-{
-    delegate(document, selector, eventType, callback);
-}
+// function live( selector, eventType, callback )
+// {
+//     delegate(document, selector, eventType, callback);
+// }
 
 // recursive deep copy of an object, no references used
 
