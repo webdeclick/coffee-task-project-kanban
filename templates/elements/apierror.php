@@ -1,5 +1,5 @@
 
-<div id="api-error" class="error-message">
+<div id="api-error">
     <div class="message"></div>
     <div class="status"></div>
 
