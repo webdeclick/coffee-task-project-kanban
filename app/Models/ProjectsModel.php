@@ -8,6 +8,31 @@ class ProjectsModel extends AbstractModel {
     const table = 'projects';
 
 
+    /**
+     * Get all peoples that are part of the project
+     *
+     * @param int $projectId
+     * @return array
+     */
+    public static function getPeoples( $projectId )
+    {
+        $dbh = DatabaseFactory();
+
+        $results = $dbh->all(
+            'SELECT u.id, u.fullname
+            FROM @users u, @users_has_projects has
+            WHERE has.user_id = u.id
+            AND has.project_id = :projectId
+            AND has.is_deleted = "0"
+            GROUP BY u.id',
+
+            [ 'projectId' => $projectId ]
+        );
+
+        return $results;
+    }
+
+
     public static function getAllByUser( $userId )
     {
         $model = ( new static );

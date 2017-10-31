@@ -19,21 +19,36 @@ return [
     'projects' => ['get', '/projects', '\App\ProjectsController'],
     'dashboard' => ['get', '/dashboard/(\d+)', '\App\DashboardController'],
 
+
+    // user api management
+
     'api-heartbeat' => ['get', '/api/heartbeat', '\App\ApiController@heartbeat'],
 
-    'api-project.list'   => ['get',    '/api/projects/list', '\App\ApiController@projectsList'],
-    'api-project.create' => ['post',   '/api/project/create', '\App\ApiController@projectCreate'],
-    'api-project.update' => ['patch',  '/api/project/(\d+)/update', '\App\ApiController@projectUpdate'],
+    //projects api
+
+    'api-projects.list' => ['get', '/api/projects/list', '\App\ApiController@projectsList'],
+    'api-project.peoples.list' => ['get', '/api/project/(\d+)/peoples/list', '\App\ApiController@projectPeoples'],
+
+    // project api management
+
+    'api-project.create' => ['post', '/api/project/create', '\App\ApiController@projectCreate'],
+    'api-project.update' => ['patch', '/api/project/(\d+)/update', '\App\ApiController@projectUpdate'],
     'api-project.delete' => ['delete', '/api/project/(\d+)/delete', '\App\ApiController@projectDelete'],
+
+    // categories api
 
     'api-category.list' => ['get', '/api/project/(\d+)/categories/list', '\App\ApiController@categoriesList'],
     'api-category.tasks.list' => ['get', '/api/project/(\d+)/category/(\d+)/tasks/list', '\App\ApiController@categoriesTasksList'],
 
-    'api-category.create' => ['post',   '/api/category/create', '\App\ApiController@categoryCreate'],
-    'api-category.update' => ['patch',  '/api/category/(\d+)/update', '\App\ApiController@categoryUpdate'],
+    // categories management api
+
+    'api-category.create' => ['post', '/api/category/create', '\App\ApiController@categoryCreate'],
+    'api-category.update' => ['patch', '/api/category/(\d+)/update', '\App\ApiController@categoryUpdate'],
     'api-category.delete' => ['delete', '/api/category/(\d+)/delete', '\App\ApiController@categoryDelete'],
 
-    'api-task.create' => ['post',  '/api/task/create', '\App\ApiController@taskCreate'],
+    // tasks management api
+
+    'api-task.create' => ['post', '/api/task/create', '\App\ApiController@taskCreate'],
     'api-task.update' => ['patch', '/api/task/(\d+)/update', '\App\ApiController@taskUpdate'],
     'api-task.delete' => ['delete', '/api/task/(\d+)/delete', '\App\ApiController@taskDelete'],
 ];

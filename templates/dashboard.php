@@ -31,11 +31,19 @@
 
         <div class="cd-popup-content">
 
-            Titre : <input placeholder="Titre" type="text">
+            Titre : <input placeholder="Titre" type="text" class="newtask-field-end-title">
 
-            description : 
+            description :  <textarea name="" class="newtask-field-end-description"></textarea>
 
-            Date de fin : <input type="text" class="module-datetimepicker">
+            Date de fin : <input type="text" class="module-datetimepicker newtask-field-end-at">
+
+            Assigner à : 
+
+            <div class="select newtask-field-assigned-to" tabindex="1">
+                <!--checked-->
+            </div>
+
+
 
         </div>
         
@@ -82,6 +90,19 @@
     </div>
 
 </script>
+
+
+<script id="template-people-list-element" class="component-template" type="text/template">
+
+    <input class="selectopt" name="people-list-element-{{ id }}" type="radio" id="people-list-element-{{ id }}">
+    <label for="people-list-element-{{ id }}" class="option">{{ &fullname }}</label>
+
+</script>
+
+
+
+
+
 
 
 

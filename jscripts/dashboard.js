@@ -23,6 +23,9 @@
 
         initializePopupCreateButton();
 
+        // populate all the peoples linked to project ; for popup create
+
+        populatePeoplesList();
     });
 
 
@@ -171,6 +174,29 @@
         }
     }
 
+    function populatePeoplesList() {
+
+        var peoplesList = document.querySelector('.newtask-field-assigned-to');
+
+        if( peoplesList ) {
+            
+            var successHandler = function( response ) {
+
+                for( var index in response ) {
+
+                    var people = response[index];
+
+                    appendTemplate('people-list-element', peoplesList, people);
+                }
+            };
+
+            var errorHandler = function( status, exception ) {
+                jserror('Impossible de récupérer les personnes participant au projet ('+projectId+')', status);
+            };
+
+            AjaxSimple('GET', api.endPoint+'project/'+projectId+'/peoples/list', successHandler, errorHandler);
+        }
+    }
 
 
 

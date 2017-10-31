@@ -64,6 +64,15 @@ class ApiController extends AbstractController {
         return json($results);
     }
 
+    public function projectPeoples( Request $request, Response $response, $projectId )
+    {
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+
+        $results = ProjectsModel::getPeoples($projectId);
+        
+        return json($results);
+    }
+
     public function projectCreate( Request $request, Response $response )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
