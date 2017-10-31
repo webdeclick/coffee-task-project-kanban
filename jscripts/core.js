@@ -27,17 +27,31 @@ function appendTemplate( templateId, element, scope ) {
 
     var compiled = compileTemplate(template, scope);
     
-    fragment.appendChild(htmlToNode(compiled));
+    var nodes = htmlToNodes(compiled);
+
+    for( var index in nodes ) {
+        var node = nodes[index];
+
+        fragment.appendChild(node);
+    }
 
     element.appendChild(fragment);
 }
 
-function htmlToNode( html ) {
+function htmlToNodes( html ) {
 
     var e = document.createElement('div');
     e.innerHTML = html;
 
-    return e.firstElementChild;
+    var childNodes = e.childNodes, index, results = [];
+
+    for( index in childNodes ) {
+        if( childNodes.hasOwnProperty(index) ) {
+            results.push(childNodes[index]);
+        }
+    }
+
+    return results; //firstElementChild
 }
 
 // delegate events
