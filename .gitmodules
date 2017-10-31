@@ -1,3 +1,9 @@
 [submodule "src/Slim"]
 	path = src/Slim
 	url = https://github.com/rivetchip/Slim.git
+[submodule "jscripts/3rdparty/rome"]
+	path = jscripts/3rdparty/rome
+	url = https://github.com/bevacqua/rome.git
+[submodule "jscripts/3rdparty/moment"]
+	path = jscripts/3rdparty/moment
+	url = https://github.com/moment/moment.git
