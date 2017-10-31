@@ -40,10 +40,14 @@ function appendTemplate( templateId, element, scope ) {
 
 function htmlToNodes( html ) {
 
+    var results = [];
+
+    //var frag = new DOMParser().parseFromString(html, 'text/html');
+
     var e = document.createElement('div');
     e.innerHTML = html;
 
-    var childNodes = e.childNodes, index, results = [];
+    var index, childNodes = e.childNodes;
 
     for( index in childNodes ) {
         if( childNodes.hasOwnProperty(index) ) {
