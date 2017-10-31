@@ -30,18 +30,22 @@
         </div>
 
         <div class="cd-popup-content">
-            titre : 
+
+            Titre : <input placeholder="Titre" type="text">
 
             description : 
+
+            Date de fin : <input type="text" class="module-datetimepicker">
+
         </div>
         
         <div class="cd-buttons">
             <button class="cd-button cd-button-quit">Annuler</button>
             <button class="cd-button cd-button-confirm">Valider</button>
         </div>
-    </div> <!-- cd-popup-container -->
+    </div> <!-- popup -->
 
-</div> <!-- cd-popup -->
+</div> <!-- screen -->
 
 
 <script id="template-category" class="component-template" type="text/template">
@@ -80,5 +84,8 @@
 </script>
 
 
+
+
+<?php include 'elements/apisnackbar.php'; ?>
 
 <?php include 'base/footer.php'; ?>

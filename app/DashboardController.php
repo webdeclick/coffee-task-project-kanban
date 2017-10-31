@@ -21,6 +21,8 @@ class DashboardController extends AbstractController {
     {
         if( !$this->isLogged ) return redirect('/login?back=1'); // check logged
 
+        $this->title = 'Dashboard';
+
         $this->projectId = $projectId;
 
         // find project :

@@ -22,6 +22,8 @@ class AuthenticationController extends AbstractController {
     {
         if( $this->isLogged ) return redirect('/projects'); // check logged
 
+        $this->title = 'Connexion';
+
         return render('login', $this->container);
     }
 
@@ -35,6 +37,8 @@ class AuthenticationController extends AbstractController {
     {
         if( $this->isLogged ) return redirect('/projects'); // check logged
 
+        $this->title = 'Inscription';
+
         return render('register', $this->container);
     }
 
@@ -47,6 +51,8 @@ class AuthenticationController extends AbstractController {
     public function validateLogin( Request $request, Response $response )
     {
         if( $this->isLogged ) return redirect('/projects'); // check logged
+
+        $this->title = 'Connexion';
 
 
         $email = $request->input('email');
@@ -89,6 +95,8 @@ class AuthenticationController extends AbstractController {
     {
         if( $this->isLogged ) return redirect('/projects'); // check logged
 
+        $this->title = 'Inscription';
+
 
         $fullname = $request->input('fullname');
         $email = $request->input('email');
@@ -99,7 +107,7 @@ class AuthenticationController extends AbstractController {
 
         if( empty($fullname) )
         {
-            $this->errors = 'Vous devez renseignervotre nom';
+            $this->errors = 'Vous devez renseigner votre nom';
         }
 
         if( !empty($email) )
@@ -158,7 +166,7 @@ class AuthenticationController extends AbstractController {
     {
         session_destroy();
 
-        return redirect('/'); //home
+        return redirect('/?logout=1'); //home
     }
 
 

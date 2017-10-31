@@ -18,7 +18,9 @@ class HomeController extends AbstractController {
      */
     public function __invoke( Request $request, Response $response )
     {
-        return render('index');
+        //$this->title = '';
+
+        return render('index', $this->container);
     }
 
 

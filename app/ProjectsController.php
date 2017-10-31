@@ -21,6 +21,8 @@ class ProjectsController extends AbstractController {
     {
         if( !$this->isLogged ) return redirect('/login?back=1'); // check logged
 
+        $this->title = 'Projects';
+
         return render('projects', $this->container);
     }
 

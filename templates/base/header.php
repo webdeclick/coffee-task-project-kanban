@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title></title>
+    <title>CoffeeTask ☕<?php echo (!empty($title)?' - '.$title:''); ?></title>
 
     <link rel="shortcut icon" href="/favicon.ico">
 
@@ -22,12 +22,19 @@
     <?php if(file_exists('jscripts/'.$template.'.js')): ?>
 
         <?php if($template=='dashboard'): ?>
-            <!-- extra scripts-->
+
             <script>
                 var dashboard = {
                     projectId: '<?php echo $projectId; ?>'
                 }
             </script>
+
+            <!--3rd party scripts -->
+            <script type="text/javascript" src="/jscripts/3rdparty/moment/min/moment.min.js"></script>
+
+            <link type="text/css" rel="stylesheet" href="/jscripts/3rdparty/rome/dist/rome.css">
+            <script type="text/javascript" src="/jscripts/3rdparty/rome/dist/rome.standalone.min.js"></script>
+
         <?php endif; ?>
 
         <script type="text/javascript" src="/jscripts/modules.js"></script>

@@ -48,7 +48,7 @@
         };
 
         var errorHandler = function( status, exception ) {
-            error('Impossible de récupérer les projets', status);
+            jserror('Impossible de récupérer les projets', status);
         };
 
         AjaxSimple('GET', api.endPoint+'projects/list', successHandler, errorHandler);
@@ -83,7 +83,7 @@
         };
     
         var errorHandler = function( status, exception ) {
-            error('Impossible de créer ce projet', status);
+            jserror('Impossible de créer ce projet', status);
         };
 
         AjaxSimple('POST', api.endPoint+'project/create', successHandler, errorHandler, formData);
@@ -117,7 +117,7 @@
         };
     
         var errorHandler = function( status, exception ) {
-            error('Impossible de supprimer ce projet', status);
+            jserror('Impossible de supprimer ce projet', status);
         };
     
         AjaxSimple('DELETE', api.endPoint+'project/'+projectId+'/delete', successHandler, errorHandler);

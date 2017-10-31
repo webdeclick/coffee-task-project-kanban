@@ -34,13 +34,31 @@
         popupScreen = document.querySelector('.cd-popup');
         popupContainer = popupScreen.querySelector('.cd-popup-container');
 
+        // initialize date time picker
+
+        var datetimePicker = popupContainer.querySelector('.module-datetimepicker');
+        // var datetimePickerContainer = popupContainer.querySelector('.module-datetimepicker-container');
+
+        DatetimePickerSimple(datetimePicker, {
+            appendTo: popupScreen,
+            autoClose: true,
+            date: true,
+            dayFormat: 'DD',
+            inputFormat: 'YYYY-MM-DD HH:mm',
+            time: true,
+            timeFormat: 'HH:mm',
+            min: new Date(),//'2017-10-31',
+            // styles: { container: 'rd-container' }
+        });
+
         // open modal ; via create buttons on categories list
-        delegate(categoriesList, '.category-tasks-createbutton', 'click', function(event){
+
+        delegate(categoriesList, '.category-tasks-createbutton', 'click', function( event ){
             event.preventDefault();
             
             popupScreen.classList.add('is-visible');
             isPopupOpen = true;
-            
+
             var target = event.target;
 
             var categoryId = target.getAttribute('data-category');
@@ -48,9 +66,12 @@
 
 
 
+            // empty previous texts fields :
+
         });
         
         // close modal ; nope button
+
         delegate(popupScreen, '.cd-popup, .cd-popup-close, .cd-button-quit', 'click', function( event ) {
             event.preventDefault();
      
@@ -59,6 +80,7 @@
         });
 
         //create button modal
+
         delegate(popupScreen, '.cd-button-confirm', 'click', function( event ) {
             event.preventDefault();
 
@@ -66,11 +88,21 @@
 
 
 
+
+            jssnackbar('Tâche créée');
+
+
+
+            // close modal
+
+            popupScreen.classList.remove('is-visible');
+
+            isPopupOpen = false;
         });
 
+        //close popup clicking ; esc keyboard
 
-
-        document.addEventListener('keydown', function( event ){ //close popup clicking ; esc keyboard
+        document.addEventListener('keydown', function( event ){ 
             
             if( isPopupOpen ) {
 
@@ -79,7 +111,7 @@
                 if( event.key == 'Escape' || keyCode == 27 ) { // esc
                     popupScreen.classList.remove('is-visible');
 
-                    isPopupOpen = true;
+                    isPopupOpen = false;
                 }
             }
         });
@@ -95,20 +127,19 @@
             categoriesList.innerHTML = '';
             categoriesList.classList.remove('categories-list-loading');
 
-            var categories = response.categories || [];
+            for( var index in response ) {
 
-            for( var id in categories ) {
-
-                var category = categories[id];
+                var category = response[index];
+                var categoryId = category.id;
 
                 appendTemplate('category', categoriesList, category);
 
-                populateTasksList(id);
+                populateTasksList(categoryId);
             }
         };
 
         var errorHandler = function( status, exception ) {
-            error('Impossible de récupérer les catégories', status);
+            jserror('Impossible de récupérer les catégories', status);
         };
 
         AjaxSimple('GET', api.endPoint+'project/'+projectId+'/categories/list', successHandler, errorHandler);
@@ -133,7 +164,7 @@
             };
 
             var errorHandler = function( status, exception ) {
-                error('Impossible de récupérer les taches de la catégorie ('+categoryId+')', status);
+                jserror('Impossible de récupérer les taches de la catégorie ('+categoryId+')', status);
             };
 
             AjaxSimple('GET', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/tasks/list', successHandler, errorHandler);

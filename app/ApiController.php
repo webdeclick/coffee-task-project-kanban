@@ -103,6 +103,11 @@ class ApiController extends AbstractController {
 
         $data = [];
 
+
+
+
+
+
         return json($data);
     }
 
@@ -141,9 +146,7 @@ class ApiController extends AbstractController {
 
             $categories = ProjectsModel::findCategories($projectId);
 
-            return json([
-                'categories' => $categories
-            ]);
+            return json($categories);
         }
 
         return $this->apiError('ProjectNotExist');

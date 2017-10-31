@@ -10,17 +10,19 @@ var api = {
 
 
 
+var DatetimePickerSimple = rome;
 
+function compileTemplate( template, scope ) {
+    return TemplateSimple(template, scope);
+}
 
+function appendTemplate( templateId, element, scope ) {
 
-
-function appendTemplate( templateId, element, scope )
-{
     // get <template> content
     var templateNode = document.getElementById('template-'+templateId);
     var template = templateNode.innerHTML;//content
 
-    // create doc fragment and append tpl to it
+    // create doc fragment and append compiled to it
     var fragment = document.createDocumentFragment();
 
     var compiled = compileTemplate(template, scope);
@@ -30,60 +32,24 @@ function appendTemplate( templateId, element, scope )
     element.appendChild(fragment);
 }
 
-function compileTemplate( template, scope )
-{
-    return TemplateSimple(template, scope);
-}
+function htmlToNode( html ) {
 
-function htmlToNode( html )
-{
     var e = document.createElement('div');
     e.innerHTML = html;
 
     return e.firstElementChild;
 }
 
-// types types :
-
-function isArray( item )
-{
-    return Array.isArray(item);
-}
-
-function isObject( item ) // array is also an object
-{
-    return ( item && typeof item === 'object' );
-}
-
-function isString( item )
-{
-    return ( item && typeof item === 'string' );
-}
-
-
-// utils :
-
-function empty( value )
-{
-    return ( isArray(value) && value.length < 1 ) || ( [undefined, null, false, 0, '', '0'].indexOf(value) > -1 );
-}
-
-function isset( value )
-{
-    return ( [undefined, null].indexOf(value) < 0 );
-}
-
 // delegate events
 
-function delegate( parent, target, eventType, callback )
-{
-    if( isString(parent) )
-    {
-        var parent = document.querySelector(parent);
-    }
+function delegate( parent, target, eventType, callback ) {
 
-    parent.addEventListener(eventType, function( event )
-    {
+    // if( isString(parent) ) {
+    //     var parent = document.querySelector(parent);
+    // }
+
+    parent.addEventListener(eventType, function( event ) {
+
         var element = event.target;
         var matchesCallback = element.matches || element.matchesSelector;
 
@@ -93,15 +59,131 @@ function delegate( parent, target, eventType, callback )
     });
 }
 
-// function live( selector, eventType, callback )
-// {
-//     delegate(document, selector, eventType, callback);
-// }
+// display an error message ( modal, page )
+
+function jserror( text, status ) {
+
+    function stackTrace() {
+        return ( new Error().stack || '' );
+    }
+
+    var div = document.getElementById('api-error');
+
+    var emessage = div.querySelector('.message');
+
+    var estatus = div.querySelector('.status');
+
+    var estack = div.querySelector('.stack');
+
+    emessage.innerText = 'Erreur: "' + text + '", essayez de recharger la page.';
+
+    if( status ) {
+        estatus.innerText = 'Code: ' + status;
+    }
+
+    // show / hide stack, quick-dirty function ; for users
+
+    estatus.onclick = function( event ) {
+        estack.classList.toggle('is-visible');
+    };
+
+    estack.innerText = stackTrace();
+
+    // show the message
+
+    div.classList.add('is-visible');
+}
+
+
+// display a snackbar at the bottom of the screen
+
+function jssnackbar( text, duration ) {
+
+    var duration = duration || 2500;
+
+    var snackbar = document.getElementById('snackbar');
+
+    snackbar.innerText = text;
+    
+    snackbar.classList.add('is-visible');
+
+    var timeoutId = setTimeout(function(){
+        snackbar.classList.remove('is-visible');
+    }, duration);
+}
+
+// placeholder, when there is not items to display
+
+function addPlaceholder( container, text ) {
+
+    var placeholder = document.createElement('div');
+
+    placeholder.classList.add('placeholder');
+
+    // smiley top
+
+    var smiley = document.createElement('div');
+
+    smiley.classList.add('smiley');
+
+    smiley.innerText = '☺';
+
+    placeholder.appendChild(smiley);
+
+    // description, bottom
+
+    var description = document.createElement('div');
+
+    description.classList.add('description');
+
+    description.innerHTML = text;
+
+    placeholder.appendChild(description);
+
+    // add to the element :
+
+    container.appendChild(placeholder);
+}
+
+function removePlaceholder( container ) {
+
+    var placeholder = container.querySelector('.placeholder');
+
+    if( placeholder ) {
+        placeholder.remove();
+    }
+}
+
+
+///////////////////////////////////////////////////////////////////////
+
+
+// utils :
+
+function isArray( item ) {
+    return Array.isArray(item);
+}
+
+function isObject( item ) { // array is also an object
+    return ( item && typeof item === 'object' );
+}
+
+function isString( item ) {
+    return ( item && typeof item === 'string' );
+}
+
+function empty( value ) {
+    return ( isArray(value) && value.length < 1 ) || ( [undefined, null, false, 0, '', '0'].indexOf(value) > -1 );
+}
+
+function isset( value ) {
+    return ( [undefined, null].indexOf(value) < 0 );
+}
 
 // recursive deep copy of an object, no references used
 
-function fusion( first )
-{
+function fusion( first ) {
+
     var hasOwnProperty = Object.hasOwnProperty;
 
     // check if the first is an array, then mix the rest
@@ -140,10 +222,7 @@ function fusion( first )
     return merge(extended, arguments);
 }
 
-// clone an object
-
-function clone( target )
-{
+function clone( target ) {
     return fusion({}, target);
 }
 
@@ -211,45 +290,4 @@ function swapElements( obj1, obj2 )
             parent2.appendChild(obj1);
         }
     }
-}
-
-
-
-///////////////////////////////////////////////////////////////////////
-
-// display an error message ( modal, page )
-
-function error( text, status )
-{
-    function stackTrace()
-    {
-        return ( new Error().stack || '' );
-    }
-
-    var div = document.getElementById('api-error');
-
-    var emessage = div.querySelector('.message');
-
-    var estatus = div.querySelector('.status');
-
-    var estack = div.querySelector('.stack');
-
-    emessage.innerText = 'Erreur: "' + text + '", essayez de recharger la page.';
-
-    if( !empty(status) )
-    {
-        estatus.innerText = 'Code: ' + status;
-    }
-
-    // show / hide stack, quick-dirty function ; for users
-
-    estatus.onclick = function( event ) {
-        estack.classList.toggle('show');
-    };
-
-    estack.innerText = stackTrace();
-
-    // show the message
-
-    div.classList.add('show');
 }
