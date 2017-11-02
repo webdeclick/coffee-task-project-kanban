@@ -68,8 +68,7 @@
             popupContainer.setAttribute('data-category', categoryId);
 
 
-
-            // empty previous texts fields :
+            // clear previous inputs if any :
 
         });
         
@@ -87,20 +86,54 @@
         delegate(popupScreen, '.cd-button-confirm', 'click', function( event ) {
             event.preventDefault();
 
+            // gather form datas
+
+            var categoryId = popupContainer.getAttribute('data-category');
+
+            var form = popupContainer.querySelector('.newtask-form');
+            var data = getFormDataJson(form);
+
+            var successHandler = function( response ) {
+                
+                // close modal
+                popupScreen.classList.remove('is-visible');
+                
+                isPopupOpen = false;
+
+                // append task to the list
+
+                if( user.id == data.assigned_to ) {
+
+                }
+
+                // var categoryList = document.querySelector('#category-'+categoryId+' .category-tasks-container');
+                // appendTemplate('task', categoryList, task);
+
+                // notification
+                jssnackbar('Tâche créée! (AMODIFIER)');
 
 
+                
 
-
-
-            jssnackbar('Tâche créée');
-
-
-
-            // close modal
-
-            popupScreen.classList.remove('is-visible');
-
-            isPopupOpen = false;
+                // categoriesList.innerHTML = '';
+                // categoriesList.classList.remove('categories-list-loading');
+    
+                // for( var index in response ) {
+    
+                //     var category = response[index];
+                //     var categoryId = category.id;
+    
+                //     appendTemplate('category', categoriesList, category);
+    
+                //     populateTasksList(categoryId);
+                // }
+            };
+    
+            var errorHandler = function( status, exception ) {
+                // jserror('Impossible de créer cette tâche', status);
+            };
+    
+            AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/create', successHandler, errorHandler, data);
         });
 
         //close popup clicking ; esc keyboard

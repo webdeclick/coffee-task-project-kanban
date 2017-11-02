@@ -102,11 +102,11 @@
 
 
         var mediaType = 'application/json';
-        var mediaCharset = 'charset=utf-8';
+        var mediaCharset = 'utf-8';
 
-        if( data && typeof data !== 'undefined' ) // with datas
+        if( data && typeof data !== 'undefined' ) // POST with datas
         {
-            x.setRequestHeader('Content-Type', mediaType + ';' + mediaCharset); // REST hint
+            x.setRequestHeader('Content-Type', mediaType + ';charset=' + mediaCharset); // REST hint
     
             x.upload.onprogress = xhrProgess;
     
@@ -130,7 +130,7 @@
 
 (function( win, factory ) {
 
-    var moduleName = 'TemplateSimple';
+    var moduleName = 'SimpleTemplate';
 
     win[moduleName] = factory(); // browsers
 
@@ -139,7 +139,7 @@
     // } else if( typeof exports === 'object' ) {
     //     module.exports = factory(); // Node, CommonJS-like
     // } else {
-    //     root.SimpleTemplate = factory(); // others
+    //     root[moduleName] = factory(); // others
     // }
     
 }(this, function _factory() {
@@ -193,7 +193,7 @@
         '=': '&#x3D;'
     };
 
-    return function( template, context ){
+    return function _return( template, context ){
         return compileTemplate( template, context )
     }
 
@@ -207,9 +207,9 @@
         return renderSection(template, context);
     }
 
-    function lookup( context, path )
+    function lookup( token, context )
     {
-        return path.split('.').reduce(function( prev, index ) {
+        return token.split('.').reduce(function( prev, index ) {
             return prev ? prev[index] : undefined;
         }, context);
     }
@@ -350,13 +350,14 @@
     function renderVariable( symbol, expr, section, context )
     {
         var parts = [];
-        for( var op of expr.split('|') ) {
+        for( var op of expr.split('|') )
+        {
             if( op ) parts.push(op.trim()); // pipes, check exist & remove space
         }
 
         var token = parts.shift(); //  first var
 
-        var result = lookup(context, token); // variable used
+        var result = lookup(token, context); // variable used
 
         if( isFunction(result) )
         {
@@ -410,7 +411,7 @@
 
     function renderCondition( symbol, expr, section, context )
     {
-        var environment = lookup(context, expr); // variable used
+        var environment = lookup(expr, context); // variable used
 
         if( environment )
         {
@@ -420,7 +421,7 @@
 
     function renderInvertedCondition( symbol, expr, section, context )
     {
-        var environment = lookup(context, expr); // variable used
+        var environment = lookup(expr, context); // variable used
 
         if( !environment )
         {
@@ -448,7 +449,7 @@
             var valueName = parts[1];
         }
 
-        var environment = lookup(context, token); // variable used
+        var environment = lookup(token, context); // variable used
 
         if( environment ) // also [] && {}
         {
@@ -495,7 +496,7 @@
 
 (function( win, factory ) {
     
-    var moduleName = 'prettyDate';
+    var moduleName = 'SimplePrettyDate';
     
     win[moduleName] = factory(); // browsers
 

@@ -13,7 +13,7 @@ var api = {
 var DatetimePickerSimple = rome;
 
 function compileTemplate( template, scope ) {
-    return TemplateSimple(template, scope);
+    return SimpleTemplate(template, scope);
 }
 
 function appendTemplate( templateId, element, scope ) {
@@ -75,6 +75,27 @@ function delegate( parent, target, eventType, callback ) {
             callback.call(element, event);
         }
     });
+}
+
+// convert form datas to json message format (ajax)
+
+function getFormDataJson( form ) {
+
+    const formData = new FormData(form);
+    let jsonObject = {};
+
+    for( const [key, value]  of formData.entries() ) {
+        jsonObject[key] = value;
+    }
+
+    // formData.forEach(function(key) {
+    //     // do something
+    //     l(key)
+    // });
+
+
+
+    return jsonObject;
 }
 
 // display an error message ( modal, page )

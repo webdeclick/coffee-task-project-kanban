@@ -23,6 +23,7 @@ class ApiController extends AbstractController {
             'UserNotLogged' => 'User not logged',
             'ProjectNotExist' => 'Project does not exist',
             'ProjectNotCreated' => 'Project cannot be created',
+            'TaskNotCreated' => 'Task cannot be created',
         ];
 
         return json(['error' => [ 'code' => $code, 'message' => $messages[$code] ]]);
@@ -40,6 +41,8 @@ class ApiController extends AbstractController {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
         $data = [];
+
+
 
         return json($data);
     }
@@ -100,7 +103,7 @@ class ApiController extends AbstractController {
 
         if( $project ) {
 
-            return json(['ok']);
+            return json(['message'=>'ok']);
         }
 
         return $this->apiError('ProjectNotCreated');
@@ -132,7 +135,7 @@ class ApiController extends AbstractController {
 
             $project->delete();
 
-            return json(['ok']);
+            return json(['message'=>'ok']);
         }
         else {
             return $this->apiError('ProjectNotExist');
@@ -227,7 +230,51 @@ class ApiController extends AbstractController {
         return json($data);
     }
 
-    public function taskCreate( Request $request, Response $response )
+    public function taskCreate( Request $request, Response $response, $projectId, $categoryId )
+    {
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+
+        //$input = $request->getBodyParams();
+
+        $assignedTo = $request->input('newtask-people');
+
+        if( empty($assignedTo) ) // if not assigned (0) set to self
+        {
+            $assignedTo = $this->userId;
+        }
+
+        $task = new TasksModel([
+            'project_id' => $projectId,
+            'category_id' => $categoryId,
+            'assigned_to' => $assignedTo,
+
+            'title' => $request->input('newtask-field-title'),
+            'description' => $request->input('newtask-field-description'),
+            'end_at' => $request->input('newtask-field-end-at'),
+        ]);
+
+        $taskId = $task->create();
+
+        if( $taskId )
+        {
+            return json(['message'=>'ok']);
+        }
+
+        return $this->apiError('TaskNotCreated');
+    }
+
+    public function taskUpdate( Request $request, Response $response, $taskId )
+    {
+        $data = [];
+
+
+
+
+
+        return json($data);
+    }
+
+    public function taskDelete( Request $request, Response $response, $taskId )
     {
         $data = [];
 
@@ -237,18 +284,7 @@ class ApiController extends AbstractController {
         return json($data);
     }
 
-    public function taskUpdate( Request $request, Response $response )
-    {
-        $data = [];
-
-
-
-
-
-        return json($data);
-    }
-
-    public function taskDelete( Request $request, Response $response )
+    public function taskMove( Request $request, Response $response, $taskId, $projectId, $categoryId )
     {
         $data = [];
 
@@ -257,8 +293,6 @@ class ApiController extends AbstractController {
 
         return json($data);
     }
-
-
 
     
 

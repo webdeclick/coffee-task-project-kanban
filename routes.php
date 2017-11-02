@@ -31,8 +31,8 @@ return [
 
     // project api management
 
-    'api-project.create' => ['post', '/api/project/create', '\App\ApiController@projectCreate'],
-    'api-project.update' => ['patch', '/api/project/(\d+)/update', '\App\ApiController@projectUpdate'],
+    'api-project.create' => ['post',   '/api/project/create', '\App\ApiController@projectCreate'],
+    'api-project.update' => ['patch',  '/api/project/(\d+)/update', '\App\ApiController@projectUpdate'],
     'api-project.delete' => ['delete', '/api/project/(\d+)/delete', '\App\ApiController@projectDelete'],
 
     // categories api
@@ -42,13 +42,13 @@ return [
 
     // categories management api
 
-    'api-category.create' => ['post', '/api/category/create', '\App\ApiController@categoryCreate'],
-    'api-category.update' => ['patch', '/api/category/(\d+)/update', '\App\ApiController@categoryUpdate'],
+    'api-category.create' => ['post',   '/api/category/create', '\App\ApiController@categoryCreate'],
+    'api-category.update' => ['patch',  '/api/category/(\d+)/update', '\App\ApiController@categoryUpdate'],
     'api-category.delete' => ['delete', '/api/category/(\d+)/delete', '\App\ApiController@categoryDelete'],
 
     // tasks management api
 
-    'api-task.create' => ['post', '/api/task/create', '\App\ApiController@taskCreate'],
-    'api-task.update' => ['patch', '/api/task/(\d+)/update', '\App\ApiController@taskUpdate'],
-    'api-task.delete' => ['delete', '/api/task/(\d+)/delete', '\App\ApiController@taskDelete'],
+    'api-task.create' => ['post',   '/api/project/(\d+)/category/(\d+)/task/create', '\App\ApiController@taskCreate'],
+    'api-task.update' => ['patch',  '/api/project/(\d+)/category/(\d+)/task/(\d+)/update', '\App\ApiController@taskUpdate'],
+    'api-task.delete' => ['delete', '/api/project/(\d+)/category/(\d+)/task/(\d+)/delete', '\App\ApiController@taskDelete'],
 ];
