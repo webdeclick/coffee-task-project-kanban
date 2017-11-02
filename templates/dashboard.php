@@ -31,19 +31,23 @@
 
         <div class="cd-popup-content">
 
-            Titre : <input placeholder="Titre" type="text" class="newtask-field-end-title">
+            <form action="post" class="newtask-form">
 
-            description :  <textarea name="" class="newtask-field-end-description"></textarea>
+                Titre : <input name="newtask-field-title" placeholder="Titre" type="text" class="newtask-field-title">
 
-            Date de fin : <input type="text" class="module-datetimepicker newtask-field-end-at">
+                description :  <textarea name="newtask-field-description" class="newtask-field-description"></textarea>
 
-            Assigner à : 
+                Date de fin : <input name="newtask-field-end-at" type="text" class="module-datetimepicker newtask-field-end-at">
 
-            <div class="select newtask-field-assigned-to" tabindex="1">
-                <!--checked-->
-            </div>
+                Assigner à : 
 
+                <div class="select newtask-field-assigned-to" tabindex="1">
+                    <input class="selectopt" name="newtask-people" type="radio" id="newtask-people-0" value="0" checked>
+                    <label for="newtask-people-0" class="option">-- Peoples : --</label>
+                    <!-- +peoples -->
+                </div>
 
+            </form>
 
         </div>
         
@@ -94,12 +98,10 @@
 
 <script id="template-people-list-element" class="component-template" type="text/template">
 
-    <input class="selectopt" name="people-list-element-{{ id }}" type="radio" id="people-list-element-{{ id }}">
-    <label for="people-list-element-{{ id }}" class="option">{{ &fullname }}</label>
+    <input class="selectopt" name="newtask-people" type="radio" id="newtask-people-{{ id }}" value="{{ id }}">
+    <label for="newtask-people-{{ id }}" class="option">{{ &fullname }}</label>
 
 </script>
-
-
 
 
 
