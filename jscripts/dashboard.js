@@ -244,11 +244,7 @@
 
                 // append task to the list ; self
 
-
-
-                //@FIXME: pas AJOUTE!!
-
-                if( assignedTo == userId || (!assignedTo) ) {
+                if( assignedTo == userId || assignedTo == 0 || !assignedTo ) {
 
                     // quick dirty @fixme
                     populateTasksList(categoryId);
