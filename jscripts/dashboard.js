@@ -5,6 +5,7 @@
 (function( win, doc ) {
 
     var projectId = dashboard.projectId;
+    var userId = user.id;
 
     var categoriesList;
 
@@ -18,6 +19,10 @@
         // load categories and tasks
 
         populateCategoriesAndTasksList();
+
+        // initialize events
+
+        initializeDelegatedEvents();
 
         // initialize create task popup
 
@@ -40,25 +45,27 @@
         // initialize date time picker
 
         var datetimePicker = popupContainer.querySelector('.module-datetimepicker');
-        // var datetimePickerContainer = popupContainer.querySelector('.module-datetimepicker-container');
+        var datetimePickerContainer = popupContainer.querySelector('.module-datetimepicker-container');
 
-        DatetimePickerSimple(datetimePicker, {
-            appendTo: popupScreen,
+        DatetimePickerSimple(datetimePickerContainer, {
+            //appendTo: x,
             autoClose: true,
             date: true,
             dayFormat: 'DD',
-            inputFormat: 'YYYY-MM-DD HH:mm',
+            inputFormat: 'YYYY-MM-DD HH:mm:ss',
             time: true,
             timeFormat: 'HH:mm',
-            min: new Date(),//'2017-10-31',
+            min: new Date(),//today
             // styles: { container: 'rd-container' }
+        }).on('data', function (value) {
+            datetimePicker.value = value;
         });
 
         // open modal ; via create buttons on categories list
 
-        delegate(categoriesList, '.category-tasks-createbutton', 'click', function( event ){
+        delegate(categoriesList, '.button-task-create-oncategory', 'click', function( event ){
             event.preventDefault();
-            
+
             popupScreen.classList.add('is-visible');
             isPopupOpen = true;
 
@@ -67,11 +74,10 @@
             var categoryId = target.getAttribute('data-category');
             popupContainer.setAttribute('data-category', categoryId);
 
-
-            // clear previous inputs if any :
+            // clear previous inputs if any : @TODO:
 
         });
-        
+
         // close modal ; nope button
 
         delegate(popupScreen, '.cd-popup, .cd-popup-close, .cd-button-quit', 'click', function( event ) {
@@ -93,6 +99,9 @@
             var form = popupContainer.querySelector('.newtask-form');
             var data = getFormDataJson(form);
 
+            var assignedTo = data.assigned_to;
+
+
             var successHandler = function( response ) {
                 
                 // close modal
@@ -100,37 +109,21 @@
                 
                 isPopupOpen = false;
 
-                // append task to the list
-
-                if( user.id == data.assigned_to ) {
-
-                }
-
-                // var categoryList = document.querySelector('#category-'+categoryId+' .category-tasks-container');
-                // appendTemplate('task', categoryList, task);
+                var newTaskId = response.taskId;
 
                 // notification
-                jssnackbar('Tâche créée! (AMODIFIER)');
+                jssnackbar('Tâche créée!');
 
+                // append task to the list ; self
+                if( assignedTo == userId || !assignedTo ) {
 
-                
-
-                // categoriesList.innerHTML = '';
-                // categoriesList.classList.remove('categories-list-loading');
-    
-                // for( var index in response ) {
-    
-                //     var category = response[index];
-                //     var categoryId = category.id;
-    
-                //     appendTemplate('category', categoriesList, category);
-    
-                //     populateTasksList(categoryId);
-                // }
+                    // quick dirty @fixme
+                    populateTasksList(categoryId);
+                }
             };
     
             var errorHandler = function( status, exception ) {
-                // jserror('Impossible de créer cette tâche', status);
+                jserror('Impossible de créer cette tâche', status);
             };
     
             AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/create', successHandler, errorHandler, data);
@@ -153,7 +146,71 @@
         });
     }
 
+    function initializeDelegatedEvents()
+    {
+        // delete button task
 
+        delegate(categoriesList, '.button-task-delete', 'click', function( event ){
+            event.preventDefault();
+
+            var target = event.target;
+
+            var taskId = target.getAttribute('data-id');
+            var categoryId = target.getAttribute('data-category');
+
+            var taskElement = document.getElementById('task-'+taskId);
+
+            if( taskElement ) {
+
+                var confirmDialog = confirm('Supprimer cette tâche ?');
+
+                if( confirmDialog )
+                {
+                    var successHandler = function( response ) {
+                        
+                        // notification
+                        jssnackbar('Tâche supprimée!');
+
+                        taskElement.remove();
+                    };
+            
+                    var errorHandler = function( status, exception ) {
+                        jserror('Impossible de supprimer cette tâche', status);
+                    };
+            
+                    AjaxSimple('DELETE', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/'+taskId+'/delete', successHandler, errorHandler);
+                
+                } //confirm
+
+            } // element exist
+        });
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     function populateCategoriesAndTasksList() {
         
         categoriesList.classList.add('categories-list-loading');
@@ -187,9 +244,12 @@
 
         if( categoryList ) {
 
+            categoryList.classList.add('category-loading');
+
             var successHandler = function( response ) {
 
                 categoryList.innerHTML = '';
+                categoryList.classList.remove('category-loading');
 
                 for( var index in response ) {
 
@@ -229,23 +289,6 @@
 
             AjaxSimple('GET', api.endPoint+'project/'+projectId+'/peoples/list', successHandler, errorHandler);
         }
-    }
-
-
-
-
-
-
-
-
-
-
-    function updateTaskEvent( event ) {
-    
-    }
-    
-    function deleteTaskEvent( event ) {
-    
     }
         
 })(this, document);

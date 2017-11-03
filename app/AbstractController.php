@@ -15,12 +15,16 @@ abstract class AbstractController {
     {
         $this->container = $container;
 
+        $isLogged = false;
+
         if( session('isLogged') )
         {
-            $this->isLogged = true;
+            $isLogged = true;
 
             $this->userId = session('userId');
         }
+
+        $this->isLogged = $isLogged;
     }
 
 

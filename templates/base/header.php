@@ -21,9 +21,19 @@
 
     <?php if(file_exists('jscripts/'.$template.'.js')): ?>
 
+        <?php if( $isLogged ): ?>
+
+            <script type="text/javascript">
+                var user = {
+                    id: '<?php echo $userId; ?>'
+                };
+            </script>
+
+        <?php endif; ?>
+
         <?php if($template=='dashboard'): ?>
 
-            <script>
+            <script type="text/javascript">
                 var dashboard = {
                     projectId: '<?php echo $projectId; ?>'
                 }

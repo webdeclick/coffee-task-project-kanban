@@ -42,8 +42,6 @@ function htmlToNodes( html ) {
 
     var results = [];
 
-    //var frag = new DOMParser().parseFromString(html, 'text/html');
-
     var e = document.createElement('div');
     e.innerHTML = html;
 
@@ -92,8 +90,6 @@ function getFormDataJson( form ) {
     //     // do something
     //     l(key)
     // });
-
-
 
     return jsonObject;
 }

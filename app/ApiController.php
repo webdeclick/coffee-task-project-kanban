@@ -8,6 +8,8 @@ use Slim\Http\Interfaces\ResponseInterface as Response;
 use App\Models\ProjectsModel;
 use App\Models\TasksModel;
 
+use DateTime;
+
 
 class ApiController extends AbstractController {
 
@@ -24,10 +26,22 @@ class ApiController extends AbstractController {
             'ProjectNotExist' => 'Project does not exist',
             'ProjectNotCreated' => 'Project cannot be created',
             'TaskNotCreated' => 'Task cannot be created',
+            'TaskNotDeleted' => 'Task cannot be deleted',
         ];
 
         return json(['error' => [ 'code' => $code, 'message' => $messages[$code] ]]);
     }
+
+    protected function defineRole( $projectId )
+    {
+        $role = 'user';
+
+
+
+
+        return $role;
+    }
+
 
     /**
      * Heartbeat function
@@ -236,11 +250,20 @@ class ApiController extends AbstractController {
 
         //$input = $request->getBodyParams();
 
-        $assignedTo = $request->input('newtask-people');
+        $assignedTo = $request->input('newtask-field-people');
 
         if( empty($assignedTo) ) // if not assigned (0) set to self
         {
             $assignedTo = $this->userId;
+        }
+
+        $dateEndAt = $request->input('newtask-field-end-at');
+
+        if( empty($dateEndAt) ) // current date + 1week
+        {
+            //$date = (new DateTime())->modify('+1 week');
+            //$dateEndAt = $date->format(DatabaseDatetime());
+            $dateEndAt = null;
         }
 
         $task = new TasksModel([
@@ -250,14 +273,14 @@ class ApiController extends AbstractController {
 
             'title' => $request->input('newtask-field-title'),
             'description' => $request->input('newtask-field-description'),
-            'end_at' => $request->input('newtask-field-end-at'),
+            'end_at' => $dateEndAt,
         ]);
 
         $taskId = $task->create();
 
         if( $taskId )
         {
-            return json(['message'=>'ok']);
+            return json(['message'=>'ok', 'taskId' => $taskId]);
         }
 
         return $this->apiError('TaskNotCreated');
@@ -265,23 +288,30 @@ class ApiController extends AbstractController {
 
     public function taskUpdate( Request $request, Response $response, $taskId )
     {
-        $data = [];
 
 
 
-
-
-        return json($data);
     }
 
     public function taskDelete( Request $request, Response $response, $taskId )
     {
-        $data = [];
+        $task = TasksModel::find($taskId);
 
+        //@FIXME : search if the usetr who delted the task is the user who is asigned to the task ; or is admin
 
+        if( $task )
+        {
+            // delete db
 
+            $result = $task->delete();
 
-        return json($data);
+            if( $result )
+            {
+                return json(['message'=>'ok']);
+            }
+        }
+
+        return $this->apiError('TaskNotDeleted');
     }
 
     public function taskMove( Request $request, Response $response, $taskId, $projectId, $categoryId )

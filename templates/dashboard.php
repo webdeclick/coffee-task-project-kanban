@@ -33,17 +33,24 @@
 
             <form action="post" class="newtask-form">
 
-                Titre : <input name="newtask-field-title" placeholder="Titre" type="text" class="newtask-field-title">
+                Titre :
 
-                description :  <textarea name="newtask-field-description" class="newtask-field-description"></textarea>
+                <input name="newtask-field-title" placeholder="Titre" type="text" class="newtask-field-title">
 
-                Date de fin : <input name="newtask-field-end-at" type="text" class="module-datetimepicker newtask-field-end-at">
+                description :
+
+                <textarea name="newtask-field-description" class="newtask-field-description"></textarea>
+
+                Date de fin :
+
+                <div class="module-datetimepicker-container"></div>
+                <input name="newtask-field-end-at" type="hidden" class="module-datetimepicker newtask-field-end-at">
 
                 Assigner à : 
 
                 <div class="select newtask-field-assigned-to" tabindex="1">
-                    <input class="selectopt" name="newtask-people" type="radio" id="newtask-people-0" value="0" checked>
-                    <label for="newtask-people-0" class="option">-- Peoples : --</label>
+                    <input class="selectopt" name="newtask-field-people" type="radio" id="newtask-people-0" value="0" checked>
+                    <label for="newtask-people-0" class="option">Moi</label>
                     <!-- +peoples -->
                 </div>
 
@@ -73,7 +80,7 @@
         </div>
 
         <div class="category-tasks-addbutton-container">
-            <button class="category-tasks-createbutton" data-category="{{ id }}">Ajouter une tâche</button>
+            <button class="button-task-create-oncategory" data-category="{{ id }}">Ajouter une tâche</button>
         </div>
 
     </div>
@@ -87,9 +94,21 @@
 
         {{ &title }}
 
+        <br>
+
         {{ &description }}
 
+        <br>
+
         date création : {{ created_at }}
+
+        <br>
+
+        {{ ?end_at }}
+            date fin : {{ end_at }}
+        {{/}}
+        
+        <button class="button-task-delete" data-id="{{ id }}" data-category="{{ category_id }}">Supprimer</button>
 
     </div>
 
@@ -98,7 +117,7 @@
 
 <script id="template-people-list-element" class="component-template" type="text/template">
 
-    <input class="selectopt" name="newtask-people" type="radio" id="newtask-people-{{ id }}" value="{{ id }}">
+    <input class="selectopt" name="newtask-field-people" type="radio" id="newtask-people-{{ id }}" value="{{ id }}">
     <label for="newtask-people-{{ id }}" class="option">{{ &fullname }}</label>
 
 </script>

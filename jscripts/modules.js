@@ -121,7 +121,7 @@
             x.send();
         }
     
-    }
+    };
 
 }));
 
@@ -195,7 +195,7 @@
 
     return function _return( template, context ){
         return compileTemplate( template, context )
-    }
+    };
 
 
     // private
@@ -628,6 +628,6 @@
         {
             return translateDate(date);
         }
-    }
+    };
 
 }));
