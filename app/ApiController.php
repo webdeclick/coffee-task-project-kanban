@@ -32,12 +32,24 @@ class ApiController extends AbstractController {
         return json(['error' => [ 'code' => $code, 'message' => $messages[$code] ]]);
     }
 
-    protected function defineRole( $projectId )
+    protected function defineRole( $type, $dataId )
     {
         $role = 'user';
 
+        switch( $type )
+        {
+            case 'project':
 
+            break;
 
+            case 'category':
+            
+            break;
+
+            case 'task':
+
+            break;
+        }
 
         return $role;
     }
@@ -262,7 +274,7 @@ class ApiController extends AbstractController {
         if( empty($dateEndAt) ) // current date + 1week
         {
             //$date = (new DateTime())->modify('+1 week');
-            //$dateEndAt = $date->format(DatabaseDatetime());
+            //$dateEndAt = $date->format('Y-m-d H:i:s');
             $dateEndAt = null;
         }
 

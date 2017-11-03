@@ -3,6 +3,15 @@
 <?php include 'elements/apierror.php'; ?>
 
 
+<div id="projets-list" class="projets-list projets-list-loading">
+
+    Chargement des projets...
+
+</div>
+
+
+
+
 <div id="categories-list" class="categories-list categories-list-loading">
 
     Chargement du tableau de bord...
@@ -41,7 +50,8 @@
 
                 <textarea name="newtask-field-description" class="newtask-field-description"></textarea>
 
-                Date de fin :
+                <label for="newtask-showhide-datetimepicker">Date de fin ?</label>
+                <input type="checkbox" name="newtask-showhide-datetimepicker" id="newtask-showhide-datetimepicker">
 
                 <div class="module-datetimepicker-container"></div>
                 <input name="newtask-field-end-at" type="hidden" class="module-datetimepicker newtask-field-end-at">
@@ -108,7 +118,7 @@
             date fin : {{ end_at }}
         {{/}}
         
-        <button class="button-task-delete" data-id="{{ id }}" data-category="{{ category_id }}">Supprimer</button>
+        <button class="button-task-delete" data-category="{{ category_id }}" data-id="{{ id }}">Supprimer</button>
 
     </div>
 

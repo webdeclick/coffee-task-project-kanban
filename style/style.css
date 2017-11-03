@@ -181,9 +181,17 @@ a {
 
 /*//////////////////////////////// PAGE DASHBOARD : CATEGORIES/TASKS LISTS ////////////////////////////////*/
 
-.page-dashboard #projects-list.projects-list-loading .component-project {
-    opacity: 0; /* hide all projects when loading */
+
+/* liste des projets */
+
+.page-dashboard #projets-list {
+
 }
+.page-dashboard #projets-list.projets-list-loading {
+    background: yellow;
+    /*image de chargement*/
+}
+
 
 
 /* liste des categories */
@@ -237,11 +245,16 @@ a {
 }
 
 
+/* create modal */
 
+.module-datetimepicker-container {
+    /* display: none; */
+}
 
-
-
-
+#newtask-showhide-datetimepicker[type=checkbox]:checked + .module-datetimepicker-container,
+.module-datetimepicker-container.is-visible {
+    display: block;
+}
 
 
 
