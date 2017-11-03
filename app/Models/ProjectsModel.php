@@ -51,8 +51,8 @@ class ProjectsModel extends AbstractModel {
 
         $results = $dbh->all(
             'SELECT DISTINCT p.id as project_id, p.*
-            FROM projects p
-            LEFT JOIN users_has_projects has ON p.id = has.project_id
+            FROM @projects p
+            LEFT JOIN @users_has_projects has ON p.id = has.project_id
             WHERE (
                 ( has.user_id = :userId AND has.is_deleted = 0 )
                 OR
