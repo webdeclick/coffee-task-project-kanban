@@ -9,6 +9,30 @@ var api = {
 };
 
 
+// TODO
+
+function AjaxAPISimple( method, url, successHandler, errorHandler, data, progressHandler ) {
+
+    var successHandlerCustom = function( response ) {
+        if( response.error ) {
+            var code = response.error.code;
+
+            if( code == 'CannotAction' ) {
+
+            }
+        }
+
+        return successHandler(response);
+    };
+
+    AjaxSimple(method, url, successHandlerCustom, errorHandler, data, progressHandler);
+}
+
+
+
+
+
+
 
 var DatetimePickerSimple = rome;
 

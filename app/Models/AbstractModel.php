@@ -77,9 +77,9 @@ abstract class AbstractModel implements ArrayAccess {
         $dbh = DatabaseFactory();
 
         $results = $dbh->row(
-            'SELECT * FROM @'.static::table.' WHERE id = :primaryKey',
+            'SELECT * FROM @'.static::table.' WHERE id = :primaryKey AND is_deleted = :is_deleted',
 
-            ['primaryKey' => $primaryKey]
+            ['primaryKey' => $primaryKey, 'is_deleted' => '0',]
         );
 
         if( $results )

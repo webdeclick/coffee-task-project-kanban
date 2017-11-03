@@ -5,6 +5,7 @@ namespace App;
 use Slim\Http\Interfaces\RequestInterface as Request;
 use Slim\Http\Interfaces\ResponseInterface as Response;
 
+use App\Models\UserModel;
 use App\Models\ProjectsModel;
 use App\Models\TasksModel;
 
@@ -22,6 +23,8 @@ class ApiController extends AbstractController {
     protected function apiError( $code )
     {
         $messages = [
+            'CannotAction' => 'You don\'t have rights to perform this action',
+
             'UserNotLogged' => 'User not logged',
             'ProjectNotExist' => 'Project does not exist',
             'ProjectNotCreated' => 'Project cannot be created',
@@ -32,26 +35,91 @@ class ApiController extends AbstractController {
         return json(['error' => [ 'code' => $code, 'message' => $messages[$code] ]]);
     }
 
-    protected function defineRole( $type, $dataId )
+    /**
+     * Rights ; check if the use has the right to do that action
+     *
+     * @param string $action ('create'/'update'/etc)
+     * @param string $table ('project'/'task'/etc)
+     * @param int $dataId (id of the tyoe)
+     * @return bool
+     */
+    protected function canAction( $table, $action, $projectId, $tableId )
     {
-        $role = 'user';
+        $userId = $this->userId;
 
-        switch( $type )
+        $models = [
+            'project' => ProjectsModel::class,
+            'task' => TasksModel::class
+        ];
+
+        $userHasProject = UserModel::hasProject($projectId, $userId);
+
+        $model = call_user_func([$models[$table], 'find'], $tableId);
+
+        if( $model )
         {
-            case 'project':
+            if( $table == 'project' ) {
 
-            break;
+                $linked_admin = $model->linked_admin;
+                $linked_manager = $model->linked_manager;
 
-            case 'category':
-            
-            break;
+                if( $action == 'read' ) {
+                    return true;
+                }
+                else if( $action == 'create' && in_array($userId, [$linked_admin, $linked_manager]) ) {
+                    return true;
+                }
+                else if( $action == 'update' && in_array($userId, [$linked_admin, $linked_manager]) ) {
+                    return true;
+                }
+                else if( $action == 'delete' && in_array($userId, [$linked_admin, $linked_manager]) ) {
+                    return true;
+                }
+            } elseif( $table == 'category' ) {
 
-            case 'task':
+                $projectModel = ProjectsModel::find($projectId);
 
-            break;
+                $linked_admin = $projectModel->linked_admin;
+                $linked_manager = $projectModel->linked_manager;
+
+                if( $action == 'read' ) {
+                    return true;
+                }
+                else if( $action == 'create' && in_array($userId, [$linked_admin, $linked_manager]) ) {
+                    return true;
+                }
+                else if( $action == 'update' && in_array($userId, [$linked_admin, $linked_manager]) ) {
+                    return true;
+                }
+                else if( $action == 'delete' && in_array($userId, [$linked_admin, $linked_manager]) ) {
+                    return true;
+                }
+
+            } elseif( $table == 'task' ) {
+
+                $projectModel = ProjectsModel::find($projectId);
+
+                $assigned_to = $model->assigned_to;
+
+                $linked_admin = $projectModel->linked_admin;
+                $linked_manager = $projectModel->linked_manager;
+
+                if( $action == 'read' && $userHasProject ) {
+                    return true;
+                }
+                else if( $action == 'create' && $userHasProject && in_array($userId, [$assigned_to, $linked_admin, $linked_manager]) ) {
+                    return true;
+                }
+                else if( $action == 'update' && $userHasProject && in_array($userId, [$assigned_to, $linked_admin, $linked_manager]) ) {
+                    return true;
+                }
+                else if( $action == 'delete' && $userHasProject && in_array($userId, [$assigned_to, $linked_admin, $linked_manager]) ) {
+                    return true;
+                }
+            }
         }
 
-        return $role;
+        return false;
     }
 
 
@@ -307,12 +375,20 @@ class ApiController extends AbstractController {
 
     public function taskDelete( Request $request, Response $response, $taskId )
     {
-        $task = TasksModel::find($taskId);
+        $userId = $this->userId;
 
-        //@FIXME : search if the usetr who delted the task is the user who is asigned to the task ; or is admin
+        $task = TasksModel::find($taskId);
 
         if( $task )
         {
+            $projectId = $task->project_id;
+
+            // fheck persmission :
+
+            if( !$this->canAction('task', 'delete', $projectId, $taskId) ) {
+                return $this->apiError('CannotAction');
+            }
+
             // delete db
 
             $result = $task->delete();
@@ -322,7 +398,7 @@ class ApiController extends AbstractController {
                 return json(['message'=>'ok']);
             }
         }
-
+        
         return $this->apiError('TaskNotDeleted');
     }
 

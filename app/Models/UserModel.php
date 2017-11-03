@@ -58,9 +58,9 @@ class UserModel extends AbstractModel {
             FROM @projects p
             LEFT JOIN @users_has_projects has ON p.id = has.project_id
             WHERE (
-                ( has.user_id = :userId AND has.is_deleted = 0 )
+                ( has.user_id = :user_id AND has.is_deleted = 0 )
                 OR
-                ( p.linked_manager = :userId OR p.linked_admin = :userId )
+                ( p.linked_manager = :user_id OR p.linked_admin = :user_id )
             )
             AND p.id = :project_id
             AND p.is_deleted = :is_deleted',
