@@ -14,6 +14,8 @@
 
     window.addEventListener('load', function( event ) {
 
+        projectsList = document.getElementById('projects-list');
+
         categoriesList = document.getElementById('categories-list');
 
         // load projects on top
@@ -44,7 +46,6 @@
 
     function populateProjects()
     {
-        /*
         projectsList.classList.add('projects-list-loading');
 
         var successHandler = function( response ) {
@@ -64,8 +65,7 @@
             jserror('Impossible de récupérer les projets', status);
         };
 
-        AjaxSimple('GET', api.endPoint+'api/projects/list', successHandler, errorHandler);
-        */
+        AjaxSimple('GET', api.endPoint+'projects/list', successHandler, errorHandler);
     }
 
     function populateCategoriesAndTasksList() {

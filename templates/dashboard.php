@@ -3,7 +3,7 @@
 <?php include 'elements/apierror.php'; ?>
 
 
-<div id="projets-list" class="projets-list projets-list-loading">
+<div id="projects-list" class="projets-list projets-list-loading">
 
     Chargement des projets...
 
@@ -75,6 +75,22 @@
     </div> <!-- popup -->
 
 </div> <!-- screen -->
+
+
+
+
+<script id="template-project" class="component-template" type="text/template">
+
+    <div id="project-{{ id }}" class="component-project">
+        iconv
+
+        <a href="/dashboard/{{ id }}">{{ &title }} (voir le projet)</a>
+
+        {{ &description }}
+
+    </div>
+
+</script>
 
 
 <script id="template-category" class="component-template" type="text/template">

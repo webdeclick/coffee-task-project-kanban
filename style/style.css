@@ -182,14 +182,19 @@ a {
 /*//////////////////////////////// PAGE DASHBOARD : CATEGORIES/TASKS LISTS ////////////////////////////////*/
 
 
-/* liste des projets */
+/* liste des projects */
 
-.page-dashboard #projets-list {
-
+.page-dashboard #projects-list {
+    display: flex;
 }
-.page-dashboard #projets-list.projets-list-loading {
+.page-dashboard #projects-list.projects-list-loading {
     background: yellow;
     /*image de chargement*/
+}
+
+.page-dashboard #projects-list .component-project {
+    padding: 10px;
+    border: 1px solid black;
 }
 
 
