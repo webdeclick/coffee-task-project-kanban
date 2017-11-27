@@ -30,6 +30,7 @@ class ApiController extends AbstractController {
             'ProjectNotCreated' => 'Project cannot be created',
             'TaskNotCreated' => 'Task cannot be created',
             'TaskNotDeleted' => 'Task cannot be deleted',
+            'TaskNotUpdated' => 'Task cannot be updated',
         ];
 
         return json(['error' => [ 'code' => $code, 'message' => $messages[$code] ]]);
@@ -38,85 +39,83 @@ class ApiController extends AbstractController {
     /**
      * Rights ; check if the use has the right to do that action
      *
-     * @param string $action ('create'/'update'/etc)
-     * @param string $table ('project'/'task'/etc)
-     * @param int $dataId (id of the tyoe)
+     * @param string $table ('create'/'update'/etc)
+     * @param string $action ('project'/'task'/etc)
+     * @param string $projectId (project id)
+     * @param mixed  $tableId (id of the type)
      * @return bool
      */
-    protected function canAction( $table, $action, $projectId, $tableId )
+    protected function canAction( $table, $action, $projectId = null, $tableId = null )
     {
         $userId = $this->userId;
 
-        $models = [
-            'project' => ProjectsModel::class,
-            'task' => TasksModel::class
+        // u:user ; h:user has project ; a:project admin ; m:project manager ; s:user task asignee
+        $tablesPermissions = [
+            'project' => [
+                'read' => ['h'],
+                'create' => ['u'],//anyone
+                'update' => ['a'],
+                'delete' => ['a'],
+            ],
+            'category' => [
+                'read' => ['h','m','a'],
+                'create' => ['m','a'],
+                'update' => ['m','a'],
+                'delete' => ['a'],
+            ],
+            'task' => [
+                'read' => ['s','m','a'],
+                'create' => ['h'],
+                'update' => ['s'],
+                'delete' => ['s','m','a'],
+            ],
         ];
 
-        $userHasProject = UserModel::hasProject($projectId, $userId);
+        $userPermissions = ['u'];
 
-        $model = call_user_func([$models[$table], 'find'], $tableId);
-
-        if( $model )
+        if( isset($projectId) )
         {
-            if( $table == 'project' ) {
+            $projectModel = ProjectsModel::find($projectId);
 
-                $linked_admin = $model->linked_admin;
-                $linked_manager = $model->linked_manager;
-
-                if( $action == 'read' ) {
-                    return true;
-                }
-                else if( $action == 'create' && in_array($userId, [$linked_admin, $linked_manager]) ) {
-                    return true;
-                }
-                else if( $action == 'update' && in_array($userId, [$linked_admin, $linked_manager]) ) {
-                    return true;
-                }
-                else if( $action == 'delete' && in_array($userId, [$linked_admin, $linked_manager]) ) {
-                    return true;
-                }
-            } elseif( $table == 'category' ) {
-
-                $projectModel = ProjectsModel::find($projectId);
-
+            if( $projectModel ) // project exist
+            {
+                $userHasProject = UserModel::hasProject($projectId, $userId);
+    
                 $linked_admin = $projectModel->linked_admin;
                 $linked_manager = $projectModel->linked_manager;
-
-                if( $action == 'read' ) {
-                    return true;
+    
+                if( $userHasProject ) {
+                    $userPermissions[] = 'h';
                 }
-                else if( $action == 'create' && in_array($userId, [$linked_admin, $linked_manager]) ) {
-                    return true;
+    
+                if( $userId == $linked_admin ) {
+                    $userPermissions[] = 'a';
                 }
-                else if( $action == 'update' && in_array($userId, [$linked_admin, $linked_manager]) ) {
-                    return true;
+        
+                if( $userId == $linked_manager ) {
+                    $userPermissions[] = 'm';
                 }
-                else if( $action == 'delete' && in_array($userId, [$linked_admin, $linked_manager]) ) {
-                    return true;
-                }
-
-            } elseif( $table == 'task' ) {
-
-                $projectModel = ProjectsModel::find($projectId);
-
-                $assigned_to = $model->assigned_to;
-
-                $linked_admin = $projectModel->linked_admin;
-                $linked_manager = $projectModel->linked_manager;
-
-                if( $action == 'read' && $userHasProject ) {
-                    return true;
-                }
-                else if( $action == 'create' && $userHasProject && in_array($userId, [$assigned_to, $linked_admin, $linked_manager]) ) {
-                    return true;
-                }
-                else if( $action == 'update' && $userHasProject && in_array($userId, [$assigned_to, $linked_admin, $linked_manager]) ) {
-                    return true;
-                }
-                else if( $action == 'delete' && $userHasProject && in_array($userId, [$assigned_to, $linked_admin, $linked_manager]) ) {
-                    return true;
+    
+                if( $table == 'task' && isset($tableId) ) // search in task
+                {
+                    $taskModel = TasksModel::find($tableId);
+    
+                    $assigned_to = $taskModel->assigned_to;
+    
+                    if( $userId == $assigned_to ) {
+                        $userPermissions[] = 's';
+                    }
                 }
             }
+        }
+
+        if( !empty($tablesPermissions[$table][$action]) )
+        {
+            $tablePermissions = $tablesPermissions[$table][$action];
+
+            $result = !empty(array_intersect($userPermissions, $tablePermissions));
+
+            return $result;
         }
 
         return false;
@@ -165,6 +164,11 @@ class ApiController extends AbstractController {
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
+        // check persmission
+        if( !$this->canAction('project', 'read', $projectId) ) {
+            return $this->apiError('CannotAction');
+        }
+
         $results = ProjectsModel::getPeoples($projectId);
         
         return json($results);
@@ -173,6 +177,12 @@ class ApiController extends AbstractController {
     public function projectCreate( Request $request, Response $response )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+
+        // check persmission
+        if( !$this->canAction('project', 'create') ) {
+            return $this->apiError('CannotAction');
+        }
+
 
         $pTitle = $request->input('title', '');
         $pDescription = $request->input('description', '');
@@ -203,25 +213,34 @@ class ApiController extends AbstractController {
         return $this->apiError('ProjectNotCreated');
     }
 
-    public function projectUpdate( Request $request, Response $response )
+    public function projectUpdate( Request $request, Response $response, $projectId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
-        $data = [];
+        // check persmission
+        if( !$this->canAction('project', 'update', $projectId) ) {
+            return $this->apiError('CannotAction');
+        }
 
 
 
 
 
 
-        return json($data);
+
+
+
     }
 
     public function projectDelete( Request $request, Response $response, $projectId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
-        $data = [];
+        // check persmission
+        if( !$this->canAction('project', 'delete', $projectId) ) {
+            return $this->apiError('CannotAction');
+        }
+
 
         $project = ProjectsModel::find($projectId);
 
@@ -231,11 +250,8 @@ class ApiController extends AbstractController {
 
             return json(['message'=>'ok']);
         }
-        else {
-            return $this->apiError('ProjectNotExist');
-        }
 
-        return json($data);
+        return $this->apiError('ProjectNotExist');
     }
 
 
@@ -249,6 +265,11 @@ class ApiController extends AbstractController {
         $project = ProjectsModel::find($projectId);
         
         if( $project ) {
+
+            // check persmission
+            if( !$this->canAction('category', 'read', $projectId) ) {
+                return $this->apiError('CannotAction');
+            }
 
             $categories = ProjectsModel::findCategories($projectId);
 
@@ -271,6 +292,11 @@ class ApiController extends AbstractController {
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
+        // check persmission
+        if( !$this->canAction('category', 'read', $projectId) ) {
+            return $this->apiError('CannotAction');
+        }
+
         // get task
 
         $userId = $this->userId;
@@ -281,9 +307,17 @@ class ApiController extends AbstractController {
     }
 
 
-    public function categoryCreate( Request $request, Response $response )
+    public function categoryCreate( Request $request, Response $response, $projectId )
     {
         $data = [];
+
+        // check persmission
+        if( !$this->canAction('category', 'create', $projectId) ) {
+            return $this->apiError('CannotAction');
+        }
+
+
+
 
 
 
@@ -291,42 +325,73 @@ class ApiController extends AbstractController {
         return json($data);
     }
 
-    public function categoryUpdate( Request $request, Response $response )
+    public function categoryUpdate( Request $request, Response $response, $categoryId )
     {
-        $data = [];
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+        
+        
+        $projectId = '';
+
+
+        // check persmission
+        if( !$this->canAction('category', 'delete', $projectId, $categoryId) ) {
+            return $this->apiError('CannotAction');
+        }
+
+        $userId = $this->userId;
 
 
 
 
-        return json($data);
+
+
+
+
+
+
+        return $this->apiError('');//CategoryNotDeleted
     }
 
-    public function categoryDelete( Request $request, Response $response )
+    public function categoryDelete( Request $request, Response $response, $categoryId )
     {
-        $data = [];
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+
+
+        $projectId = '';
+
+
+        // check persmission
+        if( !$this->canAction('category', 'delete', $projectId, $categoryId) ) {
+            return $this->apiError('CannotAction');
+        }
+
+        $userId = $this->userId;
 
 
 
 
 
-        return json($data);
+
+
+
+
+
+        return $this->apiError('');//CategoryNotDeleted
     }
 
 
 //////// TASKS
 
-    public function taskGet( Request $request, Response $response, $taskId )
-    {
-        $data = [];
-
-
-
-        return json($data);
-    }
 
     public function taskCreate( Request $request, Response $response, $projectId, $categoryId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+
+        // check persmission
+        if( !$this->canAction('task', 'create', $projectId, $categoryId) ) {
+            return $this->apiError('CannotAction');
+        }
+
 
         //$input = $request->getBodyParams();
 
@@ -368,13 +433,47 @@ class ApiController extends AbstractController {
 
     public function taskUpdate( Request $request, Response $response, $taskId )
     {
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+
+        $userId = $this->userId;
+        
+        $task = TasksModel::find($taskId);
+
+        if( $task )
+        {
+            $projectId = $task->project_id;
+
+            // check persmission
+            if( !$this->canAction('task', 'update', $projectId, $taskId) ) {
+                return $this->apiError('CannotAction');
+            }
 
 
 
+
+
+
+
+
+
+        }
+
+        
+
+
+
+
+
+
+
+        return $this->apiError('TaskNotUpdated');
     }
 
     public function taskDelete( Request $request, Response $response, $taskId )
     {
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+        
+
         $userId = $this->userId;
 
         $task = TasksModel::find($taskId);
@@ -383,8 +482,7 @@ class ApiController extends AbstractController {
         {
             $projectId = $task->project_id;
 
-            // fheck persmission :
-
+            // check persmission
             if( !$this->canAction('task', 'delete', $projectId, $taskId) ) {
                 return $this->apiError('CannotAction');
             }
@@ -402,6 +500,7 @@ class ApiController extends AbstractController {
         return $this->apiError('TaskNotDeleted');
     }
 
+    /*
     public function taskMove( Request $request, Response $response, $taskId, $projectId, $categoryId )
     {
         $data = [];
@@ -411,7 +510,7 @@ class ApiController extends AbstractController {
 
         return json($data);
     }
-
+    */
     
 
 
