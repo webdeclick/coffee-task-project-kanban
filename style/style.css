@@ -484,3 +484,51 @@ a {
     -o-transform: translateY(0);
     transform: translateY(0);
 }
+
+
+/* //////////////////// popoves categories ///////////////////// */
+
+.ha-popover {
+    position: absolute;
+    z-index: 998;
+    height: auto;
+    display: none;
+    border-radius: 2px;
+    opacity: 0;
+    max-width: 530px;
+    border: 1px solid #C7C7C7;
+    background: #FFF;
+    outline: none;
+    font-size: 14px;
+    -webkit-box-shadow: 0 3px 0 0 #42424233;
+    box-shadow: 0 3px 0 0 #42424233;
+    padding: 15px 15px 20px;
+
+    max-width: 530px;
+}
+.ha-popover .connector {
+    width: 10px;
+    height: 10px;
+    margin: 0;
+    border-style: solid;
+    border-width: 1px 0 0 1px;
+    border-color: #C7C7C7 transparent transparent #C7C7C7;
+    background: inherit;
+    position: absolute;
+
+    top: -6px;
+    left: 16px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.ha-popover.is-visible {
+    display: block;
+    opacity: 1;
+}
+
+.ha-popover .ha-footer {
+    display: flex;
+    justify-content: space-between;
+
+}

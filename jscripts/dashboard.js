@@ -26,6 +26,10 @@
 
         populateCategoriesAndTasksList();
 
+        // initialize popover category
+
+        initializeCategoriesEvents();
+
         // initialize events
 
         initializeDelegatedEvents();
@@ -124,7 +128,119 @@
         }
     }
 
+    function initializeCategoriesEvents() {
+
+        // category edit popover
+
+        delegate(categoriesList, '.button-category-popover', 'click', function( event ){
+            event.preventDefault();
+
+            var target = event.target;
+
+            var categoryId = target.getAttribute('data-category');
+
+            // show popover :
+
+            var popover = categoriesList.querySelector('#category-popover-'+categoryId);
+            
+            if( popover ) {
+                popover.classList.toggle('is-visible');
+            }
+        });
+
+        delegate(categoriesList, '.component-category-popover .button-category-cancel', 'click', function( event ){
+            event.preventDefault();
+            
+            var target = event.target;
+
+            var categoryId = target.getAttribute('data-category');
+            
+            // hide popover :
+            
+            var popover = categoriesList.querySelector('#category-popover-'+categoryId);
+
+            if( popover ) {
+                popover.classList.remove('is-visible');
+            }
+        });
+
+        delegate(categoriesList, '.component-category-popover .button-category-save', 'click', function( event ){
+            event.preventDefault();
+
+            var target = event.target;
+
+            var categoryId = target.getAttribute('data-category');
+
+            // hide popover :
+
+            var popover = categoriesList.querySelector('#category-popover-'+categoryId);
+
+            var form = popover.querySelector('.ha-popover-form');
+
+            var data = getFormDataJson(form);
+
+            var successHandler = function( response ) {
+                // notification
+                jssnackbar('Catégorie modifiée!');
+
+                if( popover ) {
+                    popover.classList.remove('is-visible');
+                }
+            };
+
+            var errorHandler = function( status, exception ) {
+                jserror('Impossible de modifier cette catégorie', status);
+            };
+
+            AjaxSimple('PATCH', api.endPoint+'category/'+categoryId+'/update', successHandler, errorHandler, data);
+        });
+
+        // delete button
+
+        delegate(categoriesList, '.button-category-delete', 'click', function( event ){
+            event.preventDefault();
+
+            var target = event.target;
+
+            var categoryId = target.getAttribute('data-category');
+
+
+            var confirmDialog = confirm('Supprimer cette catégorie ?');
+            
+            if( confirmDialog ) {
+
+                var successHandler = function( response ) {
+                    // notification
+                    jssnackbar('Catégorie supprimée!');
+
+                    // delete elemnt
+
+                    var categoryEl = categoriesList.querySelector('#category-'+categoryId);
+
+                    if( categoryEl ) {
+                        categoryEl.remove();
+                    }
+                };
+
+                var errorHandler = function( status, exception ) {
+                    jserror('Impossible de supprimer cette catégorie', status);
+                };
+
+                AjaxSimple('DELETE', api.endPoint+'category/'+categoryId+'/delete', successHandler, errorHandler);
+
+            }
+        });
+
+
+        
+    }
+
     function initializeDelegatedEvents() {
+
+
+
+        
+
 
         // delete button task
 

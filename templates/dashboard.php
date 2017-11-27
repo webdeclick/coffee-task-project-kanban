@@ -99,6 +99,31 @@
 
         titre : {{ &title }}
 
+        <button class="button-category-popover" data-category="{{ id }}">Editer</button>
+
+        <button class="button-category-delete" data-category="{{ id }}">Supprimer</button> 
+
+
+        <div id="category-popover-{{ id }}" class="component-category-popover ha-popover">
+            <div class="connector"></div>
+
+            <form class="ha-popover-form" action="patch">
+                <section>    
+                    <div class="ha-text-field">
+                        <label for="category-field-title">Titre :</label>
+                        <input id="category-field-title" name="title"  type="text">
+                    </div>
+                </section>    
+            
+                <footer class="ha-footer">
+                    <button class="button-category-cancel ha-button" data-category="{{ id }}">Annuler</button> 
+                    <button class="button-category-save ha-button" data-category="{{ id }}">Valider</button> 
+                </footer>  
+
+            </form>
+        </div>
+
+
         <div class="category-tasks-container">
 
             Chargement des taches...

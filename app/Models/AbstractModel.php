@@ -52,6 +52,27 @@ abstract class AbstractModel implements ArrayAccess {
         return $dbh->lastInsertId();
     }
 
+    public function save()
+    {
+        $dbh = DatabaseFactory();
+        
+        $attributes = $this->attributes;
+
+        $keys = array_keys($this->attributes);
+
+        $keysString = array_map(function( $key ){ return ''.$key. ' = :'.$key; }, $keys);
+
+        $attributes['primaryKey'] = $this->id;
+
+        $results = $dbh->execute(
+            'UPDATE @'.static::table.' SET '.implode(', ', $keysString).' WHERE id = :primaryKey ',
+            
+            $attributes
+        );
+
+        return $results;
+    }
+
     public function delete()
     {
         $dbh = DatabaseFactory();

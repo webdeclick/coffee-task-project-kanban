@@ -8,6 +8,7 @@ use Slim\Http\Interfaces\ResponseInterface as Response;
 use App\Models\UserModel;
 use App\Models\ProjectsModel;
 use App\Models\TasksModel;
+use App\Models\CategoryModel;
 
 use DateTime;
 
@@ -31,9 +32,17 @@ class ApiController extends AbstractController {
             'TaskNotCreated' => 'Task cannot be created',
             'TaskNotDeleted' => 'Task cannot be deleted',
             'TaskNotUpdated' => 'Task cannot be updated',
+            'CategoryNotUpdated' => 'Category cannot be updated',
+            'CategoryNotDeleted' => 'Category cannot be deleted',
         ];
 
-        return json(['error' => [ 'code' => $code, 'message' => $messages[$code] ]]);
+        $message = $code;
+
+        if( !empty($messages[$code]) ) {
+            $message = $messages[$code];
+        }
+
+        return json(['error' => [ 'code' => $code, 'message' => $message ]]);
     }
 
     /**
@@ -309,13 +318,12 @@ class ApiController extends AbstractController {
 
     public function categoryCreate( Request $request, Response $response, $projectId )
     {
-        $data = [];
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
         // check persmission
         if( !$this->canAction('category', 'create', $projectId) ) {
             return $this->apiError('CannotAction');
         }
-
 
 
 
@@ -328,28 +336,34 @@ class ApiController extends AbstractController {
     public function categoryUpdate( Request $request, Response $response, $categoryId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
-        
-        
-        $projectId = '';
 
 
-        // check persmission
-        if( !$this->canAction('category', 'delete', $projectId, $categoryId) ) {
-            return $this->apiError('CannotAction');
+        $category = CategoryModel::find($categoryId);
+
+        if( $category )
+        {
+            $projectId = $category->project_id;
+
+            // check persmission
+            if( !$this->canAction('category', 'update', $projectId, $categoryId) ) {
+                return $this->apiError('CannotAction');
+            }
+
+            // update model
+
+            $title = $request->input('title', '');
+
+            $category->title = $title;
+
+            $result = $category->save();
+
+            //if( $result ) FIXME
+            {
+                return json(['message'=>'ok']);
+            }
         }
 
-        $userId = $this->userId;
-
-
-
-
-
-
-
-
-
-
-        return $this->apiError('');//CategoryNotDeleted
+        return $this->apiError('CategoryNotUpdated');
     }
 
     public function categoryDelete( Request $request, Response $response, $categoryId )
@@ -357,26 +371,26 @@ class ApiController extends AbstractController {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
 
-        $projectId = '';
+        $category = CategoryModel::find($categoryId);
+        
+        if( $category )
+        {
+            $projectId = $category->project_id;
 
+            // check persmission
+            if( !$this->canAction('category', 'delete', $projectId, $categoryId) ) {
+                return $this->apiError('CannotAction');
+            }
 
-        // check persmission
-        if( !$this->canAction('category', 'delete', $projectId, $categoryId) ) {
-            return $this->apiError('CannotAction');
+            $result = $category->delete();
+
+            //if( $result ) FIXME
+            {
+                return json(['message'=>'ok']);
+            }
         }
 
-        $userId = $this->userId;
-
-
-
-
-
-
-
-
-
-
-        return $this->apiError('');//CategoryNotDeleted
+        return $this->apiError('CategoryNotDeleted');
     }
 
 
@@ -392,8 +406,6 @@ class ApiController extends AbstractController {
             return $this->apiError('CannotAction');
         }
 
-
-        //$input = $request->getBodyParams();
 
         $assignedTo = $request->input('newtask-field-people');
 
