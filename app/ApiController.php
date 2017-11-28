@@ -162,7 +162,7 @@ class ApiController extends AbstractController {
      *
      * @param Request $request
      * @param Response $response
-     * @return void
+     * @return string
      */
     public function projectsList( Request $request, Response $response )
     {
@@ -173,6 +173,14 @@ class ApiController extends AbstractController {
         return json($results);
     }
 
+    /**
+     * Get all proples link to the project
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $projectId
+     * @return string
+     */
     public function projectPeoples( Request $request, Response $response, $projectId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
@@ -187,6 +195,13 @@ class ApiController extends AbstractController {
         return json($results);
     }
 
+    /**
+     * Create a new project
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return string
+     */
     public function projectCreate( Request $request, Response $response )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
@@ -226,6 +241,14 @@ class ApiController extends AbstractController {
         return $this->apiError('ProjectNotCreated');
     }
 
+    /**
+     * Update the project
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $projectId
+     * @return string
+     */
     public function projectUpdate( Request $request, Response $response, $projectId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
@@ -245,6 +268,14 @@ class ApiController extends AbstractController {
 
     }
 
+    /**
+     * Delete the project
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $projectId
+     * @return string
+     */
     public function projectDelete( Request $request, Response $response, $projectId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
@@ -271,6 +302,14 @@ class ApiController extends AbstractController {
 
 //////// CATEGORIES
 
+    /**
+     * List all categories of the project
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $projectId
+     * @return string
+     */
     public function categoriesList( Request $request, Response $response, $projectId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
@@ -319,7 +358,14 @@ class ApiController extends AbstractController {
         return json($results);
     }
 
-
+    /**
+     * Create a category
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $projectId
+     * @return string
+     */
     public function categoryCreate( Request $request, Response $response, $projectId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
@@ -353,6 +399,14 @@ class ApiController extends AbstractController {
         return $this->apiError('CategoryNotCreated');
     }
 
+    /**
+     * Update a category
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $categoryId
+     * @return string
+     */
     public function categoryUpdate( Request $request, Response $response, $categoryId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
@@ -386,6 +440,14 @@ class ApiController extends AbstractController {
         return $this->apiError('CategoryNotUpdated');
     }
 
+    /**
+     * Delete a category
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $categoryId
+     * @return string
+     */
     public function categoryDelete( Request $request, Response $response, $categoryId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
@@ -417,6 +479,15 @@ class ApiController extends AbstractController {
 //////// TASKS
 
 
+    /**
+     * Create a task
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $projectId
+     * @param int $categoryId
+     * @return string
+     */
     public function taskCreate( Request $request, Response $response, $projectId, $categoryId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
@@ -463,6 +534,14 @@ class ApiController extends AbstractController {
         return $this->apiError('TaskNotCreated');
     }
 
+    /**
+     * Update a task
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $taskId
+     * @return string
+     */
     public function taskUpdate( Request $request, Response $response, $taskId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
@@ -480,6 +559,9 @@ class ApiController extends AbstractController {
                 return $this->apiError('CannotAction');
             }
 
+
+
+            // TODO
 
 
 
@@ -501,6 +583,14 @@ class ApiController extends AbstractController {
         return $this->apiError('TaskNotUpdated');
     }
 
+    /**
+     * Delete a task
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $taskId
+     * @return string
+     */
     public function taskDelete( Request $request, Response $response, $taskId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
@@ -531,20 +621,6 @@ class ApiController extends AbstractController {
         
         return $this->apiError('TaskNotDeleted');
     }
-
-    /*
-    public function taskMove( Request $request, Response $response, $taskId, $projectId, $categoryId )
-    {
-        $data = [];
-
-
-
-
-        return json($data);
-    }
-    */
-    
-
 
 
 }

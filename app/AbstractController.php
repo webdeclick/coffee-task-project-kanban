@@ -11,6 +11,11 @@ abstract class AbstractController {
     protected $container = [];
 
 
+    /**
+     * Constructor
+     *
+     * @param array $container
+     */
     public function __construct( array $container = [] )
     {
         $this->container = $container;

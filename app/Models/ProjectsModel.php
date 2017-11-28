@@ -32,7 +32,12 @@ class ProjectsModel extends AbstractModel {
         return $results;
     }
 
-
+    /**
+     * Get all projects by and user id
+     *
+     * @param int $userId
+     * @return array
+     */
     public static function getAllByUser( $userId )
     {
         $model = ( new static );
@@ -82,6 +87,7 @@ class ProjectsModel extends AbstractModel {
 
                 $result['users'] = $users;
 
+                // link admin infos
 
                 if( !empty($result['linked_admin']) )
                 {
@@ -98,6 +104,8 @@ class ProjectsModel extends AbstractModel {
                 }
 
                 unset($result['linked_admin']);
+
+                // link manager infos
 
                 if( !empty($result['linked_manager']) )
                 {
@@ -122,6 +130,13 @@ class ProjectsModel extends AbstractModel {
         return $projects;
     }
 
+    /**
+     * Create new project and link user to the project
+     *
+     * @param int $userId
+     * @param array $data
+     * @return int
+     */
     public static function createNew( $userId, array $data )
     {
         $dbh = DatabaseFactory();
@@ -179,7 +194,11 @@ class ProjectsModel extends AbstractModel {
         return $projectId;
     }
 
-
+    /**
+     * Delete project and unlink user to the projet
+     *
+     * @return mixed
+     */
     public function delete()
     {
         $dbh = DatabaseFactory();
@@ -206,6 +225,12 @@ class ProjectsModel extends AbstractModel {
         return $results;
     }
 
+    /**
+     * Find categories by a project id
+     *
+     * @param int $projectId
+     * @return array
+     */
     public static function findCategories( $projectId )
     {
         $dbh = DatabaseFactory();
@@ -233,8 +258,6 @@ class ProjectsModel extends AbstractModel {
 
         return $categories;
     }
-
-
 
 
 }

@@ -11,7 +11,6 @@ abstract class AbstractModel implements ArrayAccess {
      * The table associated with the model.
      * @var string
      */
-
     const table = null;
 
     /**
@@ -52,6 +51,11 @@ abstract class AbstractModel implements ArrayAccess {
         return $dbh->lastInsertId();
     }
 
+    /**
+     * Save model
+     *
+     * @return mixed
+     */
     public function save()
     {
         $dbh = DatabaseFactory();
@@ -73,6 +77,11 @@ abstract class AbstractModel implements ArrayAccess {
         return $results;
     }
 
+    /**
+     * Delete model
+     *
+     * @return mixed
+     */
     public function delete()
     {
         $dbh = DatabaseFactory();
@@ -93,6 +102,12 @@ abstract class AbstractModel implements ArrayAccess {
         return $results;
     }
 
+    /**
+     * Find model by its id
+     *
+     * @param int $primaryKey
+     * @return bool|mixed
+     */
     public static function find( $primaryKey )
     {
         $dbh = DatabaseFactory();

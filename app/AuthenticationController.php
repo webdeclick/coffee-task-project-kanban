@@ -13,7 +13,8 @@ class AuthenticationController extends AbstractController {
 
 
     /**
-     *
+     * Login page
+     * 
      * @param Request $request
      * @param Response $response
      * @return string
@@ -28,7 +29,8 @@ class AuthenticationController extends AbstractController {
     }
 
     /**
-     *
+     * Register page
+     * 
      * @param Request $request
      * @param Response $response
      * @return string
@@ -43,7 +45,8 @@ class AuthenticationController extends AbstractController {
     }
 
     /**
-     *
+     * Validate login page
+     * 
      * @param Request $request
      * @param Response $response
      * @return string
@@ -86,7 +89,8 @@ class AuthenticationController extends AbstractController {
     }
 
     /**
-     *
+     * Validate register page
+     * 
      * @param Request $request
      * @param Response $response
      * @return string
@@ -162,8 +166,14 @@ class AuthenticationController extends AbstractController {
     }
 
 
-
-
+    /**
+     * Display and resize user avatar
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $userId
+     * @return void
+     */
     public function avatar( Request $request, Response $response, $userId )
     {
         $attachmentFolder = getcwd() . '/uploads/avatars/';
@@ -232,6 +242,13 @@ class AuthenticationController extends AbstractController {
         //exit(readfile($fileName));
     }
 
+    /**
+     * Profile page
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return string
+     */
     public function profile( Request $request, Response $response )
     {
         if( !$this->isLogged ) return redirect('/login?back=1'); // check logged
@@ -239,10 +256,16 @@ class AuthenticationController extends AbstractController {
         $this->title = 'Profile';
 
 
-
         return render('profile', $this->container);
     }
 
+    /**
+     * Validate profile page
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return string
+     */
     public function validateProfile( Request $request, Response $response )
     {
         if( !$this->isLogged ) return redirect('/login?back=1'); // check logged
@@ -380,14 +403,11 @@ class AuthenticationController extends AbstractController {
 
 
 
-
-
-
-
-
-
-
-
+    /**
+     * Logout page / user
+     *
+     * @return void
+     */
     public function logout()
     {
         session_destroy();

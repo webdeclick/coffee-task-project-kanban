@@ -8,6 +8,13 @@ class UserModel extends AbstractModel {
     const table = 'users';
 
 
+    /**
+     * Get user id, by it's password and email
+     *
+     * @param string $email
+     * @param string $password
+     * @return null|array
+     */
     public static function getIdByLogin( $email, $password )
     {
         $dbh = DatabaseFactory();
@@ -20,6 +27,12 @@ class UserModel extends AbstractModel {
         return ( $results ?: null );
     }
 
+    /**
+     * Get user id by its email
+     *
+     * @param string $email
+     * @return null|array
+     */
     public static function getIdByEmail( $email )
     {
         $dbh = DatabaseFactory();
@@ -32,6 +45,12 @@ class UserModel extends AbstractModel {
         return ( $results ?: null );
     }
 
+    /**
+     * List all user that are linked to a project id
+     *
+     * @param int $projectId
+     * @return array
+     */
     public static function getAllFromProject( $projectId )
     {
         $dbh = DatabaseFactory();
@@ -49,6 +68,13 @@ class UserModel extends AbstractModel {
         return ( $results ?: null );
     }
 
+    /**
+     * Check if the user id as the project id
+     *
+     * @param int $projectId
+     * @param int $userId
+     * @return boolean
+     */
     public static function hasProject( $projectId, $userId )
     {
         $dbh = DatabaseFactory();
@@ -70,8 +96,6 @@ class UserModel extends AbstractModel {
 
         return ( $results ? true : false );
     }
-
-
 
 
 }
