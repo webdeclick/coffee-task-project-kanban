@@ -139,6 +139,17 @@ abstract class AbstractModel implements ArrayAccess {
     }
 
     /**
+     * Get all attributes from the model.
+     *
+     * @param  string  $key
+     * @return mixed
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
      * Dynamically retrieve attributes on the model
      *
      * @param  string  $key

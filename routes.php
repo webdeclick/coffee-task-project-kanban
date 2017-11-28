@@ -42,7 +42,7 @@ return [
 
     // categories management api
 
-    'api-category.create' => ['post',   '/api/category/create', '\App\ApiController@categoryCreate'],
+    'api-category.create' => ['post',   '/api/project/(\d+)/category/create', '\App\ApiController@categoryCreate'],
     'api-category.update' => ['patch',  '/api/category/(\d+)/update', '\App\ApiController@categoryUpdate'],
     'api-category.delete' => ['delete', '/api/category/(\d+)/delete', '\App\ApiController@categoryDelete'],
 

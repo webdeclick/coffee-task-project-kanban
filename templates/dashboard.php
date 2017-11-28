@@ -9,6 +9,30 @@
 
 </div>
 
+<div class="category-create-block">
+
+    <button class="button-category-create-popover" data-category="new">Créer une catégorie</button> 
+
+    <div id="category-popover-new" class="component-category-popover ha-popover">
+        <div class="connector"></div>
+
+        <form class="ha-popover-form" method="post">
+            <section>    
+                <div class="ha-text-field">
+                    <label for="category-field-title">Titre :</label>
+                    <input id="category-field-title" name="title"  type="text">
+                </div>
+            </section>    
+
+            <footer class="ha-footer">
+                <button class="button-category-cancel ha-button">Annuler</button> 
+                <button class="button-category-create ha-button">Valider</button> 
+            </footer>
+        </form>
+    </div>
+
+</div>
+
 
 
 
@@ -40,7 +64,7 @@
 
         <div class="cd-popup-content">
 
-            <form action="post" class="newtask-form">
+            <form method="post" class="newtask-form">
 
                 Titre :
 
@@ -82,11 +106,12 @@
 <script id="template-project" class="component-template" type="text/template">
 
     <div id="project-{{ id }}" class="component-project">
-        iconv
 
         <a href="/dashboard/{{ id }}">{{ &title }} (voir le projet)</a>
 
-        {{ &description }}
+        <br>
+
+        description : {{ &description }}
 
     </div>
 

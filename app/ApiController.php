@@ -34,6 +34,7 @@ class ApiController extends AbstractController {
             'TaskNotUpdated' => 'Task cannot be updated',
             'CategoryNotUpdated' => 'Category cannot be updated',
             'CategoryNotDeleted' => 'Category cannot be deleted',
+            'CategoryNotCreated' => 'Category cannot be created',
         ];
 
         $message = $code;
@@ -108,11 +109,14 @@ class ApiController extends AbstractController {
                 if( $table == 'task' && isset($tableId) ) // search in task
                 {
                     $taskModel = TasksModel::find($tableId);
-    
-                    $assigned_to = $taskModel->assigned_to;
-    
-                    if( $userId == $assigned_to ) {
-                        $userPermissions[] = 's';
+
+                    if( $taskModel )
+                    {
+                        $assigned_to = $taskModel->assigned_to;
+                        
+                        if( $userId == $assigned_to ) {
+                            $userPermissions[] = 's';
+                        }
                     }
                 }
             }
@@ -325,12 +329,28 @@ class ApiController extends AbstractController {
             return $this->apiError('CannotAction');
         }
 
+        $color = $request->input('color', null);
 
+        $title = $request->input('title', '');
 
+        $category = new CategoryModel([
+            'project_id' => $projectId,
+            'title' => $title,
+            'color' => $color,
+        ]);
 
+        $categoryId = $category->create();
 
+        if( $categoryId )
+        {
+            $category = CategoryModel::find($categoryId);
 
-        return json($data);
+            $attributes = $category->getAttributes();
+
+            return json(['message'=>'ok', 'category'=>$attributes]);
+        }
+
+        return $this->apiError('CategoryNotCreated');
     }
 
     public function categoryUpdate( Request $request, Response $response, $categoryId )
@@ -402,7 +422,7 @@ class ApiController extends AbstractController {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
         // check persmission
-        if( !$this->canAction('task', 'create', $projectId, $categoryId) ) {
+        if( !$this->canAction('task', 'create', $projectId) ) {
             return $this->apiError('CannotAction');
         }
 

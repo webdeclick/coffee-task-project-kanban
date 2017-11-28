@@ -30,10 +30,6 @@
 
         initializeCategoriesEvents();
 
-        // initialize events
-
-        initializeDelegatedEvents();
-
         // initialize create task popup
 
         initializePopupCreateButton();
@@ -129,6 +125,67 @@
     }
 
     function initializeCategoriesEvents() {
+
+        // category create new block
+
+        var categoryCreateBlock = document.querySelector('.category-create-block');
+
+        delegate(categoryCreateBlock, '.button-category-create-popover, .button-category-cancel', 'click', function( event ){
+            event.preventDefault();
+            
+            var target = event.target;
+
+            // show popover :
+
+            var popover = categoryCreateBlock.querySelector('#category-popover-new');
+
+            if( popover ) {
+                popover.classList.toggle('is-visible');
+            }
+        });
+
+        delegate(categoryCreateBlock, '.button-category-create', 'click', function( event ){
+            event.preventDefault();
+            
+            var target = event.target;
+
+
+            var popover = categoryCreateBlock.querySelector('#category-popover-new');
+
+            var form = popover.querySelector('.ha-popover-form');
+            
+            var data = getFormDataJson(form);
+
+            var successHandler = function( response ) {
+
+                var category = response.category;
+                var categoryId = category.id;
+
+                // append category template
+
+                categoriesList.classList.add('categories-list-loading');
+
+                if( popover ) {
+                    popover.classList.remove('is-visible');
+                }
+                
+                appendTemplate('category', categoriesList, category);
+
+                populateTasksList(categoryId);
+
+                categoriesList.classList.remove('categories-list-loading');
+
+                // notification
+                jssnackbar('Catégorie ajoutée!');
+            };
+
+            var errorHandler = function( status, exception ) {
+                jserror('Impossible de créer cette catégorie', status);
+            };
+
+            AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/create', successHandler, errorHandler, data);
+        });
+
 
         // category edit popover
 
@@ -232,17 +289,8 @@
         });
 
 
-        
-    }
 
-    function initializeDelegatedEvents() {
-
-
-
-        
-
-
-        // delete button task
+        // task : delete button
 
         delegate(categoriesList, '.button-task-delete', 'click', function( event ){
             event.preventDefault();
@@ -278,7 +326,6 @@
 
             } // element exist
         });
-
     }
 
     function initializePopupCreateButton() {
