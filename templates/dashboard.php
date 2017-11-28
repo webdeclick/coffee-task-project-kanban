@@ -194,12 +194,12 @@
 
         <br>
 
-        date création : {{ created_at }}
+        date création : {{ pretty_created_at }}
 
         <br>
 
-        {{ ?end_at }}
-            date fin : {{ end_at }}
+        {{ ?pretty_end_at }}
+            date fin : {{ pretty_end_at }}
         {{/}}
         
         <button class="button-task-delete" data-category="{{ category_id }}" data-id="{{ id }}">Supprimer</button>

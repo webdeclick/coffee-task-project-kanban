@@ -118,6 +118,14 @@
 
                     var task = tasks[index];
 
+                    // pretty dates
+
+                    task.pretty_created_at = prettyDate(task.created_at);
+
+                    if( task.end_at ) {
+                        task.pretty_end_at = prettyDate(task.end_at);
+                    }
+
                     // admins can seel all : so we inform the user, it's not his own task
                     task.xisPermissionSeeAll = ( isPermissionSeeAll && task.assigned_to != userId );
 

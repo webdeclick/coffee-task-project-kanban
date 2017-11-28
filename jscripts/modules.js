@@ -518,20 +518,20 @@
 
             seconds: 'moins d\'une minute',
 
-            minute: 'environ une minute',
-            minutes: 'environ %d minutes',
+            minute: 'une minute',
+            minutes: '%d minutes',
 
-            hour: 'environ une heure',
-            hours: 'environ %d heures',
+            hour: 'une heure',
+            hours: '%d heures',
 
-            day: 'environ un jour',
-            days: 'environ %d jours',
+            day: 'un jour',
+            days: '%d jours',
 
-            week: 'environ une semaine',
-            weeks: 'environ %d semaines',
+            week: 'une semaine',
+            weeks: '%d semaines',
 
-            month: 'environ un mois',
-            months: 'environ %d mois',
+            month: 'un mois',
+            months: '%d mois',
 
             year: 'un an',
             years: '%d ans',
@@ -539,21 +539,16 @@
             dateMonths: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
         };
 
-
-        function isValid( date )
-        {
+        function isValid( date ) {
             return ( !isNaN(date.getTime()) );
         }
 
-        function substitute( string, number ) 
-        {
-            number = Math.floor(number); //
-
-            return string.replace('%d', number);
+        function substitute( string, number )  {
+            return string.replace('%d', Math.floor(number));
         }
 
-        function translateDate( date )
-        {
+        function translateDate( date ) {
+
             var day = date.getDate().toString();
 
             day = ( day.length > 1 ? day : '0' + day );
@@ -566,8 +561,8 @@
             return ([pretty.prefixDate, day, month, year].join(pretty.wordSeparator));
         }
 
-        function translateWords( distance, isFuture )
-        {
+        function translateWords( distance, isFuture ) {
+
             var seconds = distance / 1000;
             var minutes = seconds / 60;
             var hours = minutes / 60;
@@ -577,7 +572,6 @@
             var years = days / 365;
 
             var words = (
-
                 seconds < 60 && substitute(pretty.seconds, seconds) || // almost now
 
                 minutes < 2  && substitute(pretty.minute, 1)        ||
@@ -600,7 +594,6 @@
 
             if( !words ) return pretty.default;
 
-
             return ( [(isFuture ? pretty.prefixFromNow : pretty.prefixAgo), words].join(pretty.wordSeparator) );
         }
 
@@ -620,12 +613,9 @@
 
         // translate distance to words or date
 
-        if( !pretty.translateDateWhen || distance < pretty.translateDateWhen*1000 )
-        {
+        if( !pretty.translateDateWhen || distance < pretty.translateDateWhen*1000 ) {
             return translateWords(distance, isFuture);
-        }
-        else
-        {
+        } else {
             return translateDate(date);
         }
     };

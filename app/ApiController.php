@@ -270,14 +270,13 @@ class ApiController extends AbstractController {
         if( $this->canAction('task', 'read_all', $projectId) )
         {
             $results = TasksModel::getAllFromProjectCategory($projectId, $categoryId);
-
             $isPermissionSeeAll = true;
         }
         else
         {
             $results = TasksModel::getAllFromProjectCategoryUser($projectId, $categoryId, $userId);
         }
-        
+
         return json(['permission_see_all' => $isPermissionSeeAll, 'tasks' => $results]);
     }
 

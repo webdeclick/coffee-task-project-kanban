@@ -41,6 +41,10 @@ function compileTemplate( template, scope ) {
     return SimpleTemplate(template, scope);
 }
 
+function prettyDate( date ) {
+    return SimplePrettyDate(date);
+}
+
 function appendTemplate( templateId, element, scope ) {
 
     // get <template> content
