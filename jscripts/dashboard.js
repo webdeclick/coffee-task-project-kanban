@@ -361,11 +361,6 @@
             }
         });
 
-
-
-
-
-
     }
 
     function initializePopupCreateButton() {

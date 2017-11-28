@@ -9,6 +9,19 @@
 
 </div>
 
+
+<div class="dashboard-search-block">
+
+    <input name="keyword" placeholder="Keyword" type="text" class="dashboard-search-field">
+
+    <button class="dashboard-search button">Recherche</button> 
+
+</div>
+
+
+
+
+
 <div class="category-create-block">
 
     <button class="button-category-create-popover" data-category="new">Créer une catégorie</button> 
@@ -25,8 +38,8 @@
             </section>    
 
             <footer class="ha-footer">
-                <button class="button-category-cancel ha-button">Annuler</button> 
-                <button class="button-category-create ha-button">Valider</button> 
+                <button class="button-category-cancel ha-button">Annuler</button>
+                <button class="button-category-create ha-button">Valider</button>
             </footer>
         </form>
     </div>
