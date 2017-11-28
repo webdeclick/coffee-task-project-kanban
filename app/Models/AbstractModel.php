@@ -58,7 +58,7 @@ abstract class AbstractModel implements ArrayAccess {
         
         $attributes = $this->attributes;
 
-        $keys = array_keys($this->attributes);
+        $keys = array_keys($attributes);
 
         $keysString = array_map(function( $key ){ return ''.$key. ' = :'.$key; }, $keys);
 
@@ -120,7 +120,10 @@ abstract class AbstractModel implements ArrayAccess {
      */
     public function attributes( array $attributes = [] )
     {
-        $this->attributes = $attributes;
+        foreach( $attributes as $key => $value )
+        {
+            $this->attributes[$key] = $value;
+        }
     }
 
     /**
