@@ -9,7 +9,7 @@
 
     var projectsList, categoriesList;
 
-    var popupScreen, popupContainer, isPopupOpen = false;
+    var popupScreen, popupContainer, isPopupOpen = false; // modal create
 
 
     window.addEventListener('load', function( event ) {
@@ -189,7 +189,7 @@
 
         // category edit popover
 
-        delegate(categoriesList, '.button-category-popover', 'click', function( event ){
+        delegate(categoriesList, '.button-category-edit-popover, .component-category-popover .button-category-cancel', 'click', function( event ){
             event.preventDefault();
 
             var target = event.target;
@@ -202,22 +202,6 @@
             
             if( popover ) {
                 popover.classList.toggle('is-visible');
-            }
-        });
-
-        delegate(categoriesList, '.component-category-popover .button-category-cancel', 'click', function( event ){
-            event.preventDefault();
-            
-            var target = event.target;
-
-            var categoryId = target.getAttribute('data-category');
-            
-            // hide popover :
-            
-            var popover = categoriesList.querySelector('#category-popover-'+categoryId);
-
-            if( popover ) {
-                popover.classList.remove('is-visible');
             }
         });
 
