@@ -35,7 +35,6 @@
 
 
 
-
 <div id="categories-list" class="categories-list categories-list-loading">
 
     Chargement du tableau de bord...
@@ -107,7 +106,7 @@
 
     <div id="project-{{ id }}" class="component-project">
 
-        <a href="/dashboard/{{ id }}">{{ &title }} (voir le projet)</a>
+        <a href="/dashboard/{{ id }}">{{ &title }}  (voir le projet)</a>
 
         <br>
 
@@ -122,9 +121,11 @@
 
     <div id="category-{{ id }}" class="component-category category-color-{{ color }}" data-id="{{ id }}">
 
-        titre : {{ &title }}
+        <div class="category-field-title">
+            {{ &title }}
+        </div>
 
-        <button class="button-category-popover" data-category="{{ id }}">Editer</button>
+        <button class="button-category-edit-popover" data-category="{{ id }}">Editer</button>
 
         <button class="button-category-delete" data-category="{{ id }}">Supprimer</button> 
 
@@ -185,6 +186,10 @@
         {{/}}
         
         <button class="button-task-delete" data-category="{{ category_id }}" data-id="{{ id }}">Supprimer</button>
+
+
+
+        <button class="button-task-edit-show" data-category="{{ category_id }}" data-id="{{ id }}">Editer</button>
 
     </div>
 

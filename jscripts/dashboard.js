@@ -196,7 +196,7 @@
 
             var categoryId = target.getAttribute('data-category');
 
-            // show popover :
+            // toggle popover :
 
             var popover = categoriesList.querySelector('#category-popover-'+categoryId);
             
@@ -309,6 +309,36 @@
                 } //confirm
 
             } // element exist
+        });
+
+        // task : edit button show forms elements
+
+        delegate(categoriesList, '.button-task-edit-show', 'click', function( event ){
+            event.preventDefault();
+
+            var target = event.target;
+
+            var taskId = target.getAttribute('data-id');
+            var categoryId = target.getAttribute('data-category');
+
+            var taskElement = document.getElementById('task-'+taskId);
+
+            if( taskElement ) {
+                
+                // display edit mode
+
+                taskElement.setAttribute('xdisplay', 'edit');
+
+
+
+
+
+
+
+
+
+            }
+            
         });
     }
 
