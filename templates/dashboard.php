@@ -182,6 +182,10 @@
 
     <div id="task-{{ id }}" class="component-task" data-id="{{ id }}">
 
+        {{ ?xisPermissionSeeAll }}
+            ADMIN
+        {{/}}
+
         {{ &title }}
 
         <br>

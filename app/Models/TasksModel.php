@@ -21,15 +21,40 @@ class TasksModel extends AbstractModel {
         $dbh = DatabaseFactory();
 
         $results = $dbh->all(
+            'SELECT t.*
+            FROM @tasks t
+            WHERE
+                t.project_id = :projectId AND
+                t.category_id = :categoryId AND
+                t.assigned_to = :userId AND
+                t.is_deleted = "0"',
+
+            [ 'projectId' => $projectId, 'categoryId' => $categoryId, 'userId' => $userId ]
+        );
+
+        return ( $results ?: [] );
+    }
+
+    /**
+     * Get all taks with a project id, a category id (admin)
+     *
+     * @param int $projectId
+     * @param int $categoryId
+     * @return array
+     */
+    public static function getAllFromProjectCategory( $projectId, $categoryId )
+    {
+        $dbh = DatabaseFactory();
+
+        $results = $dbh->all(
             'SELECT *
             FROM @tasks
             WHERE
                 project_id = :projectId AND
                 category_id = :categoryId AND
-                assigned_to = :userId AND
                 is_deleted = "0"',
 
-            [ 'projectId' => $projectId, 'categoryId' => $categoryId, 'userId' => $userId ]
+            [ 'projectId' => $projectId, 'categoryId' => $categoryId ]
         );
 
         return ( $results ?: [] );

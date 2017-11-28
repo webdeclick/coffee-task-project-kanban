@@ -6,6 +6,9 @@
 
     var projectId = dashboard.projectId;
     var userId = user.id;
+    
+    var isProjectAdmin = dashboard.is_admin;
+    var isProjectManager = dashboard.is_manager;
 
     var projectsList, categoriesList;
 
@@ -108,9 +111,15 @@
                 categoryList.innerHTML = '';
                 categoryList.classList.remove('category-loading');
 
-                for( var index in response ) {
+                var tasks = response.tasks;
+                var isPermissionSeeAll = response.permission_see_all;
 
-                    var task = response[index];
+                for( var index in tasks ) {
+
+                    var task = tasks[index];
+
+                    // admins can seel all : so we inform the user, it's not his own task
+                    task.xisPermissionSeeAll = ( isPermissionSeeAll && task.assigned_to != userId );
 
                     appendTemplate('task', categoryList, task);
                 }
@@ -440,9 +449,9 @@
                 // notification
                 jssnackbar('Tâche créée!');
 
-                // append task to the list ; self
+                // append task to the list ; or self if has the admin permissions
 
-                if( assignedTo == userId || assignedTo == 0 || !assignedTo ) {
+                if( assignedTo == userId || assignedTo == 0 || !assignedTo || isProjectAdmin || isProjectManager ) {
 
                     // quick dirty @fixme
                     populateTasksList(categoryId);

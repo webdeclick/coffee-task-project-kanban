@@ -35,7 +35,9 @@
 
             <script type="text/javascript">
                 var dashboard = {
-                    projectId: '<?php echo $projectId; ?>'
+                    projectId: '<?php echo $projectId; ?>',
+                    is_admin: <?php echo $is_admin ?'true':'false'; ?>,
+                    is_manager: <?php echo $is_manager ?'true':'false'; ?>,
                 }
             </script>
 

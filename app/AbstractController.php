@@ -68,6 +68,7 @@ abstract class AbstractController {
                 'create' => ['h'],
                 'update' => ['s'],
                 'delete' => ['s','m','a'],
+                'read_all' => ['m','a'], //
             ],
         ];
 

@@ -23,6 +23,8 @@ class DashboardController extends AbstractController {
 
         $this->title = 'Dashboard';
 
+        $userId = $this->userId;
+
         $this->projectId = $projectId;
 
         // find project :
@@ -33,7 +35,16 @@ class DashboardController extends AbstractController {
             return redirect('/projects?back=1'); // ce projet n'existe pas
         }
 
-        //todo : checker si l'user est dans ce projet
+        // check persmission
+        if( !$this->canAction('project', 'read', $projectId) ) {
+            return redirect('/projects?cannotaccess=1');
+        }
+
+        // check user manager / admin
+
+        $this->is_admin = ( $userId == $project->linked_admin );
+        
+        $this->is_manager = ( $userId == $project->linked_manager );
 
         return render('dashboard', $this->container);
     }
