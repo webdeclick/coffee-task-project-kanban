@@ -164,14 +164,81 @@ class AuthenticationController extends AbstractController {
 
 
 
+    public function avatar( Request $request, Response $response, $userId )
+    {
+        $attachmentFolder = getcwd() . '/uploads/avatars/';
+
+        $fileName = $attachmentFolder . $userId; // FIXME security
+
+        if( !is_readable($fileName) )
+        {
+            $fileName = $attachmentFolder . 'default.png';
+        }
+
+        list($resizeWidth, $resizeHeight) = [100, 100];
+
+        // $fileType = mime_content_type($fileName);
+        // $fileSize = filesize($fileName);
+
+        list($imageWidth, $imageHeight, $imageType) = getimagesize($fileName);
+
+        switch( $imageType )
+        {
+            case IMAGETYPE_JPEG:
+                $image = imagecreatefromjpeg($fileName);
+                $displayCallback = 'imagejpeg';
+                $contentType = 'image/jpeg';
+            break;
+
+            case IMAGETYPE_GIF:
+                $image = imagecreatefromgif($fileName);
+                $displayCallback = 'imagegif';
+                $contentType = 'image/gif';
+            break;
+
+            case IMAGETYPE_PNG:
+                $image = imagecreatefrompng($fileName);
+                $displayCallback = 'imagepng';
+                $contentType = 'image/png';
+            break;
+
+            default:
+                $image = imagecreatefromjpeg($fileName);
+                $displayCallback = 'imagejpeg';
+                $contentType = 'image/jpeg';
+            break;
+        }
+
+        // $resizeWidth = 100;
+        // $ratio = $resizeWidth / $imageWidth;
+        // $resizeHeight = $imageHeight * $ratio;
+
+        $new_image = imagecreatetruecolor($resizeWidth, $resizeHeight);
+
+        imagealphablending($new_image, false);
+        imagesavealpha($new_image, true);
+
+        imagecopyresampled($new_image, $image, 0, 0, 0, 0, $resizeWidth, $resizeHeight, $imageWidth, $imageHeight);
+
+        header('Content-Type:' . $contentType);
+
+        call_user_func($displayCallback, $new_image);
+
+        imagedestroy($new_image);
+
+        exit;
+
+        //header('Content-Length: ' . $fileSize);
+        //exit(readfile($fileName));
+    }
+
     public function profile( Request $request, Response $response )
     {
         if( !$this->isLogged ) return redirect('/login?back=1'); // check logged
 
         $this->title = 'Profile';
 
-        $userId = $this->userId;
-        
+
 
         return render('profile', $this->container);
     }
@@ -190,6 +257,74 @@ class AuthenticationController extends AbstractController {
 
         $password1 = $request->input('password');
         $password2 = $request->input('password2');
+
+        //$avatar = $request->input('avatar');
+
+        // change avatar
+
+        if( !empty($_FILES['avatar']) )
+        {
+            $attachmentFolder = getcwd() . '/uploads/avatars/';
+
+            $file = $_FILES['avatar'];
+
+            if( !is_writable($attachmentFolder) )
+            {
+                throw new RuntimeException('Folder is not writable');
+            }
+
+            switch( $file['error'] )
+            {
+                case UPLOAD_ERR_OK: // 0
+                    break;
+
+                case UPLOAD_ERR_INI_SIZE: // 1
+                case UPLOAD_ERR_FORM_SIZE: // 2
+                    throw new RuntimeException('Exceeded filesize limit');
+
+                case UPLOAD_ERR_PARTIAL: // 3
+                    throw new RuntimeException('File was only partially uploaded');
+                
+                case UPLOAD_ERR_NO_FILE: // 4
+                    throw new RuntimeException('No file sent');
+
+                case  UPLOAD_ERR_NO_TMP_DIR: // 6
+                    throw new RuntimeException('Cannot find tmp');
+                
+                case  UPLOAD_ERR_CANT_WRITE: // 7
+                    throw new RuntimeException('Failed to write file to disk tmp');
+
+                default:
+                    throw new RuntimeException('Unknown errors');
+            }
+
+            // Check MIME Type by yourself
+
+            // $finfo = new finfo(FILEINFO_MIME_TYPE);
+            // if( false === $ext = array_search(
+            //     $finfo->file($_FILES['upfile']['tmp_name']),
+            //     array(
+            //         'jpg' => 'image/jpeg',
+            //         'png' => 'image/png',
+            //         'gif' => 'image/gif',
+            //     ),
+            //     true
+            // ) ) {
+            //     throw new RuntimeException('Invalid file format.');
+            // }
+
+            $tmpName  = $file['tmp_name'];
+            $fileName = $userId;
+            
+            if( !move_uploaded_file($tmpName, $attachmentFolder . $fileName) )
+            {
+                throw new RuntimeException('Failed to move uploaded file');
+            }
+
+            // chmod the file to be readable by everyone
+
+            chmod($attachmentFolder . $fileName, 0665);
+        }
 
         // change email
 

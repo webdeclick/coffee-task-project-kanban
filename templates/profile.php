@@ -4,7 +4,7 @@
 <?php include 'elements/errors.php'; ?>
 
 
-<form action="/profile/update" method="post">
+<form action="/profile/update" method="post" enctype="multipart/form-data">>
 
     <label>fullname</label>
     <input type="text" name="fullname">
@@ -12,6 +12,11 @@
     <label>email</label>
     <input type="text" name="email">
 
+
+    <img src="/avatar/<?php echo $userId; ?>" />
+
+    <label>Avatar</label>
+    <input type="file" name="avatar" accept="image/*">
 
 
     <label>Password</label>

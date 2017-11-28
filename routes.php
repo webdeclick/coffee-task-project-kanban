@@ -14,6 +14,7 @@ return [
     'register' => ['get', '/register', '\App\AuthenticationController@register'],
     'register.validate' => ['post', '/register/validate', '\App\AuthenticationController@validateRegister'],
 
+    'avatar' => ['get', '/avatar/(\d+)', '\App\AuthenticationController@avatar'],
     'profile' => ['get', '/profile', '\App\AuthenticationController@profile'],
     'profile.validate' => ['post', '/profile/update', '\App\AuthenticationController@validateProfile'],
 
