@@ -162,6 +162,97 @@ class AuthenticationController extends AbstractController {
     }
 
 
+
+
+    public function profile( Request $request, Response $response )
+    {
+        if( !$this->isLogged ) return redirect('/login?back=1'); // check logged
+
+        $this->title = 'Profile';
+
+        $userId = $this->userId;
+        
+
+        return render('profile', $this->container);
+    }
+
+    public function validateProfile( Request $request, Response $response )
+    {
+        if( !$this->isLogged ) return redirect('/login?back=1'); // check logged
+
+        $this->title = 'Profile';
+
+        $userId = $this->userId;
+
+
+        $fullname = $request->input('fullname');
+        $email = $request->input('email');
+
+        $password1 = $request->input('password');
+        $password2 = $request->input('password2');
+
+        // change email
+
+        if( !empty($email) )
+        {
+            $userData['email'] = $email;
+        }
+
+        // change name
+
+        if( !empty($fullname) )
+        {
+            $userData['fullname'] = $fullname;
+        }
+
+        // change the password
+
+        if( !empty($password1) && !empty($password2) )
+        {
+            if( $password1 == $password2 )
+            {
+                $userData['password'] = $password1;
+            }
+            else
+            {
+                $this->errors = 'Vos mots de passe ne correspondent pas';
+            }
+        }
+
+        // save user
+
+        if( !isset($this->errors) )
+        {
+            if( !empty($userData) )
+            {
+                $user = UserModel::find($userId);
+
+                if( isset($userData['password']) )
+                {
+                    $userData['password'] = passhash($password1);
+                }
+
+                $user->attributes($userData);
+    
+                $user->save();
+            }
+
+            $this->messages = 'Profile mis à jour!';
+        }
+
+        return render('profile', $this->container);
+    }
+
+
+
+
+
+
+
+
+
+
+
     public function logout()
     {
         session_destroy();

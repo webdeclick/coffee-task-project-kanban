@@ -14,6 +14,9 @@ return [
     'register' => ['get', '/register', '\App\AuthenticationController@register'],
     'register.validate' => ['post', '/register/validate', '\App\AuthenticationController@validateRegister'],
 
+    'profile' => ['get', '/profile', '\App\AuthenticationController@profile'],
+    'profile.validate' => ['post', '/profile/update', '\App\AuthenticationController@validateProfile'],
+
     'logout' => ['get', '/login', '\App\AuthenticationController@logout'],
 
     'projects' => ['get', '/projects', '\App\ProjectsController'],
