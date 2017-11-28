@@ -459,8 +459,8 @@
 
                 // append task to the list ; or self if has the admin permissions
 
-                if( assignedTo == userId || assignedTo == 0 || !assignedTo || isProjectAdmin || isProjectManager ) {
-
+                //if( assignedTo == userId || assignedTo == 0 || !assignedTo || isProjectAdmin || isProjectManager )
+                {
                     // quick dirty @fixme
                     populateTasksList(categoryId);
                 }
