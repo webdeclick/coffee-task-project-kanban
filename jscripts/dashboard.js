@@ -325,21 +325,47 @@
 
             if( taskElement ) {
                 
-                // display edit mode
+                // toggle edit mode
 
-                taskElement.setAttribute('xdisplay', 'edit');
-
-
-
-
-
-
-
-
-
+                toggleState(taskElement, 'edit', 'view');
             }
-            
         });
+
+        // task : validate update
+
+        delegate(categoriesList, '.button-task-edit', 'click', function( event ){
+            event.preventDefault();
+
+            var target = event.target;
+
+            var taskId = target.getAttribute('data-id');
+            var categoryId = target.getAttribute('data-category');
+
+            var taskElement = document.getElementById('task-'+taskId);
+
+            if( taskElement ) {
+                
+                // todo
+
+
+
+
+
+
+
+
+
+                // toggle edit mode
+
+                toggleState(taskElement, 'edit', 'view');
+            }
+        });
+
+
+
+
+
+
     }
 
     function initializePopupCreateButton() {

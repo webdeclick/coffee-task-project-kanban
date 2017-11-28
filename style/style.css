@@ -249,6 +249,16 @@ a {
     border: 1px solid purple;
 }
 
+/* task mode edit */
+
+.page-dashboard #categories-list .component-category .component-task[data-state="edit"] {
+    border-color: yellow;
+
+
+
+
+}
+
 
 /* create modal */
 

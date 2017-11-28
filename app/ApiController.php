@@ -170,7 +170,7 @@ class ApiController extends AbstractController {
             return $this->apiError('CannotAction');
         }
 
-
+        // TODO
 
 
 
@@ -409,6 +409,8 @@ class ApiController extends AbstractController {
             return $this->apiError('CannotAction');
         }
 
+        $title = $request->input('newtask-field-title');
+        $description = $request->input('newtask-field-description');
 
         $assignedTo = $request->input('newtask-field-people');
 
@@ -431,8 +433,8 @@ class ApiController extends AbstractController {
             'category_id' => $categoryId,
             'assigned_to' => $assignedTo,
 
-            'title' => $request->input('newtask-field-title'),
-            'description' => $request->input('newtask-field-description'),
+            'title' => $title,
+            'description' => $description,
             'end_at' => $dateEndAt,
         ]);
 
@@ -475,6 +477,7 @@ class ApiController extends AbstractController {
 
             // TODO
 
+            $dateEndAt = $request->input('newtask-field-end-at');
 
 
 
@@ -483,14 +486,6 @@ class ApiController extends AbstractController {
 
 
         }
-
-        
-
-
-
-
-
-
 
         return $this->apiError('TaskNotUpdated');
     }

@@ -119,6 +119,10 @@ function getFormDataJson( form ) {
     return jsonObject;
 }
 
+function toggleState( element, one, two ) {
+    element.setAttribute('data-state', element.getAttribute('data-state') === one ? two : one);
+}
+
 // display an error message ( modal, page )
 
 function jserror( text, status ) {
