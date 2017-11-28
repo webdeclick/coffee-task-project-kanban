@@ -5,3 +5,5 @@ cd www
 
 git checkout develop
 
+git submodule update
+
