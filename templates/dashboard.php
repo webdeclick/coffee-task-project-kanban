@@ -9,12 +9,21 @@
 
 </div>
 
+<div id="dashboard-search-block">
 
-<div class="dashboard-search-block">
+    <!-- <input name="keyword" placeholder="Keyword" type="text" class="dashboard-search-field">
+    <button class="dashboard-search button">Recherche</button>  -->
 
-    <input name="keyword" placeholder="Keyword" type="text" class="dashboard-search-field">
+    <div class="select dashboard-search-dropdown" tabindex="1">
+        <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-none" value="0" checked>
+        <label for="dashboard-search-dropdown-none" class="option">Sans filtre</label>
 
-    <button class="dashboard-search button">Recherche</button> 
+        <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-archive" value="archive">
+        <label for="dashboard-search-dropdown-archive" class="option">Complétés</label>
+
+        <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-delete" value="delete">
+        <label for="dashboard-search-dropdown-delete" class="option">Supprimés</label>
+    </div>
 
 </div>
 
@@ -22,7 +31,7 @@
 
 
 
-<div class="category-create-block">
+<div id="category-create-block">
 
     <button class="button-category-create-popover" data-category="new">Créer une catégorie</button> 
 
@@ -202,11 +211,15 @@
             date fin : {{ pretty_end_at }}
         {{/}}
         
-        <button class="button-task-delete" data-category="{{ category_id }}" data-id="{{ id }}">Supprimer</button>
+        {{ !is_deleted }}
+            <button class="button-task-delete" data-id="{{ id }}">Supprimer</button>
+        {{/}}
 
+        <button class="button-task-edit-show" data-id="{{ id }}">Editer</button>
 
-
-        <button class="button-task-edit-show" data-category="{{ category_id }}" data-id="{{ id }}">Editer</button>
+        {{ !is_completed }}
+            <button class="button-task-complete" data-id="{{ id }}">Compléter</button>
+        {{/}}
 
     </div>
 

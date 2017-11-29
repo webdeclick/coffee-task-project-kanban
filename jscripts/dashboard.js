@@ -40,6 +40,10 @@
         // populate all the peoples linked to project ; for popup create
 
         populatePeoplesList();
+
+        // the search engine
+
+        initSearchEvents();
     });
 
 
@@ -47,8 +51,8 @@
 
 
 
-    function populateProjects()
-    {
+    function populateProjects() {
+
         projectsList.classList.add('projects-list-loading');
 
         var successHandler = function( response ) {
@@ -71,7 +75,7 @@
         AjaxSimple('GET', api.endPoint+'projects/list', successHandler, errorHandler);
     }
 
-    function populateCategoriesAndTasksList() {
+    function populateCategoriesAndTasksList( filter ) {
         
         categoriesList.classList.add('categories-list-loading');
 
@@ -87,7 +91,7 @@
 
                 appendTemplate('category', categoriesList, category);
 
-                populateTasksList(categoryId);
+                populateTasksList(categoryId, filter);
             }
         };
 
@@ -98,7 +102,7 @@
         AjaxSimple('GET', api.endPoint+'project/'+projectId+'/categories/list', successHandler, errorHandler);
     }
 
-    function populateTasksList( categoryId ) {
+    function populateTasksList( categoryId, filter ) {
 
         var categoryList = document.querySelector('#category-'+categoryId+' .category-tasks-container');
 
@@ -117,6 +121,12 @@
                 for( var index in tasks ) {
 
                     var task = tasks[index];
+
+                    // sql convert to bool :
+
+                    task.is_deleted = ( !!+task.is_deleted );
+
+                    task.is_completed = ( !!+task.is_completed );
 
                     // pretty dates
 
@@ -137,7 +147,9 @@
                 jserror('Impossible de récupérer les taches de la catégorie ('+categoryId+')', status);
             };
 
-            AjaxSimple('GET', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/tasks/list', successHandler, errorHandler);
+            var filterQuery = (filter ? '?filter='+filter : '');
+
+            AjaxSimple('GET', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/tasks/list'+filterQuery, successHandler, errorHandler);
         }
     }
 
@@ -145,7 +157,7 @@
 
         // category create new block
 
-        var categoryCreateBlock = document.querySelector('.category-create-block');
+        var categoryCreateBlock = document.getElementById('category-create-block');
 
         delegate(categoryCreateBlock, '.button-category-create-popover, .button-category-cancel', 'click', function( event ){
             event.preventDefault();
@@ -299,7 +311,6 @@
             var target = event.target;
 
             var taskId = target.getAttribute('data-id');
-            var categoryId = target.getAttribute('data-category');
 
             var taskElement = document.getElementById('task-'+taskId);
 
@@ -328,6 +339,42 @@
             } // element exist
         });
 
+        // task : complete
+
+        delegate(categoriesList, '.button-task-complete', 'click', function( event ){
+            event.preventDefault();
+
+            var target = event.target;
+
+            var taskId = target.getAttribute('data-id');
+
+            var taskElement = document.getElementById('task-'+taskId);
+
+            if( taskElement ) {
+
+                var confirmDialog = confirm('Compléter cette tâche ?');
+
+                if( confirmDialog )
+                {
+                    var successHandler = function( response ) {
+                        
+                        // notification
+                        jssnackbar('Tâche complétée!');
+
+                        taskElement.remove();
+                    };
+            
+                    var errorHandler = function( status, exception ) {
+                        jserror('Impossible de compléter cette tâche', status);
+                    };
+            
+                    AjaxSimple('PATCH', api.endPoint+'task/'+taskId+'/complete', successHandler, errorHandler);
+                
+                } //confirm
+
+            } // element exist
+        });
+
         // task : edit button show forms elements
 
         delegate(categoriesList, '.button-task-edit-show', 'click', function( event ){
@@ -336,7 +383,6 @@
             var target = event.target;
 
             var taskId = target.getAttribute('data-id');
-            var categoryId = target.getAttribute('data-category');
 
             var taskElement = document.getElementById('task-'+taskId);
 
@@ -459,7 +505,7 @@
 
                 // append task to the list ; or self if has the admin permissions
 
-                //if( assignedTo == userId || assignedTo == 0 || !assignedTo || isProjectAdmin || isProjectManager )
+                if( assignedTo == userId || assignedTo == 0 || !assignedTo || isProjectAdmin || isProjectManager )
                 {
                     // quick dirty @fixme
                     populateTasksList(categoryId);
@@ -513,6 +559,30 @@
             AjaxSimple('GET', api.endPoint+'project/'+projectId+'/peoples/list', successHandler, errorHandler);
         }
     }
+
+    function initSearchEvents() {
+
+        var searchBlock = document.getElementById('dashboard-search-block');
+
+        var filterDropdown = searchBlock.querySelector('.dashboard-search-dropdown');
+
+        var filterRadios = filterDropdown.querySelectorAll('.selectopt');
+
+        var changeFilterHandler = function( event ) {
+            var target = event.target;
+
+            var filter = target.value;
+
+            populateCategoriesAndTasksList(filter);
+        };
+
+        forEach(filterRadios, function( index, radio ) {
+            radio.addEventListener('change', changeFilterHandler);
+        });
+
+    
+    }
+    
 
 
 

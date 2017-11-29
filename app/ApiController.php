@@ -261,6 +261,10 @@ class ApiController extends AbstractController {
             return $this->apiError('CannotAction');
         }
 
+        // enable filter
+
+        $filter = $request->query('filter', null);
+
         // get task
 
         $userId = $this->userId;
@@ -269,12 +273,12 @@ class ApiController extends AbstractController {
 
         if( $this->canAction('task', 'read_all', $projectId) )
         {
-            $results = TasksModel::getAllFromProjectCategory($projectId, $categoryId);
+            $results = TasksModel::getAllFromProjectCategory($projectId, $categoryId, $filter);
             $isPermissionSeeAll = true;
         }
         else
         {
-            $results = TasksModel::getAllFromProjectCategoryUser($projectId, $categoryId, $userId);
+            $results = TasksModel::getAllFromProjectCategoryUser($projectId, $categoryId, $userId, $filter);
         }
 
         return json(['permission_see_all' => $isPermissionSeeAll, 'tasks' => $results]);
@@ -539,5 +543,35 @@ class ApiController extends AbstractController {
         return $this->apiError('TaskNotDeleted');
     }
 
+    public function taskComplete( Request $request, Response $response, $taskId )
+    {
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+        
+
+        $userId = $this->userId;
+
+        $task = TasksModel::find($taskId);
+
+        if( $task )
+        {
+            $projectId = $task->project_id;
+
+            // check persmission
+            if( !$this->canAction('task', 'update', $projectId, $taskId) ) {
+                return $this->apiError('CannotAction');
+            }
+
+            // delete db
+
+            $result = $task->complete();
+
+            if( $result )
+            {
+                return json(['message'=>'ok']);
+            }
+        }
+        
+        return $this->apiError('TaskNotDeleted');
+    }
 
 }

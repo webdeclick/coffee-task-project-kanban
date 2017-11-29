@@ -66,7 +66,7 @@ abstract class AbstractController {
             'task' => [
                 'read' => ['s','m','a'],
                 'create' => ['h'],
-                'update' => ['s'],
+                'update' => ['s','m','a'],
                 'delete' => ['s','m','a'],
                 'read_all' => ['m','a'], //
             ],

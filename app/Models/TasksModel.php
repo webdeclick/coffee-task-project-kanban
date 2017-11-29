@@ -14,11 +14,15 @@ class TasksModel extends AbstractModel {
      * @param int $projectId
      * @param int $categoryId
      * @param int $userId
+     * @param null|mixed $filter
      * @return array
      */
-    public static function getAllFromProjectCategoryUser( $projectId, $categoryId, $userId )
+    public static function getAllFromProjectCategoryUser( $projectId, $categoryId, $userId, $filter = null )
     {
         $dbh = DatabaseFactory();
+
+        $is_deleted = ( $filter == 'delete' );
+        $is_completed = ( $filter == 'archive' );
 
         $results = $dbh->all(
             'SELECT t.*
@@ -27,9 +31,13 @@ class TasksModel extends AbstractModel {
                 t.project_id = :projectId AND
                 t.category_id = :categoryId AND
                 t.assigned_to = :userId AND
-                t.is_deleted = "0"',
-
-            [ 'projectId' => $projectId, 'categoryId' => $categoryId, 'userId' => $userId ]
+                t.is_deleted = :is_deleted AND
+                t.is_completed = :is_completed 
+            ',
+            [
+                'projectId' => $projectId, 'categoryId' => $categoryId, 'userId' => $userId,
+                'is_deleted' => $is_deleted, 'is_completed' => $is_completed
+            ]
         );
 
         return ( $results ?: [] );
@@ -40,24 +48,44 @@ class TasksModel extends AbstractModel {
      *
      * @param int $projectId
      * @param int $categoryId
+     * @param null|mixed $filter
      * @return array
      */
-    public static function getAllFromProjectCategory( $projectId, $categoryId )
+    public static function getAllFromProjectCategory( $projectId, $categoryId, $filter = null )
     {
         $dbh = DatabaseFactory();
 
+        $is_deleted = ( $filter == 'delete' );
+        $is_completed = ( $filter == 'archive' );
+
         $results = $dbh->all(
             'SELECT *
-            FROM @tasks
+            FROM @tasks t
             WHERE
-                project_id = :projectId AND
-                category_id = :categoryId AND
-                is_deleted = "0"',
-
-            [ 'projectId' => $projectId, 'categoryId' => $categoryId ]
+                t.project_id = :projectId AND
+                t.category_id = :categoryId AND
+                t.is_deleted = :is_deleted AND
+                t.is_completed = :is_completed 
+            ',
+            [
+                'projectId' => $projectId, 'categoryId' => $categoryId,
+                'is_deleted' => $is_deleted, 'is_completed' => $is_completed
+            ]
         );
 
         return ( $results ?: [] );
+    }
+
+    public function complete()
+    {
+        $this->is_completed = true;
+
+        $this->completed_at = DatabaseDatetime();
+
+
+        $result = $this->save();
+
+        return $result;
     }
 
 

@@ -127,6 +127,12 @@ function toggleState( element, one, two ) {
     element.setAttribute('data-state', element.getAttribute('data-state') === one ? two : one);
 }
 
+function forEach( array, callback, scope ) {
+    for( var i = 0; i < array.length; i++ ) {
+        callback.call(scope, i, array[i]); // passes back stuff we need
+    }
+}
+
 // display an error message ( modal, page )
 
 function jserror( text, status ) {
