@@ -269,17 +269,17 @@ class ApiController extends AbstractController {
 
         $userId = $this->userId;
 
+        $assignedTo = $userId;
+
         $isPermissionSeeAll = false;
 
         if( $this->canAction('task', 'read_all', $projectId) )
         {
-            $results = TasksModel::getAllFromProjectCategory($projectId, $categoryId, $filter);
+            $assignedTo = null; // no assignee ; see all
             $isPermissionSeeAll = true;
         }
-        else
-        {
-            $results = TasksModel::getAllFromProjectCategoryUser($projectId, $categoryId, $userId, $filter);
-        }
+
+        $results = TasksModel::getAllFromProjectCategoryUser($projectId, $categoryId, $assignedTo, $filter);
 
         return json(['permission_see_all' => $isPermissionSeeAll, 'tasks' => $results]);
     }

@@ -73,6 +73,8 @@ class AuthenticationController extends AbstractController {
                 session('userId', $userId);
                 
                 return redirect('/projects');
+
+                //TODO : last_login : date
             }
             else
             {
@@ -185,7 +187,7 @@ class AuthenticationController extends AbstractController {
             $fileName = $attachmentFolder . 'default.png';
         }
 
-        list($resizeWidth, $resizeHeight) = [100, 100];
+        list($resizeWidth, $resizeHeight) = [50, 50];
 
         // $fileType = mime_content_type($fileName);
         // $fileSize = filesize($fileName);
