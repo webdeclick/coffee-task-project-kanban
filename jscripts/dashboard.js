@@ -479,18 +479,22 @@
         });
 
         //create button modal
-
-        delegate(popupScreen, '.cd-button-confirm', 'click', function( event ) {
+        
+        delegate(popupScreen, '.newtask-form', 'submit', function( event ) { //.cd-button-confirm
             event.preventDefault();
+
+            var form = event.target;
+            var submit = form.querySelector('[type=submit]');
+
+            // avoid multiple repeated uploads
+            // (histeric clicks on slow connection)
+            submit.disabled = true;
 
             // gather form datas
 
             var categoryId = popupContainer.getAttribute('data-category');
 
-            var form = popupContainer.querySelector('.newtask-form');
-            var data = getFormDataJson(form);
-
-            var assignedTo = data['newtask-field-people'];
+            var formData = getFormDataJson(form);
 
 
             var successHandler = function( response ) {
@@ -500,25 +504,25 @@
                 
                 isPopupOpen = false;
 
-                var newTaskId = response.taskId;
-
                 // notification
                 jssnackbar('Tâche créée!');
 
                 // append task to the list ; or self if has the admin permissions
 
-                if( assignedTo == userId || assignedTo == 0 || !assignedTo || isProjectAdmin || isProjectManager )
-                {
-                    // quick dirty @fixme
-                    populateTasksList(categoryId);
+                var xisPermissionSee = response.xisPermissionSee;
+
+                if( xisPermissionSee ) {
+                    populateTasksList(categoryId); //todo: better add
                 }
+
+                submit.disabled = false;
             };
     
             var errorHandler = function( status, exception ) {
                 jserror('Impossible de créer cette tâche', status);
             };
     
-            AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/create', successHandler, errorHandler, data);
+            AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/create', successHandler, errorHandler, formData);
         });
 
         //close popup clicking ; esc keyboard

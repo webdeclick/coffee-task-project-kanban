@@ -423,17 +423,17 @@ class ApiController extends AbstractController {
             return $this->apiError('CannotAction');
         }
 
-        $title = $request->input('newtask-field-title');
-        $description = $request->input('newtask-field-description');
+        $title = $request->input('title');
+        $description = $request->input('description');
 
-        $assignedTo = $request->input('newtask-field-people');
+        $assignedTo = $request->input('people');
 
         if( empty($assignedTo) ) // if not assigned (0) set to self
         {
             $assignedTo = $this->userId;
         }
 
-        $dateEndAt = $request->input('newtask-field-end-at');
+        $dateEndAt = $request->input('end-at');
 
         if( empty($dateEndAt) ) // current date + 1week
         {
@@ -456,7 +456,27 @@ class ApiController extends AbstractController {
 
         if( $taskId )
         {
-            return json(['message'=>'ok', 'taskId' => $taskId]);
+
+            // upload files to validate by the admin later :
+            // todo
+
+
+
+
+
+
+
+
+
+            $isPermissionSee = false;
+            
+            // check persmission
+            if( !$this->canAction('task', 'read', $projectId, $taskId) )
+            {
+                $isPermissionSee = true;
+            }
+
+            return json(['message'=>'ok', 'taskId' => $taskId, 'xisPermissionSee' => $isPermissionSee]);
         }
 
         return $this->apiError('TaskNotCreated');
@@ -491,7 +511,7 @@ class ApiController extends AbstractController {
 
             // TODO
 
-            $dateEndAt = $request->input('newtask-field-end-at');
+            $dateEndAt = $request->input('end-at');
 
 
 
@@ -572,10 +592,24 @@ class ApiController extends AbstractController {
 
             $assignedUser = UserModel::find($task->assigned_to);
 
-            $email = $assignedUser->email;
+            if( $assignedUser )
+            {
+                $email = $assignedUser->email;
+
+
+
+
+
+
+            }
+
+            
 
 
             //todo
+
+
+
 
 
 

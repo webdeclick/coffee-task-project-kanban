@@ -77,18 +77,18 @@
 
 	<div class="cd-popup-container">
 
-        <div class="cd-popup-header">
-            <div>
-                Créer une nouvelle tâche
-            </div>
-            <div>
-                <a href="#" class="cd-popup-close">Close</a>
-            </div>
-        </div>
+        <form method="post" class="newtask-form" enctype="multipart/form-data">
 
-        <div class="cd-popup-content">
+            <div class="cd-popup-header">
+                <div>
+                    Créer une nouvelle tâche
+                </div>
+                <div>
+                    <a href="#" class="cd-popup-close">Close</a>
+                </div>
+            </div>
 
-            <form method="post" class="newtask-form">
+            <div class="cd-popup-content">
 
                 Titre :
 
@@ -96,30 +96,35 @@
 
                 description :
 
-                <textarea name="newtask-field-description" class="newtask-field-description"></textarea>
+                <textarea name="description" class="newtask-field-description"></textarea>
 
                 <label for="newtask-showhide-datetimepicker">Date de fin ?</label>
-                <input type="checkbox" name="newtask-showhide-datetimepicker" id="newtask-showhide-datetimepicker">
+                <input type="checkbox" name="datetimepicker" id="newtask-showhide-datetimepicker">
 
                 <div class="module-datetimepicker-container"></div>
-                <input name="newtask-field-end-at" type="hidden" class="module-datetimepicker newtask-field-end-at">
+                <input name="end-at" type="hidden" class="module-datetimepicker newtask-field-end-at">
 
                 Assigner à : 
 
                 <div class="select newtask-field-assigned-to" tabindex="1">
-                    <input class="selectopt" name="newtask-field-people" type="radio" id="newtask-people-0" value="0" checked>
+                    <input class="selectopt" name="people" type="radio" id="newtask-people-0" value="0" checked>
                     <label for="newtask-people-0" class="option">Moi</label>
                     <!-- +peoples -->
                 </div>
 
-            </form>
+                Ajouter des images ( attent de validation par admin )
 
-        </div>
-        
-        <div class="cd-buttons">
-            <button class="cd-button cd-button-quit">Annuler</button>
-            <button class="cd-button cd-button-confirm">Valider</button>
-        </div>
+                <input name="files" id="newtask-field-files" type="file" accept="image/*" multiple>
+
+            </div>
+            
+            <div class="cd-buttons">
+                <button class="cd-button cd-button-quit">Annuler</button>
+                <button class="cd-button cd-button-confirm" type="submit" value="submit">Valider</button>
+            </div>
+
+        </form>
+
     </div> <!-- popup -->
 
 </div> <!-- screen -->
@@ -235,7 +240,7 @@
 
 <script id="template-people-list-element" class="component-template" type="text/template">
 
-    <input class="selectopt" name="newtask-field-people" type="radio" id="newtask-people-{{ id }}" value="{{ id }}">
+    <input class="selectopt" name="people" type="radio" id="newtask-people-{{ id }}" value="{{ id }}">
     <label for="newtask-people-{{ id }}" class="option">{{ &fullname }}</label>
 
 </script>
