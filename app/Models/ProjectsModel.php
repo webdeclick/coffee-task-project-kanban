@@ -87,6 +87,13 @@ class ProjectsModel extends AbstractModel {
 
                 $result['users'] = $users;
 
+
+                // add permissions infos :
+
+                $isPermissionAdmin = false;
+                $isPermissionManager = false;
+
+
                 // link admin infos
 
                 if( !empty($result['linked_admin']) )
@@ -99,7 +106,12 @@ class ProjectsModel extends AbstractModel {
                             'id' => $user_admin['id'],
                             'fullname' => $user_admin['fullname'],
                             'email' => $user_admin['email'],
-                        ]; 
+                        ];
+
+                        if( $user_admin->id == $userId )
+                        {
+                            $isPermissionAdmin = true;
+                        }
                     }
                 }
 
@@ -117,11 +129,21 @@ class ProjectsModel extends AbstractModel {
                             'id' => $user_manager['id'],
                             'fullname' => $user_manager['fullname'],
                             'email' => $user_manager['email'],
-                        ];  
+                        ];
+
+                        if( $user_manager->id == $userId )
+                        {
+                            $isPermissionManager = true;
+                        }
                     }
                 }
 
                 unset($result['linked_manager']);
+
+                // add permission infos :
+
+                $result['xisPermissionAdmin'] = $isPermissionAdmin;
+                $result['xisPermissionManager'] = $isPermissionManager;
 
                 $projects[$project_id] = $result;
             }
