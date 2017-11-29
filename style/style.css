@@ -107,7 +107,7 @@ a {
     height: 100%;
     opacity: 0.9;
     padding-top: 150px;
-    z-index: 9;
+    z-index: 9999;
 }
 #api-error > .status,
 #api-error > .stack {
@@ -283,6 +283,11 @@ a {
     position:relative;
     width:250px;
     height:40px;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .select .option {
@@ -374,6 +379,8 @@ a {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+
+    z-index: 9;
 }
 .cd-popup.is-visible {
     opacity: 1;
@@ -541,4 +548,11 @@ a {
     display: flex;
     justify-content: space-between;
 
+}
+
+
+/* rome */
+
+.rd-time-list {
+    z-index: 9;
 }

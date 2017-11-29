@@ -488,7 +488,7 @@
 
             // avoid multiple repeated uploads
             // (histeric clicks on slow connection)
-            submit.disabled = true;
+   //         submit.disabled = true;
 
             // gather form datas
 
@@ -497,6 +497,15 @@
             var formData = getFormDataJson(form);
 
 
+var ff = formData.files;
+
+l(JSON.stringify(ff))
+
+
+var x = JSON.stringify(formData);
+l(formData)
+l(x)
+return;
             var successHandler = function( response ) {
 
                 // close modal
@@ -521,7 +530,7 @@
             var errorHandler = function( status, exception ) {
                 jserror('Impossible de créer cette tâche', status);
             };
-    
+
             AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/create', successHandler, errorHandler, formData);
         });
 

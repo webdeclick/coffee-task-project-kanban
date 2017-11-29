@@ -423,8 +423,8 @@ class ApiController extends AbstractController {
             return $this->apiError('CannotAction');
         }
 
-        $title = $request->input('title');
-        $description = $request->input('description');
+        $title = $request->input('title', '');
+        $description = $request->input('description', '');
 
         $assignedTo = $request->input('people');
 
@@ -456,15 +456,30 @@ class ApiController extends AbstractController {
 
         if( $taskId )
         {
-
             // upload files to validate by the admin later :
-            // todo
+
+            $files = $request->input('files');
+
+
+            var_dump($xx);exit;
+
+            if( !empty($files) && is_array($files) )
+            {
+                foreach( $files as $key => $file )
+                {
+                    // save
+
+                    var_dump($file);exit;
+
+
+
+                    // add base
 
 
 
 
-
-
+                }
+            }
 
 
 

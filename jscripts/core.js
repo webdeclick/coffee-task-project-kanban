@@ -111,7 +111,7 @@ function getFormDataJson( form ) {
     var formData = new FormData(form);
     var jsonObject = {};
 
-    formData.forEach(function(value, key) {
+    formData.forEach(function( value, key ) {
 
         if(jsonObject[key]) return; // only 1st ; eg:multiple files
 
@@ -120,6 +120,11 @@ function getFormDataJson( form ) {
         if( element.type == 'file' ) { // File[1,2,3]
 
             var value = [];
+
+
+// TODO: DEFERED CALLBACK AND SCOPE !!!!!!!!!!!
+
+
 
             forEach(element.files, function( i, file ) { // warning loop with no callback and aventlistener!
 
@@ -139,7 +144,13 @@ function getFormDataJson( form ) {
 
                 reader.readAsBinaryString(file);
             });
+
+            l('value')
+            l(value)
         }
+
+
+
 
         jsonObject[key] = value;
     });
