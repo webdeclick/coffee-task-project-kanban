@@ -7,7 +7,7 @@
 
 
 <div id="projects-list" class="projects-list projects-list-loading">
-
+    Chargement des projets...
 </div>
 
 
@@ -15,6 +15,8 @@
 
 
 <div id="project-new" class="component-project component-project-new">
+
+    <h2>Créer un nouvea</h2>
 
     <form id="project-new-form" method="" action="">
 
@@ -24,7 +26,7 @@
         desc :
         <textarea id="project-new-description" name="description"></textarea>
 
-        users : un par ligne
+        users : un email par ligne
         <textarea id="project-new-users" name="users"></textarea>
 
         modérateur : (email)
@@ -70,7 +72,11 @@
 
         {{ / }}
 
-        <button class="project-delete">Supprimer</button>
+
+        {{ ?xisPermissionAdmin }}
+            <button class="project-delete">Supprimer</button>
+        {{ / }}
+
 
         <a href="/dashboard/{{ id }}">Aller à la liste des taches</a>
 

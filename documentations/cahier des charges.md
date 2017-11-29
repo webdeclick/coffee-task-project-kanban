@@ -37,3 +37,5 @@ API gen :
 ---------
 
 apigen generate ./ --destination documentations/apidocs
+
+apigen/vendor/bin/apigen generate www --destination www/documentations/apidocs
