@@ -108,17 +108,41 @@ function delegate( parent, target, eventType, callback ) {
 
 function getFormDataJson( form ) {
 
-    const formData = new FormData(form);
-    let jsonObject = {};
+    var formData = new FormData(form);
+    var jsonObject = {};
 
-    for( const [key, value]  of formData.entries() ) {
+    formData.forEach(function(value, key) {
+
+        if(jsonObject[key]) return; // only 1st ; eg:multiple files
+
+        var element = form[key];
+
+        if( element.type == 'file' ) { // File[1,2,3]
+
+            var value = [];
+
+            forEach(element.files, function( i, file ) { // warning loop with no callback and aventlistener!
+
+                var reader = new FileReader();
+
+                reader.addEventListener('loadend', function( event ) {
+                    var blob = btoa(this.result); //b64
+
+                    value.push({
+                        name: file.name,
+                        size: file.size,
+                        type: file.type,
+                        lastModified: file.lastModified,
+                        blob: blob 
+                    });
+                });
+
+                reader.readAsBinaryString(file);
+            });
+        }
+
         jsonObject[key] = value;
-    }
-
-    // formData.forEach(function(key) {
-    //     // do something
-    //     l(key)
-    // });
+    });
 
     return jsonObject;
 }
@@ -128,7 +152,7 @@ function toggleState( element, one, two ) {
 }
 
 function forEach( array, callback, scope ) {
-    for( var i = 0; i < array.length; i++ ) {
+    for( var i = 0, length = array.length; i < length; i++ ) {
         callback.call(scope, i, array[i]); // passes back stuff we need
     }
 }
