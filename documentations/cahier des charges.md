@@ -32,3 +32,8 @@ mise en forme basque du texte
 changer l'importance
 modifier la date limite
 ajouter des fichiers jointes
+
+API gen :
+---------
+
+apigen generate ./ --destination documentations/apidocs

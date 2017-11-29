@@ -1,5 +1,4 @@
 *.bak
 ~$*
 node_modules
-documentations/apigen/vendor/*
-documentations/apigen/composer.lock
+documentations/apidocs/*
