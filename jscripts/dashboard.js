@@ -128,6 +128,8 @@
 
                     task.is_completed = ( !!+task.is_completed );
 
+                    task.avatar_url = '/avatar/' + task.assigned_to;
+
                     // pretty dates
 
                     task.pretty_created_at = prettyDate(task.created_at);
