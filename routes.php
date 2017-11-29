@@ -18,7 +18,7 @@ return [
     'profile' => ['get', '/profile', '\App\AuthenticationController@profile'],
     'profile.validate' => ['post', '/profile/update', '\App\AuthenticationController@validateProfile'],
 
-    'logout' => ['get', '/login', '\App\AuthenticationController@logout'],
+    'logout' => ['get', '/logout', '\App\AuthenticationController@logout'],
 
     'projects' => ['get', '/projects', '\App\ProjectsController'],
     'dashboard' => ['get', '/dashboard/(\d+)', '\App\DashboardController'],
