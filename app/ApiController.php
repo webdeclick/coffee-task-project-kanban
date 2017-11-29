@@ -546,7 +546,7 @@ class ApiController extends AbstractController {
     public function taskComplete( Request $request, Response $response, $taskId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
-        
+
 
         $userId = $this->userId;
 
@@ -564,6 +564,20 @@ class ApiController extends AbstractController {
             // delete db
 
             $result = $task->complete();
+
+            // send mail to the assignee :
+
+            ini_set('smtp', 'localhost');
+            ini_set('sendmail_from', 'example@localhost');
+
+            $assignedUser = UserModel::find($task->assigned_to);
+
+            $email = $assignedUser->email;
+
+
+            //todo
+
+
 
             if( $result )
             {
