@@ -49,16 +49,20 @@
 
         {{ &title }}
 
+        <br><br>
+
         {{ &description }}
+
+        <br><br>
 
 
         {{ ?user_admin }}
-            Administrateur : {{ user_admin.fullname }}
+            Administrateur : {{ user_admin.fullname }} <br>
         {{ / }}
 
 
         {{ ?user_manager }}
-            Modérateur : {{ user_manager.fullname }}
+            Modérateur : {{ user_manager.fullname }}  <br>
         {{ / }}
 
 
@@ -66,7 +70,7 @@
 
         {{ #users : user }}
 
-            <div id="user-{{ user.id }}" data-id="{{ user.id }}">
+            <div id="project-{{ id }}-user-{{ user.id }}" data-id="{{ user.id }}">
                 {{ user.fullname }}
             </div>
 
