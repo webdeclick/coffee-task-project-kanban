@@ -125,6 +125,38 @@ abstract class AbstractController {
         return false;
     }
 
+    /**
+     * Semi-automatic purge of tasks / everything
+     *
+     * @return void
+     */
+    protected function automaticPurge()
+    {
+        if( !$this->isLogged ) return;
+
+        $userId = $this->userId;
+
+
+        $datetime = DatabaseDatetime();
+
+        // update old tasks
+
+        TasksModel::automaticPurge($userId, $datetime);
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**

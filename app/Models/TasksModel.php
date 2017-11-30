@@ -89,4 +89,19 @@ class TasksModel extends AbstractModel {
     }
 
 
+
+
+    /**
+     * Mark all taks as old
+     * 
+     * @param int $userId
+     * @param string $datetime
+     * @return bool
+     */
+    public static function automaticPurge( $userId, $datetime )
+    {
+
+    }
+
+
 }
