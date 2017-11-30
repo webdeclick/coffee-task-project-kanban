@@ -21,8 +21,8 @@
         <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-archive" value="archive">
         <label for="dashboard-search-dropdown-archive" class="option">Complétés</label>
 
-        <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-delete" value="olddate">
-        <label for="dashboard-search-dropdown-delete" class="option">Date passée</label>
+        <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-olddate" value="olddate">
+        <label for="dashboard-search-dropdown-olddate" class="option">Date passée</label>
 
         <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-delete" value="delete">
         <label for="dashboard-search-dropdown-delete" class="option">Supprimés</label>
