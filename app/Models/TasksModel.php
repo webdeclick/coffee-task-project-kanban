@@ -34,27 +34,32 @@ class TasksModel extends AbstractModel {
             $dateFilterSign = '<';
         }
 
-        $sql = 'SELECT * FROM @tasks t WHERE
-            t.project_id = :projectId AND
-            t.category_id = :categoryId AND
-            t.is_deleted = :is_deleted AND
-            t.is_completed = :is_completed AND
-            ( t.end_at '.$dateFilterSign.' :datetime
-        ';
-
-        if( !$is_olddate ) {
-            $sql .= ' OR t.end_at IS NULL '; // task with also no end dates
-        }
-
-        $sql .= ' ) ';
-
         $attributes = [
             'projectId' => $projectId,
             'categoryId' => $categoryId,
             'is_deleted' => $is_deleted,
-            'is_completed' => $is_completed,
-            'datetime' => $datetime
+            'is_completed' => $is_completed
         ];
+
+        $sql = 'SELECT * FROM @tasks t WHERE
+            t.project_id = :projectId
+            AND t.category_id = :categoryId
+            AND t.is_deleted = :is_deleted
+            AND t.is_completed = :is_completed
+        ';
+
+        if( !$is_deleted && !$is_completed )
+        {
+            $sql .= ' AND ( t.end_at '.$dateFilterSign.' :datetime '; // to now
+
+            if( !$is_olddate ) {
+                $sql .= ' OR t.end_at IS NULL '; // task with also no end dates
+            }
+    
+            $sql .= ' ) ';
+
+            $attributes['datetime'] = $datetime;
+        }
 
         if( $userId )
         {
