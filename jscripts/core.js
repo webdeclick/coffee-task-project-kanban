@@ -104,9 +104,7 @@ function delegate( parent, target, eventType, callback ) {
     });
 }
 
-// convert form datas to json message format (ajax)
-
-function getFormDataJson( form ) {
+function getFormData( form ) {
 
     var formData = new FormData(form);
     var jsonObject = {};
@@ -116,41 +114,6 @@ function getFormDataJson( form ) {
         if(jsonObject[key]) return; // only 1st ; eg:multiple files
 
         var element = form[key];
-
-        if( element.type == 'file' ) { // File[1,2,3]
-
-            var value = [];
-
-
-// TODO: DEFERED CALLBACK AND SCOPE !!!!!!!!!!!
-
-
-
-            forEach(element.files, function( i, file ) { // warning loop with no callback and aventlistener!
-
-                var reader = new FileReader();
-
-                reader.addEventListener('loadend', function( event ) {
-                    var blob = btoa(this.result); //b64
-
-                    value.push({
-                        name: file.name,
-                        size: file.size,
-                        type: file.type,
-                        lastModified: file.lastModified,
-                        blob: blob 
-                    });
-                });
-
-                reader.readAsBinaryString(file);
-            });
-
-            l('value')
-            l(value)
-        }
-
-
-
 
         jsonObject[key] = value;
     });
@@ -164,7 +127,7 @@ function toggleState( element, one, two ) {
 
 function forEach( array, callback, scope ) {
     for( var i = 0, length = array.length; i < length; i++ ) {
-        callback.call(scope, i, array[i]); // passes back stuff we need
+        callback.call(scope, array[i], i); // passes back stuff we need
     }
 }
 
@@ -392,5 +355,35 @@ function swapElements( obj1, obj2 ) {
             parent2.appendChild(obj1);
         }
     }
+}
+*/
+
+/*
+function promiseChain(chain) {
+
+    var promise = Promise.resolve();
+
+    chain.forEach(function(v, i) {
+        var p = new Promise(v);
+        promise = promise.then(p);
+    });
+
+    return promise;
+
+    // var output = new Promise(chain[0]);
+    // for( var i = 1, length = chain.length; i < length; i++ ) { // skip 1st
+    //     var f = chain[i];
+    //     var promise = new Promise(f);
+    //     output = output.then(promise);
+    // }
+    // return output;
+
+    // var promises = [];
+
+    // for( var i = 0, length = chain.length; i < length; i++ ) { // skip 1st
+    //     var f = chain[i];
+    //     promises.push(new Promise(f));
+    // }
+    // return Promise.all(promises);
 }
 */
