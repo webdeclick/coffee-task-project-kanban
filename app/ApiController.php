@@ -458,28 +458,25 @@ class ApiController extends AbstractController {
         {
             // upload files to validate by the admin later :
 
-            $files = $request->input('files');
 
 
-            var_dump($xx);exit;
+            // if( !empty($files) && is_array($files) )
+            // {
+            //     foreach( $files as $key => $file )
+            //     {
+            //         // save
 
-            if( !empty($files) && is_array($files) )
-            {
-                foreach( $files as $key => $file )
-                {
-                    // save
-
-                    var_dump($file);exit;
+            //         var_dump($file);exit;
 
 
 
-                    // add base
+            //         // add base
 
 
 
 
-                }
-            }
+            //     }
+            // }
 
 
 

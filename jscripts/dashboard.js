@@ -185,7 +185,7 @@
 
             var form = popover.querySelector('.ha-popover-form');
             
-            var data = getFormDataJson(form);
+            var data = getFormData(form);
 
             var successHandler = function( response ) {
 
@@ -249,7 +249,7 @@
 
             var form = popover.querySelector('.ha-popover-form');
 
-            var data = getFormDataJson(form);
+            var data = getFormData(form);
 
             var successHandler = function( response ) {
                 // notification
@@ -450,7 +450,7 @@
             // styles: { container: 'rd-container' }
         }).on('data', function( value ) {
             datetimePicker.value = value;
-        });
+        }); // todo: set value on open
 
         // open modal ; via create buttons on categories list
 
@@ -488,24 +488,75 @@
 
             // avoid multiple repeated uploads
             // (histeric clicks on slow connection)
-   //         submit.disabled = true;
+           submit.disabled = true;
 
             // gather form datas
 
             var categoryId = popupContainer.getAttribute('data-category');
 
-            var formData = getFormDataJson(form);
+            var formData = getFormData(form);
+
+            // add files
+
+            var filesElement = form['files'];
+
+            if( filesElement && filesElement.files && filesElement.files.length > 0 ) {
+
+                var promises = [];
+
+                forEach(filesElement.files, function( file, i ) { // todo: use 'for' to keep async promises and avoid .all
+
+                    var promise = new Promise(function( resolve, reject ) {
+
+                        var reader = new FileReader();
+                        
+                        reader.addEventListener('loadend', function( event ) {
+                            var blob = btoa(this.result); //b64
+
+                            resolve({
+                                name: file.name,
+                                size: file.size,
+                                type: file.type,
+                                lastModified: file.lastModified,
+                                blob: blob 
+                            });
+                        });
+    
+                        reader.addEventListener('error', function( event ) {
+                            reject(this.error);
+                        });
+    
+                        reader.readAsBinaryString(file);
+                    });
+
+                    promise.then(function( file ) {
+                        return file;
+                    });
+
+                    promises.push(promise);
+                });
+
+                var results = Promise.all(promises);
+
+                results.then(function( files ) {
+                    formData.files = files
+
+                    callbackPost();
+                });
+
+                results.catch(function( reason ) {
+                    jserror('Impossible d\'ajouter ces fichiers sur la tâche', reason);
+                });
+
+            } else {
+                // no files to add, so direct call
+
+                formData.files = [];
+
+                callbackPost();
+            }
 
 
-var ff = formData.files;
-
-l(JSON.stringify(ff))
-
-
-var x = JSON.stringify(formData);
-l(formData)
-l(x)
-return;
             var successHandler = function( response ) {
 
                 // close modal
@@ -531,7 +582,10 @@ return;
                 jserror('Impossible de créer cette tâche', status);
             };
 
-            AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/create', successHandler, errorHandler, formData);
+            function callbackPost() { 
+                l(formData)
+                //AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/create', successHandler, errorHandler, formData);
+            }
         });
 
         //close popup clicking ; esc keyboard
@@ -591,7 +645,7 @@ return;
             populateCategoriesAndTasksList(filter);
         };
 
-        forEach(filterRadios, function( index, radio ) {
+        forEach(filterRadios, function( radio, index ) {
             radio.addEventListener('change', changeFilterHandler);
         });
 
