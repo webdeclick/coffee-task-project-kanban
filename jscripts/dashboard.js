@@ -438,19 +438,29 @@
         var datetimePicker = popupContainer.querySelector('.module-datetimepicker');
         var datetimePickerContainer = popupContainer.querySelector('.module-datetimepicker-container');
 
+        var dateFormat = 'YYYY-MM-DD HH:mm:ss';
+
         DatetimePickerSimple(datetimePickerContainer, {
             //appendTo: x,
             autoClose: true,
             date: true,
             dayFormat: 'DD',
-            inputFormat: 'YYYY-MM-DD HH:mm:ss',
+            inputFormat: dateFormat,
             time: true,
             timeFormat: 'HH:mm',
             min: new Date(),//today
             // styles: { container: 'rd-container' }
-        }).on('data', function( value ) {
+        })
+        .on('ready', function( value ) { // set value on open
+            var xmoment = this.getMoment();
+            var value = xmoment.add(1, 'hour').format(dateFormat);
+
+            this.setValue(value);
             datetimePicker.value = value;
-        }); // todo: set value on open
+        })
+        .on('data', function( value ) {
+            datetimePicker.value = value;
+        });
 
         // open modal ; via create buttons on categories list
 
@@ -466,6 +476,7 @@
             popupContainer.setAttribute('data-category', categoryId);
 
             // clear previous inputs if any : @TODO:
+
 
         });
 
@@ -497,7 +508,7 @@
             var formData = getFormData(form);
 
             // add files
-
+l(formData);return false;
             var filesElement = form['files'];
 
             if( filesElement && filesElement.files && filesElement.files.length > 0 ) {
@@ -556,37 +567,37 @@
                 callbackPost();
             }
 
+            function callbackPost() {
 
-            var successHandler = function( response ) {
+                var successHandler = function( response ) {
+                    
+                    // close modal
+                    popupScreen.classList.remove('is-visible');
+                    
+                    isPopupOpen = false;
 
-                // close modal
-                popupScreen.classList.remove('is-visible');
-                
-                isPopupOpen = false;
+                    // notification
+                    jssnackbar('Tâche créée!');
 
-                // notification
-                jssnackbar('Tâche créée!');
+                    // append task to the list ; or self if has the admin permissions
 
-                // append task to the list ; or self if has the admin permissions
+                    var xisPermissionSee = response.xisPermissionSee;
 
-                var xisPermissionSee = response.xisPermissionSee;
+                    if( xisPermissionSee ) {
+                        populateTasksList(categoryId); //todo: better add
+                    }
 
-                if( xisPermissionSee ) {
-                    populateTasksList(categoryId); //todo: better add
-                }
-
-                submit.disabled = false;
-            };
+                    submit.disabled = false;
+                };
     
-            var errorHandler = function( status, exception ) {
-                jserror('Impossible de créer cette tâche', status);
-            };
+                var errorHandler = function( status, exception ) {
+                    jserror('Impossible de créer cette tâche', status);
+                };
 
-            function callbackPost() { 
-                l(formData)
-                //AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/create', successHandler, errorHandler, formData);
+                AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/create', successHandler, errorHandler, formData);
             }
         });
+
 
         //close popup clicking ; esc keyboard
 
