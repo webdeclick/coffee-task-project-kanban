@@ -87,16 +87,9 @@ abstract class AbstractModel implements ArrayAccess {
         $dbh = DatabaseFactory();
 
         $results = $dbh->execute(
-            'UPDATE @'.static::table.' SET
-                is_deleted = :is_deleted,
-                deleted_at = :deleted_at
-            WHERE id = :primaryKey',
-
-            [
-                'is_deleted' => '1',
-                'deleted_at' => DatabaseDatetime(),
-                'primaryKey' => $this->id
-            ]
+            'UPDATE @'.static::table.' SET is_deleted = :is_deleted, deleted_at = :deleted_at WHERE id = :primaryKey',
+            
+            ['is_deleted' => '1', 'deleted_at' => DatabaseDatetime(), 'primaryKey' => $this->id]
         );
 
         return $results;
@@ -115,7 +108,7 @@ abstract class AbstractModel implements ArrayAccess {
         $results = $dbh->row(
             'SELECT * FROM @'.static::table.' WHERE id = :primaryKey AND is_deleted = :is_deleted',
 
-            ['primaryKey' => $primaryKey, 'is_deleted' => '0',]
+            ['primaryKey' => $primaryKey, 'is_deleted' => '0']
         );
 
         if( $results )
@@ -153,6 +146,7 @@ abstract class AbstractModel implements ArrayAccess {
         {
             return $this->attributes[$key];
         }
+
         return $default;
     }
 
@@ -283,5 +277,6 @@ abstract class AbstractModel implements ArrayAccess {
     {
         return count($this->attributes);
     }
+
 
 }

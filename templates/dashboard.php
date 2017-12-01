@@ -200,10 +200,10 @@
     <div id="task-{{ id }}" class="component-task" data-id="{{ id }}">
 
         {{ ?xisPermissionSeeAll }}
-            ADMIN
+            ADMIN VOIT TOUT
 
             {{ ?avatar_url }}
-                <img src="{{ avatar_url }}" />
+                utilisateur : <img src="{{ avatar_url }}" />
             {{/}}
         {{/}}
 

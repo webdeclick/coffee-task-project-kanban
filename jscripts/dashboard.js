@@ -458,7 +458,7 @@
             this.setValue(value);
             datetimePicker.value = value;
         })
-        .on('data', function( value ) {
+        .on('data', function( value ) { // set value on click
             datetimePicker.value = value;
         });
 
@@ -508,7 +508,7 @@
             var formData = getFormData(form);
 
             // add files
-l(formData);return false;
+
             var filesElement = form['files'];
 
             if( filesElement && filesElement.files && filesElement.files.length > 0 ) {
