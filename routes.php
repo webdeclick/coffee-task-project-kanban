@@ -39,6 +39,8 @@ return [
     'api-project.update' => ['patch',  '/api/project/(\d+)/update', '\App\ApiController@projectUpdate'],
     'api-project.delete' => ['delete', '/api/project/(\d+)/delete', '\App\ApiController@projectDelete'],
 
+    'api-project.photos-folder' => ['get', '/photos-folder/(\d+)', '\App\ProjectsController@photosFolder'],
+
     // categories api
 
     'api-category.list' => ['get', '/api/project/(\d+)/categories/list', '\App\ApiController@categoriesList'],
