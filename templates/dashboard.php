@@ -116,6 +116,10 @@
 
                 <input name="files" id="newtask-field-files" type="file" accept="image/*" multiple>
 
+                <div id="new-task-progress" class="progress-bar">
+                    <div class="percentage"></div>
+                </div>
+
             </div>
             
             <div class="cd-buttons">
@@ -220,14 +224,19 @@
         <br>
 
         {{ ?pretty_end_at }}
-            date fin : {{ pretty_end_at }}
+            date fin : {{ pretty_end_at }}  <br>
         {{/}}
-        
+
+        IMAGES : TODO
+
+
+
+
+        <!-- <button class="button-task-edit-show" data-id="{{ id }}">Editer</button> -->
+
         {{ !is_deleted }}
             <button class="button-task-delete" data-id="{{ id }}">Supprimer</button>
         {{/}}
-
-        <button class="button-task-edit-show" data-id="{{ id }}">Editer</button>
 
         {{ !is_completed }}
             <button class="button-task-complete" data-id="{{ id }}">Compléter</button>

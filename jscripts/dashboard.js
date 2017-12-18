@@ -507,9 +507,11 @@
 
             var formData = getFormData(form);
 
-            // add files
+            // has files .
 
             var filesElement = form['files'];
+
+            formData.files = [];
 
             if( filesElement && filesElement.files && filesElement.files.length > 0 ) {
 
@@ -556,13 +558,11 @@
                 });
 
                 results.catch(function( reason ) {
-                    jserror('Impossible d\'ajouter ces fichiers sur la tâche', reason);
+                    jserror('Impossible d\'ajouter ces fichiers sur cette tâche', reason);
                 });
 
             } else {
                 // no files to add, so direct call
-
-                formData.files = [];
 
                 callbackPost();
             }
@@ -576,9 +576,6 @@
                     
                     isPopupOpen = false;
 
-                    // notification
-                    jssnackbar('Tâche créée!');
-
                     // append task to the list ; or self if has the admin permissions
 
                     var xisPermissionSee = response.xisPermissionSee;
@@ -587,14 +584,26 @@
                         populateTasksList(categoryId); //todo: better add
                     }
 
-                    submit.disabled = false;
+                    // notification
+
+                    jssnackbar('Tâche créée!');
+
+                    jsprogressbar('new-task-progress', 'remove');
+
+                    submit.disabled = false; // re enable create task
                 };
     
                 var errorHandler = function( status, exception ) {
                     jserror('Impossible de créer cette tâche', status);
                 };
 
-                AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/create', successHandler, errorHandler, formData);
+                var progressHandler = function( percentComplete ) {
+                    if( percentComplete == 'unknown-size' ) return;
+                    
+                    jsprogressbar('new-task-progress', percentComplete);
+                };
+
+                AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/create', successHandler, errorHandler, formData, progressHandler);
             }
         });
 

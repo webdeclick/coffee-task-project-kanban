@@ -136,7 +136,6 @@ abstract class AbstractController {
 
         $userId = $this->userId;
 
-
         $datetime = DatabaseDatetime();
 
         // update old tasks
@@ -144,6 +143,9 @@ abstract class AbstractController {
         TasksModel::automaticPurge($userId, $datetime);
 
 
+
+
+        
     }
 
 

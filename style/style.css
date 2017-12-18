@@ -502,6 +502,26 @@ a {
     transform: translateY(0);
 }
 
+/* //////////////////// progress bar ///////////////////// */
+
+.progress-bar {
+    display: none;
+    width: 100%;
+
+    background-color: #ddd;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+}
+.progress-bar.is-visible {
+    display: block;
+}
+
+.progress-bar .percentage {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
 
 /* //////////////////// popoves categories ///////////////////// */
 

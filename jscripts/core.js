@@ -184,6 +184,32 @@ function jssnackbar( text, duration ) {
     }, duration);
 }
 
+// progress bar
+
+function jsprogressbar( elmentid, percentComplete ) {
+
+    var progressbar = document.getElementById(elmentid);
+
+    if( percentComplete == 'remove' ) {
+        progressbar.classList.remove('is-visible');
+    }
+    else {
+        progressbar.classList.add('is-visible');
+
+        var percentage = progressbar.querySelector('.percentage');
+
+        percentage.style.width = percentComplete + '%';
+        percentage.innerText = percentComplete * 1 + '%';
+    }
+}
+
+
+
+
+
+
+
+
 // placeholder, when there is not items to display
 
 function addPlaceholder( container, text ) {

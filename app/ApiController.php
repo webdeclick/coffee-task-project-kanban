@@ -9,6 +9,7 @@ use App\Models\UserModel;
 use App\Models\ProjectsModel;
 use App\Models\TasksModel;
 use App\Models\CategoryModel;
+use App\Models\FileModel;
 
 use DateTime;
 
@@ -457,38 +458,62 @@ class ApiController extends AbstractController {
         if( $taskId )
         {
             // upload files to validate by the admin later :
-//TODO
+
+            $files = $request->input('files');
+
+            $attachmentFolder = getcwd() . '/uploads/files/';
+
+            if( !is_writable($attachmentFolder) )
+            {
+                throw new RuntimeException('Folder is not writable');
+            }
+
+            // list files
+
+            $uploadsNumber = 0;
+
+            if( !empty($files) && is_array($files) )
+            {
+                foreach( $files as $key => $file )
+                {
+                    // save
+
+                    $fileModel = new FileModel([
+                        'task_id' => $taskId,
+                        'filename' => $file['name'] ?: '(unknown)',
+                        'size' => $file['size'] ?: 0,
+                        'mimetype' => $file['type'] ?: 'none',
+                        //'lastModified'
+                    ]);
+
+                    $filename = $fileModel->create();
+
+                    $blob = base64_decode($file['blob'] ?: null);
 
 
-            // if( !empty($files) && is_array($files) )
-            // {
-            //     foreach( $files as $key => $file )
-            //     {
-            //         // save
+                    $handle = fopen($attachmentFolder.$filename, 'w');
 
-            //         var_dump($file);exit;
+                    if( !empty($handle) )
+                    {
+                        $result = fwrite($handle, $blob, strlen($blob));
 
+                        fclose($handle);
 
-
-            //         // add base
-
-
-
-
-            //     }
-            // }
-
+                        $uploadsNumber++;
+                    }
+                }
+            }
 
 
             $isPermissionSee = false;
-            
+
             // check persmission
-            if( !$this->canAction('task', 'read', $projectId, $taskId) )
+            if( $this->canAction('task', 'read', $projectId, $taskId) )
             {
                 $isPermissionSee = true;
             }
 
-            return json(['message'=>'ok', 'taskId' => $taskId, 'xisPermissionSee' => $isPermissionSee]);
+            return json(['message'=>'ok', 'taskId' => $taskId, 'uploadsNumber' => $uploadsNumber, 'xisPermissionSee' => $isPermissionSee]);
         }
 
         return $this->apiError('TaskNotCreated');
