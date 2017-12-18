@@ -50,6 +50,90 @@ class DashboardController extends AbstractController {
     }
 
 
+    /**
+     * Display a picture for the uploaded files of a task
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $fileid
+     * @return void
+     */
+    public function filePicture( Request $request, Response $response, $fileid )
+    {
+        $uploadFolder = getcwd() . '/uploads/';
+
+        $attachmentFolder = $uploadFolder.'files/';
+
+        $default = 'file_default.png';
+
+        $fileName = $attachmentFolder . $fileid; // FIXME security
+
+        if( !is_readable($fileName) )
+        {
+            $fileName = $uploadFolder.$default;
+        }
+
+        list($resizeWidth, $resizeHeight) = [100, 100];
+
+        // $fileType = mime_content_type($fileName);
+        // $fileSize = filesize($fileName);
+
+        list($imageWidth, $imageHeight, $imageType) = getimagesize($fileName);
+
+        switch( $imageType )
+        {
+            case IMAGETYPE_JPEG:
+                $image = imagecreatefromjpeg($fileName);
+                $displayCallback = 'imagejpeg';
+                $contentType = 'image/jpeg';
+            break;
+
+            case IMAGETYPE_GIF:
+                $image = imagecreatefromgif($fileName);
+                $displayCallback = 'imagegif';
+                $contentType = 'image/gif';
+            break;
+
+            case IMAGETYPE_PNG:
+                $image = imagecreatefrompng($fileName);
+                $displayCallback = 'imagepng';
+                $contentType = 'image/png';
+            break;
+
+            default:
+                $image = imagecreatefromjpeg($fileName);
+                $displayCallback = 'imagejpeg';
+                $contentType = 'image/jpeg';
+            break;
+        }
+
+        // $resizeWidth = 100;
+        // $ratio = $resizeWidth / $imageWidth;
+        // $resizeHeight = $imageHeight * $ratio;
+
+        //ob_start();
+
+        $new_image = imagecreatetruecolor($resizeWidth, $resizeHeight);
+
+        imagealphablending($new_image, false);
+        imagesavealpha($new_image, true);
+
+        imagecopyresampled($new_image, $image, 0, 0, 0, 0, $resizeWidth, $resizeHeight, $imageWidth, $imageHeight);
+
+        header('Content-Type:' . $contentType);
+
+        call_user_func($displayCallback, $new_image);
+
+        imagedestroy($new_image);
+
+        // $result = ob_get_clean();
+
+        exit;
+
+        //header('Content-Length: ' . $fileSize);
+        //exit(readfile($fileName));
+    }
+
 
 
 

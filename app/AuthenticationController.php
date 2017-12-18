@@ -178,13 +178,17 @@ class AuthenticationController extends AbstractController {
      */
     public function avatar( Request $request, Response $response, $userId )
     {
-        $attachmentFolder = getcwd() . '/uploads/avatars/';
+        $uploadFolder = getcwd() . '/uploads/';
+
+        $attachmentFolder = $uploadFolder.'avatars/';
+
+        $default = 'avatar_default.png';
 
         $fileName = $attachmentFolder . $userId; // FIXME security
 
         if( !is_readable($fileName) )
         {
-            $fileName = $attachmentFolder . 'default.png';
+            $fileName = $uploadFolder.$default;
         }
 
         list($resizeWidth, $resizeHeight) = [50, 50];
@@ -225,6 +229,8 @@ class AuthenticationController extends AbstractController {
         // $ratio = $resizeWidth / $imageWidth;
         // $resizeHeight = $imageHeight * $ratio;
 
+        //ob_start();
+
         $new_image = imagecreatetruecolor($resizeWidth, $resizeHeight);
 
         imagealphablending($new_image, false);
@@ -237,6 +243,8 @@ class AuthenticationController extends AbstractController {
         call_user_func($displayCallback, $new_image);
 
         imagedestroy($new_image);
+
+        // $result = ob_get_clean();
 
         exit;
 

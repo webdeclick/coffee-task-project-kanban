@@ -130,6 +130,22 @@
 
                     task.avatar_url = '/avatar/' + task.assigned_to;
 
+                    // files upload
+
+                    var taskfiles = task.files;
+                    var taskfilesurls = [];
+
+                    if( taskfiles ) {
+
+                        for( var findex in taskfiles ) {
+                            var fileid = taskfiles[findex];
+
+                            taskfilesurls.push('/file/'+fileid+'/picture');
+                        }
+                    }
+
+                    task.files_url = taskfilesurls;
+
                     // pretty dates
 
                     task.pretty_created_at = prettyDate(task.created_at);

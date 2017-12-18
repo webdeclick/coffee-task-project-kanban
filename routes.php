@@ -28,7 +28,7 @@ return [
 
     'api-heartbeat' => ['get', '/api/heartbeat', '\App\ApiController@heartbeat'],
 
-    //projects api
+    // projects api
 
     'api-projects.list' => ['get', '/api/projects/list', '\App\ApiController@projectsList'],
     'api-project.peoples.list' => ['get', '/api/project/(\d+)/peoples/list', '\App\ApiController@projectPeoples'],
@@ -56,4 +56,9 @@ return [
     'api-task.update' => ['patch',  '/api/task/(\d+)/update', '\App\ApiController@taskUpdate'],
     'api-task.delete' => ['delete', '/api/task/(\d+)/delete', '\App\ApiController@taskDelete'],
     'api-task.complete' => ['patch', '/api/task/(\d+)/complete', '\App\ApiController@taskComplete'],
+
+    // tasks files
+
+    'api-task.file-picture' => ['get', '/file/(\d+)/picture', '\App\DashboardController@filePicture'],
+
 ];

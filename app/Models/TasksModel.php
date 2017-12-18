@@ -25,6 +25,10 @@ class TasksModel extends AbstractModel {
         $is_completed = ( $filter == 'archive' ); // complete tasks
         $is_olddate = ( $filter == 'olddate' ); // past end date
 
+        $is_file_validate = true;
+        $is_file_deleted = false;
+
+
         $datetime = DatabaseDatetime(); // now
 
         $dateFilterSign = '>=';
@@ -38,15 +42,28 @@ class TasksModel extends AbstractModel {
             'projectId' => $projectId,
             'categoryId' => $categoryId,
             'is_deleted' => $is_deleted,
-            'is_completed' => $is_completed
+            'is_completed' => $is_completed,
+            'is_file_validate' => $is_file_validate,
+            'is_file_deleted' => $is_file_deleted
         ];
 
-        $sql = 'SELECT * FROM @tasks t WHERE
+        $sql = '
+        SELECT t.*, (
+            SELECT GROUP_CONCAT(f.id SEPARATOR "-")
+            FROM @files f WHERE f.task_id = t.id
+            AND is_deleted = :is_file_deleted AND is_validate = :is_file_validate
+            ORDER BY f.id ASC
+        ) files
+
+        FROM @tasks t
+        
+        WHERE
             t.project_id = :projectId
             AND t.category_id = :categoryId
             AND t.is_deleted = :is_deleted
             AND t.is_completed = :is_completed
         ';
+        //LEFT JOIN @files f ON f.task_id = t.id
 
         if( !$is_deleted && !$is_completed )
         {
@@ -55,7 +72,7 @@ class TasksModel extends AbstractModel {
             if( !$is_olddate ) {
                 $sql .= ' OR t.end_at IS NULL '; // task with also no end dates
             }
-    
+
             $sql .= ' ) ';
 
             $attributes['datetime'] = $datetime;
@@ -71,9 +88,23 @@ class TasksModel extends AbstractModel {
         $sql .= ' ORDER BY t.id ASC ';
 
 
-        $results = $dbh->all($sql, $attributes);
+        $results = $dbh->all($sql, $attributes) ?: [];
 
-        return ( $results ?: [] );
+        // format taks :
+
+        foreach($results as $key => $task )
+        {
+            $files = array();
+
+            if( !empty($task['files']) )
+            {
+                $files = explode('-', $results[$key]['files']);
+            }
+
+            $results[$key]['files'] = $files;
+        }
+
+        return $results;
     }
 
     /**
