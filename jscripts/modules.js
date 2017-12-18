@@ -271,7 +271,9 @@
 
             if( isSymbolType('block', symbol) )
             {
-                expr = expr.substring(1); // remove symbol
+                expr = expr.substring(1).trim(); // remove symbol + re trim in case of spaces
+                // TODO
+
 
                 var depth = 1, childMatch, childSymbol, childLastMatchIndex, childLastIndex, childSection;
 
