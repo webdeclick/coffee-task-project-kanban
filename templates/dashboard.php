@@ -92,7 +92,7 @@
 
                 Titre :
 
-                <input name="newtask-field-title" placeholder="Titre" type="text" class="newtask-field-title">
+                <input name="title" placeholder="Titre" type="text" class="newtask-field-title">
 
                 description :
 
@@ -227,10 +227,14 @@
             date fin : {{ pretty_end_at }}  <br>
         {{/}}
 
-        IMAGES : TODO
+        {{ ?files_url }}
 
+            {{ #files_url : file_url }}
+                <img src="{{ file_url }}" />
+            {{/}}
 
-
+            <br>
+        {{/}}
 
         <!-- <button class="button-task-edit-show" data-id="{{ id }}">Editer</button> -->
 
