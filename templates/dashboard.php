@@ -62,7 +62,8 @@
 
 <div id="categories-list" class="categories-list categories-list-loading">
 
-    Chargement du tableau de bord...
+    Chargement du tableau de bord...<br>
+    <div class="loader"></div>
 
 </div>
 
@@ -186,7 +187,8 @@
 
         <div class="category-tasks-container">
 
-            Chargement des taches...
+            Chargement des taches...<br>
+            <div class="loader"></div>
 
         </div>
 

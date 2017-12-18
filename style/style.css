@@ -38,11 +38,157 @@ a {
 
 
 
-/* ////////////////////////////// */
 
-/* loader */
 
-#loader {
+
+/*//////////////////////////////// PAGE DES PROJETS ////////////////////////////////*/
+
+/* lsite des projets container */
+
+.page-projects #projects-list {
+    min-height: 300px;;
+    width: 300px;
+}
+.page-projects #projects-list.projects-list-loading {
+    /*image de chargement*/
+
+
+}
+.page-projects #projects-list.projects-list-loading .component-project {
+    opacity: 0; /* hide all projects when loading */
+}
+
+/* block projet */
+
+.page-projects .component-project {
+    border: 1px solid black;
+    padding: 10px;
+    min-height: 200px;
+    width: 200px;
+}
+
+/* block projet nouveau */
+
+.page-projects .component-project.component-project-new {
+
+}
+
+
+
+
+
+/*//////////////////////////////// PAGE DASHBOARD : CATEGORIES/TASKS LISTS ////////////////////////////////*/
+
+
+/* liste des projects */
+
+.page-dashboard #projects-list {
+    display: flex;
+}
+.page-dashboard #projects-list.projects-list-loading {
+    /*image de chargement*/
+
+
+}
+
+.page-dashboard #projects-list .component-project {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+
+
+/* liste des categories */
+
+.page-dashboard #categories-list {
+    width: 100%;
+    min-height: 200px;
+
+    display: flex;
+    flex-direction: row;
+}
+.page-dashboard #categories-list.categories-list-loading {
+    /*image de chargement*/
+
+
+}
+
+/* liste d'un catégorie ( colonne ) */
+
+.page-dashboard #categories-list .component-category  {
+    width: 100%;
+    margin: 10px;
+    border: 1px solid black;
+}
+
+/* color des catégories */
+
+.page-dashboard #categories-list .component-category.category-color-1  {
+    background: yellow;
+}
+.page-dashboard #categories-list .component-category.category-color-2  {
+    background: green;
+}
+
+/* container de la liste des tâche d'une catégorie */
+.page-dashboard #categories-list .category-tasks-container {
+
+}
+
+.page-dashboard #categories-list .category-tasks-container.category-loading {
+    /*image de chargement*/
+
+    
+}
+
+
+
+/* task indépendante */
+
+.page-dashboard #categories-list .component-category .component-task {
+    margin: 10px;
+    border: 1px solid purple;
+}
+
+/* task mode edit */
+
+.page-dashboard #categories-list .component-category .component-task[data-state="edit"] {
+    border-color: yellow;
+
+
+
+
+}
+
+
+/* create modal */
+
+.module-datetimepicker-container {
+    /* display: none; */
+}
+
+#newtask-showhide-datetimepicker[type=checkbox]:checked + .module-datetimepicker-container,
+.module-datetimepicker-container.is-visible {
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* //////////////////// custom elements ///////////////////// */
+
+.loader {
     border: 16px solid #f3f3f3;
     border-top: 16px solid #3498db;
     border-radius: 50%;
@@ -57,7 +203,7 @@ a {
 }
 
 
-/* snack bar, the bar at bottom */
+/* //////////////////// snackbar, notification at bottom ///////////////////// */
 
 #snackbar {
     display: none;
@@ -89,7 +235,7 @@ a {
     to { bottom: 0; opacity: 0; }
 }
 
-/* error page */
+/* //////////////////// api error modal ///////////////////// */
 
 #api-error {
     background-color: #181818;
@@ -136,146 +282,7 @@ a {
 }
 
 
-
-
-
-
-
-
-
-
-/*//////////////////////////////// PAGE DES PROJETS ////////////////////////////////*/
-
-/* lsite des projets container */
-
-.page-projects #projects-list {
-    min-height: 300px;;
-    width: 300px;
-}
-.page-projects #projects-list.projects-list-loading {
-    background: red;
-    /*image de chargement*/
-}
-.page-projects #projects-list.projects-list-loading .component-project {
-    opacity: 0; /* hide all projects when loading */
-}
-
-/* block projet */
-
-.page-projects .component-project {
-    border: 1px solid black;
-    padding: 10px;
-    min-height: 200px;
-    width: 200px;
-}
-
-/* block projet nouveau */
-
-.page-projects .component-project.component-project-new {
-
-}
-
-
-
-
-
-/*//////////////////////////////// PAGE DASHBOARD : CATEGORIES/TASKS LISTS ////////////////////////////////*/
-
-
-/* liste des projects */
-
-.page-dashboard #projects-list {
-    display: flex;
-}
-.page-dashboard #projects-list.projects-list-loading {
-    background: yellow;
-    /*image de chargement*/
-}
-
-.page-dashboard #projects-list .component-project {
-    padding: 10px;
-    border: 1px solid black;
-}
-
-
-
-/* liste des categories */
-
-.page-dashboard #categories-list {
-    width: 100%;
-    min-height: 200px;
-
-    display: flex;
-    flex-direction: row;
-}
-.page-dashboard #categories-list.categories-list-loading {
-    background: red;
-    /*image de chargement*/
-}
-
-/* liste d'un catégorie ( colonne ) */
-
-.page-dashboard #categories-list .component-category  {
-    width: 100%;
-    margin: 10px;
-    border: 1px solid black;
-}
-
-/* color des catégories */
-
-.page-dashboard #categories-list .component-category.category-color-1  {
-    background: yellow;
-}
-.page-dashboard #categories-list .component-category.category-color-2  {
-    background: green;
-}
-
-/* container de la liste des tâche d'une catégorie */
-.page-dashboard #categories-list .category-tasks-container {
-
-}
-
-.page-dashboard #categories-list .category-tasks-container.category-loading {
-    background: blue;
-    /*image de chargement*/
-}
-
-
-
-/* task indépendante */
-
-.page-dashboard #categories-list .component-category .component-task {
-    margin: 10px;
-    border: 1px solid purple;
-}
-
-/* task mode edit */
-
-.page-dashboard #categories-list .component-category .component-task[data-state="edit"] {
-    border-color: yellow;
-
-
-
-
-}
-
-
-/* create modal */
-
-.module-datetimepicker-container {
-    /* display: none; */
-}
-
-#newtask-showhide-datetimepicker[type=checkbox]:checked + .module-datetimepicker-container,
-.module-datetimepicker-container.is-visible {
-    display: block;
-}
-
-
-
-
-
-/* //////////////////// custom elements ///////////////////// */
+/* //////////////////// select ///////////////////// */
 
 .select {
     display:flex;
