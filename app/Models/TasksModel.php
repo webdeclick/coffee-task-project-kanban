@@ -10,6 +10,7 @@ class TasksModel extends AbstractModel {
 
     /**
      * Get all taks with a project id, a category id, and an user id
+     * Default : when date is not over
      *
      * @param int $projectId
      * @param int $categoryId
