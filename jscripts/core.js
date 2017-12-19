@@ -33,8 +33,7 @@ function AjaxAPISimple( method, url, successHandler, errorHandler, data, progres
 
 
 
-
-
+var rome = rome || null;
 var DatetimePickerSimple = rome;
 
 function compileTemplate( template, scope ) {
