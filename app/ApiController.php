@@ -36,6 +36,7 @@ class ApiController extends AbstractController {
             'CategoryNotUpdated' => 'Category cannot be updated',
             'CategoryNotDeleted' => 'Category cannot be deleted',
             'CategoryNotCreated' => 'Category cannot be created',
+            'FileNotExist' => 'File does not exist',
         ];
 
         $message = $code;
@@ -47,24 +48,7 @@ class ApiController extends AbstractController {
         return json(['error' => [ 'code' => $code, 'message' => $message ]]);
     }
 
-
-    /**
-     * Heartbeat function
-     *
-     * @param Request $request
-     * @param Response $response
-     * @return string
-     */
-    public function heartbeat( Request $request, Response $response )
-    {
-        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
-
-        $data = [];
-
-
-
-        return json($data);
-    }
+    public function heartbeat( Request $request, Response $response ){}
 
 
 
@@ -210,6 +194,116 @@ class ApiController extends AbstractController {
 
         return $this->apiError('ProjectNotExist');
     }
+
+
+//////// PHOTOS-FOLDER
+
+    /**
+     * List all photos grouped by tasks
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $projectId
+     * @return string
+     */
+    public function photosFolder( Request $request, Response $response, $projectId )
+    {
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+
+        $userId = $this->userId;
+
+        // find project :
+
+        $project = ProjectsModel::find($projectId);
+
+        if( $project ) {
+
+            // check persmission
+            if( !$this->canAction('photos-folder', 'read', $projectId) ) {
+                return $this->apiError('CannotAction');
+            }
+            
+            $tasks = FileModel::getFilesFolderUnvalidate($projectId, $userId);
+
+            return json($tasks);
+        }
+
+        return $this->apiError('ProjectNotExist');
+    }
+
+    /**
+     * Apply an action to the specified file
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $fileId
+     * @return string
+     */
+    public function photosFolderAction( Request $request, Response $response, $fileId, $action = null )
+    {
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+
+        $userId = $this->userId;
+
+        // find file cascade :
+
+        $file = FileModel::find($fileId);
+
+        $task = null;
+        $project = null;
+
+        if( $file ) {
+            $task = TasksModel::find($file->task_id);
+        }
+
+        if( $task ) {
+            $project = ProjectsModel::find($task->project_id);
+        }
+
+        if( $file && $task && $project ) {
+
+            $projectId = $project->id;
+
+            $result = false;
+
+            if( !empty($action) )
+            {
+                $perm = 'update';
+
+                if( $action == 'delete' )
+                {
+                    $file->is_deleted = true;
+    
+                    $file->deleted_at = DatabaseDatetime();
+
+                    $perm = 'delete';//permission action
+                }
+    
+                if( $action == 'validate' )
+                {
+                    $file->is_validate = true;
+
+                    $perm = 'update';//permission action
+                }
+
+                // check persmission
+                if( !$this->canAction('photos-folder', $perm, $projectId) ) {
+                    return $this->apiError('CannotAction');
+                }
+
+                $result = $file->save();
+            }
+
+            if( $result )
+            {
+                return json(['message'=>'ok']);
+            }
+        }
+
+        return $this->apiError('FileNotExist');
+    }
+
+    
 
 
 
@@ -358,7 +452,7 @@ class ApiController extends AbstractController {
 
             $result = $category->save();
 
-            //if( $result ) FIXME
+            if( $result )
             {
                 return json(['message'=>'ok']);
             }
@@ -393,7 +487,7 @@ class ApiController extends AbstractController {
 
             $result = $category->delete();
 
-            //if( $result ) FIXME
+            if( $result )
             {
                 return json(['message'=>'ok']);
             }
@@ -543,8 +637,6 @@ class ApiController extends AbstractController {
             if( !$this->canAction('task', 'update', $projectId, $taskId) ) {
                 return $this->apiError('CannotAction');
             }
-
-
 
             // TODO
 

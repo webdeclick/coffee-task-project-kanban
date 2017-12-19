@@ -81,6 +81,8 @@
             <button class="project-delete">Supprimer</button>
         {{ / }}
 
+        
+        <a href="/photos-folder/{{ id }}">Voir les photos</a>
 
         <a href="/dashboard/{{ id }}">Aller à la liste des taches</a>
 

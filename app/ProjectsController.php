@@ -27,9 +27,8 @@ class ProjectsController extends AbstractController {
         return render('projects', $this->container);
     }
 
-
     /**
-     * Validate pending uploaded tasks photos
+     * Render photos fodler page for managers
      *
      * @param Request $request
      * @param Response $response
@@ -40,15 +39,32 @@ class ProjectsController extends AbstractController {
     {
         if( !$this->isLogged ) return redirect('/login?back=1'); // check logged
 
+        $userId = $this->userId;
+
+        $this->projectId = $projectId;
+
+        $this->title = 'Photos';
+
         // check persmission
         if( !$this->canAction('photos-folder', 'read', $projectId) ) {
             exit; // cannot in a normal way
         }
 
+        // find project :
 
-        $files = FileModel::getFilesFilter('not_validate');
+        $project = ProjectsModel::find($projectId);
 
+        if( !$project ) {
+            return redirect('/projects?back=1'); // ce projet n'existe pas
+        }
 
+        $this->project = $project;
+
+        // check user manager / admin
+
+        $this->is_admin = ( $userId == $project->linked_admin );
+        
+        $this->is_manager = ( $userId == $project->linked_manager );
 
 
         return render('photos-folder', $this->container);

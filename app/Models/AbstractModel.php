@@ -66,6 +66,7 @@ abstract class AbstractModel implements ArrayAccess {
 
         $keysString = array_map(function( $key ){ return ''.$key. ' = :'.$key; }, $keys);
 
+
         $attributes['primaryKey'] = $this->id;
 
         $results = $dbh->execute(

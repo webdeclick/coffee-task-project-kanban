@@ -23,10 +23,8 @@ return [
     'projects' => ['get', '/projects', '\App\ProjectsController'],
     'dashboard' => ['get', '/dashboard/(\d+)', '\App\DashboardController'],
 
+    'photos-folder' => ['get', '/photos-folder/(\d+)', '\App\ProjectsController@photosFolder'],
 
-    // user api management
-
-    'api-heartbeat' => ['get', '/api/heartbeat', '\App\ApiController@heartbeat'],
 
     // projects api
 
@@ -39,7 +37,10 @@ return [
     'api-project.update' => ['patch',  '/api/project/(\d+)/update', '\App\ApiController@projectUpdate'],
     'api-project.delete' => ['delete', '/api/project/(\d+)/delete', '\App\ApiController@projectDelete'],
 
-    'api-project.photos-folder' => ['get', '/photos-folder/(\d+)', '\App\ProjectsController@photosFolder'],
+    'api-photos-folder' => ['get', '/api/project/(\d+)/photos-folder', '\App\ApiController@photosFolder'],
+    'api-photos-folder.action' => ['post', '/api/file/(\d+)/(\w+)', '\App\ApiController@photosFolderAction'],
+
+
 
     // categories api
 

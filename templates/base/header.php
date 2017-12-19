@@ -31,7 +31,7 @@
 
         <?php endif; ?>
 
-        <?php if($template=='dashboard'): ?>
+        <?php if(in_array($template, ['dashboard','photos-folder'])): ?>
 
             <script type="text/javascript">
                 var dashboard = {
@@ -41,6 +41,9 @@
                 }
             </script>
 
+        <?php endif; ?>
+
+        <?php if($template=='dashboard'): ?>
             <!--3rd party scripts -->
             <script type="text/javascript" src="/jscripts/3rdparty/moment/min/moment.min.js"></script>
 

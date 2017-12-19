@@ -74,6 +74,37 @@ a {
 }
 
 
+/*//////////////////////////////// PAGE PHOTOS FOLDER ////////////////////////////////*/
+
+.page-photos-folder {
+    
+}
+.page-photos-folder #photos-list.photos-list-loading {
+    /*image de chargement*/
+
+
+}
+
+.page-photos-folder .component-folder {
+
+}
+.page-photos-folder .component-folder.component-folder-loading {
+    /*image de chargement*/
+
+
+}
+
+
+
+
+/* folder (task) */
+.page-photos-folder .component-folder {
+    border: 1px solid black;
+
+}
+
+
+
 
 
 

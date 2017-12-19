@@ -22,49 +22,70 @@ class FileModel extends AbstractModel {
      * Get all tasks photos based on a filter
      *
      * @param int $projectId
+     * @param int $userId
      * @param mixed $filter
      * @return array
      */
-    public static function getFilesFilter( $projectId, $filter = null )
+    public static function getFilesFolderUnvalidate( $projectId, $userId )
     {
         $dbh = DatabaseFactory();
 
-        $is_deleted = ( $filter == 'delete' );
-        $is_not_validate = ( $filter == 'not_validate' );
-
-
-        //TODO
-
         $sql = '
-        SELECT f.*, 
-        FROM @files f, 
+        SELECT
+            f.*,
+            t.title task_title, t.description task_description, t.is_deleted task_deleted, t.is_completed task_completed,
+            u.fullname user_fullname
+
+        FROM @files f
         JOIN @tasks t ON f.task_id = t.id
-        JOIN @projects p ON t.project_id = p.id
-        WHERE
-        
+        JOIN @users u ON t.assigned_to = u.id
+
+        WHERE t.project_id = :projectId
+        AND t.is_deleted = :task_is_deleted
+        AND f.is_deleted = :file_is_deleted AND f.is_validate = :file_is_validate
+
         ORDER BY t.id ASC
         ';
 
         $attributes = [
-            'is_deleted' => $is_deleted,
-            'is_validate' => ! $is_not_validate
+            'projectId' => $projectId,
+            'task_is_deleted' => false,
+            'file_is_deleted' => false,
+            'file_is_validate' => false
         ];
-
 
         $results = $dbh->all($sql, $attributes);
 
-        $files = [];
+        $tasks = [];
 
         foreach($results as $key => $file )
         {
-            $fileid = $file['id'];
+            $task_id = $file['task_id'];
 
-            $files[$fileid] = 
+            if( !isset($tasks[$task_id]) )
+            {
+                $tasks[$task_id] = [
+                    'task_id' => $task_id,
+                    'title' => $file['task_title'],
+                    'description' => $file['task_description'],
+                    'user_fullname' => $file['user_fullname'],
+                    'is_completed' => boolval($file['task_completed']),
+                    //'is_deleted' => boolval($file['task_deleted']),
+                    '__info' => 'FilesFolderUnvalidate'
+                ];
+            }
+
+            $file = array_filter($file, function($key) { // remove prefixes from sql
+                return (
+                    strpos($key, 'task_') !== 0 &&
+                    strpos($key, 'user_') !== 0
+                );
+            }, ARRAY_FILTER_USE_KEY);
+            
+            $tasks[$task_id]['files'][] = $file;
         }
 
-
-
-
+        return $tasks;
     }
 
 

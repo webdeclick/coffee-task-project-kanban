@@ -70,6 +70,11 @@ abstract class AbstractController {
                 'delete' => ['s','m','a'],
                 'read_all' => ['m','a'], //
             ],
+            'photos-folder' => [
+                'read' => ['m','a'],
+                'update' => ['m','a'],
+                'delete' => ['m','a'],
+            ],
         ];
 
         $userPermissions = ['u'];
