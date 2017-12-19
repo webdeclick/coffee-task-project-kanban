@@ -48,6 +48,11 @@ function appendTemplate( templateId, element, scope ) {
 
     // get <template> content
     var templateNode = document.getElementById('template-'+templateId);
+
+    if( !templateNode ) {
+        return;
+    }
+
     var template = templateNode.innerHTML;//content
 
     // create doc fragment and append compiled to it
