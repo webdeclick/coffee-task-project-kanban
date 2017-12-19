@@ -129,6 +129,10 @@ function toggleState( element, one, two ) {
     element.setAttribute('data-state', element.getAttribute('data-state') === one ? two : one);
 }
 
+function getState( element ) {
+    return element.getAttribute('data-state');
+}
+
 function forEach( array, callback, scope ) {
     for( var i = 0, length = array.length; i < length; i++ ) {
         callback.call(scope, array[i], i); // passes back stuff we need
