@@ -3,22 +3,23 @@
 <?php include 'elements/apierror.php'; ?>
 
 
-
-
+<h2 class="page-title">MES PROJETS</h2>
 
 <div id="projects-list" class="projects-list projects-list-loading">
-    Chargement des projets...
+    <!-- Chargement des projets... -->
+    <div class="loader"></div>
 </div>
 
 
 
 
 
-<div id="project-new" class="component-project component-project-new">
+
+<div id="form-project-new" class="component-project component-project-new">
 
     <h2>Créer un nouvea</h2>
 
-    <form id="project-new-form" method="" action="">
+    <form id="project-new-form" method="post" action="">
 
         titre :
         <input id="project-new-title" name="title" type="text">
@@ -41,6 +42,16 @@
 
 
 
+
+
+
+<script id="template-project-new" class="component-template" type="text/template">
+
+    <div id="project-new" class="component-project component-project-new">
+
+    </div>
+
+</script>
 
 
 <script id="template-project" class="component-template" type="text/template">
@@ -89,5 +100,6 @@
     </div>
 
 </script>
+
 
 <?php include 'base/footer.php'; ?>

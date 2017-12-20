@@ -54,6 +54,9 @@ body {
     transition-property: opacity, background, color, width, height, transform;
     transition-duration: 0.5s;
     transition-timing-function: ease;
+
+    padding: 0;
+    margin: 0;
 }
 
 a {
@@ -65,9 +68,6 @@ a {
 .component-template {
     display: none;
 }
-
-
-/* paper box-shadow: 0 0 10px rgba(0,0,0,0.3); */
 
 
 
@@ -251,6 +251,15 @@ nav#panel .menu-mentions a:hover {
 
 #page {
     margin-top: 56px; /*menu*/
+    padding: 40px;
+}
+
+.page-title {
+    color: #777777;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 23px;
+    margin-bottom: 25px;
 }
 
 
@@ -262,31 +271,31 @@ nav#panel .menu-mentions a:hover {
 /* lsite des projets container */
 
 .page-projects #projects-list {
-    min-height: 300px;;
-    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 .page-projects #projects-list.projects-list-loading {
     /*image de chargement*/
 
 
 }
-.page-projects #projects-list.projects-list-loading .component-project {
-    opacity: 0; /* hide all projects when loading */
-}
 
 /* block projet */
 
 .page-projects .component-project {
-    border: 1px solid black;
-    padding: 10px;
-    min-height: 200px;
-    width: 200px;
+    width: 250px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3)
 }
 
 /* block projet nouveau */
 
 .page-projects .component-project.component-project-new {
+    display: flex;
+    cursor: pointer;
 
+    background: url(../img/icon-plus.png) no-repeat center center;
 }
 
 
@@ -437,7 +446,7 @@ nav#panel .menu-mentions a:hover {
 
 .loader {
     border: 16px solid #f3f3f3;
-    border-top: 16px solid #3498db;
+    border-top: 16px solid #a6c938;
     border-radius: 50%;
     width: 100px;
     height: 100px;

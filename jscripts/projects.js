@@ -2,7 +2,8 @@
 
 (function( win, doc ) { 
 
-    var categoryList, categoryFormNew;
+    var categoryList;
+    var categoryFormNew, categoryCreateBlock
 
 
     window.addEventListener('load', function( event ) {
@@ -11,20 +12,32 @@
 
         categoryList = document.getElementById('projects-list');
 
+        // load projects list
+
+        populateProjectsList();
+
+        // initialize popover category
+
+        initializeCategoriesEvents();
+    });
+
+
+    function initializeCategoriesEvents() {
+
         delegate(categoryList, '.component-project .project-delete', 'click', deleteProjectEvent);
 
-        // new form
+        // new icon+ click
 
-        categoryFormNew = document.getElementById('project-new-form');
+        delegate(categoryList, '.component-project .project-delete', 'click', deleteProjectEvent);
+
+        // new form project
+
+        categoryFormNew = document.getElementById('form-project-new');
 
         categoryFormNew.addEventListener('submit', addProjectEvent);
 
 
-        // load projects list
-
-        populateProjectsList();
-    });
-
+    }
 
 
 
@@ -45,6 +58,10 @@
 
                 appendTemplate('project', categoryList, project);
             }
+
+            // add the create new template
+
+            appendTemplate('project-new', categoryList, project);
         };
 
         var errorHandler = function( status, exception ) {
