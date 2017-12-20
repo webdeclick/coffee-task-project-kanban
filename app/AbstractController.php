@@ -25,15 +25,25 @@ abstract class AbstractController {
         $this->container = $container;
 
         $isLogged = false;
+        $projects = null;
+        $user = null;
 
         if( session('isLogged') )
         {
             $isLogged = true;
 
-            $this->userId = session('userId');
+            $userId = session('userId');
+
+            $user = UserModel::find($userId);
+
+            $projects = ProjectsModel::getAllByUser($userId);
         }
 
+        $this->userId = $userId;
+        $this->user = $user;
         $this->isLogged = $isLogged;
+
+        $this->projects = $projects;
     }
 
     /**

@@ -63,7 +63,7 @@ class ProjectsModel extends AbstractModel {
                 OR
                 ( p.linked_manager = :userId OR p.linked_admin = :userId )
             )
-            AND p.is_deleted = 0
+            AND p.is_deleted = "0"
             ORDER BY p.created_at',
 
             [ 'userId' => $userId ]

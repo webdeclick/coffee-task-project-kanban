@@ -61,5 +61,75 @@
 </head>
 <body>
 
-<div id="page" class="page-<?php echo $template; ?>">
 
+<!-- menu -->
+
+<nav id="menu">
+
+    <input id="nav-trigger" type="checkbox">
+
+    <nav id="hamburger">
+        <label for="nav-trigger"></label>
+
+        <span>
+            <a id="hamburger-logo" href="/">home</a>
+        </span>
+
+    </nav>
+
+    <nav id="nav">
+
+        <?php if( $isLogged ): ?>
+
+            <div class="menu-welcome">
+                Bonjour <?php echo $user->fullname; ?> !
+            </div>
+
+            <div class="menu-logout">
+                <a href="/logout">Déconnexion</a>
+            </div>
+
+            <div class="menu-action menu-dashboard">
+                <div class="icon"></div>
+                <div>Tableau De Bord</div>
+            </div>
+
+            <div class="menu-action menu-projects">
+                <div class="icon"></div>
+                <div>
+                    Mes Projets
+
+                    <div class="expander">
+                        <?php if(!empty($projects)): foreach($projects as $project): ?>
+                            <div>
+                                <a href="/dashboard/<?php echo $project['project_id']; ?>"><?php echo $project['title']; ?></a>
+                            </div>
+                        <?php endforeach; endif; ?>
+                    </div>
+
+                </div>
+            </div>
+
+        <?php else: ?>
+
+            <a href="/login">Login</a>
+
+
+        <?php endif; ?>
+
+        <div class="menu-mentions">
+            <a href="/mentions">Mentions légales</a> - <a href="/contact">Contact</a>
+        </div>
+
+        
+
+
+
+    </nav>
+
+</nav>
+
+
+<!-- page content -->
+
+<div id="page" class="page-<?php echo $template; ?>">
