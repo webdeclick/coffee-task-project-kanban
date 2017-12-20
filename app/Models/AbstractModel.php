@@ -5,6 +5,9 @@ namespace App\Models;
 use ArrayAccess;
 
 
+/**
+ * Abstract model
+ */
 abstract class AbstractModel implements ArrayAccess {
 
     /**

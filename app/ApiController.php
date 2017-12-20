@@ -14,6 +14,10 @@ use App\Models\FileModel;
 use DateTime;
 
 
+/**
+ * Api Controller
+ * Used in Ajax-based operations
+ */
 class ApiController extends AbstractController {
 
     /**

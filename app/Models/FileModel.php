@@ -3,6 +3,9 @@
 namespace App\Models;
 
 
+/**
+ * File model
+ */
 class FileModel extends AbstractModel {
 
     const table = 'files';

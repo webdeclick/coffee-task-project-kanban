@@ -3,6 +3,9 @@
 namespace App\Models;
 
 
+/**
+ * Tasks model
+ */
 class TasksModel extends AbstractModel {
 
     const table = 'tasks';

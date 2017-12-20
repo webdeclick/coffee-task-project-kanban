@@ -3,6 +3,9 @@
 namespace App\Models;
 
 
+/**
+ * User model
+ */
 class UserModel extends AbstractModel {
 
     const table = 'users';

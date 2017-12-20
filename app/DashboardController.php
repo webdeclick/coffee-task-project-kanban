@@ -8,6 +8,10 @@ use Slim\Http\Interfaces\ResponseInterface as Response;
 use App\Models\ProjectsModel;
 
 
+/**
+ * Dashboard Controller
+ * Tasks and categories management
+ */
 class DashboardController extends AbstractController {
 
     /**

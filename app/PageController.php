@@ -8,6 +8,11 @@ use Slim\Http\Interfaces\ResponseInterface as Response;
 use Slim\Routing\Exceptions\NotFoundException;
 use Slim\Routing\Exceptions\MethodNotAllowedException;
 
+
+/**
+ * Page Controller
+ * Simple page rendering
+ */
 class PageController extends AbstractController {
 
 

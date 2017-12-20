@@ -3,6 +3,9 @@
 namespace App\Models;
 
 
+/**
+ * Projects model
+ */
 class ProjectsModel extends AbstractModel {
 
     const table = 'projects';

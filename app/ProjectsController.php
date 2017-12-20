@@ -9,6 +9,10 @@ use App\Models\ProjectsModel;
 use App\Models\FileModel;
 
 
+/**
+ * Projects Controller
+ * Listing
+ */
 class ProjectsController extends AbstractController {
 
     /**

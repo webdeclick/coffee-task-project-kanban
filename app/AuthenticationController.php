@@ -8,7 +8,10 @@ use Slim\Http\Interfaces\ResponseInterface as Response;
 use App\Models\UserModel;
 
 
-
+/**
+ * Authentication Controller
+ * User-profile related tasks
+ */
 class AuthenticationController extends AbstractController {
 
 
