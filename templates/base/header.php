@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>CoffeeTask ☕<?php echo (!empty($title)?' - '.$title:''); ?></title>
+    <title>☕ CoffeeTask<?php echo (!empty($title)?' - '.$title:''); ?></title>
 
     <link rel="shortcut icon" href="/favicon.ico">
 
@@ -70,45 +70,53 @@
 
     <nav id="hamburger">
         <label for="nav-trigger"></label>
-
-        <span>
-            <a id="hamburger-logo" href="/">home</a>
-        </span>
-
+        <div>
+            <a class="hamburger-logo" href="/"></a>
+        </div>
     </nav>
 
-    <nav id="nav">
+    <nav id="panel"><div id="panel-inner">
 
         <?php if( $isLogged ): ?>
 
+            <?php if(!empty($avatar_url)): ?>
+                <div class="menu-avatar">
+                    <img src="<?php echo $avatar_url; ?>" />
+                </div>
+            <?php endif; ?>
+
             <div class="menu-welcome">
-                Bonjour <?php echo $user->fullname; ?> !
-            </div>
-
-            <div class="menu-logout">
-                <a href="/logout">Déconnexion</a>
-            </div>
-
-            <div class="menu-action menu-dashboard">
-                <div class="icon"></div>
-                <div>Tableau De Bord</div>
-            </div>
-
-            <div class="menu-action menu-projects">
-                <div class="icon"></div>
                 <div>
-                    Mes Projets
-
-                    <div class="expander">
-                        <?php if(!empty($projects)): foreach($projects as $project): ?>
-                            <div>
-                                <a href="/dashboard/<?php echo $project['project_id']; ?>"><?php echo $project['title']; ?></a>
-                            </div>
-                        <?php endforeach; endif; ?>
-                    </div>
-
+                    Bonjour <?php echo $user->fullname; ?> !
+                </div>
+                <div class="menu-logout">
+                    <a href="/logout">Déconnexion</a>
                 </div>
             </div>
+
+            <div class="menu-dashboard">
+                <div class="icon"></div>
+                <div>
+                    <a href="/projects">Tableau De Bord</a>
+                </div>
+            </div>
+
+            <input class="check-expanded" id="check-myprojects" type="checkbox" />
+            <div class="menu-projects">
+                <div class="icon"></div>
+                <div>
+                    <label for="check-myprojects">Mes Projets</label>
+                </div>
+            </div>
+
+            <div class="menu-projects-list expanded">
+                <?php if(!empty($projects)): foreach($projects as $project): ?>
+                    <div>
+                        - <a href="/dashboard/<?php echo $project['project_id']; ?>"><?php echo $project['title']; ?></a>
+                    </div>
+                <?php endforeach; endif; ?>
+            </div>
+
 
         <?php else: ?>
 
@@ -121,11 +129,7 @@
             <a href="/mentions">Mentions légales</a> - <a href="/contact">Contact</a>
         </div>
 
-        
-
-
-
-    </nav>
+    </div></nav>
 
 </nav>
 

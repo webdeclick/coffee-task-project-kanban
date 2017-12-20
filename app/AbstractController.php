@@ -10,6 +10,9 @@ use App\Models\ProjectsModel;
 use App\Models\TasksModel;
 
 
+/**
+ * Abstract Controller
+ */
 abstract class AbstractController {
 
     protected $container = [];
@@ -27,6 +30,7 @@ abstract class AbstractController {
         $isLogged = false;
         $projects = null;
         $user = null;
+        $avatar_url = null;
 
         if( session('isLogged') )
         {
@@ -37,10 +41,13 @@ abstract class AbstractController {
             $user = UserModel::find($userId);
 
             $projects = ProjectsModel::getAllByUser($userId);
+
+            $avatar_url = '/avatar/'.$userId;
         }
 
         $this->userId = $userId;
         $this->user = $user;
+        $this->avatar_url = $avatar_url;
         $this->isLogged = $isLogged;
 
         $this->projects = $projects;

@@ -86,10 +86,11 @@ nav#menu {
     user-select: none;
 }
 
+/*hamburger icon trigger for left panel*/
 nav#hamburger {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     height: 56px;
 
     color: #fff;
@@ -109,19 +110,33 @@ nav#hamburger > label[for="nav-trigger"] {
     width: 25px;
     background: url(../img/hamburger.svg) no-repeat;
     background-size: contain;
-
 }
 
-/*checked*/
-nav#menu > #nav-trigger:checked ~ nav#nav {
+/*top logo*/
+nav#menu .hamburger-logo {
+    background: url(../img/logo-header.png) no-repeat center center;
+    background-size: contain;
+    display: block;
+    width: 100px;
+    height: 40px;
+}
+nav#hamburger > div { /*quick fix todo*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/*trigger*/
+nav#menu > #nav-trigger:checked ~ nav#panel {
     width: 200px;
 }
 nav#menu > #nav-trigger:checked ~ nav#hamburger > label[for="nav-trigger"] {
     transform: rotate(90deg);
 }
 
-/*left side*/
-nav#nav {
+/* left side content*/
+nav#panel {
     display: flex;
     flex-direction: column;
     align-items: initial;
@@ -133,36 +148,102 @@ nav#nav {
     /* height: 100vh; */
     height: calc(100vh - 56px);/*menu size*/
 
-    color: #fff;
     background-color: #202020;
-    box-shadow: 1px 1px 1px 0 #ccc9;
 }
-
-nav#nav > a {
-    padding: 16px;
-    font-weight: 400;
-    font-size: 16px;
+nav#panel,
+nav#panel a {
     color: #fff;
+    font-size: 12px;
+    font-weight: 600;
 }
 
-/* left side content*/
-
-nav#nav .menu-action {
+nav#panel #panel-inner {/*quick fix todo*/
+    padding: 10px;
     display: flex;
-    align-items: center;
-    color: #fff;
+    flex-direction: column;
+    height: 100%;
 }
 
-nav#nav .menu-welcome {
+
+
+nav#panel .check-expanded,
+nav#panel .expanded {
+    display: none;
+}
+nav#panel .check-expanded:checked ~ .expanded {
+    display: block;
+}
+
+nav#panel .menu-avatar {
+    text-align: center;
+}
+nav#panel .menu-welcome {
     text-align: center;
     font-size: 15px;
+    margin: 10px 0;
+    margin-bottom: 20px;
 }
-
-nav#nav .menu-logout,
-nav#nav .menu-logout a {
+nav#panel .menu-logout,
+nav#panel .menu-logout a {
     color: #a6c938;
     text-decoration: underline;
     text-align: center;
+    font-size: 11px;
+}
+nav#panel .menu-logout {
+    margin-top: 10px;
+}
+
+nav#panel .icon {
+    height: 25px;
+    width: 25px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-right: 10px;
+}
+
+nav#panel .menu-dashboard,
+nav#panel .menu-projects {
+    display: flex;
+    align-items: center;
+}
+
+
+
+nav#panel .menu-dashboard {
+    margin-bottom: 15px;
+}
+nav#panel .menu-dashboard .icon {
+    background-image: url(../img/icon-home.png);
+}
+
+nav#panel .menu-projects .icon {
+    background-image: url(../img/icon-projects.png);
+}
+
+nav#panel .menu-projects-list {
+    margin-left: 35px;
+}
+nav#panel .menu-projects-list > div {
+    margin: 7px 0;
+}
+nav#panel .menu-projects-list a {
+    color: #cecece;
+    font-size: 12px;
+}
+
+nav#panel .menu-mentions {
+    text-align: center;
+    margin-top: auto;
+    padding: 30px 0 20px;
+}
+nav#panel .menu-mentions,
+nav#panel .menu-mentions a {
+    color: #5a5a5a;
+    font-size: 12px;
+}
+nav#panel .menu-mentions a:hover {
+    color: #fff;
 }
 
 

@@ -38,4 +38,7 @@ API gen :
 
 apigen generate ./ --destination documentations/apidocs
 
-apigen/vendor/bin/apigen generate www --destination www/documentations/apidocs
+apigen/vendor/bin/apigen generate www --destination _documentations
+
+ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+
