@@ -6,7 +6,7 @@
 // $all = '[^/]+';
 
 return [
-    'home' => ['get', '/', '\App\HomeController'],
+    'home' => ['get', '/', '\App\PageController'],
 
     'login' => ['get', '/login', '\App\AuthenticationController@login'],
     'login.validate' => ['post', '/login/validate', '\App\AuthenticationController@validateLogin'],
@@ -25,6 +25,10 @@ return [
 
     'photos-folder' => ['get', '/photos-folder/(\d+)', '\App\ProjectsController@photosFolder'],
 
+    // pages
+
+    'contact' => ['get', '/contact', '\App\PageController@contact'],
+    'mentions' => ['get', '/mentions', '\App\PageController@mentions'],
 
     // projects api
 
@@ -39,8 +43,6 @@ return [
 
     'api-photos-folder' => ['get', '/api/project/(\d+)/photos-folder', '\App\ApiController@photosFolder'],
     'api-photos-folder.action' => ['post', '/api/file/(\d+)/(\w+)', '\App\ApiController@photosFolderAction'],
-
-
 
     // categories api
 
