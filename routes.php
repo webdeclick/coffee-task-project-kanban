@@ -6,7 +6,7 @@
 // $all = '[^/]+';
 
 return [
-    'home' => ['get', '/', '\App\PageController'],
+    'home' => ['get', '/', '\App\PageController@home'],
 
     'login' => ['get', '/login', '\App\AuthenticationController@login'],
     'login.validate' => ['post', '/login/validate', '\App\AuthenticationController@validateLogin'],
