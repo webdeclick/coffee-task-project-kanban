@@ -6,5 +6,6 @@ Simple Tasks manager project.
 
 todo: seek all todos
 
-todo : slim MethodNotAllowedException() default array
+slim MethodNotAllowedException() default array
 
+db : set updated_at quand un update
