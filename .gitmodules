@@ -7,3 +7,6 @@
 [submodule "jscripts/3rdparty/moment"]
 	path = jscripts/3rdparty/moment
 	url = https://github.com/moment/moment.git
+[submodule "src/PHPMailer"]
+	path = src/PHPMailer
+	url = https://github.com/PHPMailer/PHPMailer.git

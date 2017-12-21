@@ -28,6 +28,16 @@ $corePreloads = [
     'Database/src/Connection',
 ];
 
+// exception PHPMailer namespace in namespace
+
+$corePreloads = array_merge($corePreloads, [
+    'PHPMailer/src/PHPMailer',
+    'PHPMailer/src/Exception',
+    'PHPMailer/src/SMTP',
+]);
+
+
+
 foreach( $corePreloads as $file )
 {
 	require_once 'src/'.$file.'.php';

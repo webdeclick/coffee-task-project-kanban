@@ -9,6 +9,7 @@ $routes  = require 'routes.php';
 autoloader([
     'Slim' => 'Slim/src',
     'Database' => 'Database/src',
+    'PHPMailer' => 'PHPMailer/src'
 ]);
 
 use Slim\Slim as SlimApp;
