@@ -720,9 +720,6 @@ class ApiController extends AbstractController {
 
             // send mail to the assignee :
 
-            ini_set('smtp', 'localhost');
-            ini_set('sendmail_from', 'example@localhost');
-
             $assignedUser = UserModel::find($task->assigned_to);
 
             if( $assignedUser )
