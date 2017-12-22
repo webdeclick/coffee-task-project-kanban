@@ -352,6 +352,24 @@ nav#panel .menu-mentions a:hover {
     border: 1px solid black;
 }
 
+/* expiration classes */
+
+.page-dashboard #projects-list .component-project.expire-expired {
+
+}
+.page-dashboard #projects-list .component-project.expire-15days {
+    
+}
+.page-dashboard #projects-list .component-project.expire-10days {
+    
+}
+.page-dashboard #projects-list .component-project.expire-5days {
+    
+}
+.page-dashboard #projects-list .component-project.expire-2days {
+    
+}
+
 
 
 /* liste des categories */

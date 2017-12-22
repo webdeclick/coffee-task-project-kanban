@@ -19,7 +19,7 @@ function AjaxAPISimple( method, url, successHandler, errorHandler, data, progres
             var code = response.error.code;
 
             if( code == 'CannotAction' ) {
-
+                return errorHandler(code);
             }
         }
 

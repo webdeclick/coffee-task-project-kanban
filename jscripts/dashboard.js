@@ -29,6 +29,10 @@
 
         populateCategoriesAndTasksList();
 
+        // populate all the peoples linked to project ; for popup create
+
+        populatePeoplesList();
+
         // initialize popover category
 
         initializeCategoriesEvents();
@@ -36,10 +40,6 @@
         // initialize create task popup
 
         initializePopupCreateButton();
-
-        // populate all the peoples linked to project ; for popup create
-
-        populatePeoplesList();
 
         // the search engine
 
@@ -134,6 +134,36 @@
 
                     var taskfiles = task.files;
                     var taskfilesurls = [];
+
+                    // date expire
+
+                    var days_expire = task.days_expire;
+                    var expire_class = null;
+
+                    if( days_expire <= 0 ) {
+                        expire_class = 'expired';
+                    }
+                    else if( days_expire <= 2 ) {
+                        expire_class = '2days';
+                    }
+                    else if( days_expire <= 5 ) {
+                        expire_class = '5days';
+                    }
+                    else if( days_expire <= 10 ) {
+                        expire_class = '10days';
+                    }
+                    else if( days_expire <= 15 ) {
+                        expire_class = '15days';
+                    }
+                    
+                    
+                    
+
+                    if( expire_class ) {
+                        expire_class = 'expire-' + expire_class;
+                    }
+
+                    task.expire_class = expire_class;
 
                     if( taskfiles ) {
 

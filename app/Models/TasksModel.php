@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use DateTime;
+
 
 /**
  * Tasks model
@@ -96,6 +98,8 @@ class TasksModel extends AbstractModel {
 
         // format taks :
 
+        $dateTime = new DateTime;
+
         foreach($results as $key => $task )
         {
             $files = array();
@@ -106,6 +110,17 @@ class TasksModel extends AbstractModel {
             }
 
             $results[$key]['files'] = $files;
+
+            // add expire date ; if set
+
+            if( isset($task['end_at']) )
+            {
+                $end_at = new DateTime($task['end_at']);
+    
+                $diff = $dateTime->diff($end_at);
+    
+                $results[$key]['days_expire'] = (float) $diff->format('%R%a'); //in days
+            }
         }
 
         return $results;

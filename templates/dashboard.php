@@ -203,7 +203,7 @@
 
 <script id="template-task" class="component-template" type="text/template">
 
-    <div id="task-{{ id }}" class="component-task" data-id="{{ id }}">
+    <div id="task-{{ id }}" class="component-task {{ expire_class }}" data-id="{{ id }}">
 
         {{ ?xisPermissionSeeAll }}
             ADMIN VOIT TOUT
