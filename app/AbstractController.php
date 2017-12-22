@@ -29,8 +29,7 @@ abstract class AbstractController {
 
         $isLogged = false;
         $projects = null;
-        $user = null;
-        $avatar_url = null;
+        $user = $userId = $avatar_url = null;
 
         if( session('isLogged') )
         {
