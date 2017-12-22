@@ -211,3 +211,91 @@ function xmail()
     
     return false;
 }
+
+
+
+
+// https://github.com/danielstjules/php-pretty-datetime
+// Licence MIT
+/*
+use DateTime;
+use DateTimeZone;
+
+function prettyDate( DateTime $dateTime, DateTime $reference = null )
+{
+    // The constants correspond to units of time in seconds
+    // const MINUTE = 60;
+    // const HOUR   = 3600;
+    // const DAY    = 86400;
+    // const WEEK   = 604800;
+    // const MONTH  = 2628000;
+    // const YEAR   = 31536000;
+
+    // If not provided, set $reference to the current DateTime
+    if( !$reference ) {
+        $timezone = new DateTimeZone($dateTime->getTimezone()->getName());
+        $reference = new DateTime(null, $timezone);
+    }
+    // Get the difference between the current date and the supplied $dateTime
+    $difference = $reference->format('U') - $dateTime->format('U');
+    $absDiff = abs($difference);
+    // Get the date corresponding to the $dateTime
+    $date = $dateTime->format('Y/m/d');
+    // Throw exception if the difference is NaN
+    if (is_nan($difference)) {
+        throw new Exception('The difference between the DateTimes is NaN.');
+    }
+
+    //http://php.net/manual/fr/datetime.diff.php#example-2585
+
+    // Today
+    if ($reference->format('Y/m/d') == $date) {
+        if (0 <= $difference && $absDiff < MINUTE) {
+            return 'Moments ago';
+        } elseif ($difference < 0 && $absDiff < MINUTE) {
+            return 'Seconds from now';
+        } elseif ($absDiff < HOUR) {
+            return prettyFormat($difference / MINUTE, 'minute');
+        } else {
+            return prettyFormat($difference / HOUR, 'hour');
+        }
+    }
+
+    $yesterday = clone $reference;
+    $yesterday->modify('- 1 day');
+
+    $tomorrow = clone $reference;
+    $tomorrow->modify('+ 1 day');
+
+    if ($yesterday->format('Y/m/d') == $date) {
+        return 'Yesterday';
+    } else if ($tomorrow->format('Y/m/d') == $date) {
+        return 'Tomorrow';
+    } else if ($absDiff / DAY <= 7) {
+        return prettyFormat($difference / DAY, 'day');
+    } else if ($absDiff / WEEK <= 5) {
+        return prettyFormat($difference / WEEK, 'week');
+    } else if ($absDiff / MONTH < 12) {
+        return prettyFormat($difference / MONTH, 'month');
+    }
+
+    // Over a year ago
+    return prettyFormat($difference / YEAR, 'year');
+}
+function prettyFormat( $difference, $unit )
+{
+    // $prepend is added to the start of the string if the supplied
+    // difference is greater than 0, and $append if less than
+    $prepend = ($difference < 0) ? 'In ' : '';
+    $append = ($difference > 0) ? ' ago' : '';
+    $difference = floor(abs($difference));
+
+    // If difference is plural, add an 's' to $unit
+    if( $difference > 1 ) {
+        $unit = $unit . 's';
+    }
+
+    return sprintf('%s%d %s%s', $prepend, $difference, $unit, $append);
+}
+*/
+
