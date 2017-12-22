@@ -106,8 +106,8 @@ nav#menu > #nav-trigger {
 }
 nav#hamburger > label[for="nav-trigger"] {
     cursor: pointer;
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
     background: url(../img/hamburger.svg) no-repeat;
     background-size: contain;
 }
@@ -183,15 +183,20 @@ nav#panel .menu-welcome {
     margin: 10px 0;
     margin-bottom: 20px;
 }
-nav#panel .menu-logout,
+
+nav#panel .menu-register {
+    text-align: center;
+    margin-top: 10px;
+}
+
+nav#panel .menu-logout {
+    font-size: 11px;
+    text-align: center;
+    margin-top: 10px;
+}
 nav#panel .menu-logout a {
     color: #a6c938;
     text-decoration: underline;
-    text-align: center;
-    font-size: 11px;
-}
-nav#panel .menu-logout {
-    margin-top: 10px;
 }
 
 nav#panel .icon {
@@ -476,6 +481,24 @@ nav#panel .menu-mentions a:hover {
     100% { transform: rotate(360deg); }
 }
 
+/* //////////////////// buttons ///////////////////// */
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 10px 24px;
+    border-radius: 2px;
+    background-color: #a6c938;
+    color: #fff;
+    text-align: center;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    box-shadow: 0 1px 3px 0 #0003, 0 1px 2px 0 #0000001a;
+}
 
 /* //////////////////// snackbar, notification at bottom ///////////////////// */
 

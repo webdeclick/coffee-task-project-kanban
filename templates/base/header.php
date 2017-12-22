@@ -90,7 +90,7 @@
                     Bonjour <?php echo $user->fullname; ?> !
                 </div>
                 <div class="menu-logout">
-                    <a href="/logout">Déconnexion</a>
+                    <a href="/profile">Profil</a> - <a href="/logout">Déconnexion</a>
                 </div>
             </div>
 
@@ -109,19 +109,26 @@
                 </div>
             </div>
 
-            <div class="menu-projects-list expanded">
-                <?php if(!empty($projects)): foreach($projects as $project): ?>
-                    <div>
-                        - <a href="/dashboard/<?php echo $project['project_id']; ?>"><?php echo $project['title']; ?></a>
-                    </div>
-                <?php endforeach; endif; ?>
-            </div>
+            <?php if(!empty($projects)): ?>
+                <div class="menu-projects-list expanded">
+                    <?php foreach($projects as $project): ?>
+                        <div>
+                            - <a href="/dashboard/<?php echo $project['project_id']; ?>"><?php echo $project['title']; ?></a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
 
 
         <?php else: ?>
 
-            <a href="/login">Login</a>
+            <div class="menu-login">
+                <a href="/login" class="button">Connexion</a>
+            </div>
 
+            <div class="menu-register">
+                <a href="/register">Inscription</a>
+            </div>
 
         <?php endif; ?>
 
