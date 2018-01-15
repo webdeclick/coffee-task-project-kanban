@@ -26,10 +26,6 @@
 
         delegate(categoryList, '.component-project .project-delete', 'click', deleteProjectEvent);
 
-        // new icon+ click
-
-        delegate(categoryList, '.component-project .project-delete', 'click', deleteProjectEvent);
-
         // new form project
 
         categoryFormNew = document.getElementById('form-project-new');
@@ -115,6 +111,10 @@
         var target = event.target;
     
         event.preventDefault(); // button
+
+        var confirmDialog = confirm('Supprimer ce projet ?');
+            
+        if( !confirmDialog ) return;
 
         // find project block
 
