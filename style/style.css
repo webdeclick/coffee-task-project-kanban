@@ -490,6 +490,17 @@ nav#panel .menu-mentions a:hover {
 
 /*//////////////////////////////// PAGE DASHBOARD : CATEGORIES/TASKS LISTS ////////////////////////////////*/
 
+.page-dashboard .page-title {
+    color: #000;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+    font-weight: 300;
+    font-size: 25px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
 
 /* liste des projects */
 
@@ -498,33 +509,12 @@ nav#panel .menu-mentions a:hover {
 }
 .page-dashboard #projects-list.projects-list-loading {
     /*image de chargement*/
-
-
 }
 
 .page-dashboard #projects-list .component-project {
     padding: 10px;
     border: 1px solid black;
 }
-
-/* expiration classes */
-
-.page-dashboard #projects-list .component-project.expire-expired {
-
-}
-.page-dashboard #projects-list .component-project.expire-15days {
-    
-}
-.page-dashboard #projects-list .component-project.expire-10days {
-    
-}
-.page-dashboard #projects-list .component-project.expire-5days {
-    
-}
-.page-dashboard #projects-list .component-project.expire-2days {
-    
-}
-
 
 
 /* liste des categories */
@@ -587,6 +577,24 @@ nav#panel .menu-mentions a:hover {
 
 
 
+}
+
+/* expiration classes */
+
+.page-dashboard #projects-list .component-project.expire-expired {
+
+}
+.page-dashboard #projects-list .component-project.expire-15days {
+    
+}
+.page-dashboard #projects-list .component-project.expire-10days {
+    
+}
+.page-dashboard #projects-list .component-project.expire-5days {
+    
+}
+.page-dashboard #projects-list .component-project.expire-2days {
+    
 }
 
 

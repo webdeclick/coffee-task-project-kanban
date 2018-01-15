@@ -23,7 +23,7 @@
 
         // load projects on top
 
-        populateProjects();
+        //populateProjects();
 
         // load categories and tasks
 

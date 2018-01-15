@@ -3,11 +3,19 @@
 <?php include 'elements/apierror.php'; ?>
 
 
-<div id="projects-list" class="projets-list projets-list-loading">
-
+<!-- <div id="projects-list" class="projets-list projets-list-loading">
     Chargement des projets...
+</div> -->
 
-</div>
+
+<h2 class="page-title">
+    <div>Projet : <?php echo $dashboard->title; ?></div>
+    
+    <?php if($project_admin): ?>
+        <div class="project-admin">Administrateur : <?php echo $project_admin->fullname; ?></div>
+    <?php endif; ?>
+</h2>
+
 
 <div id="dashboard-search-block">
 
