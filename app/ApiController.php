@@ -115,7 +115,7 @@ class ApiController extends AbstractController {
 
         $pTitle = $request->input('title', '');
         $pDescription = $request->input('description', '');
-
+	
         $pUsers = $request->input('users', '');
         $pUsers = preg_split("/\\r\\n|\\r|\\n/", $pUsers);
 

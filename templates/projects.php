@@ -17,9 +17,9 @@
 
 <div id="form-project-new" class="component-project component-project-new">
 
-    <h2>Créer un nouvea</h2>
+    <h2>Créer un nouveau</h2>
 
-    <form id="project-new-form" method="post" action="">
+    <form id="project-new-form" method="POST" action="">
 
         titre :
         <input id="project-new-title" name="title" type="text">
@@ -39,6 +39,8 @@
     </form>
 
 </div>
+
+
 
 
 
