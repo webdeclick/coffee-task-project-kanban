@@ -115,10 +115,9 @@
     }
 
     function deleteProjectEvent( event ) {
+        event.preventDefault(); // button
 
         var target = event.target;
-    
-        event.preventDefault(); // button
 
         var confirmDialog = confirm('Supprimer ce projet ?');
             

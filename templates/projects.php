@@ -55,18 +55,17 @@
 
         <form id="form-project-new" method="post" action="">
 
-            titre :
-            <input id="project-new-title" name="title" type="text">
+            <div class="project-create-title">
+                Créer un projet :
+            </div>
 
-            desc :
-            <textarea id="project-new-description" name="description"></textarea>
+            <input placeholder="Titre" id="project-new-title" name="title" type="text">
 
-            users : un email par ligne
-            <textarea id="project-new-users" name="users"></textarea>
+            <textarea placeholder="Description" id="project-new-description" name="description"></textarea>
 
-            modérateur : (email)
-            <input id="project-new-manager" name="manager" type="text">
+            <textarea placeholder="Liste d'utilisateurs (emails)" id="project-new-users" name="users"></textarea>
 
+            <input placeholder="Modérateur (email)" id="project-new-manager" name="manager" type="text">
 
             <button type="submit" class="project-create">Créer</button>
 

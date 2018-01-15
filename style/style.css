@@ -314,6 +314,9 @@ nav#panel .menu-mentions a:hover {
 .page-projects .component-project-new {
     min-height: 150px;
 }
+.page-projects .component-project-new {
+    padding: 10px;
+}
 
 .page-projects #form-project-new,
 .page-projects #form-project-new[data-state="view"] {
@@ -321,6 +324,7 @@ nav#panel .menu-mentions a:hover {
 }
 .page-projects #form-project-new[data-state="form"] {
     display: block;
+    background: #fff;/*hide image, todo*/
 }
 
 /* block projet nouveau */
@@ -343,17 +347,21 @@ nav#panel .menu-mentions a:hover {
 .page-projects .project-description {
     color: #a09797;
     font-size: 12px;
-    padding: 5px;
+    padding: 10px;
 }
 .page-projects .project-title {
     color: #fff;
     font-size: 18px;
-    padding: 10px 5px;
+    padding: 10px;
     font-weight: 600;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .page-projects .project-dropdown {
     color: #515150;
-    padding: 10px 5px;
+    padding: 10px;
     font-size: 16px;
     margin-top: auto;/*flex*/
 
@@ -365,7 +373,6 @@ nav#panel .menu-mentions a:hover {
     position: absolute;
     width: 100%;
     top: 105%;
-    padding: 5px;
     border: 1px solid #C7C7C7;
     background: #fff;
     box-shadow: 0 3px 0 0 #42424233;
@@ -388,7 +395,7 @@ nav#panel .menu-mentions a:hover {
 
 .page-projects .project-action {
     color: #515150;
-    padding: 5px;
+    padding: 10px;
     font-size: 13px;
 }
 .page-projects .project-action-title {
@@ -412,6 +419,38 @@ nav#panel .menu-mentions a:hover {
 .page-projects .component-project:hover .project-delete {
     display: flex;
 }
+
+
+.page-projects .project-create {
+    width: 100%;
+    border: 0;
+    padding: 10px 15px;
+    color: #fff;
+    background-color: #33b5e5;
+}
+.page-projects .project-create-title {
+    margin: 0 0 20px;
+    color: #33b5e5;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #33b5e5;
+    font-size: 16px;
+}
+.page-projects #form-project-new input,
+.page-projects #form-project-new textarea {
+    outline: none;
+    display: block;
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    margin: 5px 0;
+    padding: 10px 15px;
+    font-size: 15px;
+}
+.page-projects #form-project-new input:focus,
+.page-projects #form-project-new textarea:focus {
+    border: 1px solid #33b5e5;
+    color: #333;
+}
+
 
 
 

@@ -6,6 +6,8 @@ Simple Tasks manager project.
 
 todo: seek all todos
 
+tempalte projects : flex with heighton create project
+
 slim MethodNotAllowedException() default array
 
 db : set updated_at quand un update
