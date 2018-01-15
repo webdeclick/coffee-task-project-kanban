@@ -15,30 +15,33 @@
 
 
 
-<div id="form-project-new" class="component-project component-project-new">
-
-    <h2>Créer un nouvea</h2>
-
-    <form id="project-new-form" method="post" action="">
-
-        titre :
-        <input id="project-new-title" name="title" type="text">
-
-        desc :
-        <textarea id="project-new-description" name="description"></textarea>
-
-        users : un email par ligne
-        <textarea id="project-new-users" name="users"></textarea>
-
-        modérateur : (email)
-        <input id="project-new-manager" name="manager" type="text">
 
 
-        <button type="submit" class="project-create">Créer</button>
 
-    </form>
 
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -49,6 +52,25 @@
 
     <div id="project-new" class="component-project component-project-new">
 
+        <form id="form-project-new" method="post" action="">
+
+            titre :
+            <input id="project-new-title" name="title" type="text">
+
+            desc :
+            <textarea id="project-new-description" name="description"></textarea>
+
+            users : un email par ligne
+            <textarea id="project-new-users" name="users"></textarea>
+
+            modérateur : (email)
+            <input id="project-new-manager" name="manager" type="text">
+
+
+            <button type="submit" class="project-create">Créer</button>
+
+        </form>
+
     </div>
 
 </script>
@@ -58,45 +80,59 @@
 
     <div id="project-{{ id }}" class="component-project" data-id="{{ id }}">
 
-        {{ &title }}
+        <a href="/dashboard/{{ id }}" class="project-header">
+            <div class="project-title">{{ &title }}</div>
+        </a>
 
-        <br><br>
-
-        {{ &description }}
-
-        <br><br>
-
-
-        {{ ?user_admin }}
-            Administrateur : {{ user_admin.fullname }} <br>
-        {{ / }}
-
-
-        {{ ?user_manager }}
-            Modérateur : {{ user_manager.fullname }}  <br>
-        {{ / }}
-
-
-        Utilisateurs :
-
-        {{ #users : user }}
-
-            <div id="project-{{ id }}-user-{{ user.id }}" data-id="{{ user.id }}">
-                {{ user.fullname }}
+        {{ ?description }}
+            <div class="project-description">
+                {{ &description }}
             </div>
-
         {{ / }}
+        
+        <label class="project-dropdown expander" for="check-project{{ id }}">PROJET</label>
 
+        <input class="check-expanded" id="check-project{{ id }}" type="checkbox" />
+        <div class="project-status expanded">
+            <div class="connector"></div>
+
+            {{ ?user_admin }}
+                <div class="project-action">
+                    <div class="project-action-title">Administrateur :</div>
+                    - {{ user_admin.fullname }}
+                </div>
+            {{ / }}
+
+            {{ ?user_manager }}
+                <div class="project-action">
+                    <div class="project-action-title">Modérateur :</div>
+                    - {{ user_manager.fullname }}
+                </div>
+            {{ / }}
+
+
+            {{ ?users }}
+                <div class="project-action">
+                    <div class="project-action-title">Utilisateurs :</div>
+                    {{ #users : user }}
+
+                        <div id="project-{{ id }}-user-{{ user.id }}" data-id="{{ user.id }}">
+                            - {{ user.fullname }}
+                        </div>
+
+                    {{ / }}
+                </div>
+            {{ / }}
+
+            {{ ?xisPermissionAdmin }}
+                <div class="project-action">Admin: <a href="/photos-folder/{{ id }}">Voir les photos</a></div>
+            {{ / }}
+
+        </div>
 
         {{ ?xisPermissionAdmin }}
-            <button class="project-delete">Supprimer</button>
+            <a class="project-delete">&times;</a>
         {{ / }}
-
-        
-        <a href="/photos-folder/{{ id }}">Voir les photos</a>
-
-        <a href="/dashboard/{{ id }}">Aller à la liste des taches</a>
-
     </div>
 
 </script>

@@ -155,9 +155,6 @@
                     else if( days_expire <= 15 ) {
                         expire_class = '15days';
                     }
-                    
-                    
-                    
 
                     if( expire_class ) {
                         expire_class = 'expire-' + expire_class;

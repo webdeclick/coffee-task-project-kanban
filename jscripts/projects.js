@@ -26,13 +26,13 @@
 
         delegate(categoryList, '.component-project .project-delete', 'click', deleteProjectEvent);
 
-        // new form project
+        // new form element
 
-        categoryFormNew = document.getElementById('form-project-new');
+        delegate(categoryList, '.component-project-new', 'click', function( event ){
+            event.preventDefault();
 
-        categoryFormNew.addEventListener('submit', addProjectEvent);
-
-
+            toggleState(categoryFormNew, 'form', 'view');
+        });
     }
 
 
@@ -58,6 +58,12 @@
             // add the create new template
 
             appendTemplate('project-new', categoryList, project);
+
+            // add events, new form project
+
+            categoryFormNew = document.getElementById('form-project-new');
+
+            categoryFormNew.addEventListener('submit', addProjectEvent);
         };
 
         var errorHandler = function( status, exception ) {
@@ -90,8 +96,10 @@
         // call ajax create
     
         var successHandler = function( response ) {
-            // repopulate projets list
+            // set new visible
+            toggleState(categoryFormNew, 'form', 'view');
 
+            // repopulate projets list
             populateProjectsList();
         };
     

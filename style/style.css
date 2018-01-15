@@ -71,6 +71,27 @@ a {
 
 
 
+/* ///////// */
+
+.check-expanded,
+.expanded {
+    display: none;
+}
+.expander {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    width: 100%;
+    display: block;
+}
+.check-expanded:checked ~ .expanded {
+    display: block;
+}
+
+
 
 
 /*//////////////////////////////// MENU HEADER ////////////////////////////////*/
@@ -129,7 +150,7 @@ nav#hamburger > div { /*quick fix todo*/
 
 /*trigger*/
 nav#menu > #nav-trigger:checked ~ nav#panel {
-    width: 200px;
+    width: 250px;
 }
 nav#menu > #nav-trigger:checked ~ nav#hamburger > label[for="nav-trigger"] {
     transform: rotate(90deg);
@@ -162,16 +183,6 @@ nav#panel #panel-inner {/*quick fix todo*/
     display: flex;
     flex-direction: column;
     height: 100%;
-}
-
-
-
-nav#panel .check-expanded,
-nav#panel .expanded {
-    display: none;
-}
-nav#panel .check-expanded:checked ~ .expanded {
-    display: block;
 }
 
 nav#panel .menu-avatar {
@@ -291,7 +302,25 @@ nav#panel .menu-mentions a:hover {
 .page-projects .component-project {
     width: 250px;
     background: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3)
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    margin-right: 35px;
+    margin-bottom: 35px;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+}
+.page-projects .component-project,
+.page-projects .component-project-new {
+    min-height: 150px;
+}
+
+.page-projects #form-project-new,
+.page-projects #form-project-new[data-state="view"] {
+    display: none;
+}
+.page-projects #form-project-new[data-state="form"] {
+    display: block;
 }
 
 /* block projet nouveau */
@@ -302,6 +331,88 @@ nav#panel .menu-mentions a:hover {
 
     background: url(../img/icon-plus.png) no-repeat center center;
 }
+
+
+.page-projects .project-header {
+    background: #94d4ee url(../img/project-bg-1.png) no-repeat right center;
+    background-size: contain;
+    height: 100px;
+    display: flex;
+    align-items: end;
+}
+.page-projects .project-description {
+    color: #a09797;
+    font-size: 12px;
+    padding: 5px;
+}
+.page-projects .project-title {
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 5px;
+    font-weight: 600;
+}
+.page-projects .project-dropdown {
+    color: #515150;
+    padding: 10px 5px;
+    font-size: 16px;
+    margin-top: auto;/*flex*/
+
+    border-top: 1px solid #0000001a;
+    background: url(../img/arrow-drop.png) no-repeat 95% center;
+}
+
+.page-projects .project-status {
+    position: absolute;
+    width: 100%;
+    top: 105%;
+    padding: 5px;
+    border: 1px solid #C7C7C7;
+    background: #fff;
+    box-shadow: 0 3px 0 0 #42424233;
+    z-index: 2;
+}
+.page-projects .project-status .connector {
+    width: 10px;
+    height: 10px;
+    margin: 0;
+    border-style: solid;
+    border-width: 1px 0 0 1px;
+    border-color: #C7C7C7 transparent transparent #C7C7C7;
+    background: inherit;
+    position: absolute;
+
+    top: -6px;
+    left: 16px;
+    transform: rotate(45deg);
+}
+
+.page-projects .project-action {
+    color: #515150;
+    padding: 5px;
+    font-size: 13px;
+}
+.page-projects .project-action-title {
+    font-size: 16px;
+}
+.page-projects .project-delete {
+    background-color: #f44336;
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.page-projects .component-project:hover .project-delete {
+    display: flex;
+}
+
 
 
 /*//////////////////////////////// PAGE PHOTOS FOLDER ////////////////////////////////*/
@@ -841,7 +952,6 @@ nav#panel .menu-mentions a:hover {
     background: #FFF;
     outline: none;
     font-size: 14px;
-    -webkit-box-shadow: 0 3px 0 0 #42424233;
     box-shadow: 0 3px 0 0 #42424233;
     padding: 15px 15px 20px;
 

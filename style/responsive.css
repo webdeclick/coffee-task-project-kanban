@@ -1,6 +1,10 @@
 
 @media screen and (max-width: 768px) {
 
+    /*trigger*/
+    nav#menu > #nav-trigger:checked ~ nav#panel {
+        width: 100%;
+    }
 
     .page-dashboard #categories-list {
         flex-direction: column;
