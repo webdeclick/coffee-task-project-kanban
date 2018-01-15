@@ -44,6 +44,8 @@ class DashboardController extends AbstractController {
             return redirect('/projects?cannotaccess=1');
         }
 
+        $this->project = $project;
+
         // check user manager / admin
 
         $this->is_admin = ( $userId == $project->linked_admin );
