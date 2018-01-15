@@ -6,6 +6,7 @@ use Slim\Http\Interfaces\RequestInterface as Request;
 use Slim\Http\Interfaces\ResponseInterface as Response;
 
 use App\Models\ProjectsModel;
+use App\Models\UserModel;
 
 
 /**
@@ -44,7 +45,11 @@ class DashboardController extends AbstractController {
             return redirect('/projects?cannotaccess=1');
         }
 
-        $this->project = $project;
+        // add vars
+
+       $this->dashboard = $project;
+
+        $this->project_admin = UserModel::find($project->linked_admin);
 
         // check user manager / admin
 
