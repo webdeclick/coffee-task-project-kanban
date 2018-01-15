@@ -48,6 +48,7 @@
 
 
 
+
 <script id="template-project-new" class="component-template" type="text/template">
 
     <div id="project-new" class="component-project component-project-new">

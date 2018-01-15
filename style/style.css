@@ -990,3 +990,35 @@ nav#panel .menu-mentions a:hover {
 .rd-time-list {
     z-index: 9;
 }
+
+
+/* CSS login */
+
+.btn_login{
+	background-color: #89C13E;
+	border: solid 0px;
+	color:white;
+    padding: 10px;
+	/*width: 100%;*/
+}
+
+.label_input{
+	color:white;
+	
+}
+
+hr{
+	color:white;
+	border: solid 1px;
+    margin-bottom: 27px;
+}
+
+.h1_login{
+	color: white;
+	margin-bottom: 2px;
+	font-family: 'Open Sans Light', sans-serif;
+}
+
+/*body{
+	background-color: black;  /***** Juste pour voir ****
+}*/

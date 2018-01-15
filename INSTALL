@@ -1,9 +1,11 @@
 
-git clone --recursive https://github.com/rivetchip/coffee-task-project-kanban.git www
+git clone --recursive https://github.com/rivetchip/coffee-task-project-kanban.git
 
-cd www
+cd coffee-task-project-kanban
 
 git checkout develop
+
+git submodule init
 
 git submodule update
 
