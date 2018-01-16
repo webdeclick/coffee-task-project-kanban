@@ -148,6 +148,14 @@ class ProjectsModel extends AbstractModel {
                 $result['xisPermissionAdmin'] = $isPermissionAdmin;
                 $result['xisPermissionManager'] = $isPermissionManager;
 
+                // add tasks count :
+
+                list($tasksSelf, $tasksTotal) = TasksModel::getStatsSelf($userId, $project_id);
+
+                $result['tasks_self'] = $tasksSelf;
+                $result['tasks_total'] = $tasksTotal;
+
+
                 $projects[$project_id] = $result;
             }
         }

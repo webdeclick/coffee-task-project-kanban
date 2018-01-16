@@ -4,6 +4,34 @@
 <?php include 'elements/errors.php'; ?>
 
 
+
+<?php
+
+foreach($projects as $project):
+
+    // est admin :
+    if $project['xisPermissionAdmin']
+
+    // est modo :
+    if $project['xisPermissionManager']
+
+    // nb taches perso :
+    $project 'tasks_self'
+
+    // nb taches total :
+    $project 'tasks_total'
+
+    
+endforeach;
+
+
+?>
+
+
+
+
+
+
 <form action="/profile/update" method="post" enctype="multipart/form-data">>
 
     <label>fullname</label>

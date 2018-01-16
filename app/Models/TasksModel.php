@@ -143,6 +143,46 @@ class TasksModel extends AbstractModel {
         return $result;
     }
 
+    /**
+     * Get simple stats from user
+     *
+     * @param int $projectId
+     * @param int $userId
+     * @return array
+     */
+    public static function getStatsSelf( $projectId, $userId )
+    {
+        $dbh = DatabaseFactory();
+
+        $tasksSelf = $tasksTotal = 0;
+
+        $tasksSelf = $dbh->single('
+            SELECT count(t.id) as tasks_self
+            FROM @tasks t
+            WHERE
+                t.project_id = :projectId
+                AND t.assigned_to = :userId
+                AND t.is_completed = "0"
+                AND t.is_deleted = "0"
+        ', [
+            'projectId' => $projectId,
+            'userId' => $userId
+        ]);
+
+        $tasksTotal = $dbh->single('
+            SELECT count(t.id) as tasks_self
+            FROM @tasks t
+            WHERE
+                t.project_id = :projectId
+                AND t.is_completed = "0"
+                AND t.is_deleted = "0"
+        ', [
+            'projectId' => $projectId
+        ]);
+
+        return [$tasksSelf, $tasksTotal];
+    }
+
 
 
 
