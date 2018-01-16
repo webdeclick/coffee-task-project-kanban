@@ -222,6 +222,13 @@
             }
         });
 
+        document.body.addEventListener('click', function( event ){ // close on outside
+            var popover = categoryCreateBlock.querySelector('#category-popover-new');
+            if( popover ) {
+                popover.classList.remove('is-visible');
+            }
+        }, true)
+
         delegate(categoryCreateBlock, '.button-category-create', 'click', function( event ){
             event.preventDefault();
             
@@ -325,7 +332,7 @@
 
 
             var confirmDialog = confirm('Supprimer cette catégorie ?');
-            
+
             if( confirmDialog ) {
 
                 var successHandler = function( response ) {
