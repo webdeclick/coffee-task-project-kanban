@@ -1222,3 +1222,23 @@ hr{
 /*body{
 	background-color: black;  /***** Juste pour voir ****
 }*/
+
+.wrapper {
+    max-width: 70em;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between
+  }
+
+.profil_picture  img{
+      width: 100%;
+      height: auto;
+  }
+
+  .wrapper > div {
+    box-sizing: border-box;
+    margin: 0.2em;
+    flex: 1 1 20em;
+  }
