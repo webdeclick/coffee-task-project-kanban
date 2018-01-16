@@ -260,18 +260,13 @@
                 <label class="task-dropdown expander" for="check-task{{ id }}">détails</label>
             </div>
 
-            
-
-
-
-            {{ ?xisPermissionSeeAll }}
+            <!-- {{ ?xisPermissionSeeAll }}
                 ADMIN VOIT TOUT
 
                 {{ ?avatar_url }}
                     utilisateur : <img src="{{ avatar_url }}" />
                 {{/}}
-            {{/}}
-
+            {{/}} -->
         
         </div><!--inner-->
     

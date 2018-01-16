@@ -37,9 +37,11 @@ html, body {
 body {
     font-family: 'Open Sans', sans-serif;
 
-    text-shadow: 0 0 1px rgba(0,0,0, 0.3); /*fake-smoothing*/
+    /* text-shadow: 0 0 1px rgba(0,0,0, 0.3); fake-smoothing */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    background-color: #eaeaea;
 }
 
 *,
@@ -504,6 +506,11 @@ nav#panel .menu-mentions a:hover {
     font-size: 13px;
 }
 
+.page-dashboard .dashboard-search-dropdown {
+    font-size: 14px;
+}
+
+
 /* liste des projects */
 
 .page-dashboard #projects-list {
@@ -536,39 +543,29 @@ nav#panel .menu-mentions a:hover {
 
 /* liste d'un catégorie ( colonne ) */
 
-.page-dashboard #categories-list .component-category  {
+.page-dashboard .component-category  {
     width: 100%;
     margin: 10px;
 }
 
-/* color des catégories */
-
-.page-dashboard #categories-list .component-category.category-color-1  {
-    background: yellow;
-}
-.page-dashboard #categories-list .component-category.category-color-2  {
-    background: green;
-}
-
 /* container de la liste des tâche d'une catégorie */
-.page-dashboard #categories-list .category-tasks-container {
+.page-dashboard .category-tasks-container {
 
 }
 
-.page-dashboard #categories-list .category-tasks-container.category-loading {
+.page-dashboard .category-tasks-container.category-loading {
     /*image de chargement*/
-
-    
 }
 
 
 
 /* task indépendante */
 
-.page-dashboard #categories-list .component-category .component-task {
+.page-dashboard .component-task {
     padding: 10px;
     box-shadow: 0 0 3px rgba(0,0,0,0.3);
     margin-bottom: 15px;
+    background-color: #fff;
 }
 
 .page-dashboard .task-title {
@@ -578,7 +575,7 @@ nav#panel .menu-mentions a:hover {
 }
 .page-dashboard .task-description {
     color: #7d7d7d;
-    font-size: 13px;
+    font-size: 14px;
     margin: 5px 0;
 }
 
@@ -593,13 +590,15 @@ nav#panel .menu-mentions a:hover {
     justify-content: space-between;
 }
 .page-dashboard .task-dropdown {
-    color: #cbcbcb;
+    color: #7d7d7d;
     font-size: 14px;
     background: url(../img/arrow-drop.png) no-repeat 100% center;
     padding-right: 25px;
     width: auto;
 }
-
+.page-dashboard .check-expanded:checked ~ .task-footer .task-dropdown {
+    background-image: url(../img/arrow-drop2.png);
+}
 
 
 .page-dashboard .task-separator {
@@ -622,7 +621,7 @@ nav#panel .menu-mentions a:hover {
 
 
 .page-dashboard .task-details {
-    color: #a7a6a6;
+    color: #7d7d7d;
     font-size: 13px;
     font-style: italic;
 }
@@ -630,11 +629,18 @@ nav#panel .menu-mentions a:hover {
 .page-dashboard .task-details-block {
     display: flex;
     justify-content: space-between;
+    padding: 10px 0;
 }
 
 .page-dashboard .task-actions {
     display: flex;
+    justify-content: flex-end;
+    width: 50px;
 }
+.page-dashboard .task-actions .button-task-delete {
+    margin-left: 8px;
+}
+
 
 .page-dashboard .button-task-delete,
 .page-dashboard .button-task-complete {
