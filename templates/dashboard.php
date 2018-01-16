@@ -72,46 +72,43 @@
 
 
 
-<div id="modal-popup" class="cd-popup" role="alert">
+<div id="modal-popup" class="modal-task-create cd-popup" role="alert">
 
 	<div class="cd-popup-container">
 
         <form method="post" class="newtask-form" enctype="multipart/form-data">
 
             <div class="cd-popup-header">
-                <div>
-                    Créer une nouvelle tâche
-                </div>
-                <div>
-                    <a href="#" class="cd-popup-close">Close</a>
-                </div>
+                <a href="#" class="cd-popup-close">Close</a>
             </div>
 
-            <div class="cd-popup-content">
+            <div class="form-task-create task-create-form cd-popup-content">
 
-                Titre :
+                <div class="task-create-title">
+                    Créer une nouvelle tâche
+                </div>
 
-                <input name="title" placeholder="Titre" type="text" class="newtask-field-title">
+                <input placeholder="Titre" name="title" placeholder="Titre" type="text" class="newtask-field-title">
 
-                description :
+                <textarea placeholder="Description" name="description" class="newtask-field-description"></textarea>
 
-                <textarea name="description" class="newtask-field-description"></textarea>
+                <input class="check-expanded" id="newtask-showhide-datetimepicker" name="datetimepicker" type="checkbox" />
+                <label class="task-create-label-button" for="newtask-showhide-datetimepicker">Date de fin ?</label>
+                <div class="expanded">
+                    <div class="connector"></div>
+                    <div class="module-datetimepicker-container"></div>
+                    <input name="end-at" type="hidden" class="module-datetimepicker newtask-field-end-at">
+                </div>
 
-                <label for="newtask-showhide-datetimepicker">Date de fin ?</label>
-                <input type="checkbox" name="datetimepicker" id="newtask-showhide-datetimepicker">
-
-                <div class="module-datetimepicker-container"></div>
-                <input name="end-at" type="hidden" class="module-datetimepicker newtask-field-end-at">
-
-                Assigner à : 
+                <label class="task-create-label-button">Assigner à :</label>
 
                 <div class="select newtask-field-assigned-to" tabindex="1">
                     <input class="selectopt" name="people" type="radio" id="newtask-people-0" value="0" checked>
                     <label for="newtask-people-0" class="option">Moi</label>
                     <!-- +peoples -->
                 </div>
-
-                Ajouter des images ( attent de validation par admin )
+            
+                <label class="task-create-label-button">Ajouter des images :</label>
 
                 <input name="files" id="newtask-field-files" type="file" accept="image/*" multiple>
 
@@ -133,6 +130,7 @@
 </div> <!-- screen -->
 
 
+
 <script id="template-category" class="component-template" type="text/template">
 
     <div id="category-{{ id }}" class="component-category category-color-{{ color }}" data-id="{{ id }}">
@@ -150,9 +148,6 @@
                 </div>
             </div>
         </div>
-
-
-
 
         <div id="category-popover-{{ id }}" class="component-category-popover ha-popover">
             <div class="connector"></div>
@@ -264,10 +259,6 @@
     <label for="newtask-people-{{ id }}" class="option">{{ &fullname }}</label>
 
 </script>
-
-
-
-
 
 
 

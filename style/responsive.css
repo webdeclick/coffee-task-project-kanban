@@ -30,7 +30,10 @@
         margin-bottom: 10px;
     }
     .page-dashboard .component-category-popover {
-        top: 175px;
+        top: 195px;
+    }
+    .page-dashboard .category-menu-panel {
+        right: 0;
     }
 
     .page-dashboard #categories-list {
