@@ -137,7 +137,7 @@
 
         <div class="category-header">
             <div class="category-icon"></div>
-            <div class="category-title category-field-title">{{ &title }}</div>
+            <div class="category-title">{{ &title }}</div>
 
             <div class="category-dropdown dropdown" tabindex="1">
                 <!-- <input class="dropdown-check" id="check-dropdown{{ id }}" type="checkbox"> -->

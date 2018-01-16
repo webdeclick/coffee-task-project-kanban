@@ -296,6 +296,7 @@
             var target = event.target;
 
             var categoryId = target.getAttribute('data-category');
+            var category = categoriesList.querySelector('#category-'+categoryId);
 
             // hide popover :
 
@@ -311,6 +312,12 @@
 
                 if( popover ) {
                     popover.classList.remove('is-visible');
+                }
+
+                var categoryTitle = category.querySelector('.category-title');
+
+                if( categoryTitle && data.title ) {
+                    categoryTitle.innerText = data.title;
                 }
             };
 
