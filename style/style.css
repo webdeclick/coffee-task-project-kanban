@@ -44,11 +44,10 @@ body {
     background-color: #eaeaea;
 }
 
-.page-login{
+body.body-login{
 	background-color: black;
 }
-
-.page-register{
+body.body-register{
 	background-color: black;
 }
 
