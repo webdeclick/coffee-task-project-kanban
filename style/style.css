@@ -459,36 +459,82 @@ nav#panel .menu-mentions a:hover {
 }
 
 
-
-
 /*//////////////////////////////// PAGE PHOTOS FOLDER ////////////////////////////////*/
 
-.page-photos-folder {
-    
-}
 .page-photos-folder #photos-list.photos-list-loading {
     /*image de chargement*/
-
-
 }
 
 .page-photos-folder .component-folder {
-
+    padding: 10px;
+    box-shadow: 0 0 3px #0000004d;
+    margin-bottom: 15px;
+    background-color: #fff;
 }
+.page-photos-folder .folder-title {
+    font-size: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #cacaca;
+}
+.page-photos-folder .folder-description {
+    color: #7d7d7d;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.page-photos-folder .photos-container {
+    display: flex;
+}
+
+.page-photos-folder .component-photo {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.page-photos-folder .photo-panel {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    justify-content: space-around;
+    align-items: center;
+}
+.page-photos-folder .component-photo:hover .photo-panel {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+.page-photos-folder .photo-action {
+    border: 0;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.page-photos-folder .photo-action[data-state="validate"] {
+    background-image: url(../img/task-complete.png);
+    height: 17px;
+    width: 28px;
+}
+.page-photos-folder .photo-action[data-state="delete"] {
+    background-image: url(../img/task-delete.png);
+    height: 14px;
+    width: 14px;
+}
+
+
 .page-photos-folder .component-folder.component-folder-loading {
     /*image de chargement*/
 
 
 }
-
-/* folder (task) */
-.page-photos-folder .component-folder {
-    border: 1px solid black;
-
-}
-
-
-
 
 
 
@@ -722,6 +768,8 @@ nav#panel .menu-mentions a:hover {
 }
 .page-dashboard .task-photo {
     margin: 5px;
+    overflow: hidden;
+    border-radius: 5px;
 }
 
 .page-dashboard .task-details-block {
