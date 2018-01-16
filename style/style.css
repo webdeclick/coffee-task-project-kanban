@@ -295,8 +295,6 @@ nav#panel .menu-mentions a:hover {
 }
 .page-projects #projects-list.projects-list-loading {
     /*image de chargement*/
-
-
 }
 
 /* block projet */
@@ -335,7 +333,7 @@ nav#panel .menu-mentions a:hover {
     display: flex;
     cursor: pointer;
 
-    background: url(../img/icon-plus.png) no-repeat center center;
+    background: #fff url(../img/icon-plus.png) no-repeat center center;
 }
 
 
@@ -501,15 +499,23 @@ nav#panel .menu-mentions a:hover {
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .page-dashboard .page-title .project-admin {
     font-size: 13px;
+    margin-right: 50px;
+}
+
+.page-dashboard .page-title-onside {
+    display: flex;
+    align-items: center;
 }
 
 .page-dashboard .dashboard-search-dropdown {
     font-size: 14px;
+    width: 200px;
+    /* box-shadow: 0 0 3px rgba(0,0,0,0.3); */
 }
-
 
 /* liste des categories */
 
@@ -531,14 +537,48 @@ nav#panel .menu-mentions a:hover {
     margin: 10px;
 }
 
-/* container de la liste des tâche d'une catégorie */
-.page-dashboard .category-tasks-container {
+.page-dashboard .category-header {
+    background-color: #41aeed;
+    color: #fff;
+    font-size: 16px;
+    padding: 6px;
+    margin-bottom: 15px;
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.page-dashboard .category-tasks-container.category-loading {
-    /*image de chargement*/
+.page-dashboard .category-dropdown .category-menu-item {
+    display: flex;
+    align-items: center;
+    border: 0;
+    padding: 0 30px 0 10px;
+    min-height: 40px;
+    background-color: #fff;
+    width: 100%;
+    font-size: 14px;
+    line-height: 14px;
+    color: #000;
+    cursor: pointer;
 }
+.page-dashboard .category-dropdown .category-menu-item:hover {
+    background-color: #4ebbf0;
+    color: #fff;
+}
+
+.page-dashboard .category-menu {
+    background: url(../img/category-menu.png) no-repeat center center;
+    /* height: 16px;
+    width: 5px; */
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.page-dashboard .category-menu-panel {
+    box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+
 
 
 
@@ -562,12 +602,6 @@ nav#panel .menu-mentions a:hover {
     margin: 5px 0;
 }
 
-
-
-.page-dashboard .task-content {
-
-}
-
 .page-dashboard .task-footer {
     display: flex;
     justify-content: space-between;
@@ -583,13 +617,11 @@ nav#panel .menu-mentions a:hover {
     background-image: url(../img/arrow-drop2.png);
 }
 
-
 .page-dashboard .task-separator {
     height: 1px;
     width: 100%;
     background-color: #cacaca;
 }
-
 
 .page-dashboard .task-photos {
     display: flex;
@@ -601,18 +633,15 @@ nav#panel .menu-mentions a:hover {
     margin: 5px;
 }
 
-
-
-.page-dashboard .task-details {
-    color: #7d7d7d;
-    font-size: 13px;
-    font-style: italic;
-}
-
 .page-dashboard .task-details-block {
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
+}
+.page-dashboard .task-details {
+    color: #7d7d7d;
+    font-size: 13px;
+    font-style: italic;
 }
 
 .page-dashboard .task-actions {
@@ -623,7 +652,6 @@ nav#panel .menu-mentions a:hover {
 .page-dashboard .task-actions .button-task-delete {
     margin-left: 8px;
 }
-
 
 .page-dashboard .button-task-delete,
 .page-dashboard .button-task-complete {
@@ -648,10 +676,6 @@ nav#panel .menu-mentions a:hover {
 
 .page-dashboard #categories-list .component-category .component-task[data-state="edit"] {
     border-color: yellow;
-
-
-
-
 }
 
 /* expiration classes */
@@ -676,6 +700,12 @@ nav#panel .menu-mentions a:hover {
 }
 .page-dashboard .task-inner.expire-2days {
     border-left-color: #db484f;
+}
+
+/* new button create */
+
+.page-dashboard .button-task-create-oncategory {
+
 }
 
 
@@ -815,6 +845,48 @@ nav#panel .menu-mentions a:hover {
 @keyframes api-error-zoomIn {
     from { opacity: 0; transform: scale3d(.3, .3, .3); }
     50% { opacity: 1; }
+}
+
+
+
+
+/* //////////////////// dropdown ///////////////////// */
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.dropdown .dropdown-check {
+    display: none;
+}
+/* .dropdown .dropdown-check:checked ~ .dropdown-menu {
+    display: block;
+} */
+.dropdown:focus .dropdown-menu {
+    display: block;
+}
+
+.dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* width: 100%; */
+    z-index: 1;
+}
+.dropdown .dropdown-menu .option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    min-height: 40px;
+    white-space: nowrap;
+    background: #fff;
+    padding: 0 30px 0 10px;
 }
 
 

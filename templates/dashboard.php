@@ -3,39 +3,36 @@
 <?php include 'elements/apierror.php'; ?>
 
 
-<!-- <div id="projects-list" class="projets-list projets-list-loading">
-    Chargement des projets...
-</div> -->
 
 <h2 class="page-title">
     <div>Projet : <?php echo $dashboard->title; ?></div>
     
-    <?php if($project_admin): ?>
-        <div class="project-admin">Administrateur : <?php echo $project_admin->fullname; ?></div>
-    <?php endif; ?>
+    <div class="page-title-onside">
+        <?php if($project_admin): ?>
+            <div class="project-admin">Administrateur : <?php echo $project_admin->fullname; ?></div>
+        <?php endif; ?>
+
+        <!-- <input name="keyword" placeholder="Keyword" type="text" class="dashboard-search-field">
+        <button class="dashboard-search button">Recherche</button>  -->
+        <div id="dashboard-search-dropdown" class="select dashboard-search-dropdown" tabindex="1">
+            <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-none" value="0" checked>
+            <label for="dashboard-search-dropdown-none" class="option">Sans filtre</label>
+
+            <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-archive" value="archive">
+            <label for="dashboard-search-dropdown-archive" class="option">Complétés</label>
+
+            <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-olddate" value="olddate">
+            <label for="dashboard-search-dropdown-olddate" class="option">Date passée</label>
+
+            <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-delete" value="delete">
+            <label for="dashboard-search-dropdown-delete" class="option">Supprimés</label>
+        </div>
+
+    </div>
 </h2>
 
 
-<div id="dashboard-search-block">
 
-    <!-- <input name="keyword" placeholder="Keyword" type="text" class="dashboard-search-field">
-    <button class="dashboard-search button">Recherche</button>  -->
-
-    <div class="select dashboard-search-dropdown" tabindex="1">
-        <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-none" value="0" checked>
-        <label for="dashboard-search-dropdown-none" class="option">Sans filtre</label>
-
-        <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-archive" value="archive">
-        <label for="dashboard-search-dropdown-archive" class="option">Complétés</label>
-
-        <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-olddate" value="olddate">
-        <label for="dashboard-search-dropdown-olddate" class="option">Date passée</label>
-
-        <input class="selectopt" name="filter" type="radio" id="dashboard-search-dropdown-delete" value="delete">
-        <label for="dashboard-search-dropdown-delete" class="option">Supprimés</label>
-    </div>
-
-</div>
 
 
 
@@ -68,11 +65,7 @@
 
 
 <div id="categories-list" class="categories-list categories-list-loading">
-
-    Chargement du tableau de bord...<br>
-
     <div class="loader"></div>
-
 </div>
 
 
@@ -147,13 +140,21 @@
 
     <div id="category-{{ id }}" class="component-category category-color-{{ color }}" data-id="{{ id }}">
 
-        <div class="category-field-title">
-            {{ &title }}
+        <div class="category-header">
+            <div class="category-icon"></div>
+            <div class="category-title category-field-title">{{ &title }}</div>
+
+            <div class="category-dropdown dropdown" tabindex="1">
+                <!-- <input class="dropdown-check" id="check-dropdown{{ id }}" type="checkbox"> -->
+                <label class="category-menu" for="check-dropdown{{ id }}"></label>
+                <div class="category-menu-panel dropdown-menu">
+                    <a class="category-menu-item button-category-edit-popover" data-category="{{ id }}">Editer</a>
+                    <a class="category-menu-item button-category-delete" data-category="{{ id }}">Supprimer</a> 
+                </div>
+            </div>
         </div>
 
-        <button class="button-category-edit-popover" data-category="{{ id }}">Editer</button>
 
-        <button class="button-category-delete" data-category="{{ id }}">Supprimer</button> 
 
 
         <div id="category-popover-{{ id }}" class="component-category-popover ha-popover">
@@ -184,7 +185,7 @@
         </div>
 
         <div class="category-tasks-addbutton-container">
-            <button class="button-task-create-oncategory" data-category="{{ id }}">Ajouter une tâche</button>
+            <button class="button-task-create-oncategory" data-category="{{ id }}"></button>
         </div>
 
     </div>

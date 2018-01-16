@@ -2,8 +2,27 @@
 
 @media screen and (max-width: 768px) {
 
+    #page {
+        padding: 20px;
+    }
+
     /*trigger*/
     nav#menu > #nav-trigger:checked ~ nav#panel {
+        width: 100%;
+    }
+
+    .page-dashboard .page-title {
+        flex-direction: column;
+    }
+    .page-dashboard .page-title-onside {
+        flex-direction: column;
+    }
+    .page-dashboard .page-title .project-admin {
+        margin-right: 0;
+        padding: 10px;
+    }
+    .page-dashboard .page-title-onside,
+    .page-dashboard .dashboard-search-dropdown {
         width: 100%;
     }
 
@@ -13,6 +32,9 @@
 
     .page-dashboard #categories-list .component-category {
         margin: 10px 0;
+    }
+    .dropdown .dropdown-menu {
+        right: 50%;
     }
 
 }
