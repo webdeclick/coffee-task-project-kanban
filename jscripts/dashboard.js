@@ -227,7 +227,7 @@
             if( popover ) {
                 popover.classList.remove('is-visible');
             }
-        }, true)
+        }, true);
 
         delegate(categoryCreateBlock, '.button-category-create', 'click', function( event ){
             event.preventDefault();

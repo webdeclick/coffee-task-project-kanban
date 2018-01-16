@@ -26,6 +26,17 @@
         width: 100%;
     }
 
+    .page-dashboard .button-category-create-popover {
+        width: 100%;
+    }
+    .page-dashboard #category-create-block {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .page-dashboard .component-category-popover {
+        top: 175px;
+    }
+
     .page-dashboard #categories-list {
         flex-direction: column;
     }
