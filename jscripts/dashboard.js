@@ -51,7 +51,7 @@
 
 
 
-    function populateProjects() {
+    /*function populateProjects() {
 
         projectsList.classList.add('projects-list-loading');
 
@@ -73,7 +73,7 @@
         };
 
         AjaxSimple('GET', api.endPoint+'projects/list', successHandler, errorHandler);
-    }
+    }*/
 
     function populateCategoriesAndTasksList( filter ) {
         

@@ -7,7 +7,6 @@
     Chargement des projets...
 </div> -->
 
-
 <h2 class="page-title">
     <div>Projet : <?php echo $dashboard->title; ?></div>
     
@@ -71,6 +70,7 @@
 <div id="categories-list" class="categories-list categories-list-loading">
 
     Chargement du tableau de bord...<br>
+
     <div class="loader"></div>
 
 </div>
@@ -141,20 +141,6 @@
     </div> <!-- popup -->
 
 </div> <!-- screen -->
-
-
-
-
-<script id="template-project" class="component-template" type="text/template">
-
-    <div id="project-{{ id }}" class="component-project">
-
-        <a href="/dashboard/{{ id }}">{{ &title }}  (voir le projet)</a>
-
-        description : {{ &description }}
-    </div>
-
-</script>
 
 
 <script id="template-category" class="component-template" type="text/template">
@@ -271,7 +257,6 @@
         </div><!--inner-->
     
         <!-- <button class="button-task-edit-show" data-id="{{ id }}">Editer</button> -->
-
     </div>
 
 </script>

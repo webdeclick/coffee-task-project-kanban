@@ -511,21 +511,6 @@ nav#panel .menu-mentions a:hover {
 }
 
 
-/* liste des projects */
-
-.page-dashboard #projects-list {
-    display: flex;
-}
-.page-dashboard #projects-list.projects-list-loading {
-    /*image de chargement*/
-}
-
-.page-dashboard #projects-list .component-project {
-    padding: 10px;
-    border: 1px solid black;
-}
-
-
 /* liste des categories */
 
 .page-dashboard #categories-list {
@@ -537,8 +522,6 @@ nav#panel .menu-mentions a:hover {
 }
 .page-dashboard #categories-list.categories-list-loading {
     /*image de chargement*/
-
-
 }
 
 /* liste d'un catégorie ( colonne ) */
