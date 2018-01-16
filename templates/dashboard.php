@@ -151,10 +151,7 @@
 
         <a href="/dashboard/{{ id }}">{{ &title }}  (voir le projet)</a>
 
-        <br>
-
         description : {{ &description }}
-
     </div>
 
 </script>
@@ -213,6 +210,59 @@
 
     <div id="task-{{ id }}" class="component-task {{ expire_class }}" data-id="{{ id }}">
 
+        <div class="task-title">
+            {{ &title }}
+        </div>
+
+        <div class="task-description">
+            {{ &description }}
+        </div>
+
+        <div class="task-content">
+            {{ ?files_url }}
+                {{ #files_url : file_url }}
+                    <img class="task-image" src="{{ file_url }}" />
+                {{/}}
+            {{/}}
+
+            <div class="task-separator"></div>
+
+            <div class="task-details-block">
+                <div class="task-details">
+                    Début: {{ pretty_created_at }}
+                    {{ ?pretty_end_at }}
+                        <br/>
+                        Fin: {{ pretty_end_at }}
+                    {{/}}
+                </div>
+                <div class="task-actions">
+                    {{ !is_completed }}
+                        <button class="button-task-complete" data-id="{{ id }}"></button>
+                    {{/}}
+
+                    {{ !is_deleted }}
+                        <button class="button-task-delete" data-id="{{ id }}"></button>
+                    {{/}}
+                </div>
+            </div>
+
+
+            
+
+        </div>
+
+        <div class="task-footer">
+            <div class="task-calendar">
+            
+            
+            </div>
+
+        </div>
+
+        
+
+
+
         {{ ?xisPermissionSeeAll }}
             ADMIN VOIT TOUT
 
@@ -221,40 +271,10 @@
             {{/}}
         {{/}}
 
-        {{ &title }}
+        
 
-        <br>
-
-        {{ &description }}
-
-        <br>
-
-        date création : {{ pretty_created_at }}
-
-        <br>
-
-        {{ ?pretty_end_at }}
-            date fin : {{ pretty_end_at }}  <br>
-        {{/}}
-
-        {{ ?files_url }}
-
-            {{ #files_url : file_url }}
-                <img src="{{ file_url }}" />
-            {{/}}
-
-            <br>
-        {{/}}
-
+    
         <!-- <button class="button-task-edit-show" data-id="{{ id }}">Editer</button> -->
-
-        {{ !is_deleted }}
-            <button class="button-task-delete" data-id="{{ id }}">Supprimer</button>
-        {{/}}
-
-        {{ !is_completed }}
-            <button class="button-task-complete" data-id="{{ id }}">Compléter</button>
-        {{/}}
 
     </div>
 

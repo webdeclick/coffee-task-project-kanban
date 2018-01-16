@@ -500,7 +500,9 @@ nav#panel .menu-mentions a:hover {
     display: flex;
     justify-content: space-between;
 }
-
+.page-dashboard .page-title .project-admin {
+    font-size: 13px;
+}
 
 /* liste des projects */
 
@@ -537,7 +539,6 @@ nav#panel .menu-mentions a:hover {
 .page-dashboard #categories-list .component-category  {
     width: 100%;
     margin: 10px;
-    border: 1px solid black;
 }
 
 /* color des catégories */
@@ -565,9 +566,50 @@ nav#panel .menu-mentions a:hover {
 /* task indépendante */
 
 .page-dashboard #categories-list .component-category .component-task {
-    margin: 10px;
-    border: 1px solid purple;
+    padding: 10px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.3);
+    margin-bottom: 15px;
 }
+
+.page-dashboard .task-title {
+    font-size: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #cacaca;
+}
+.page-dashboard .task-description {
+    color: #7d7d7d;
+    font-size: 13px;
+    margin: 5px 0;
+}
+
+
+.page-dashboard .task-details-block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-dashboard .task-actions {
+    display: flex;
+}
+
+.page-dashboard .button-task-delete,
+.page-dashboard .button-task-complete {
+    border: 0;
+    display: block;
+    cursor: pointer;
+    background-position: center center;
+}
+.page-dashboard .button-task-delete {
+    background-image: url(../img/task-delete.png);
+    height: 14px;
+    width: 14px;
+}
+.page-dashboard .button-task-complete {
+    background-image: url(../img/task-complete.png);
+    height: 17px;
+    width: 28px;
+}
+
 
 /* task mode edit */
 
@@ -581,19 +623,19 @@ nav#panel .menu-mentions a:hover {
 
 /* expiration classes */
 
-.page-dashboard #projects-list .component-project.expire-expired {
+.page-dashboard #projects-list .component-task.expire-expired {
 
 }
-.page-dashboard #projects-list .component-project.expire-15days {
+.page-dashboard #projects-list .component-task.expire-15days {
     
 }
-.page-dashboard #projects-list .component-project.expire-10days {
+.page-dashboard #projects-list .component-task.expire-10days {
     
 }
-.page-dashboard #projects-list .component-project.expire-5days {
+.page-dashboard #projects-list .component-task.expire-5days {
     
 }
-.page-dashboard #projects-list .component-project.expire-2days {
+.page-dashboard #projects-list .component-task.expire-2days {
     
 }
 
