@@ -698,9 +698,7 @@
 
     function initSearchEvents() {
 
-        var searchBlock = document.getElementById('dashboard-search-block');
-
-        var filterDropdown = searchBlock.querySelector('.dashboard-search-dropdown');
+        var filterDropdown = document.getElementById('dashboard-search-dropdown');
 
         var filterRadios = filterDropdown.querySelectorAll('.selectopt');
 
