@@ -7,7 +7,7 @@
 <div class="contactTitle">
 	<h1 class="h1Contact">Contact</h2>
 	<hr class="hrContact">
-	<p class="pContact">Orientis vero limes in longum protentus ab Euphratis</p>
+	<p class="pContact">Vous pouvez nous contacter par téléphone ou par email et nous vous répondrons dans les plus brefs délais.</p>
 </div>
 
 <div class="colGauche">
@@ -16,7 +16,10 @@
 	<p class="pContact">Adresse : Kornhauspl. 3011 Bern, Suisse</p>
 	<p class="pContact">Téléphone : +41 31 327 72 70</p>
 	<p class="pContact">Email : escobar@coffeetask.com</p>
-	<a><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
+	<i class="fa fa-facebook" aria-hidden="true"></i>
+	<i class="fa fa-twitter" aria-hidden="true"></i>
+	<i class="fa fa-linkedin" aria-hidden="true"></i>
+	<i class="fa fa-google-plus" aria-hidden="true"></i>
 </div>
 
 <div class="colDroit">

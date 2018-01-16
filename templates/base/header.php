@@ -8,10 +8,10 @@
     <title>☕ CoffeeTask<?php echo (!empty($title)?' - '.$title:''); ?></title>
 
     <link rel="shortcut icon" href="/favicon.ico">
-
+  <link rel="stylesheet" href="/style/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="/style/normalize.css">
     <link type="text/css" rel="stylesheet" href="/style/style.css">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  
     <link type="text/css" rel="stylesheet" href="/style/responsive.css">
 
     <!-- HTML5 -->
@@ -43,6 +43,8 @@
             </script>
 
         <?php endif; ?>
+      
+        
 
         <?php if($template=='dashboard'): ?>
             <!--3rd party scripts -->
@@ -60,8 +62,7 @@
     <?php endif; ?>
 
 </head>
-<body>
-
+<body class="page-<?php echo $template; ?>">
 
 <!-- menu -->
 
@@ -145,3 +146,5 @@
 <!-- page content -->
 
 <div id="page" class="page-<?php echo $template; ?>">
+
+

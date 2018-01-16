@@ -2,10 +2,6 @@
 
 @media screen and (max-width: 768px) {
 
-    #page {
-        padding: 20px;
-    }
-
     /*trigger*/
     nav#menu > #nav-trigger:checked ~ nav#panel {
         width: 100%;
@@ -43,9 +39,6 @@
 
     .page-dashboard #categories-list .component-category {
         margin: 10px 0;
-    }
-    .dropdown .dropdown-menu {
-        right: 50%;
     }
 
 }
@@ -169,6 +162,57 @@
     background-color: #89C13E;
     border: solid 0px;
 }
+			/***************Mentions******************/
+	
+.pMention{
+	font-weight: 300;
+    margin-bottom: 8px;
+}
+	
+.h1Mention{
+	font-weight: 300;
+    color: #89C13E;
+}
+	
+.h2Mention{
+	font-weight: 300;
+	margin-bottom: 17px;
+    color: #89C13E;
+}
+	
+.hrMention{
+	
+    height: 1px;
+    border: solid 0px;
+    background-color:#676767;
+}
+
+.partie1{
+	margin-bottom: 45px;
+}
+	
+.partie2{
+
+	margin-bottom: 45px;
+	
+}
+		
+.partie3CU{
+	width: 160%;
+	margin-bottom: 45px;
+    
+}
+	
+.partie2cookie{
+	width: 90%;
+    margin-left: 9%;
+	overflow: auto;
+    height: 185px;
+    padding: 17px;
+    border: solid 1px;
+    border-color: #89C13E;
+	margin-bottom: 45px;
+}
 }
 
 
@@ -290,6 +334,69 @@
     background-color: #89C13E;
     border: solid 0px;
 }
+	
+			/***************Mentions******************/
+	
+.pMention{
+	font-weight: 300;
+    margin-bottom: 8px;
+}
+	
+.h1Mention{
+	font-weight: 300;
+    color: #89C13E;
+}
+	
+.h2Mention{
+	font-weight: 300;
+	margin-bottom: 17px;
+    color: #89C13E;
+}
+	
+.hrMention{
+	
+    height: 1px;
+    border: solid 0px;
+    background-color:#676767;
+}
+
+.partie1{
+	width: 55%;
+    
+    margin-left: 9%;
+	margin-bottom: 45px;
+}
+	
+.partie2{
+	width: 55%;
+    margin-left: 9%;
+	margin-bottom: 45px;
+	
+}
+	
+.partie3{
+	width: 55%;
+    margin-left: 9%;
+	
+}
+	
+.partie3CU{
+	width: 160%;
+	margin-bottom: 45px;
+    
+	
+}
+	
+.partie2cookie{
+	width: 90%;
+    margin-left: 9%;
+	overflow: auto;
+    height: 185px;
+    padding: 17px;
+    border: solid 1px;
+    border-color: #89C13E;
+	margin-bottom: 45px;
+}
 }
 
 @media screen and (min-width: 769px) and (max-width: 1080px) {
@@ -300,7 +407,7 @@
 	
 .logo_login{
 
-	width:65%;
+	width:100%;
     
 	}
 	
@@ -314,7 +421,7 @@
 	
 .position_logo{
 	
-	 width: 55%;
+	 width: 37%;
     float: left;
     margin-left: 35px;
     margin-top: 90px;
@@ -423,6 +530,69 @@
     background-color: #89C13E;
     border: solid 0px;
 }
+	
+		/***************Mentions******************/
+	
+.pMention{
+	font-weight: 300;
+    margin-bottom: 8px;
+}
+	
+.h1Mention{
+	font-weight: 300;
+    color: #89C13E;
+}
+	
+.h2Mention{
+	font-weight: 300;
+	margin-bottom: 17px;
+    color: #89C13E;
+}
+	
+.hrMention{
+	
+    height: 1px;
+    border: solid 0px;
+    background-color:#676767;
+}
+
+.partie1{
+	width: 55%;
+    
+    margin-left: 9%;
+	margin-bottom: 45px;
+}
+	
+.partie2{
+	width: 55%;
+    margin-left: 9%;
+	margin-bottom: 45px;
+	
+}
+	
+.partie3{
+	width: 55%;
+    margin-left: 9%;
+	
+}
+	
+.partie3CU{
+	width: 160%;
+	margin-bottom: 45px;
+    
+	
+}
+	
+.partie2cookie{
+	width: 90%;
+    margin-left: 100px;
+	overflow: auto;
+    height: 185px;
+    padding: 17px;
+    border: solid 1px;
+    border-color: #89C13E;
+	margin-bottom: 45px;
+}
 }
 
 @media screen and (min-width: 1081px) and (max-width: 1900px) {
@@ -433,7 +603,7 @@
 	
 .logo_login{
 
-	width:45%;
+	width:75%;
     
 	}
 	
@@ -447,7 +617,7 @@
 	
 .position_logo{
 	
-	width: 49%;
+	 width: 33%;
     float: left;
     margin-left: 145px;
     margin-top: 90px;
@@ -577,6 +747,68 @@
 	margin-bottom: 60px;
     background-color: #89C13E;
     border: solid 0px;
+}
+	
+	/***************Mentions******************/
+	
+.pMention{
+	font-weight: 300;
+    margin-bottom: 8px;
+}
+	
+.h1Mention{
+	font-weight: 300;
+    color: #89C13E;
+}
+	
+.h2Mention{
+	font-weight: 300;
+	margin-bottom: 17px;
+    color: #89C13E;
+}
+	
+.hrMention{
+	
+    height: 1px;
+    border: solid 0px;
+    background-color:#676767;
+}
+
+.partie1{
+	width: 55%;
+    margin-left: 100px;
+	margin-bottom: 45px;
+}
+	
+.partie2{
+	width: 55%;
+    margin-left: 100px;
+	margin-bottom: 45px;
+	
+}
+	
+.partie3{
+	width: 55%;
+    margin-left: 100px;
+	
+}
+	
+.partie3CU{
+	width: 160%;
+	margin-bottom: 45px;
+    
+	
+}
+	
+.partie2cookie{
+	width: 90%;
+    margin-left: 100px;
+	overflow: auto;
+    height: 185px;
+    padding: 17px;
+    border: solid 1px;
+    border-color: #89C13E;
+	margin-bottom: 45px;
 }
 }
 

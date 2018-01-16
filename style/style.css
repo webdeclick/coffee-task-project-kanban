@@ -44,6 +44,15 @@ body {
     background-color: #eaeaea;
 }
 
+.page-login{
+	background-color: black;
+}
+
+.page-register{
+	background-color: black;
+}
+
+
 *,
 *:after,
 *:before {
