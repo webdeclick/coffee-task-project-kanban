@@ -33,6 +33,11 @@
 
             toggleState(categoryFormNew, 'form', 'view');
         });
+
+        // click outside project new
+        document.body.addEventListener('click', function(event){
+            toggleState(categoryFormNew, 'view', 'view');
+        }, true);
     }
 
 

@@ -51,7 +51,7 @@
 
 
 
-    function populateProjects() {
+    /*function populateProjects() {
 
         projectsList.classList.add('projects-list-loading');
 
@@ -73,7 +73,7 @@
         };
 
         AjaxSimple('GET', api.endPoint+'projects/list', successHandler, errorHandler);
-    }
+    }*/
 
     function populateCategoriesAndTasksList( filter ) {
         
@@ -140,7 +140,10 @@
                     var days_expire = task.days_expire;
                     var expire_class = null;
 
-                    if( days_expire <= 0 ) {
+                    if( task.is_completed ) {
+                        expire_class = 'completed';
+                    }
+                    else if( days_expire <= 0 ) {
                         expire_class = 'expired';
                     }
                     else if( days_expire <= 2 ) {
@@ -155,6 +158,7 @@
                     else if( days_expire <= 15 ) {
                         expire_class = '15days';
                     }
+
 
                     if( expire_class ) {
                         expire_class = 'expire-' + expire_class;
@@ -694,9 +698,7 @@
 
     function initSearchEvents() {
 
-        var searchBlock = document.getElementById('dashboard-search-block');
-
-        var filterDropdown = searchBlock.querySelector('.dashboard-search-dropdown');
+        var filterDropdown = document.getElementById('dashboard-search-dropdown');
 
         var filterRadios = filterDropdown.querySelectorAll('.selectopt');
 

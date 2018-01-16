@@ -72,16 +72,13 @@
                 </div>
             {{ / }}
 
-
             {{ ?users }}
                 <div class="project-action">
                     <div class="project-action-title">Utilisateurs :</div>
                     {{ #users : user }}
-
                         <div id="project-{{ id }}-user-{{ user.id }}" data-id="{{ user.id }}">
                             - {{ user.fullname }}
                         </div>
-
                     {{ / }}
                 </div>
             {{ / }}

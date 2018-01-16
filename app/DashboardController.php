@@ -47,7 +47,7 @@ class DashboardController extends AbstractController {
 
         // add vars
 
-       $this->dashboard = $project;
+        $this->dashboard = $project;
 
         $this->project_admin = UserModel::find($project->linked_admin);
 
