@@ -2,27 +2,8 @@
 
 @media screen and (max-width: 768px) {
 
-    #page {
-        padding: 20px;
-    }
-
     /*trigger*/
     nav#menu > #nav-trigger:checked ~ nav#panel {
-        width: 100%;
-    }
-
-    .page-dashboard .page-title {
-        flex-direction: column;
-    }
-    .page-dashboard .page-title-onside {
-        flex-direction: column;
-    }
-    .page-dashboard .page-title .project-admin {
-        margin-right: 0;
-        padding: 10px;
-    }
-    .page-dashboard .page-title-onside,
-    .page-dashboard .dashboard-search-dropdown {
         width: 100%;
     }
 
@@ -32,9 +13,6 @@
 
     .page-dashboard #categories-list .component-category {
         margin: 10px 0;
-    }
-    .dropdown .dropdown-menu {
-        right: 50%;
     }
 
 }
@@ -192,13 +170,11 @@
 	margin-bottom: 45px;
 	
 }
-	
-	
+		
 .partie3CU{
 	width: 160%;
 	margin-bottom: 45px;
     
-	
 }
 	
 .partie2cookie{
@@ -405,7 +381,7 @@
 	
 .logo_login{
 
-	width:65%;
+	width:100%;
     
 	}
 	
@@ -419,7 +395,7 @@
 	
 .position_logo{
 	
-	 width: 55%;
+	 width: 37%;
     float: left;
     margin-left: 35px;
     margin-top: 90px;
@@ -601,7 +577,7 @@
 	
 .logo_login{
 
-	width:45%;
+	width:75%;
     
 	}
 	
@@ -615,7 +591,7 @@
 	
 .position_logo{
 	
-	width: 49%;
+	 width: 33%;
     float: left;
     margin-left: 145px;
     margin-top: 90px;
