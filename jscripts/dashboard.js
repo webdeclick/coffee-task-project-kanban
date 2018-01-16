@@ -140,7 +140,10 @@
                     var days_expire = task.days_expire;
                     var expire_class = null;
 
-                    if( days_expire <= 0 ) {
+                    if( task.is_completed ) {
+                        expire_class = 'completed';
+                    }
+                    else if( days_expire <= 0 ) {
                         expire_class = 'expired';
                     }
                     else if( days_expire <= 2 ) {
@@ -155,6 +158,7 @@
                     else if( days_expire <= 15 ) {
                         expire_class = '15days';
                     }
+
 
                     if( expire_class ) {
                         expire_class = 'expire-' + expire_class;
