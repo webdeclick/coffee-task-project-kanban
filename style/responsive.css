@@ -32,6 +32,11 @@
     .page-dashboard .component-category-popover {
         top: 195px;
     }
+    .page-dashboard .component-category-popover-edit {
+        top: 105%;
+        left: 0;
+    }
+
     .page-dashboard .category-menu-panel {
         right: 0;
     }

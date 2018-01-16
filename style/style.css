@@ -548,6 +548,7 @@ nav#panel .menu-mentions a:hover {
     padding: 6px;
     margin-bottom: 15px;
 
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -604,6 +605,10 @@ nav#panel .menu-mentions a:hover {
 .page-dashboard .component-category-popover {
     top: 130px;
 }
+.page-dashboard .component-category-popover-edit {
+    top: 105%;
+    left: 0;
+}
 
 .page-dashboard .button-category-create-popover {
     font-size: 14px;
@@ -624,15 +629,15 @@ nav#panel .menu-mentions a:hover {
 }
 
 
-.page-dashboard .category-create-title {
+.page-dashboard .category-popover-title {
     margin: 0 0 20px;
     color: #33b5e5;
     padding-bottom: 5px;
     border-bottom: 2px solid #33b5e5;
     font-size: 16px;
 }
-.page-dashboard #form-category-create input,
-.page-dashboard #form-category-create textarea {
+.page-dashboard .category-popover-form input,
+.page-dashboard .category-popover-form textarea {
     outline: none;
     display: block;
     width: 100%;
@@ -641,12 +646,12 @@ nav#panel .menu-mentions a:hover {
     padding: 10px 15px;
     font-size: 15px;
 }
-.page-dashboard #form-category-create input:focus,
-.page-dashboard #form-category-create textarea:focus {
+.page-dashboard .category-popover-form input:focus,
+.page-dashboard .category-popover-form textarea:focus {
     border: 1px solid #33b5e5;
     color: #333;
 }
-.page-dashboard .button-category-create {
+.page-dashboard .category-popover-button {
     display: block;
     cursor: pointer;
     width: 100%;
@@ -654,6 +659,17 @@ nav#panel .menu-mentions a:hover {
     padding: 10px 15px;
     color: #fff;
     background-color: #33b5e5;
+}
+.page-dashboard .category-popover-button.button-category-cancel {
+    background-color: #b6bece;
+}
+
+
+
+.page-dashboard .category-popover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 
@@ -799,7 +815,6 @@ nav#panel .menu-mentions a:hover {
     border-bottom: 2px solid #33b5e5;
     font-size: 16px;
 }
-
 
 .page-dashboard .form-task-create input[type="text"],
 .page-dashboard .form-task-create textarea {
@@ -1274,7 +1289,7 @@ nav#panel .menu-mentions a:hover {
 
 .ha-popover {
     position: absolute;
-    z-index: 998;
+    z-index: 9;
     height: auto;
     display: none;
     border-radius: 2px;

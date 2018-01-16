@@ -21,15 +21,15 @@
                 <div id="category-popover-new" class="component-category-popover ha-popover">
                     <div class="connector"></div>
 
-                    <div class="category-create-title">
+                    <div class="category-popover-title">
                         Ajouter une catégorie :
                     </div>
 
-                    <form id="form-category-create" class="ha-popover-form" method="post">
+                    <form id="form-category-create" class="category-popover-form ha-popover-form" method="post">
                         <input placeholder="Titre" id="category-field-title" name="title" type="text"> 
 
                         <!-- <button class="button-category-cancel ha-button">Annuler</button> -->
-                        <button class="button-category-create ha-button">Valider</button>
+                        <button class="category-popover-button button-category-create ha-button">Valider</button>
                     </form>
                 </div>
 
@@ -147,26 +147,26 @@
                     <a class="category-menu-item button-category-delete" data-category="{{ id }}">Supprimer</a> 
                 </div>
             </div>
-        </div>
 
-        <div id="category-popover-{{ id }}" class="component-category-popover ha-popover">
-            <div class="connector"></div>
+            <div id="category-popover-{{ id }}" class="component-category-popover component-category-popover-edit ha-popover">
+                <div class="connector"></div>
 
-            <form class="ha-popover-form" action="patch">
-                <section>    
-                    <div class="ha-text-field">
-                        <label for="category-field-title">Titre :</label>
-                        <input id="category-field-title" name="title"  type="text">
+                <form class="category-popover-form ha-popover-form" action="">
+
+                    <div class="category-popover-title">
+                        Modifier cette catégorie :
                     </div>
-                </section>    
-            
-                <footer class="ha-footer">
-                    <button class="button-category-cancel ha-button" data-category="{{ id }}">Annuler</button> 
-                    <button class="button-category-save ha-button" data-category="{{ id }}">Valider</button> 
-                </footer>  
 
-            </form>
-        </div>
+                    <input placeholder="Titre" id="category-field-title" name="title"  type="text">
+
+                    <footer class="category-popover-footer ha-footer">
+                        <button class="category-popover-button button-category-cancel ha-button" data-category="{{ id }}">Annuler</button> 
+                        <button class="category-popover-button button-category-save ha-button" data-category="{{ id }}">Valider</button> 
+                    </footer>  
+
+                </form>
+            </div>
+        </div><!--category header-->
 
 
         <div class="category-tasks-container">
