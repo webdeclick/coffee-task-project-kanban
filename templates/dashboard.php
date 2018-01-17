@@ -74,7 +74,7 @@
 
 <div id="modal-popup" class="modal-task-create cd-popup" role="alert">
 
-	<div class="cd-popup-container">
+	<div class="cd-popup-container modal-task-create-container">
 
         <form method="post" class="newtask-form" enctype="multipart/form-data">
 

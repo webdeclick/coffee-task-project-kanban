@@ -159,7 +159,6 @@
                         expire_class = '15days';
                     }
 
-
                     if( expire_class ) {
                         expire_class = 'expire-' + expire_class;
                     }
@@ -538,7 +537,20 @@
 
             // clear previous inputs if any : @TODO:
 
-
+            for(var field of ['title','description','end-at','files']) {
+                var fieldElement = popupContainer.querySelector('[name="'+field+'"]');
+                if( fieldElement ) {
+                    fieldElement.value = '';
+                }
+            }
+            var fieldPeople = popupContainer.querySelector('[name="people"]');
+            if( fieldPeople ) {
+                fieldPeople.value = '0';
+            }
+            var fieldDatetimepicker = popupContainer.querySelector('[name="datetimepicker"]');
+            if( fieldDatetimepicker ) {
+                fieldDatetimepicker.checked  = false;
+            }
         });
 
         // close modal ; nope button
