@@ -73,7 +73,7 @@ class FileModel extends AbstractModel {
                     'description' => $file['task_description'],
                     'user_fullname' => $file['user_fullname'],
                     'is_completed' => boolval($file['task_completed']),
-                    //'is_deleted' => boolval($file['task_deleted']),
+                    'is_deleted' => boolval($file['task_deleted']),
                     '__info' => 'FilesFolderUnvalidate'
                 ];
             }
