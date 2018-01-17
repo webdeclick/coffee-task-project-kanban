@@ -11,23 +11,18 @@
 </div>
 
 
-
-
-
-
-
 <script id="template-photos-folder" class="component-template" type="text/template">
 
     <div id="folder-{{ task_id }}" class="component-folder" data-id="{{ task_id }}">
 
-        <div class="folder-inner {{ ?is_completed }}folder-completed{{/}}">
+        <div class="folder-inner {{ expire_class }}">
 
-            <div class="folder-title">{{ &title }}</div>
+            <div class="folder-title">
+                <div>{{ &title }}</div>
+                <div>Assigné à : {{ user_fullname }}</div>
+            </div>
 
             <div class="folder-description">{{ &description }}</div>
-
-            assigné : {{ user_fullname }}<br>
-
 
             {{ ?files }}
                 <div class="photos-container">

@@ -275,9 +275,9 @@ nav#panel .menu-mentions a:hover {
 /*//////////////////////////////// PAGE CONTENT ////////////////////////////////*/
 
 #page {
-    padding: 40px;
-    padding-top: 96px; /*menu 56px*/
-    height: 100vh;
+    margin: 40px;
+    padding-top: 56px; /*menu*/
+    /* height: 100vh; */
 }
 
 .page-title {
@@ -466,6 +466,10 @@ nav#panel .menu-mentions a:hover {
     /*image de chargement*/
 }
 
+.page-photos-folder .photos-list {/*container of photos*/
+
+}
+
 .page-photos-folder .component-folder {
     padding: 10px;
     box-shadow: 0 0 3px #0000004d;
@@ -476,14 +480,14 @@ nav#panel .menu-mentions a:hover {
 .page-photos-folder .folder-inner {
     padding-left: 10px;
 }
-.page-photos-folder .folder-completed {
-    border-left: 4px solid #4ebbf0;
-}
 
 .page-photos-folder .folder-title {
     font-size: 15px;
     padding-bottom: 5px;
     border-bottom: 1px solid #cacaca;
+
+    display: flex;
+    justify-content: space-between;
 }
 .page-photos-folder .folder-description {
     color: #7d7d7d;
@@ -493,13 +497,24 @@ nav#panel .menu-mentions a:hover {
 
 .page-photos-folder .photos-container {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .page-photos-folder .component-photo {
     position: relative;
     overflow: hidden;
     border-radius: 5px;
+    /* margin: 5px; */
+    margin-bottom: 5px;
+    margin-right: 5px;
 }
+.page-photos-folder .component-photo:first-child {
+    margin-left: 0;
+}
+.page-photos-folder .component-photo img {
+    display: block;
+}
+
 .page-photos-folder .photo-panel {
     display: none;
     position: absolute;
@@ -598,7 +613,7 @@ nav#panel .menu-mentions a:hover {
 .page-dashboard .component-category  {
     width: 100%;
     margin: 10px;
-    max-width: 33%;
+    max-width: 40%;
 }
 
 .page-dashboard .category-header {
@@ -837,25 +852,32 @@ nav#panel .menu-mentions a:hover {
 }
 
 /* expiration classes */
+.page-photos-folder .folder-inner,
 .page-dashboard .task-inner {
     border-left: 4px solid #000;
     padding-left: 10px;
 }
+.page-photos-folder .folder-inner.expire-completed,
 .page-dashboard .task-inner.expire-completed {
     border-left-color: #4ebbf0
 }
+.page-photos-folder .folder-inner.expire-expired,
 .page-dashboard .task-inner.expire-expired {
     border-left-color: #c22626;
 }
+.page-photos-folder .folder-inner.expire-15days,
 .page-dashboard .task-inner.expire-15days {
     border-left-color: #add139;
 }
+.page-photos-folder .folder-inner.expire-10days,
 .page-dashboard .task-inner.expire-10days {
     border-left-color: #ffb400;
 }
+.page-photos-folder .folder-inner.expire-5days,
 .page-dashboard .task-inner.expire-5days {
     border-left-color: #ee602e;
 }
+.page-photos-folder .folder-inner.expire-2days,
 .page-dashboard .task-inner.expire-2days {
     border-left-color: #db484f;
 }
@@ -870,7 +892,9 @@ nav#panel .menu-mentions a:hover {
 /* create modal */
 .page-dashboard .modal-task-create {
     margin-top: 56px;/*menu*/
+    height: calc(100% - 56px);/*menu*/
 }
+
 .page-dashboard .form-task-create {
     padding: 20px;
     padding-top: 0;
@@ -923,6 +947,9 @@ nav#panel .menu-mentions a:hover {
     position: absolute;
     z-index: 9;
 }
+.page-dashboard #new-task-progress {
+    margin-top: 15px;
+}
 
 
 
@@ -959,6 +986,9 @@ nav#panel .menu-mentions a:hover {
     height: 100px;
     margin: 10px auto;
     animation: loader-spin 2s linear infinite;
+}
+.loader.loader-page {
+    border-top-color: #202020;
 }
 @keyframes loader-spin {
     0% { transform: rotate(0deg); }
@@ -1033,6 +1063,7 @@ nav#panel .menu-mentions a:hover {
 
     position: fixed;
     top: 0;
+    left: 0;
     height: 100%;
     opacity: 0.9;
     padding-top: 150px;

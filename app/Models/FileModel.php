@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use DateTime;
+
 
 /**
  * File model
@@ -36,7 +38,7 @@ class FileModel extends AbstractModel {
         $sql = '
         SELECT
             f.*,
-            t.title task_title, t.description task_description, t.is_deleted task_deleted, t.is_completed task_completed,
+            t.title task_title, t.description task_description, t.is_deleted task_deleted, t.is_completed task_completed, t.end_at as task_end_at,
             u.fullname user_fullname
 
         FROM @files f
@@ -59,13 +61,16 @@ class FileModel extends AbstractModel {
 
         $results = $dbh->all($sql, $attributes);
 
+
         $tasks = [];
+
+        $dateTime = new DateTime;
 
         foreach($results as $key => $file )
         {
             $task_id = $file['task_id'];
 
-            if( !isset($tasks[$task_id]) )
+            if( !isset($tasks[$task_id]) ) // if not task linked to file already set ( avoid double )
             {
                 $tasks[$task_id] = [
                     'task_id' => $task_id,
@@ -76,6 +81,17 @@ class FileModel extends AbstractModel {
                     'is_deleted' => boolval($file['task_deleted']),
                     '__info' => 'FilesFolderUnvalidate'
                 ];
+
+                // add expire date ; if set
+
+                if( isset($file['task_end_at']) )
+                {
+                    $end_at = new DateTime($file['task_end_at']);
+
+                    $diff = $dateTime->diff($end_at);
+
+                    $tasks[$task_id]['task_days_expire'] = (float) $diff->format('%R%a'); //in days
+                }
             }
 
             $file = array_filter($file, function($key) { // remove prefixes from sql
