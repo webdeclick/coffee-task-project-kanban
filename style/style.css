@@ -294,6 +294,41 @@ nav#panel .menu-mentions a:hover {
 
 /*//////////////////////////////// PAGE DES PROJETS ////////////////////////////////*/
 
+.page-projects .page-title {
+    color: #000;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+    font-weight: 300;
+    font-size: 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.page-projects .page-title-onside {
+    display: flex;
+    align-items: center;
+}
+
+.page-projects .button-project-create-popover {
+    font-size: 14px;
+    font-weight: 300;
+    background-color: #fff;
+    border: 0;
+    padding: 0 30px 0 10px;
+    min-height: 30px;
+
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.page-projects .button-project-create-popover:hover {
+    background-color: #4ebbf0;
+    color: #fff;
+}
+
+
+
 /* lsite des projets container */
 
 .page-projects #projects-list {
@@ -319,32 +354,16 @@ nav#panel .menu-mentions a:hover {
     flex-direction: column;
     padding-bottom: 40px; /*dropdown*/
 }
-.page-projects .component-project,
-.page-projects .component-project-new {
+.page-projects .component-project {
     min-height: 150px;
 }
-.page-projects .component-project-new {
-    padding: 10px;
+
+.page-projects .component-project-popover {
+
 }
 
-.page-projects #form-project-new,
-.page-projects #form-project-new[data-state="view"] {
-    display: none;
-}
-.page-projects #form-project-new[data-state="form"] {
-    display: block;
-    background: #fff;/*hide image, todo*/
-}
 
 /* block projet nouveau */
-
-.page-projects .component-project.component-project-new {
-    display: flex;
-    cursor: pointer;
-
-    background: #fff url(../img/icon-plus.png) no-repeat center center;
-}
-
 
 .page-projects .project-header {
     background: #94d4ee url(../img/project-bg-1.png) no-repeat right center;
@@ -443,7 +462,7 @@ nav#panel .menu-mentions a:hover {
     color: #fff;
     background-color: #33b5e5;
 }
-.page-projects .project-create-title {
+.page-projects .project-popover-title {
     margin: 0 0 20px;
     color: #33b5e5;
     padding-bottom: 5px;

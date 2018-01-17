@@ -3,39 +3,47 @@
 <?php include 'elements/apierror.php'; ?>
 
 
-<h2 class="page-title">MES PROJETS</h2>
+<h2 class="page-title">
+    <div>MES PROJETS</div>
+
+    <div id="project-create-block">
+
+        <a class="button-project-create-popover">Ajouter un projet</a> 
+
+        <div id="project-popover-new" class="component-project-popover ha-popover">
+            <div class="connector"></div>
+
+            <div class="project-popover-title">
+                Ajouter un projet :
+            </div>
+
+            <form id="form-project-new" class="component-project-new" method="post" action="">
+
+                <input placeholder="Titre" id="project-new-title" name="title" type="text">
+
+                <textarea placeholder="Description" id="project-new-description" name="description"></textarea>
+
+                <textarea placeholder="Liste d'utilisateurs (emails)" id="project-new-users" name="users"></textarea>
+
+                <input placeholder="Modérateur (email)" id="project-new-manager" name="manager" type="text">
+
+                <button type="submit" class="project-create">Créer</button>
+
+            </form>
+
+        </div>
+
+    </div>
+</h2>
+
+
+
 
 <div id="projects-list" class="projects-list projects-list-loading">
     <!-- Chargement des projets... -->
     <div class="loader"></div>
 </div>
 
-
-<script id="template-project-new" class="component-template" type="text/template">
-
-    <div id="project-new" class="component-project component-project-new">
-
-        <form id="form-project-new" method="post" action="">
-
-            <div class="project-create-title">
-                Créer un projet :
-            </div>
-
-            <input placeholder="Titre" id="project-new-title" name="title" type="text">
-
-            <textarea placeholder="Description" id="project-new-description" name="description"></textarea>
-
-            <textarea placeholder="Liste d'utilisateurs (emails)" id="project-new-users" name="users"></textarea>
-
-            <input placeholder="Modérateur (email)" id="project-new-manager" name="manager" type="text">
-
-            <button type="submit" class="project-create">Créer</button>
-
-        </form>
-
-    </div>
-
-</script>
 
 
 <script id="template-project" class="component-template" type="text/template">
