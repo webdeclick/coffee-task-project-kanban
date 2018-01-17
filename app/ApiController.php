@@ -727,7 +727,8 @@ class ApiController extends AbstractController {
                 $email = $assignedUser->email;
 
 
-                $mail = xmail();
+                //$mail = xmail();
+                $mail = null;
 
                 if( $mail )
                 {

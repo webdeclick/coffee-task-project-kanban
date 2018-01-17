@@ -12,6 +12,31 @@
             <div class="project-admin">Administrateur : <?php echo $project_admin->fullname; ?></div>
         <?php endif; ?>
 
+        <?php if($is_admin || $is_manager): ?>
+
+            <div id="category-create-block">
+
+                <a class="button-category-create-popover" data-category="new">Ajouter une catégorie</a> 
+
+                <div id="category-popover-new" class="component-category-popover ha-popover">
+                    <div class="connector"></div>
+
+                    <div class="category-create-title">
+                        Ajouter une catégorie :
+                    </div>
+
+                    <form id="form-category-create" class="ha-popover-form" method="post">
+                        <input placeholder="Titre" id="category-field-title" name="title" type="text"> 
+
+                        <!-- <button class="button-category-cancel ha-button">Annuler</button> -->
+                        <button class="button-category-create ha-button">Valider</button>
+                    </form>
+                </div>
+
+            </div>
+
+        <?php endif; ?>
+
         <!-- <input name="keyword" placeholder="Keyword" type="text" class="dashboard-search-field">
         <button class="dashboard-search button">Recherche</button>  -->
         <div id="dashboard-search-dropdown" class="select dashboard-search-dropdown" tabindex="1">
@@ -33,34 +58,6 @@
 
 
 
-
-
-
-
-
-<div id="category-create-block">
-
-    <button class="button-category-create-popover" data-category="new">Créer une catégorie</button> 
-
-    <div id="category-popover-new" class="component-category-popover ha-popover">
-        <div class="connector"></div>
-
-        <form class="ha-popover-form" method="post">
-            <section>    
-                <div class="ha-text-field">
-                    <label for="category-field-title">Titre :</label>
-                    <input id="category-field-title" name="title"  type="text">
-                </div>
-            </section>    
-
-            <footer class="ha-footer">
-                <button class="button-category-cancel ha-button">Annuler</button>
-                <button class="button-category-create ha-button">Valider</button>
-            </footer>
-        </form>
-    </div>
-
-</div>
 
 
 
@@ -178,13 +175,11 @@
 
 
         <div class="category-tasks-container">
-
-            Chargement des taches...<br>
+            <!-- Chargement des taches -->
             <div class="loader"></div>
-
         </div>
 
-        <div class="category-tasks-addbutton-container">
+        <div class="category-tasks-addbutton-container component-task">
             <button class="button-task-create-oncategory" data-category="{{ id }}"></button>
         </div>
 

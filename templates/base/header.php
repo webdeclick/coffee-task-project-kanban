@@ -43,6 +43,8 @@
             </script>
 
         <?php endif; ?>
+      
+        
 
         <?php if($template=='dashboard'): ?>
             <!--3rd party scripts -->
@@ -60,8 +62,7 @@
     <?php endif; ?>
 
 </head>
-<body>
-
+<body class="page-<?php echo $template; ?>">
 
 <!-- menu -->
 
@@ -145,3 +146,5 @@
 <!-- page content -->
 
 <div id="page" class="page-<?php echo $template; ?>">
+
+
