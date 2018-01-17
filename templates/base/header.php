@@ -44,8 +44,6 @@
 
         <?php endif; ?>
       
-        
-
         <?php if($template=='dashboard'): ?>
             <!--3rd party scripts -->
             <script type="text/javascript" src="/jscripts/3rdparty/moment/min/moment.min.js"></script>
@@ -60,6 +58,18 @@
 
         <script type="text/javascript" src="/jscripts/<?php echo $template; ?>.js"></script>
     <?php endif; ?>
+
+    <script type="text/javascript">
+    window.addEventListener('beforeunload', function(event){
+        var page = document.getElementById('page');
+        if( page ) {
+            page.innerHTML = '';
+            var loader = document.createElement('div')
+            loader.className = 'loader loader-page';
+            page.appendChild(loader);
+        }
+    });
+    </script>
 
 </head>
 <body class="body-<?php echo $template; ?>">
