@@ -116,7 +116,7 @@
             <div class="menu-projects">
                 <div class="icon"></div>
                 <div>
-                    <label class="expander" for="check-myprojects">Mes Projets</label>
+                    <label class="expander" for="check-myprojects"><a href="/projects">Mes Projets</a></label>
                 </div>
             </div>
 
