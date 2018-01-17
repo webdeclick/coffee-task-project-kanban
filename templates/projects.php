@@ -51,43 +51,51 @@
                 {{ &description }}
             </div>
         {{ / }}
-        
-        <label class="project-dropdown expander" for="check-project{{ id }}">PROJET</label>
 
-        <input class="check-expanded" id="check-project{{ id }}" type="checkbox" />
-        <div class="project-status expanded">
-            <div class="connector"></div>
 
-            {{ ?user_admin }}
-                <div class="project-action">
-                    <div class="project-action-title">Administrateur :</div>
-                    - {{ user_admin.fullname }}
-                </div>
-            {{ / }}
+        <div class="project-dropdown dropdown" tabindex="1">
+            <label class="" for="check-dropdown{{ id }}">PROJET</label>
+            <div class="dropdown-menu project-status">
 
-            {{ ?user_manager }}
-                <div class="project-action">
-                    <div class="project-action-title">Modérateur :</div>
-                    - {{ user_manager.fullname }}
-                </div>
-            {{ / }}
+                <div class="connector"></div>
 
-            {{ ?users }}
-                <div class="project-action">
-                    <div class="project-action-title">Utilisateurs :</div>
-                    {{ #users : user }}
-                        <div id="project-{{ id }}-user-{{ user.id }}" data-id="{{ user.id }}">
-                            - {{ user.fullname }}
-                        </div>
-                    {{ / }}
-                </div>
-            {{ / }}
+                {{ ?user_admin }}
+                    <div class="project-action">
+                        <div class="project-action-title">Administrateur :</div>
+                        - {{ user_admin.fullname }}
+                    </div>
+                {{ / }}
 
-            {{ ?xisPermissionAdmin }}
-                <div class="project-action">Admin: <a href="/photos-folder/{{ id }}">Voir les photos</a></div>
-            {{ / }}
+                {{ ?user_manager }}
+                    <div class="project-action">
+                        <div class="project-action-title">Modérateur :</div>
+                        - {{ user_manager.fullname }}
+                    </div>
+                {{ / }}
+
+                {{ ?users }}
+                    <div class="project-action">
+                        <div class="project-action-title">Utilisateurs :</div>
+                        {{ #users : user }}
+                            <div id="project-{{ id }}-user-{{ user.id }}" data-id="{{ user.id }}">
+                                - {{ user.fullname }}
+                            </div>
+                        {{ / }}
+                    </div>
+                {{ / }}
+
+                {{ ?xisPermissionAdmin }}
+                    <div class="project-action">Admin: <a href="/photos-folder/{{ id }}">Voir les photos</a></div>
+                {{ / }}
+
+            </div>
 
         </div>
+
+        
+        
+
+        
 
         {{ ?xisPermissionAdmin }}
             <a class="project-delete">&times;</a>
