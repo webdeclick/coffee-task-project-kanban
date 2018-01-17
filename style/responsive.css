@@ -22,6 +22,10 @@
         width: 100%;
     }
 
+    .page-dashboard .component-category  {
+        max-width: initial;
+    }
+
     .page-dashboard .button-category-create-popover {
         width: 100%;
     }
@@ -30,7 +34,15 @@
         margin-bottom: 10px;
     }
     .page-dashboard .component-category-popover {
-        top: 175px;
+        top: 195px;
+    }
+    .page-dashboard .component-category-popover-edit {
+        top: 105%;
+        left: 0;
+    }
+
+    .page-dashboard .category-menu-panel {
+        right: 0;
     }
 
     .page-dashboard #categories-list {
@@ -810,6 +822,3 @@
     border-color: #89C13E;
 	margin-bottom: 45px;
 }
-}
-
-

@@ -8,7 +8,7 @@
     <title>☕ CoffeeTask<?php echo (!empty($title)?' - '.$title:''); ?></title>
 
     <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/style/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/style/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="/style/normalize.css">
     <link type="text/css" rel="stylesheet" href="/style/style.css">
   
@@ -62,7 +62,7 @@
     <?php endif; ?>
 
 </head>
-<body class="page-<?php echo $template; ?>">
+<body class="body-<?php echo $template; ?>">
 
 <!-- menu -->
 
@@ -103,7 +103,6 @@
                 </div>
             </div>
 
-            <input class="check-expanded" id="check-myprojects" type="checkbox" />
             <div class="menu-projects">
                 <div class="icon"></div>
                 <div>
@@ -112,7 +111,7 @@
             </div>
 
             <?php if(!empty($projects)): ?>
-                <div class="menu-projects-list expanded">
+                <div class="menu-projects-list">
                     <?php foreach($projects as $project): ?>
                         <div>
                             - <a href="/dashboard/<?php echo $project['project_id']; ?>"><?php echo $project['title']; ?></a>

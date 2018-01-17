@@ -2,13 +2,13 @@
 
 <?php include 'elements/apierror.php'; ?>
 
+<h2 class="page-title">Validation des photos</h2>
 
 
 <div id="photos-list" class="photos-list photos-list-loading">
-    Chargement des photos...
+    <!-- Chargement des photos... -->
+    <div class="loader"></div>
 </div>
-
-
 
 
 
@@ -20,31 +20,35 @@
 
     <div id="folder-{{ task_id }}" class="component-folder" data-id="{{ task_id }}">
 
-        TACHE : {{ &title }}<br>
+        <div class="folder-title">{{ &title }}</div>
 
-        DESCRIPTION : {{ &description }}<br>
+        <div class="folder-description">{{ &description }}</div>
 
         assigné : {{ user_fullname }}<br>
 
         Complété ? {{ ?is_completed }}oui{{/}}<br>
 
 
-        {{ #files : file }}
-
-            <div id="photo-{{ file.id }}" class="component-photo">
-                <div>
-                    <img src="{{ file.photo_url }}" />
+        {{ ?files }}
+            <div class="photos-container">
+            {{ #files : file }}
+                <div id="photo-{{ file.id }}" class="component-photo">
+                    <img class="photo-img" src="{{ file.photo_url }}" />
+                    <div class="photo-panel">
+                        <button class="photo-action" data-state="delete" data-id="{{ file.id }}"></button>
+                        <button class="photo-action" data-state="validate" data-id="{{ file.id }}"></button>
+                    </div>
                 </div>
-                <div>
-                    <button class="photo-action" data-state="delete" data-id="{{ file.id }}">Supprimer</button>
-                    <button class="photo-action" data-state="validate" data-id="{{ file.id }}">Valider</button>
-                </div>
+            {{/}}
             </div>
-
         {{/}}
 
     </div>
 
 </script>
+
+
+
+<?php include 'elements/apisnackbar.php'; ?>
 
 <?php include 'base/footer.php'; ?>

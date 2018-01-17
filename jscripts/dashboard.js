@@ -222,12 +222,12 @@
             }
         });
 
-        document.body.addEventListener('click', function( event ){ // close on outside
-            var popover = categoryCreateBlock.querySelector('#category-popover-new');
-            if( popover ) {
-                popover.classList.remove('is-visible');
-            }
-        }, true);
+        // document.body.addEventListener('click', function( event ){ // close on outside
+        //     var popover = categoryCreateBlock.querySelector('#category-popover-new');
+        //     if( popover ) {
+        //         popover.classList.remove('is-visible');
+        //     }
+        // }, true);
 
         delegate(categoryCreateBlock, '.button-category-create', 'click', function( event ){
             event.preventDefault();
@@ -296,6 +296,7 @@
             var target = event.target;
 
             var categoryId = target.getAttribute('data-category');
+            var category = categoriesList.querySelector('#category-'+categoryId);
 
             // hide popover :
 
@@ -311,6 +312,12 @@
 
                 if( popover ) {
                     popover.classList.remove('is-visible');
+                }
+
+                var categoryTitle = category.querySelector('.category-title');
+
+                if( categoryTitle && data.title ) {
+                    categoryTitle.innerText = data.title;
                 }
             };
 

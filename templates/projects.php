@@ -97,4 +97,7 @@
 </script>
 
 
+
+<?php include 'elements/apisnackbar.php'; ?>
+
 <?php include 'base/footer.php'; ?>

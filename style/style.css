@@ -43,12 +43,10 @@ body {
 
     background-color: #eaeaea;
 }
-
-.page-login{
+body.body-login{
 	background-color: black;
 }
-
-.page-register{
+body.body-register{
 	background-color: black;
 }
 
@@ -277,8 +275,9 @@ nav#panel .menu-mentions a:hover {
 /*//////////////////////////////// PAGE CONTENT ////////////////////////////////*/
 
 #page {
-    margin-top: 56px; /*menu*/
     padding: 40px;
+    padding-top: 96px; /*menu 56px*/
+    height: 100vh;
 }
 
 .page-title {
@@ -461,39 +460,82 @@ nav#panel .menu-mentions a:hover {
 }
 
 
-
-
 /*//////////////////////////////// PAGE PHOTOS FOLDER ////////////////////////////////*/
 
-.page-photos-folder {
-    
-}
 .page-photos-folder #photos-list.photos-list-loading {
     /*image de chargement*/
-
-
 }
 
 .page-photos-folder .component-folder {
-
+    padding: 10px;
+    box-shadow: 0 0 3px #0000004d;
+    margin-bottom: 15px;
+    background-color: #fff;
 }
+.page-photos-folder .folder-title {
+    font-size: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #cacaca;
+}
+.page-photos-folder .folder-description {
+    color: #7d7d7d;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.page-photos-folder .photos-container {
+    display: flex;
+}
+
+.page-photos-folder .component-photo {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.page-photos-folder .photo-panel {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    justify-content: space-around;
+    align-items: center;
+}
+.page-photos-folder .component-photo:hover .photo-panel {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+.page-photos-folder .photo-action {
+    border: 0;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.page-photos-folder .photo-action[data-state="validate"] {
+    background-image: url(../img/task-complete.png);
+    height: 17px;
+    width: 28px;
+}
+.page-photos-folder .photo-action[data-state="delete"] {
+    background-image: url(../img/task-delete.png);
+    height: 14px;
+    width: 14px;
+}
+
+
 .page-photos-folder .component-folder.component-folder-loading {
     /*image de chargement*/
 
 
 }
-
-
-
-
-/* folder (task) */
-.page-photos-folder .component-folder {
-    border: 1px solid black;
-
-}
-
-
-
 
 
 
@@ -541,9 +583,14 @@ nav#panel .menu-mentions a:hover {
 
 /* liste d'un catégorie ( colonne ) */
 
+.page-dashboard .category-tasks-container {
+
+}
+
 .page-dashboard .component-category  {
     width: 100%;
     margin: 10px;
+    max-width: 33%;
 }
 
 .page-dashboard .category-header {
@@ -552,6 +599,11 @@ nav#panel .menu-mentions a:hover {
     font-size: 16px;
     padding: 6px;
     margin-bottom: 15px;
+
+    position: relative;
+    /* position: -webkit-sticky;
+    position: sticky;
+    top: 61px; menu 56px */
 
     display: flex;
     justify-content: space-between;
@@ -609,6 +661,10 @@ nav#panel .menu-mentions a:hover {
 .page-dashboard .component-category-popover {
     top: 130px;
 }
+.page-dashboard .component-category-popover-edit {
+    top: 105%;
+    left: 0;
+}
 
 .page-dashboard .button-category-create-popover {
     font-size: 14px;
@@ -629,15 +685,15 @@ nav#panel .menu-mentions a:hover {
 }
 
 
-.page-dashboard .category-create-title {
+.page-dashboard .category-popover-title {
     margin: 0 0 20px;
     color: #33b5e5;
     padding-bottom: 5px;
     border-bottom: 2px solid #33b5e5;
     font-size: 16px;
 }
-.page-dashboard #form-category-create input,
-.page-dashboard #form-category-create textarea {
+.page-dashboard .category-popover-form input,
+.page-dashboard .category-popover-form textarea {
     outline: none;
     display: block;
     width: 100%;
@@ -646,12 +702,12 @@ nav#panel .menu-mentions a:hover {
     padding: 10px 15px;
     font-size: 15px;
 }
-.page-dashboard #form-category-create input:focus,
-.page-dashboard #form-category-create textarea:focus {
+.page-dashboard .category-popover-form input:focus,
+.page-dashboard .category-popover-form textarea:focus {
     border: 1px solid #33b5e5;
     color: #333;
 }
-.page-dashboard .button-category-create {
+.page-dashboard .category-popover-button {
     display: block;
     cursor: pointer;
     width: 100%;
@@ -659,6 +715,18 @@ nav#panel .menu-mentions a:hover {
     padding: 10px 15px;
     color: #fff;
     background-color: #33b5e5;
+}
+.page-dashboard .category-popover-button.button-category-cancel {
+    background-color: #b6bece;
+    margin-right: 10px;
+}
+
+
+
+.page-dashboard .category-popover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 
@@ -711,6 +779,8 @@ nav#panel .menu-mentions a:hover {
 }
 .page-dashboard .task-photo {
     margin: 5px;
+    overflow: hidden;
+    border-radius: 5px;
 }
 
 .page-dashboard .task-details-block {
@@ -790,8 +860,65 @@ nav#panel .menu-mentions a:hover {
 
 
 /* create modal */
+.page-dashboard .modal-task-create {
+    margin-top: 56px;/*menu*/
+}
+.page-dashboard .form-task-create {
+    padding: 20px;
+    padding-top: 0;
+}
+.page-dashboard .task-create-title {
+    margin: 0 0 20px;
+    color: #33b5e5;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #33b5e5;
+    font-size: 16px;
+}
 
-.module-datetimepicker-container {
+.page-dashboard .form-task-create input[type="text"],
+.page-dashboard .form-task-create textarea {
+    outline: none;
+    display: block;
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    margin: 5px 0;
+    padding: 10px 15px;
+    font-size: 15px;
+}
+.page-dashboard .form-task-create input[type="text"]:focus,
+.page-dashboard .form-task-create textarea:focus {
+    border: 1px solid #33b5e5;
+    color: #333;
+}
+
+
+.page-dashboard .task-create-label-button {
+    font-size: 14px;
+    font-weight: 300;
+    background-color: #4ebbf0;
+    color: #fff;
+    border: 0;
+    padding: 0 30px 0 10px;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.page-dashboard .newtask-field-assigned-to {
+    margin-bottom: 5px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 300;
+}
+.page-dashboard .module-datetimepicker-container {
+    position: absolute;
+    z-index: 9;
+}
+
+
+
+.page-dashboard .module-datetimepicker-container {
     /* display: none; */
 }
 
@@ -1092,9 +1219,7 @@ nav#panel .menu-mentions a:hover {
     width: 90%;
     max-width: 400px;
     /* margin: 8em auto; */
-    background-color: #FFF;
-    border-radius: .25em .25em .4em .4em;
-    text-align: center;
+    background-color: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     -webkit-transform: translateY(-40px);
     -moz-transform: translateY(-40px);
@@ -1121,8 +1246,7 @@ nav#panel .menu-mentions a:hover {
     cursor: pointer;
     width: 100%;
 
-    height: 60px;
-    line-height: 60px;
+    height: 50px;
     font-size: 16px;
     text-transform: uppercase;
     color: #FFF;
@@ -1132,7 +1256,7 @@ nav#panel .menu-mentions a:hover {
     transition: background-color 0.2s;
 }
 .cd-popup-container .cd-buttons .cd-button.cd-button-confirm {
-    background: #fc7169;
+    background: #4ebbf0;
 }
 .cd-popup-container .cd-buttons .cd-button.cd-button-quit {
     background: #b6bece;
@@ -1188,7 +1312,7 @@ nav#panel .menu-mentions a:hover {
 }
 
 .cd-popup-container .cd-popup-content {
-    padding: 8px 0;
+    /* padding: 8px 0; */
 }
 
 .is-visible .cd-popup-container {
@@ -1224,7 +1348,7 @@ nav#panel .menu-mentions a:hover {
 
 .ha-popover {
     position: absolute;
-    z-index: 998;
+    z-index: 9;
     height: auto;
     display: none;
     border-radius: 2px;

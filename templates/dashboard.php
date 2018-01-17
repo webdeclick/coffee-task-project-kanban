@@ -21,15 +21,15 @@
                 <div id="category-popover-new" class="component-category-popover ha-popover">
                     <div class="connector"></div>
 
-                    <div class="category-create-title">
+                    <div class="category-popover-title">
                         Ajouter une catégorie :
                     </div>
 
-                    <form id="form-category-create" class="ha-popover-form" method="post">
+                    <form id="form-category-create" class="category-popover-form ha-popover-form" method="post">
                         <input placeholder="Titre" id="category-field-title" name="title" type="text"> 
 
                         <!-- <button class="button-category-cancel ha-button">Annuler</button> -->
-                        <button class="button-category-create ha-button">Valider</button>
+                        <button class="category-popover-button button-category-create ha-button">Valider</button>
                     </form>
                 </div>
 
@@ -72,46 +72,43 @@
 
 
 
-<div id="modal-popup" class="cd-popup" role="alert">
+<div id="modal-popup" class="modal-task-create cd-popup" role="alert">
 
 	<div class="cd-popup-container">
 
         <form method="post" class="newtask-form" enctype="multipart/form-data">
 
             <div class="cd-popup-header">
-                <div>
-                    Créer une nouvelle tâche
-                </div>
-                <div>
-                    <a href="#" class="cd-popup-close">Close</a>
-                </div>
+                <a href="#" class="cd-popup-close">Close</a>
             </div>
 
-            <div class="cd-popup-content">
+            <div class="form-task-create task-create-form cd-popup-content">
 
-                Titre :
+                <div class="task-create-title">
+                    Créer une nouvelle tâche
+                </div>
 
-                <input name="title" placeholder="Titre" type="text" class="newtask-field-title">
+                <input placeholder="Titre" name="title" placeholder="Titre" type="text" class="newtask-field-title">
 
-                description :
+                <textarea placeholder="Description" name="description" class="newtask-field-description"></textarea>
 
-                <textarea name="description" class="newtask-field-description"></textarea>
+                <input class="check-expanded" id="newtask-showhide-datetimepicker" name="datetimepicker" type="checkbox" />
+                <label class="task-create-label-button" for="newtask-showhide-datetimepicker">Date de fin ?</label>
+                <div class="expanded">
+                    <div class="connector"></div>
+                    <div class="module-datetimepicker-container"></div>
+                    <input name="end-at" type="hidden" class="module-datetimepicker newtask-field-end-at">
+                </div>
 
-                <label for="newtask-showhide-datetimepicker">Date de fin ?</label>
-                <input type="checkbox" name="datetimepicker" id="newtask-showhide-datetimepicker">
-
-                <div class="module-datetimepicker-container"></div>
-                <input name="end-at" type="hidden" class="module-datetimepicker newtask-field-end-at">
-
-                Assigner à : 
+                <label class="task-create-label-button">Assigner à :</label>
 
                 <div class="select newtask-field-assigned-to" tabindex="1">
                     <input class="selectopt" name="people" type="radio" id="newtask-people-0" value="0" checked>
                     <label for="newtask-people-0" class="option">Moi</label>
                     <!-- +peoples -->
                 </div>
-
-                Ajouter des images ( attent de validation par admin )
+            
+                <label class="task-create-label-button">Ajouter des images :</label>
 
                 <input name="files" id="newtask-field-files" type="file" accept="image/*" multiple>
 
@@ -133,13 +130,14 @@
 </div> <!-- screen -->
 
 
+
 <script id="template-category" class="component-template" type="text/template">
 
     <div id="category-{{ id }}" class="component-category category-color-{{ color }}" data-id="{{ id }}">
 
         <div class="category-header">
             <div class="category-icon"></div>
-            <div class="category-title category-field-title">{{ &title }}</div>
+            <div class="category-title">{{ &title }}</div>
 
             <div class="category-dropdown dropdown" tabindex="1">
                 <!-- <input class="dropdown-check" id="check-dropdown{{ id }}" type="checkbox"> -->
@@ -149,29 +147,26 @@
                     <a class="category-menu-item button-category-delete" data-category="{{ id }}">Supprimer</a> 
                 </div>
             </div>
-        </div>
 
+            <div id="category-popover-{{ id }}" class="component-category-popover component-category-popover-edit ha-popover">
+                <div class="connector"></div>
 
+                <form class="category-popover-form ha-popover-form" action="">
 
-
-        <div id="category-popover-{{ id }}" class="component-category-popover ha-popover">
-            <div class="connector"></div>
-
-            <form class="ha-popover-form" action="patch">
-                <section>    
-                    <div class="ha-text-field">
-                        <label for="category-field-title">Titre :</label>
-                        <input id="category-field-title" name="title"  type="text">
+                    <div class="category-popover-title">
+                        Modifier cette catégorie :
                     </div>
-                </section>    
-            
-                <footer class="ha-footer">
-                    <button class="button-category-cancel ha-button" data-category="{{ id }}">Annuler</button> 
-                    <button class="button-category-save ha-button" data-category="{{ id }}">Valider</button> 
-                </footer>  
 
-            </form>
-        </div>
+                    <input placeholder="Titre" id="category-field-title" name="title"  type="text">
+
+                    <footer class="category-popover-footer ha-footer">
+                        <button class="category-popover-button button-category-cancel ha-button" data-category="{{ id }}">Annuler</button> 
+                        <button class="category-popover-button button-category-save ha-button" data-category="{{ id }}">Valider</button> 
+                    </footer>  
+
+                </form>
+            </div>
+        </div><!--category header-->
 
 
         <div class="category-tasks-container">
@@ -264,10 +259,6 @@
     <label for="newtask-people-{{ id }}" class="option">{{ &fullname }}</label>
 
 </script>
-
-
-
-
 
 
 

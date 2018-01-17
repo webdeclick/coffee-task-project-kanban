@@ -55,6 +55,15 @@
                     // all photos are removed, so we hide the folder too
                     folderBlock.remove();
                 }
+
+                if( state == 'validate' ){
+                    // notification
+                    jssnackbar('Photo validée!');
+                }
+                if( state == 'delete' ){
+                    // notification
+                    jssnackbar('Photo supprimée!');
+                }
             };
 
             var errorHandler = function( status, exception ) {
