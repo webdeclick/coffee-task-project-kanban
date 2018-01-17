@@ -358,10 +358,18 @@ nav#panel .menu-mentions a:hover {
     min-height: 150px;
 }
 
-.page-projects .component-project-popover {
-
+.page-projects #project-create-block {
+    position: relative;
 }
-
+.page-projects .component-project-popover {
+    top: 110%;
+    right: 0;
+    width: 250px;
+}
+.page-projects .component-project-popover .connector {
+    right: 10%;
+    left: initial;
+}
 
 /* block projet nouveau */
 
