@@ -23,7 +23,7 @@
                 foreach($projects as $project){?>
                     <div>
                         <a href="#" class="project_card">
-                            <div class="thumb" style="background-image: url(http://localhost/img/project-bg-1.png);"></div>
+                            <div class="thumb" style="background-image: url(/img/project-bg-<?php echo $project["id"] % 10?>.png);"></div>
                             <article>
                                 <h1><?php echo $project["title"]?></h1>
                                 <p><?php echo $project["description"]?></p>

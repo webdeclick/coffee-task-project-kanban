@@ -1585,6 +1585,7 @@ hr{
   }
   .project_card .thumb {
     padding-bottom: 60%;
+    height:auto;
     background-size: cover;
     background-position: center center;
   }
