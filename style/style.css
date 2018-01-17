@@ -472,6 +472,14 @@ nav#panel .menu-mentions a:hover {
     margin-bottom: 15px;
     background-color: #fff;
 }
+
+.page-photos-folder .folder-inner {
+    padding-left: 10px;
+}
+.page-photos-folder .folder-completed {
+    border-left: 4px solid #4ebbf0;
+}
+
 .page-photos-folder .folder-title {
     font-size: 15px;
     padding-bottom: 5px;
