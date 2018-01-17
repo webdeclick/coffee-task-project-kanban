@@ -275,8 +275,9 @@ nav#panel .menu-mentions a:hover {
 /*//////////////////////////////// PAGE CONTENT ////////////////////////////////*/
 
 #page {
-    margin-top: 56px; /*menu*/
     padding: 40px;
+    padding-top: 96px; /*menu 56px*/
+    height: 100vh;
 }
 
 .page-title {
@@ -582,9 +583,14 @@ nav#panel .menu-mentions a:hover {
 
 /* liste d'un catégorie ( colonne ) */
 
+.page-dashboard .category-tasks-container {
+
+}
+
 .page-dashboard .component-category  {
     width: 100%;
     margin: 10px;
+    max-width: 33%;
 }
 
 .page-dashboard .category-header {
@@ -595,6 +601,10 @@ nav#panel .menu-mentions a:hover {
     margin-bottom: 15px;
 
     position: relative;
+    /* position: -webkit-sticky;
+    position: sticky;
+    top: 61px; menu 56px */
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -708,6 +718,7 @@ nav#panel .menu-mentions a:hover {
 }
 .page-dashboard .category-popover-button.button-category-cancel {
     background-color: #b6bece;
+    margin-right: 10px;
 }
 
 
