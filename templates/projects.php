@@ -42,7 +42,7 @@
 
     <div id="project-{{ id }}" class="component-project" data-id="{{ id }}">
 
-        <a href="/dashboard/{{ id }}" class="project-header">
+        <a href="/dashboard/{{ id }}" class="project-header" {{ ?background_url }} style="background-image: url({{ background_url }})"{{ / }}>
             <div class="project-title">{{ &title }}</div>
         </a>
 

@@ -57,6 +57,8 @@
 
                 var project = response[index];
 
+                project.background_url = '/img/project-bg-'+( project.id % 10 )+'.png'; // samir bg
+
                 appendTemplate('project', categoryList, project);
             }
 
