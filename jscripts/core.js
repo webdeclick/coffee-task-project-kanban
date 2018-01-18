@@ -93,18 +93,24 @@ function htmlToNodes( html ) {
 
 function delegate( parent, target, eventType, callback ) {
 
-    // if( isString(parent) ) {
-    //     var parent = document.querySelector(parent);
-    // }
-
     parent.addEventListener(eventType, function( event ) {
-
         var element = event.target;
         var matchesCallback = element.matches || element.matchesSelector;
 
         if( (matchesCallback).call(element, target) ) {
             callback.call(element, event);
         }
+    });
+}
+
+// debouncing event
+
+function delayedListener( element, eventName, callback, delay ) {
+    var timeout;
+    delay = delay || 300;
+    element.addEventListener(eventName, function( event ) {
+        window.clearTimeout(timeout);
+        timeout = setTimeout(callback, delay);
     });
 }
 
