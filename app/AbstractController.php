@@ -157,7 +157,7 @@ abstract class AbstractController {
 
         $userId = $this->userId;
 
-        $datetime = DatabaseDatetime();
+        $datetime = DatabaseDatetime(); // now
 
         // update old tasks
 
