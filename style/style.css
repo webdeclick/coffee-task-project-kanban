@@ -408,11 +408,15 @@ nav#panel .menu-mentions a:hover {
     border-top: 1px solid #0000001a;
     background: url(../img/arrow-drop.png) no-repeat 95% center;
 }
+.page-projects .check-expanded:checked ~ .project-dropdown {
+    background-image: url(../img/arrow-drop2.png);
+}
 
+.page-projects .project-status,
 .page-projects .dropdown-menu.project-status {
     position: absolute;
     width: 100%;
-    top: 110%;
+    top: calc( 100% + 5px );/*connector*/
     left: 0;
 
     border: 1px solid #C7C7C7;
@@ -657,10 +661,10 @@ nav#panel .menu-mentions a:hover {
     padding: 6px;
     margin-bottom: 15px;
 
-    position: relative;
-    /* position: -webkit-sticky;
+    /* position: relative; */
+    position: -webkit-sticky;
     position: sticky;
-    top: 61px; menu 56px */
+    top: 61px; /* menu 56px */
 
     display: flex;
     justify-content: space-between;
@@ -711,6 +715,7 @@ nav#panel .menu-mentions a:hover {
 
 .page-dashboard .category-menu-panel {
     box-shadow: 0 0 3px rgba(0,0,0,0.3);
+    right: 0;/*fix sticky TODO*/
 }
 
 /* créé une catégorie */

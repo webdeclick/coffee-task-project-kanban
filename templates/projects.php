@@ -60,43 +60,41 @@
             </div>
         {{ / }}
 
+        <input class="check-expanded" id="check-dropdown{{ id }}" type="checkbox" />
+        <label class="project-dropdown expander" for="check-dropdown{{ id }}">PROJET</label>
+        
+        <div class="project-status expanded" tabindex="1"><!--dropdown-menu-->
 
-        <div class="project-dropdown dropdown" tabindex="1">
-            <label class="" for="check-dropdown{{ id }}">PROJET</label>
-            <div class="dropdown-menu project-status">
+            <div class="connector"></div>
 
-                <div class="connector"></div>
+            {{ ?user_admin }}
+                <div class="project-action">
+                    <div class="project-action-title">Administrateur :</div>
+                    - {{ user_admin.fullname }}
+                </div>
+            {{ / }}
 
-                {{ ?user_admin }}
-                    <div class="project-action">
-                        <div class="project-action-title">Administrateur :</div>
-                        - {{ user_admin.fullname }}
-                    </div>
-                {{ / }}
+            {{ ?user_manager }}
+                <div class="project-action">
+                    <div class="project-action-title">Modérateur :</div>
+                    - {{ user_manager.fullname }}
+                </div>
+            {{ / }}
 
-                {{ ?user_manager }}
-                    <div class="project-action">
-                        <div class="project-action-title">Modérateur :</div>
-                        - {{ user_manager.fullname }}
-                    </div>
-                {{ / }}
+            {{ ?users }}
+                <div class="project-action">
+                    <div class="project-action-title">Utilisateurs :</div>
+                    {{ #users : user }}
+                        <div id="project-{{ id }}-user-{{ user.id }}" data-id="{{ user.id }}">
+                            - {{ user.fullname }}
+                        </div>
+                    {{ / }}
+                </div>
+            {{ / }}
 
-                {{ ?users }}
-                    <div class="project-action">
-                        <div class="project-action-title">Utilisateurs :</div>
-                        {{ #users : user }}
-                            <div id="project-{{ id }}-user-{{ user.id }}" data-id="{{ user.id }}">
-                                - {{ user.fullname }}
-                            </div>
-                        {{ / }}
-                    </div>
-                {{ / }}
-
-                {{ ?xisPermissionAdmin }}
-                    <div class="project-action">Admin: <a href="/photos-folder/{{ id }}">Voir les photos</a></div>
-                {{ / }}
-
-            </div>
+            {{ ?xisPermissionAdmin }}
+                <div class="project-action">Admin: <a href="/photos-folder/{{ id }}">Voir les photos</a></div>
+            {{ / }}
 
         </div>
 
