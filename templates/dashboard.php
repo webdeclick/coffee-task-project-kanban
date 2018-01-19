@@ -4,6 +4,10 @@
 
 
 
+<?php include 'elements/api-task-modal.php'; ?>
+
+
+
 <h2 class="page-title">
     <div>Projet : <?php echo $dashboard->title; ?></div>
     
@@ -72,7 +76,7 @@
 
 
 
-<div id="modal-popup" class="modal-task-create cd-popup" role="alert">
+<div id="modal-popup-create" class="modal-task-create cd-popup" role="alert">
 
 	<div class="cd-popup-container modal-task-create-container">
 

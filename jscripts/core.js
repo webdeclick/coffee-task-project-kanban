@@ -9,7 +9,18 @@ var api = {
 };
 
 
-// TODO
+var rome = rome || null;
+var DatetimePickerSimple = rome;
+
+function compileTemplate( template, scope ) {
+    return SimpleTemplate(template, scope);
+}
+
+function prettyDate( date ) {
+    return SimplePrettyDate(date);
+}
+
+initializeTaskModalEvents();
 
 
 function AjaxAPISimple( method, url, successHandler, errorHandler, data, progressHandler ) {
@@ -30,19 +41,87 @@ function AjaxAPISimple( method, url, successHandler, errorHandler, data, progres
 }
 
 
+function initializeTaskModalEvents() {
 
+    var popupScreen, popupTaskContainer;
 
+    function modalTaskOpenEvent( event ) {
+        event.preventDefault();
 
-var rome = rome || null;
-var DatetimePickerSimple = rome;
+        var target = event.target;
 
-function compileTemplate( template, scope ) {
-    return SimpleTemplate(template, scope);
+        var taskId = target.getAttribute('data-modal-task');
+
+        var errorHandler = function( status, exception ) {
+            jssnackbar('Impossible de voir cette tâche');
+        };
+
+        var successHandler = function( response ) {
+
+            if( response.error ) {
+                return errorHandler('TaskNotExist');
+            }
+
+            var task = response;
+
+            // pretty dates
+                                
+            task.pretty_created_at = prettyDate(task.created_at);
+                                
+            if( task.end_at ) {
+                task.pretty_end_at = prettyDate(task.end_at);
+            }
+
+            // files upload
+                                
+            var taskfiles = task.files;
+            var taskfilesurls = [];
+
+            if( taskfiles ) {
+
+                for( var findex in taskfiles ) {
+                    var fileid = taskfiles[findex];
+                    
+                    taskfilesurls.push('/file/'+fileid+'/picture');
+                }
+            }
+
+            task.files_url = taskfilesurls;
+
+            // render html
+
+            popupTaskContainer.innerHTML = '';
+            
+            appendTemplate('task', popupTaskContainer, task);
+
+            // open modal
+            popupScreen.classList.add('is-visible');
+        };
+        
+        AjaxSimple('GET', api.endPoint+'task/'+taskId, successHandler, errorHandler);
+    }
+
+    function modalTaskCloseEvent( event ) {
+        event.preventDefault();
+                
+        popupScreen.classList.remove('is-visible');
+    }
+
+    window.addEventListener('load', function( event ) {
+
+        popupScreen = document.getElementById('modal-popup-task');
+        popupTaskContainer = popupScreen.querySelector('.modal-task-container');
+
+        // open modal ; via create buttons on categories list
+
+        delegate(document, '[data-modal-task]', 'click', modalTaskOpenEvent);
+
+        // close modal ; nope button
+
+        delegate(popupScreen, '.cd-popup, .cd-popup-close, .cd-button-quit', 'click', modalTaskCloseEvent);
+    });
 }
 
-function prettyDate( date ) {
-    return SimplePrettyDate(date);
-}
 
 function appendTemplate( templateId, element, scope ) {
 
@@ -189,13 +268,16 @@ function jssnackbar( text, duration ) {
 
     var snackbar = document.getElementById('snackbar');
 
-    snackbar.innerText = text;
-    
-    snackbar.classList.add('is-visible');
+    if( snackbar ) {
 
-    var timeoutId = setTimeout(function(){
-        snackbar.classList.remove('is-visible');
-    }, duration);
+        snackbar.innerText = text;
+    
+        snackbar.classList.add('is-visible');
+    
+        var timeoutId = setTimeout(function(){
+            snackbar.classList.remove('is-visible');
+        }, duration);
+    }
 }
 
 // progress bar
