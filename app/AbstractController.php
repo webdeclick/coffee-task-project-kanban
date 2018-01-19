@@ -161,7 +161,7 @@ abstract class AbstractController {
 
         // update old tasks
 
-        TasksModel::automaticPurge($projectId);
+        TasksModel::purgeOutdated($projectId);
     }
 
 
