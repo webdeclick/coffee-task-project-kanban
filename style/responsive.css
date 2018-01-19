@@ -24,6 +24,14 @@
         margin-right: 0;
     }
 
+    .page-projects .project-popover-new-footer {
+        flex-direction: column-reverse;
+    }
+    .page-projects .project-popover-button.button-project-cancel {
+        margin-right: 0;
+        margin-top: 10px;
+    }
+
     .page-dashboard .page-title {
         flex-direction: column;
     }
@@ -69,6 +77,14 @@
 
     .page-dashboard #categories-list .component-category {
         margin: 10px 0;
+    }
+
+    .page-dashboard .category-popover-footer {
+        flex-direction: column;
+    }
+    .page-dashboard .category-popover-button.button-category-cancel {
+        margin-right: 0;
+        margin-bottom: 5px;
     }
 
 }

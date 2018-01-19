@@ -27,7 +27,10 @@
 
                 <input placeholder="Modérateur (email)" id="project-new-manager" name="manager" type="text">
 
-                <button type="submit" class="project-create">Créer</button>
+                <footer class="project-popover-new-footer ha-footer">
+                    <button class="project-popover-button button-project-cancel">Annuler</button>
+                    <button class="project-popover-button button-project-create" type="submit">Créer</button>
+                </footer>  
 
             </form>
 
@@ -98,10 +101,6 @@
 
         </div>
 
-        
-        
-
-        
 
         {{ ?xisPermissionAdmin }}
             <a class="project-delete">&times;</a>

@@ -438,6 +438,9 @@ nav#panel .menu-mentions a:hover {
     left: 16px;
     transform: rotate(45deg);
 }
+.page-projects .project-status a {
+    color: #89C13E;
+}
 
 .page-projects .project-action {
     color: #515150;
@@ -466,14 +469,6 @@ nav#panel .menu-mentions a:hover {
     display: flex;
 }
 
-
-.page-projects .project-create {
-    width: 100%;
-    border: 0;
-    padding: 10px 15px;
-    color: #fff;
-    background-color: #33b5e5;
-}
 .page-projects .project-popover-title {
     margin: 0 0 20px;
     color: #33b5e5;
@@ -499,6 +494,21 @@ nav#panel .menu-mentions a:hover {
     color: #333;
 }
 
+.page-projects .project-popover-new-footer {
+    display: flex;
+    justify-content: space-between;
+}
+.page-projects .project-popover-button {
+    width: 100%;
+    border: 0;
+    padding: 10px 15px;
+    color: #fff;
+    background-color: #33b5e5;
+}
+.page-projects .project-popover-button.button-project-cancel {
+    background-color: #b6bece;
+    margin-right: 10px;
+}
 
 /*//////////////////////////////// PAGE PHOTOS FOLDER ////////////////////////////////*/
 
@@ -875,6 +885,7 @@ nav#panel .menu-mentions a:hover {
     display: block;
     cursor: pointer;
     background-position: center center;
+    background-color: transparent;
 }
 .page-dashboard .button-task-delete {
     background-image: url(../img/task-delete.png);

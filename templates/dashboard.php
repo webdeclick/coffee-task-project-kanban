@@ -162,7 +162,7 @@
                     <footer class="category-popover-footer ha-footer">
                         <button class="category-popover-button button-category-cancel ha-button" data-category="{{ id }}">Annuler</button> 
                         <button class="category-popover-button button-category-save ha-button" data-category="{{ id }}">Valider</button> 
-                    </footer>  
+                    </footer>
 
                 </form>
             </div>
