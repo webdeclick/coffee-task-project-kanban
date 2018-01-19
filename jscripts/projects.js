@@ -24,6 +24,12 @@
 
     function initializeCategoriesEvents() {
 
+        // add events, new form project
+
+        categoryFormNew = document.getElementById('form-project-new');
+
+        categoryFormNew.addEventListener('submit', addProjectEvent);
+
         // category create new block
 
         var categoryCreateBlock = document.getElementById('project-create-block');
@@ -81,12 +87,6 @@
 
                 appendTemplate('project', categoryList, project);
             }
-
-            // add events, new form project
-
-            categoryFormNew = document.getElementById('form-project-new');
-
-            categoryFormNew.addEventListener('submit', addProjectEvent);
         };
 
         var errorHandler = function( status, exception ) {
