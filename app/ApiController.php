@@ -708,6 +708,7 @@ class ApiController extends AbstractController {
         if( $task )
         {
             $projectId = $task->project_id;
+            $categoryId = $task->category_id;
 
             // check persmission
             if( !$this->canAction('task', 'update', $projectId, $taskId) ) {
@@ -720,44 +721,35 @@ class ApiController extends AbstractController {
 
             // send mail to the assignee :
 
+            $sendMailSuccess = false;
+
             $assignedUser = UserModel::find($task->assigned_to);
 
             if( $assignedUser )
             {
-                $email = $assignedUser->email;
+                $project = ProjectsModel::find($projectId);
+                $category = CategoryModel::find($categoryId);
 
+                $mailBody = render('mails/task-complete', [
+                    'project' => $project, 'category' => $category, 'task' => $task
+                ]);
 
-                //$mail = xmail();
-                $mail = null;
+                $mail = xmail([
+                    'subject' => 'La tâche "'.nohtml($task->title).'" vient d\'être complétée',
+                    'address' => [$assignedUser->email, $assignedUser->username],
+                    'body' => $mailBody,
+                    'body-txt' => nohtml($mailBody)
+                ]);
 
                 if( $mail )
                 {
-                    // ok
-
+                    $sendMailSuccess = true;
                 }
-                else
-                {
-                    // error
-
-                }
-
-
-
             }
-
-            
-
-
-            //todo
-
-
-
-
-
 
             if( $result )
             {
-                return json(['message'=>'ok']);
+                return json(['message'=>'ok', 'send_mail' => $sendMailSuccess]);
             }
         }
         
