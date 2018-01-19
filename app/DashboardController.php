@@ -60,7 +60,7 @@ class DashboardController extends AbstractController {
 
         // purge outdated tasks before fetching new
 
-        $purge = TasksModel::purgeOutdated($projectId);
+        $purge = $this->automaticPurge($projectId);
 
 
         return render('dashboard', $this->container);
