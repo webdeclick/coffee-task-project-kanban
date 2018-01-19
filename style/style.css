@@ -516,10 +516,6 @@ nav#panel .menu-mentions a:hover {
     /*image de chargement*/
 }
 
-.page-photos-folder .photos-list {/*container of photos*/
-
-}
-
 .page-photos-folder .component-folder {
     padding: 10px;
     box-shadow: 0 0 3px #0000004d;
@@ -606,8 +602,6 @@ nav#panel .menu-mentions a:hover {
 
 .page-photos-folder .component-folder.component-folder-loading {
     /*image de chargement*/
-
-
 }
 
 
@@ -655,10 +649,6 @@ nav#panel .menu-mentions a:hover {
 }
 
 /* liste d'un catégorie ( colonne ) */
-
-.page-dashboard .category-tasks-container {
-
-}
 
 .page-dashboard .component-category  {
     width: 100%;
@@ -936,12 +926,6 @@ nav#panel .menu-mentions a:hover {
     border-left-color: #db484f;
 }
 
-/* new button create */
-
-.page-dashboard .button-task-create-oncategory {
-
-}
-
 
 /* create modal */
 .page-dashboard .modal-task-create {
@@ -1007,11 +991,6 @@ nav#panel .menu-mentions a:hover {
     margin-top: 15px;
 }
 
-
-
-.page-dashboard .module-datetimepicker-container {
-    /* display: none; */
-}
 
 #newtask-showhide-datetimepicker[type=checkbox]:checked + .module-datetimepicker-container,
 .module-datetimepicker-container.is-visible {
@@ -1404,10 +1383,6 @@ nav#panel .menu-mentions a:hover {
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
     right: 8px;
-}
-
-.cd-popup-container .cd-popup-content {
-    /* padding: 8px 0; */
 }
 
 .is-visible .cd-popup-container {
