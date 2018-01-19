@@ -237,6 +237,10 @@ class TasksModel extends AbstractModel {
             'is_file_deleted' => false
         ]);
 
+        if( empty($result) ) {
+            return null;
+        }
+
         // format taks :
 
         $dateTime = new DateTime;
