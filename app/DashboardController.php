@@ -25,6 +25,28 @@ class DashboardController extends AbstractController {
      */
     public function __invoke( Request $request, Response $response, $projectId )
     {
+
+        // TODO REMOVE
+        /*
+        $project = ProjectsModel::find(1);
+        $category = \App\Models\CategoryModel::find(3);
+        $task = TasksModel::find(62);
+
+        $logo_blob = 'data;'.base64_encode(file_get_contents('img/logo-header.png'));
+
+        $mailBody = render('mails/task-complete', [
+            'project' => $project, 'category' => $category, 'task' => $task, 'logo_blob' => $logo_blob
+        ]);
+
+        echo $mailBody;exit;
+            */
+
+
+
+
+
+
+
         if( !$this->isLogged ) return redirect('/login?back=1'); // check logged
 
         $this->title = 'Dashboard';

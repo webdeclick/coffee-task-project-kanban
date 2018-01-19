@@ -1210,7 +1210,7 @@ nav#panel .menu-mentions a:hover {
 }
 
 .select .option {
-    background: #fff;
+    background-color: #fff;
     cursor: pointer;
 
     padding:0 30px 0 10px;

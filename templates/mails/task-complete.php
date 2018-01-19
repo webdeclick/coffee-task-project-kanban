@@ -6,7 +6,7 @@
     <title></title>
     <style>
     body {
-        background-color: #f6f6f6;
+        background-color: #eaeaea;
         font-family: sans-serif;
         font-size: 14px;
         line-height: 1.4;
@@ -17,10 +17,14 @@
         border-collapse: separate;
         width: 100%;
     }
-
-    .body {
-        background-color: #f6f6f6;
-        width: 100%;
+    .wrapper {
+        background-color: #fff;
+        margin-bottom: 15px;
+        background-color: #fff;
+        padding: 10px;
+    }
+    .wrapper-inner {
+        padding-left: 15px;
     }
 
     .content {
@@ -32,8 +36,6 @@
     }
 
     .main {
-        background: #ffffff;
-        border-radius: 3px;
         width: 100%;
     }
 
@@ -51,21 +53,11 @@
         font-size: 12px;
         text-align: center;
     }
-
-    .btn table {
-        width: auto;
-    }
-    .btn table td {
-        background-color: #ffffff;
-        border-radius: 5px;
-        text-align: center;
-    }
-    .btn a {
-        background-color: #ffffff;
+    .btn {
+        background-color: #41aeed;
         border: solid 1px #3498db;
-        border-radius: 5px;
         box-sizing: border-box;
-        color: #3498db;
+        color: #fff;
         cursor: pointer;
         display: inline-block;
         font-size: 14px;
@@ -73,16 +65,35 @@
         margin: 0;
         padding: 12px 25px;
         text-decoration: none;
-        text-transform: capitalize;
     }
 
-    .btn-primary table td {
-        background-color: #3498db;
+    .category-header {
+        background-color: #41aeed;
+        color: #fff;
+        font-size: 16px;
+        padding: 6px;
+        margin-bottom: 15px;
+        text-align: center;
     }
-    .btn-primary a {
-        background-color: #3498db;
-        border-color: #3498db;
-        color: #ffffff;
+    .component-task {
+        padding: 10px;
+        box-shadow: 0 0 3px rgba(0,0,0,0.3);
+        margin-bottom: 15px;
+        background-color: #fff;
+    }
+    .component-task-inner {
+        border-left: 3px solid #4ebbf0;
+        padding-left: 10px;
+    }
+    .task-title {
+        font-size: 15px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #cacaca;
+    }
+    .task-description {
+        color: #7d7d7d;
+        font-size: 14px;
+        margin: 5px 0;
     }
     </style>
 </head>
@@ -98,33 +109,40 @@
 
                         <tr>
                             <td class="wrapper">
-                                <table border="0" cellpadding="0" cellspacing="0">
-                                    <tr>
-                                        <td>
-                                            <p>message.</p>
-                                            <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
-                                                <tbody>
-                                                    <tr>
-                                                        <td align="left">
-                                                            <table border="0" cellpadding="0" cellspacing="0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <center>
-                                                                                <a target="_blank">btn</a>
-                                                                            </center>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <p>message.</p>
-                                        </td>
-                                    </tr>
-                                </table>
+                                
+                                <div style="text-align: center">
+                                    <img src="<?php echo $logo_blob; ?>" />
+                                </div>
+
+                                <p>Cette tâche vient d'être complétée aujourdhui!</p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td height="10"></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+
+                                <div class="category-header">
+                                    <div class="category-title">
+                                        <?php echo $category->title; ?>
+                                    </div>
+                                </div>
+
+                                <div class="component-task">
+                                    <div class="component-task-inner">
+                                        <div class="task-title">
+                                            <?php echo $task->title; ?>
+                                        </div>
+
+                                        <div class="task-description">
+                                            <?php echo $task->description; ?>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </td>
                         </tr>
 
@@ -134,7 +152,7 @@
                         <table border="0" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td class="content-block">
-                                    footer
+                                    CoffeeTask
                                 </td>
                             </tr>
                         </table>

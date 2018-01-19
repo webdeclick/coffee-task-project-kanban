@@ -730,8 +730,10 @@ class ApiController extends AbstractController {
                 $project = ProjectsModel::find($projectId);
                 $category = CategoryModel::find($categoryId);
 
+                $logo_blob = 'data:'.base64_encode(file_get_contents('img/logo-header.png'));
+//TODO
                 $mailBody = render('mails/task-complete', [
-                    'project' => $project, 'category' => $category, 'task' => $task
+                    'project' => $project, 'category' => $category, 'task' => $task, 'logo_blob' => $logo_blob
                 ]);
 
                 $mail = xmail([
