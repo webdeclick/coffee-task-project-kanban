@@ -6,11 +6,11 @@ Simple Tasks manager project.
 
 todo: seek all todos
 
-tempalte projects : flex with heighton create project
+.cd-popup-container ==> responsive, under the menu
 
 slim MethodNotAllowedException() default array
 
-db : set updated_at quand un update
+user : update last_login on login
 
 slim: router : remove      * @return array[$routeName, $route, $routeArguments]
 
