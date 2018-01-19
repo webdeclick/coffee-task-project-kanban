@@ -63,11 +63,11 @@ function initializeTaskModalEvents() {
         //hide previous popup
         popupScreen.classList.remove('is-visible');
 
-        if( !taskId ) {
+        /*if( !taskId ) {
             var target = event.target;
 
             var taskId = target.getAttribute('data-modal-task');
-        }
+        }*/
 
         if( !taskId ) {
             return;
