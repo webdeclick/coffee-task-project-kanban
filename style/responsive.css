@@ -7,6 +7,23 @@
         width: 100%;
     }
 
+    .page-projects .page-title {
+        flex-direction: column;
+    }
+    .page-projects #project-create-block {
+        margin-top: 15px;
+        width: 100%;
+    }
+    .page-projects .page-title {
+        position: relative;
+    }
+    .page-projects .component-project-popover {
+        width: 100%;
+    }
+    .page-projects .component-project {
+        margin-right: 0;
+    }
+
     .page-dashboard .page-title {
         flex-direction: column;
     }
@@ -32,9 +49,10 @@
     .page-dashboard #category-create-block {
         width: 100%;
         margin-bottom: 10px;
+        position: relative;
     }
     .page-dashboard .component-category-popover {
-        top: 195px;
+        top: 110%;
     }
     .page-dashboard .component-category-popover-edit {
         top: 105%;
