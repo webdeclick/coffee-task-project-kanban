@@ -928,10 +928,6 @@ nav#panel .menu-mentions a:hover {
 
 
 /* create modal */
-.page-dashboard .modal-task-create {
-    margin-top: 56px;/*menu*/
-    height: calc(100% - 56px);/*menu*/
-}
 
 .page-dashboard .form-task-create {
     padding: 20px;
@@ -1281,6 +1277,9 @@ nav#panel .menu-mentions a:hover {
     margin: 0 auto;
 
     z-index: 9;
+
+    margin-top: 56px;/*menu*/
+    height: calc(100% - 56px);/*menu*/
 }
 .cd-popup.is-visible {
     opacity: 1;
@@ -1307,6 +1306,8 @@ nav#panel .menu-mentions a:hover {
     backface-visibility: hidden;
     transition-property: transform;
     transition-duration: 0.3s;
+
+    margin-top: 56px;/*menu*/
 }
 .cd-popup-container p {
     padding: 3em 1em;

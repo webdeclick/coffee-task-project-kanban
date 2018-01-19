@@ -45,12 +45,33 @@ function initializeTaskModalEvents() {
 
     var popupScreen, popupTaskContainer;
 
-    function modalTaskOpenEvent( event ) {
+    function locationHashChangeEvent( event ) {
+        var hash = location.hash;
+
+        if( hash.startsWith('#task-') ) {
+            var taskId = hash.replace('#task-', '');
+
+            if( taskId ) {
+                modalTaskOpenEvent(event, taskId);
+            }
+        }
+    }
+
+    function modalTaskOpenEvent( event, taskId ) {
         event.preventDefault();
 
-        var target = event.target;
+        //hide previous popup
+        popupScreen.classList.remove('is-visible');
 
-        var taskId = target.getAttribute('data-modal-task');
+        if( !taskId ) {
+            var target = event.target;
+
+            var taskId = target.getAttribute('data-modal-task');
+        }
+
+        if( !taskId ) {
+            return;
+        }
 
         var errorHandler = function( status, exception ) {
             jssnackbar('Impossible de voir cette tâche');
@@ -98,7 +119,7 @@ function initializeTaskModalEvents() {
             popupScreen.classList.add('is-visible');
         };
         
-        AjaxSimple('GET', api.endPoint+'task/'+taskId, successHandler, errorHandler);
+        AjaxAPISimple('GET', api.endPoint+'task/'+taskId, successHandler, errorHandler);
     }
 
     function modalTaskCloseEvent( event ) {
@@ -114,7 +135,13 @@ function initializeTaskModalEvents() {
 
         // open modal ; via create buttons on categories list
 
-        delegate(document, '[data-modal-task]', 'click', modalTaskOpenEvent);
+        //delegate(document, '[data-modal-task]', 'click', modalTaskOpenEvent);
+
+        // hash change url
+
+        window.addEventListener('hashchange', locationHashChangeEvent);
+
+        locationHashChangeEvent(event);
 
         // close modal ; nope button
 
@@ -428,6 +455,15 @@ function findAncestor( el, selector ) // element.closest polyfill
 
     return el;
 }
+
+// pollyfill
+
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function(searchString, position){
+      return this.substr(position || 0, searchString.length) === searchString;
+  };
+}
+
 
 // function String.prototype.format = function()
 // {
