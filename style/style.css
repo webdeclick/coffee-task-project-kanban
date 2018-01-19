@@ -763,6 +763,8 @@ nav#panel .menu-mentions a:hover {
     margin: 5px 0;
     padding: 10px 15px;
     font-size: 15px;
+    background-color: #fff;
+    color: #000;
 }
 .page-dashboard .category-popover-form input:focus,
 .page-dashboard .category-popover-form textarea:focus {

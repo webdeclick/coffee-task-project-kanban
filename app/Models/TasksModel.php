@@ -193,10 +193,28 @@ class TasksModel extends AbstractModel {
      * @param string $datetime
      * @return bool
      */
-    public static function automaticPurge( $userId, $datetime )
+    public static function purgeOutdated( $projectId )
     {
+	    $dbh = DatabaseFactory();
 
+	    $datetime = DatabaseDatetime();
+
+
+	    $result = $dbh->execute('
+            UPDATE @tasks
+            SET is_completed = "1", completed_at = :completed_at
+            WHERE
+                is_completed = "0" AND
+                end_at IS NOT NULL AND
+                end_at <= :date_now AND
+                project_id = :projectId
+        ', [
+            'projectId' => $projectId, 'completed_at' => $datetime, 'date_now' => $datetime
+        ]);
+
+	    return $result;
     }
 
 
 }
+

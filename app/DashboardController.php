@@ -7,6 +7,7 @@ use Slim\Http\Interfaces\ResponseInterface as Response;
 
 use App\Models\ProjectsModel;
 use App\Models\UserModel;
+use App\Models\TasksModel;
 
 
 /**
@@ -56,6 +57,11 @@ class DashboardController extends AbstractController {
         $this->is_admin = ( $userId == $project->linked_admin );
         
         $this->is_manager = ( $userId == $project->linked_manager );
+
+        // purge outdated tasks before fetching new
+
+        $purge = TasksModel::purgeOutdated($projectId);
+
 
         return render('dashboard', $this->container);
     }
