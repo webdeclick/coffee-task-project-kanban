@@ -1170,7 +1170,10 @@ nav#panel .menu-mentions a:hover {
     padding: 0 30px 0 10px;
 }
 
-
+.page-login{
+	
+	color:red;
+}
 /* //////////////////// select ///////////////////// */
 
 .select {

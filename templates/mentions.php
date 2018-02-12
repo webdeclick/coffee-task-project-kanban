@@ -77,7 +77,7 @@ Les liens hypertextes mis en place dans le cadre du présent site internet en di
 <h2 class="h2Mention">Droit d'accès</h1>
 <hr class="hrMention">
 <div class="partie3CU">
-<p class="pMention">En application de cette loi, les internautes disposent d’un droit d’accès, de rectification, de modification et de suppression concernant les données qui les concernent personnellement. Ce droit peut être exercé par voie postale auprès de Natural-net 49 Boulevard Antoine Gautier 33000 Bordeaux ou par voie électronique à l’adresse email suivante : escobar@coffeetask.com
+<p class="pMention">En application de cette loi, les internautes disposent d’un droit d’accès, de rectification, de modification et de suppression concernant les données qui les concernent personnellement par voie électronique à l’adresse email suivante : escobar@coffeetask.com
 Les informations personnelles collectées ne sont en aucun cas confiées à des tiers hormis pour l’éventuelle bonne exécution de la prestation commandée par l’internaute. </p>
 </div></div>
 
