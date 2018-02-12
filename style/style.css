@@ -641,6 +641,14 @@ nav#panel .menu-mentions a:hover {
 
 /*//////////////////////////////// PAGE DASHBOARD : CATEGORIES/TASKS LISTS ////////////////////////////////*/
 
+#clipboard {
+    /* display: none; */
+    height: 0;
+    width: 0;
+    border: 0;
+    opacity: 0;
+}
+
 .page-dashboard .page-title {
     color: #000;
     border-bottom: 1px solid #000;
@@ -700,6 +708,7 @@ nav#panel .menu-mentions a:hover {
     position: -webkit-sticky;
     position: sticky;
     top: 61px; /* menu 56px */
+    z-index: 1;
 
     display: flex;
     justify-content: space-between;
@@ -896,12 +905,13 @@ nav#panel .menu-mentions a:hover {
 .page-dashboard .task-actions {
     display: flex;
     justify-content: flex-end;
-    width: 50px;
+    width: 60px;
 }
 .page-dashboard .task-actions .button-task-delete {
     margin-left: 8px;
 }
 
+.page-dashboard .button-task-copy,
 .page-dashboard .button-task-delete,
 .page-dashboard .button-task-complete {
     border: 0;
@@ -909,6 +919,14 @@ nav#panel .menu-mentions a:hover {
     cursor: pointer;
     background-position: center center;
     background-color: transparent;
+}
+.page-dashboard .button-task-copy {
+    background-image: url(../img/task-copy.png);
+    height: 14px;
+    width: 14px;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 .page-dashboard .button-task-delete {
     background-image: url(../img/task-delete.png);
@@ -926,6 +944,10 @@ nav#panel .menu-mentions a:hover {
 
 .page-dashboard #categories-list .component-category .component-task[data-state="edit"] {
     border-color: yellow;
+}
+
+.page-dashboard .task-inner {
+    position: relative;
 }
 
 /* expiration classes */
@@ -1227,6 +1249,7 @@ nav#panel .menu-mentions a:hover {
     position:relative;
     width: 250px;
     height: 30px;
+    z-index: 2;
 
     -webkit-user-select: none;
     -moz-user-select: none;

@@ -11,6 +11,7 @@
     var isProjectManager = dashboard.is_manager;
     
     var projectsList, categoriesList;
+
     
     
     window.addEventListener('load', function( event ) {
@@ -41,6 +42,22 @@
     });
     
 
+    function copyToClipboard( value, successHandler, errorHandler ) {
+        var textareaClipboard = document.getElementById('clipboard');
+        if( textareaClipboard) {
+            textareaClipboard.value = value;
+            textareaClipboard.select();
+        
+            try {
+                var execCommand = document.execCommand('copy');
+
+                successHandler && successHandler();
+
+            } catch( e ) {
+                errorHandler && errorHandler();
+            }
+        }
+    }
     
     function populateCategoriesAndTasksList( filter ) {
         
@@ -368,6 +385,32 @@
             } // element exist
         });
         
+        // task : get permalink to copy
+
+        delegate(categoriesList, '.button-task-copy', 'click', function( event ){
+            event.preventDefault();
+            
+            var target = event.target;
+            
+            var taskId = target.getAttribute('data-id');
+
+            var baseUrl = location.protocol + '//' + location.host + location.pathname; //.split('/')[1];
+            var hashUrl = '#t-' + taskId;
+
+            var successHandler = function() {
+                // notification
+                jssnackbar('Lien copié dans le presse-papier!');
+            };
+            var errorHandler = function() {
+                // notification
+                jserror('Impossible de copier le lien de cette tâche.', status);
+            };
+
+            copyToClipboard(baseUrl+hashUrl, successHandler, errorHandler);
+
+            // window.location.hash = hashUrl;
+        });
+
         // task : complete
         
         delegate(categoriesList, '.button-task-complete', 'click', function( event ){
