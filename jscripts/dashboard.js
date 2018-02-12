@@ -19,10 +19,6 @@
         
         categoriesList = document.getElementById('categories-list');
         
-        // load projects on top
-        
-        //populateProjects();
-        
         // load categories and tasks
         
         populateCategoriesAndTasksList();
@@ -44,34 +40,7 @@
         initSearchEvents();
     });
     
-    
-    
-    
-    
-    
-    /*function populateProjects() {
-        
-        projectsList.classList.add('projects-list-loading');
-        
-        var successHandler = function( response ) {
-            
-            projectsList.innerHTML = '';
-            projectsList.classList.remove('projects-list-loading');
-            
-            for( var index in response ) {
-                
-                var project = response[index];
-                
-                appendTemplate('project', projectsList, project);
-            }
-        };
-        
-        var errorHandler = function( status, exception ) {
-            jserror('Impossible de récupérer les projets', status);
-        };
-        
-        AjaxSimple('GET', api.endPoint+'projects/list', successHandler, errorHandler);
-    }*/
+
     
     function populateCategoriesAndTasksList( filter ) {
         
@@ -678,7 +647,7 @@
                 var xisPermissionSee = response.xisPermissionSee;
                 
                 if( xisPermissionSee ) {
-                    populateTasksList(categoryId); //todo: better add
+                    populateTasksList(categoryId);
                 }
                 
                 // notification
@@ -766,10 +735,6 @@ function initSearchEvents() {
     
     
 }
-
-
-
-
 
 
 
