@@ -11,6 +11,7 @@ use App\Models\TasksModel;
 use App\Models\CategoryModel;
 use App\Models\FileModel;
 
+use RuntimeException;
 use DateTime;
 
 
@@ -765,8 +766,9 @@ class ApiController extends AbstractController {
                 $project = ProjectsModel::find($projectId);
                 $category = CategoryModel::find($categoryId);
 
-                $logo_blob = 'data:image/png;base64,'.base64_encode(file_get_contents('img/logo-header.png'));
-//TODO
+                //$logo_blob = 'data:image/png;base64,'.base64_encode(file_get_contents('img/logo-header.png'));
+                $logo_blob = 'https://i.imgur.com/WbuXEt5.png'; // temporary GMAIl!!
+
                 $mailBody = render('mails/task-complete', [
                     'project' => $project, 'category' => $category, 'task' => $task, 'logo_blob' => $logo_blob
                 ]);
