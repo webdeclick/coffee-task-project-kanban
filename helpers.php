@@ -175,25 +175,31 @@ use PHPMailer\PHPMailer\Exception as PHPMailerException;
 
 function xmail( array $options = [] )
 {
-    $mail = new PHPMailer(true);
+    $result = false;
 
     try {
-        //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'user@example.com';                 // SMTP username
-        $mail->Password = 'secret';                           // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;                                    // TCP port to connect to
-    
+
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        //$mail->SMTPDebug = 2;
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'ssl';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 465;
+        $mail->CharSet = 'utf-8';
+
+        $mail->Username = 'testaa131231232812346@gmail.com';
+        $mail->Password = ('QSDbuqndbuh2346bnQSDFSQBH');
+
         //Recipients
-        $mail->setFrom('from@coffeetask.com', 'CoffeeTask');
-        $mail->addReplyTo('from@coffeetask.com', 'CoffeeTask');
+        $mail->setFrom('testaa131231232812346@gmail.com', 'CoffeeTask');
+        $mail->addReplyTo('testaa131231232812346@gmail.com', 'CoffeeTask');
 
         if( isset($options['address']) )
         {
             list($address, $recipient) = $options['address'];
+
+            //$address = 'aatestaatest98@gmail.com';//test
 
             $mail->addAddress($address, $recipient);     // Add a recipient
         }
@@ -215,15 +221,16 @@ function xmail( array $options = [] )
         {
             $mail->Body = $options['body-txt']; // text
         }
-    
-        return $mail->send();
 
+        $result = $mail->send();
     
     } catch (PHPMailerException $e) {
         //echo 'Mailer Error: ' . $mail->ErrorInfo;
+
+        return false;
     }
-    
-    return false;
+
+    return $result;
 }
 
 

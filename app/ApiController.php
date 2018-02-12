@@ -11,6 +11,7 @@ use App\Models\TasksModel;
 use App\Models\CategoryModel;
 use App\Models\FileModel;
 
+use RuntimeException;
 use DateTime;
 
 
@@ -765,18 +766,24 @@ class ApiController extends AbstractController {
                 $project = ProjectsModel::find($projectId);
                 $category = CategoryModel::find($categoryId);
 
-                $logo_blob = 'data:'.base64_encode(file_get_contents('img/logo-header.png'));
-//TODO
+                //$logo_blob = 'data:image/png;base64,'.base64_encode(file_get_contents('img/logo-header.png'));
+                $logo_blob = 'https://i.imgur.com/WbuXEt5.png'; // temporary GMAIl!!
+
                 $mailBody = render('mails/task-complete', [
-                    'project' => $project, 'category' => $category, 'task' => $task, 'logo_blob' => $logo_blob
+                    'project' => $project,
+                    'category' => $category,
+                    'task' => $task,
+                    'logo_blob' => $logo_blob
                 ]);
 
-                $mail = xmail([
-                    'subject' => 'La tâche "'.nohtml($task->title).'" vient d\'être complétée',
-                    'address' => [$assignedUser->email, $assignedUser->username],
+                $xmailOptions = [
+                    'subject' => 'La tâche "'.($task->title).'" vient d\'être complétée!',
+                    'address' => [$assignedUser->email, $assignedUser->fullname],
                     'body' => $mailBody,
-                    'body-txt' => nohtml($mailBody)
-                ]);
+                    //'body-txt' => strip_tags($mailBody, '<br><br/>')
+                ];
+
+                $mail = xmail($xmailOptions);
 
                 if( $mail )
                 {

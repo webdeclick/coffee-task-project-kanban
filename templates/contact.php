@@ -24,33 +24,38 @@
 
 <div class="colDroit">
 <h3 class="h3Contact">Contactez-Nous</h3>
-<form action="" method="post">
+
+<?php if (isset($message)) {
+	echo '<div class="fill_main_green"><p class="p_style_contact">Votre message a bien été envoyé !</p></div>';
+}  
+	?>
+<form action="/contact/post" method="post">
 
 <div class="colonne1">
     <label class="label_contact">Nom</label>
-    <input class="input_contact" type="text" name="" required>
+    <input class="input_contact" type="text" name="name" required>
     
     <label class="label_contact">Prénom</label>
-    <input class="input_contact" type="text" name="" required>
+    <input class="input_contact" type="text" name="surname" required>
 
     <label class="label_contact">Email</label>
-    <input  class="input_contact" type="email" name="" required><br>
+    <input  class="input_contact" type="email" name="mail" required><br>
 </div>
 
  <div class="colonne2">
     <label class="label_contact">Numéro de téléphone</b></label>
-    <input class="input_contact" type="tel" name="" required><br>
+    <input class="input_contact" type="tel" name="telephone" required><br>
     
     <label class="label_contact">Ville</b></label>
-    <input class="input_contact" type="text" name="" required><br>
+    <input class="input_contact" type="text" name="city" required><br>
 	
    <label class="label_contact">Objet</b></label>
-    <input class="input_contact" type="text" name="" required><br>
+    <input class="input_contact" type="text" name="object" required><br>
 
 </div>
       <div class="colonne3">   
     <label class="label_contact">Votre message</label> 
-    <textarea class="textareaContact" name=""></textarea>  
+    <textarea class="textareaContact" name="message"></textarea>  
 		  </div>
     <button class="button_contact" type="submit">Envoyer</button>
 

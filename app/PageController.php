@@ -50,11 +50,24 @@ class PageController extends AbstractController {
      * @param Response $response
      * @return string
      */
-    public function contact( Request $request, Response $response )
-    {
+	
+	public function post_contact( Request $request, Response $response ){
+		
+		 $mail = xmail([
+                    'subject' => 'Nous avons bien reçu votre message !',
+                    'address' => $_POST["mail"],
+                    'body' => $_POST["message"]
+                ]);
+		$this->message = 'Mercizfkqzref';
+		return render('contact', $this->container);
+		
+	}
+	
+    public function contact( Request $request, Response $response ){
         $this->title = 'Contact';
+		
 
-        return render('contact', $this->container);
+				return render('contact', $this->container);
     }
 
     /**
@@ -69,6 +82,20 @@ class PageController extends AbstractController {
         $this->title = 'Mentions légales';
 
         return render('mentions', $this->container);
+    }
+
+    /**
+     * Sitemap page
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return string
+     */
+    public function sitemap( Request $request, Response $response )
+    {
+        $this->title = 'Plan du site';
+
+        return render('sitemap', $this->container);
     }
 
 

@@ -3,7 +3,6 @@
 <?php include 'elements/apierror.php'; ?>
 
 
-
 <?php include 'elements/api-task-modal.php'; ?>
 
 
@@ -61,18 +60,9 @@
 </h2>
 
 
-
-
-
-
 <div id="categories-list" class="categories-list categories-list-loading">
     <div class="loader"></div>
 </div>
-
-
-
-
-
 
 
 
@@ -92,12 +82,12 @@
                     Créer une nouvelle tâche
                 </div>
 
-                <input placeholder="Titre" name="title" placeholder="Titre" type="text" class="newtask-field-title">
+                <input placeholder="Titre" name="title" placeholder="Titre" type="text" class="newtask-field-title" required>
 
-                <textarea placeholder="Description" name="description" class="newtask-field-description"></textarea>
+                <textarea placeholder="Description" name="description" class="newtask-field-description" required></textarea>
 
                 <input class="check-expanded" id="newtask-showhide-datetimepicker" name="datetimepicker" type="checkbox" />
-                <label class="task-create-label-button" for="newtask-showhide-datetimepicker">Date de fin ?</label>
+                <label class="task-create-label-button" for="newtask-showhide-datetimepicker">Ajouter une date de fin <span></span></label>
                 <div class="expanded">
                     <div class="connector"></div>
                     <div class="module-datetimepicker-container"></div>
@@ -132,6 +122,7 @@
     </div> <!-- popup -->
 
 </div> <!-- screen -->
+
 
 
 

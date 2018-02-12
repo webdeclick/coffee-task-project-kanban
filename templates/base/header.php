@@ -144,7 +144,9 @@
         <?php endif; ?>
 
         <div class="menu-mentions">
-            <a href="/mentions">Mentions légales</a> - <a href="/contact">Contact</a>
+            <a href="/mentions">Mentions légales</a> -
+            <a href="/contact">Contact</a> <br/>
+            <a href="/sitemap">Plan du site</a>
         </div>
 
     </div></nav>

@@ -71,6 +71,9 @@ body.body-register{
 a {
     text-decoration: none;
 }
+textarea {
+    resize: vertical;
+}
 
 /* templates elements, jscripts */
 
@@ -289,7 +292,37 @@ nav#panel .menu-mentions a:hover {
 }
 
 
+/*//////////////////////////////// PAGE HOME ////////////////////////////////*/
 
+.body-index {
+    background-color: #fff;
+}
+
+.page-index .homepage-why {
+    display: flex;
+    justify-content: space-between;
+}
+.page-index .homepage-desk img {
+    width: 100%;
+    height: auto;
+}
+
+.page-index .homepage-panel {
+    padding: 0 25px;
+}
+
+.page-index .homepage-text-title {
+    font-size: 45px;
+    line-height: 1.1em;
+    font-weight: bold;
+    color: #003945;
+    padding: 30px 0;
+}
+.page-index .homepage-text-desc {
+    font-size: 16px;
+    line-height: 1.5em;
+    color: #7B7B7B;
+}
 
 
 /*//////////////////////////////// PAGE DES PROJETS ////////////////////////////////*/
@@ -1006,6 +1039,18 @@ nav#panel .menu-mentions a:hover {
 }
 
 
+/*//////////////////////////////// PAGE SITEMAP ////////////////////////////////*/
+
+.page-sitemap .sitemap-list {
+    padding-left: 10px;
+    font-weight: 300;
+}
+.page-sitemap .sitemap-item {
+    padding: 5px 0;
+}
+.page-sitemap .sitemap-item a {
+    color: #89C13E;
+}
 
 
 
@@ -1170,7 +1215,10 @@ nav#panel .menu-mentions a:hover {
     padding: 0 30px 0 10px;
 }
 
-
+.page-login{
+	
+	color:red;
+}
 /* //////////////////// select ///////////////////// */
 
 .select {
@@ -1625,6 +1673,7 @@ hr{
   }
   
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   /* PROFIL CARD + UPDATE PROFIL FORM
  
@@ -1968,3 +2017,11 @@ hr{
     cursor: pointer;
     max-width: 100%;
   }
+=======
+.p_style_contact{
+	    padding: 15px;
+	text-align: center;
+	color: white;
+    margin-bottom: 22px;
+}
+>>>>>>> 1362fefe2820974679d29dadbb313563e64dda8b

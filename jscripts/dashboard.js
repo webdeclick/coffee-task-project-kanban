@@ -19,10 +19,6 @@
         
         categoriesList = document.getElementById('categories-list');
         
-        // load projects on top
-        
-        //populateProjects();
-        
         // load categories and tasks
         
         populateCategoriesAndTasksList();
@@ -44,34 +40,7 @@
         initSearchEvents();
     });
     
-    
-    
-    
-    
-    
-    /*function populateProjects() {
-        
-        projectsList.classList.add('projects-list-loading');
-        
-        var successHandler = function( response ) {
-            
-            projectsList.innerHTML = '';
-            projectsList.classList.remove('projects-list-loading');
-            
-            for( var index in response ) {
-                
-                var project = response[index];
-                
-                appendTemplate('project', projectsList, project);
-            }
-        };
-        
-        var errorHandler = function( status, exception ) {
-            jserror('Impossible de récupérer les projets', status);
-        };
-        
-        AjaxSimple('GET', api.endPoint+'projects/list', successHandler, errorHandler);
-    }*/
+
     
     function populateCategoriesAndTasksList( filter ) {
         
@@ -498,7 +467,8 @@
         
         var datetimePicker = popupCreateContainer.querySelector('.module-datetimepicker');
         var datetimePickerContainer = popupCreateContainer.querySelector('.module-datetimepicker-container');
-        
+        var datetimeLabelSpan = popupCreateContainer.querySelector('.task-create-label-button span');
+
         var dateFormat = 'YYYY-MM-DD HH:mm:ss';
 
         DatetimePickerSimple(datetimePickerContainer, {
@@ -517,10 +487,17 @@
             var value = xmoment.add(1, 'hour').format(dateFormat);
             
             this.setValue(value);
-            datetimePicker.value = value;
+            //datetimePicker.value = value;
         })
         .on('data', function( value ) { // set value on click
             datetimePicker.value = value;
+
+            if( datetimeLabelSpan ) {
+                var xmoment = this.getMoment();
+                var text = xmoment.format('DD/MM/YYYY à HH:mm', 'fr');
+
+                datetimeLabelSpan.innerText = ' : ' + text;
+            }
         });
         
         // open modal ; via create buttons on categories list
@@ -551,6 +528,10 @@
             var fieldDatetimepicker = popupCreateContainer.querySelector('[name="datetimepicker"]');
             if( fieldDatetimepicker ) {
                 fieldDatetimepicker.checked  = false;
+            }
+            var datetimeLabelSpan = popupCreateContainer.querySelector('.task-create-label-button span');
+            if( datetimeLabelSpan ) {
+                datetimeLabelSpan.innerText = '';
             }
         });
         
@@ -590,6 +571,17 @@
             if( filesElement && filesElement.files && filesElement.files.length > 0 ) {
                 
                 var promises = [];
+
+                // limit 20 pictures
+
+                if( filesElement.files.length > 20 ) {
+                    jssnackbar('Le nombre d\'images est limité à 20.');
+
+                    // reinit submit :
+                    submit.disabled = false;
+
+                    return false;
+                }
                 
                 forEach(filesElement.files, function( file, i ) { // todo: use 'for' to keep async promises and avoid .all
                 
@@ -655,7 +647,7 @@
                 var xisPermissionSee = response.xisPermissionSee;
                 
                 if( xisPermissionSee ) {
-                    populateTasksList(categoryId); //todo: better add
+                    populateTasksList(categoryId);
                 }
                 
                 // notification
@@ -743,10 +735,6 @@ function initSearchEvents() {
     
     
 }
-
-
-
-
 
 
 
