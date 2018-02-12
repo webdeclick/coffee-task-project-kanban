@@ -54,6 +54,13 @@ class ApiController extends AbstractController {
         return json(['error' => [ 'code' => $code, 'message' => $message ]]);
     }
 
+    /**
+     * Heartbeat
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return void
+     */
     public function heartbeat( Request $request, Response $response ){}
 
 
@@ -152,7 +159,7 @@ class ApiController extends AbstractController {
      * @param int $projectId
      * @return string
      */
-    public function projectUpdate( Request $request, Response $response, $projectId )
+    /*public function projectUpdate( Request $request, Response $response, $projectId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
@@ -163,13 +170,7 @@ class ApiController extends AbstractController {
 
         // TODO
 
-
-
-
-
-
-
-    }
+    }*/
 
     /**
      * Delete the project
@@ -308,8 +309,6 @@ class ApiController extends AbstractController {
 
         return $this->apiError('FileNotExist');
     }
-
-    
 
 
 
@@ -522,7 +521,7 @@ class ApiController extends AbstractController {
 
         $task = TasksModel::getSingle($taskId);
 
-        if( !empty($task) ) // TODO use object
+        if( !empty($task) )
         {
             $projectId = $task['project_id'];
             $categoryId = $task['category_id'];
@@ -638,7 +637,6 @@ class ApiController extends AbstractController {
                 }
             }
 
-
             $isPermissionSee = false;
 
             // check persmission
@@ -661,7 +659,7 @@ class ApiController extends AbstractController {
      * @param int $taskId
      * @return string
      */
-    public function taskUpdate( Request $request, Response $response, $taskId )
+    /*public function taskUpdate( Request $request, Response $response, $taskId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
 
@@ -683,15 +681,10 @@ class ApiController extends AbstractController {
             $dateEndAt = $request->input('end-at');
 
 
-
-
-
-
-
         }
 
         return $this->apiError('TaskNotUpdated');
-    }
+    }*/
 
     /**
      * Delete a task
@@ -732,6 +725,14 @@ class ApiController extends AbstractController {
         return $this->apiError('TaskNotDeleted');
     }
 
+    /**
+     * Complete a task
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $taskId
+     * @return string
+     */
     public function taskComplete( Request $request, Response $response, $taskId )
     {
         if( !$this->isLogged ) return $this->apiError('UserNotLogged');
@@ -799,5 +800,6 @@ class ApiController extends AbstractController {
         
         return $this->apiError('TaskNotUpdated');
     }
+
 
 }
