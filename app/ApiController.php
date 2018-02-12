@@ -770,17 +770,20 @@ class ApiController extends AbstractController {
                 $logo_blob = 'https://i.imgur.com/WbuXEt5.png'; // temporary GMAIl!!
 
                 $mailBody = render('mails/task-complete', [
-                    'project' => $project, 'category' => $category, 'task' => $task, 'logo_blob' => $logo_blob
+                    'project' => $project,
+                    'category' => $category,
+                    'task' => $task,
+                    'logo_blob' => $logo_blob
                 ]);
 
-                $options = [
-                    'subject' => 'La tâche "'.nohtml($task->title).'" vient d\'être complétée',
+                $xmailOptions = [
+                    'subject' => 'La tâche "'.nohtml($task->title).'" vient d\'être complétée!',
                     'address' => [$assignedUser->email, $assignedUser->fullname],
                     'body' => $mailBody,
                     //'body-txt' => strip_tags($mailBody, '<br><br/>')
                 ];
 
-                $mail = xmail($options);
+                $mail = xmail($xmailOptions);
 
                 if( $mail )
                 {
