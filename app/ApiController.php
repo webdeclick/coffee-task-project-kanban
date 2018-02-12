@@ -765,18 +765,20 @@ class ApiController extends AbstractController {
                 $project = ProjectsModel::find($projectId);
                 $category = CategoryModel::find($categoryId);
 
-                $logo_blob = 'data:'.base64_encode(file_get_contents('img/logo-header.png'));
+                $logo_blob = 'data:image/png;base64,'.base64_encode(file_get_contents('img/logo-header.png'));
 //TODO
                 $mailBody = render('mails/task-complete', [
                     'project' => $project, 'category' => $category, 'task' => $task, 'logo_blob' => $logo_blob
                 ]);
 
-                $mail = xmail([
+                $options = [
                     'subject' => 'La tâche "'.nohtml($task->title).'" vient d\'être complétée',
-                    'address' => [$assignedUser->email, $assignedUser->username],
+                    'address' => [$assignedUser->email, $assignedUser->fullname],
                     'body' => $mailBody,
-                    'body-txt' => nohtml($mailBody)
-                ]);
+                    //'body-txt' => strip_tags($mailBody, '<br><br/>')
+                ];
+
+                $mail = xmail($options);
 
                 if( $mail )
                 {
