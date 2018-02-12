@@ -50,11 +50,24 @@ class PageController extends AbstractController {
      * @param Response $response
      * @return string
      */
-    public function contact( Request $request, Response $response )
-    {
+	
+	public function post_contact( Request $request, Response $response ){
+		
+		 $mail = xmail([
+                    'subject' => 'Nous avons bien reçu votre message !',
+                    'address' => $_POST["mail"],
+                    'body' => $_POST["message"]
+                ]);
+		$this->message = 'Mercizfkqzref';
+		return render('contact', $this->container);
+		
+	}
+	
+    public function contact( Request $request, Response $response ){
         $this->title = 'Contact';
+		
 
-        return render('contact', $this->container);
+				return render('contact', $this->container);
     }
 
     /**

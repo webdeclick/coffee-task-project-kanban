@@ -24,10 +24,13 @@ return [
     'dashboard' => ['get', '/dashboard/(\d+)', '\App\DashboardController'],
 
     'photos-folder' => ['get', '/photos-folder/(\d+)', '\App\ProjectsController@photosFolder'],
+	
+	
 
     // pages
 
     'contact' => ['get', '/contact', '\App\PageController@contact'],
+	'contact.post' => ['post', '/contact/post', '\App\PageController@post_contact'],
     'mentions' => ['get', '/mentions', '\App\PageController@mentions'],
     'sitemap' => ['get', '/sitemap', '\App\PageController@sitemap'],
 
