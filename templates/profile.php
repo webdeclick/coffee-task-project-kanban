@@ -3,26 +3,17 @@
 
 <div class="wrapper">
     <div>   
-        <div class="profil_picture">
-            <img src="https://i.ytimg.com/vi/6FQsIfE7sZM/maxresdefault.jpg" alt="">
-        </div>
-        <div> 
-            <h2 class="text_main_green"><?php echo $user["fullname"]; ?></h2>
-            <p class="joined">Inscrit le <?php echo $user["created_at"]?></p><br>
-            <p><i class="fa fa-phone-square text_main_green" aria-hidden="true"></i> Téléphone: <?php echo $user["phone_number"]?> <p>
-            <p><i class="fa fa-envelope text_main_green" aria-hidden="true"></i> Email: <?php echo $user["email"]?><p>
-            <p><i class="fa fa-home text_main_green" aria-hidden="true"></i> Adresse: <?php echo $user["address"]?> <p>
-            <p><i class="fa fa-user text_main_green" aria-hidden="true"></i> Âge: <?php echo $user["age"]?> <p>
-        </div> 
+        <div class="profil_form"></div>
     </div>
 
     <div>
         <h2>Projets en cours:</h2>
+        
         <div class="profil_project_wrap">
             <?php
                 foreach($projects as $project){?>
                     <div>
-                        <a href="#" class="project_card">
+                        <a href="/dashboard/<?php echo $project["id"]?>" class="project_card">
                             <div class="thumb" style="background-image: url(/img/project-bg-<?php echo $project["id"] % 10?>.png);"></div>
                             <article>
                                 <h1><?php echo $project["title"]?></h1>
@@ -44,6 +35,6 @@
     </div>
 </div>
 
-
+<script type="text/javascript" src="/jscripts/profil_update.js"></script>
 
 <?php include 'base/footer.php'; ?>
