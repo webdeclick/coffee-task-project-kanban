@@ -498,7 +498,8 @@
         
         var datetimePicker = popupCreateContainer.querySelector('.module-datetimepicker');
         var datetimePickerContainer = popupCreateContainer.querySelector('.module-datetimepicker-container');
-        
+        var datetimeLabelSpan = popupCreateContainer.querySelector('.task-create-label-button span');
+
         var dateFormat = 'YYYY-MM-DD HH:mm:ss';
 
         DatetimePickerSimple(datetimePickerContainer, {
@@ -517,10 +518,17 @@
             var value = xmoment.add(1, 'hour').format(dateFormat);
             
             this.setValue(value);
-            datetimePicker.value = value;
+            //datetimePicker.value = value;
         })
         .on('data', function( value ) { // set value on click
             datetimePicker.value = value;
+
+            if( datetimeLabelSpan ) {
+                var xmoment = this.getMoment();
+                var text = xmoment.format('DD/MM/YYYY à HH:mm', 'fr');
+
+                datetimeLabelSpan.innerText = ' : ' + text;
+            }
         });
         
         // open modal ; via create buttons on categories list
@@ -551,6 +559,10 @@
             var fieldDatetimepicker = popupCreateContainer.querySelector('[name="datetimepicker"]');
             if( fieldDatetimepicker ) {
                 fieldDatetimepicker.checked  = false;
+            }
+            var datetimeLabelSpan = popupCreateContainer.querySelector('.task-create-label-button span');
+            if( datetimeLabelSpan ) {
+                datetimeLabelSpan.innerText = '';
             }
         });
         

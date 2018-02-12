@@ -71,6 +71,9 @@ body.body-register{
 a {
     text-decoration: none;
 }
+textarea {
+    resize: vertical;
+}
 
 /* templates elements, jscripts */
 
