@@ -18,6 +18,10 @@ use DateTime;
 /**
  * Api Controller
  * Used in Ajax-based operations
+ *
+ * @package  CoffeeTask
+ * @version  v.1 (12/02/2018)
+ * @author   rivetchip
  */
 class ApiController extends AbstractController {
 

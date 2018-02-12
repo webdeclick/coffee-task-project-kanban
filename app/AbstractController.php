@@ -12,6 +12,10 @@ use App\Models\TasksModel;
 
 /**
  * Abstract Controller
+ *
+ * @package  CoffeeTask
+ * @version  v.1 (12/02/2018)
+ * @author   rivetchip
  */
 abstract class AbstractController {
 
@@ -149,6 +153,7 @@ abstract class AbstractController {
     /**
      * Semi-automatic purge of tasks / everything
      *
+     * @param int $projectId
      * @return void
      */
     protected function automaticPurge( $projectId )

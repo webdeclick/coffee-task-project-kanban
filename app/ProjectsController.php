@@ -12,6 +12,10 @@ use App\Models\FileModel;
 /**
  * Projects Controller
  * Listing
+ *
+ * @package  CoffeeTask
+ * @version  v.1 (12/02/2018)
+ * @author   rivetchip
  */
 class ProjectsController extends AbstractController {
 

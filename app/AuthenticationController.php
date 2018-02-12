@@ -11,6 +11,10 @@ use App\Models\UserModel;
 /**
  * Authentication Controller
  * User-profile related tasks
+ *
+ * @package  CoffeeTask
+ * @version  v.1 (12/02/2018)
+ * @author   rivetchip
  */
 class AuthenticationController extends AbstractController {
 

@@ -7,6 +7,10 @@ use ArrayAccess;
 
 /**
  * Abstract model
+ *
+ * @package  CoffeeTask
+ * @version  v.1 (12/02/2018)
+ * @author   rivetchip
  */
 abstract class AbstractModel implements ArrayAccess {
 
