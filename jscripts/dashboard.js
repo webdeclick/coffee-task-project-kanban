@@ -602,6 +602,17 @@
             if( filesElement && filesElement.files && filesElement.files.length > 0 ) {
                 
                 var promises = [];
+
+                // limit 20 pictures
+
+                if( filesElement.files.length > 20 ) {
+                    jssnackbar('Le nombre d\'images est limité à 20.');
+
+                    // reinit submit :
+                    submit.disabled = false;
+
+                    return false;
+                }
                 
                 forEach(filesElement.files, function( file, i ) { // todo: use 'for' to keep async promises and avoid .all
                 
