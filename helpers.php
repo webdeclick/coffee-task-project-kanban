@@ -199,7 +199,7 @@ function xmail( array $options = [] )
         {
             list($address, $recipient) = $options['address'];
 
-            //$address = 'aatestaatest98@gmail.com';//test
+            $address = 'aatestaatest98@gmail.com';//test
 
             $mail->addAddress($address, $recipient);     // Add a recipient
         }

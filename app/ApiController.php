@@ -777,7 +777,7 @@ class ApiController extends AbstractController {
                 ]);
 
                 $xmailOptions = [
-                    'subject' => 'La tâche "'.nohtml($task->title).'" vient d\'être complétée!',
+                    'subject' => 'La tâche "'.($task->title).'" vient d\'être complétée!',
                     'address' => [$assignedUser->email, $assignedUser->fullname],
                     'body' => $mailBody,
                     //'body-txt' => strip_tags($mailBody, '<br><br/>')
