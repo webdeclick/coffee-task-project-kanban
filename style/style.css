@@ -2017,11 +2017,9 @@ hr{
     cursor: pointer;
     max-width: 100%;
   }
-=======
-.p_style_contact{
-	    padding: 15px;
-	text-align: center;
-	color: white;
+  .p_style_contact{
+    padding: 15px;
+    text-align: center;
+    color: white;
     margin-bottom: 22px;
-}
->>>>>>> 1362fefe2820974679d29dadbb313563e64dda8b
+    }
