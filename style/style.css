@@ -414,6 +414,7 @@ nav#panel .menu-mentions a:hover {
     align-items: end;
 }
 .page-projects .project-description {
+    word-break: break-all;
     color: #a09797;
     font-size: 12px;
     padding: 10px;
@@ -569,6 +570,7 @@ nav#panel .menu-mentions a:hover {
     justify-content: space-between;
 }
 .page-photos-folder .folder-description {
+    word-break: break-all;
     color: #7d7d7d;
     font-size: 14px;
     margin: 5px 0;
@@ -643,10 +645,16 @@ nav#panel .menu-mentions a:hover {
 
 #clipboard {
     /* display: none; */
+    /* opacity: 0; */
     height: 0;
     width: 0;
-    border: 0;
-    opacity: 0;
+    /* border: 0; */
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 
 .page-dashboard .page-title {
@@ -713,6 +721,11 @@ nav#panel .menu-mentions a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.page-dashboard .category-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .page-dashboard .category-tasks-addbutton-container {
     display: flex;
@@ -849,12 +862,16 @@ nav#panel .menu-mentions a:hover {
 
 .page-dashboard .task-title {
     font-size: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-right: 20px;/*copy button*/
     padding-bottom: 5px;
     border-bottom: 1px solid #cacaca;
 }
 .page-dashboard .task-description {
     color: #7d7d7d;
     font-size: 14px;
+    word-break: break-all;
     margin: 5px 0;
 }
 
