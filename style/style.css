@@ -1672,3 +1672,9 @@ hr{
     background-position: center center;
   }
   
+.p_style_contact{
+	    padding: 15px;
+	text-align: center;
+	color: white;
+    margin-bottom: 22px;
+}

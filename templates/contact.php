@@ -25,7 +25,10 @@
 <div class="colDroit">
 <h3 class="h3Contact">Contactez-Nous</h3>
 
-
+<?php if (isset($message)) {
+	echo '<div class="fill_main_green"><p class="p_style_contact">Votre message a bien été envoyé !</p></div>';
+}  
+	?>
 <form action="/contact/post" method="post">
 
 <div class="colonne1">

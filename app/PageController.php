@@ -54,11 +54,13 @@ class PageController extends AbstractController {
 	public function post_contact( Request $request, Response $response ){
 		
 		 $mail = xmail([
-                    'name' => 'La tâche "'.nohtml($task->title).'" vient d\'être complétée',
-                    'address' => [$assignedUser->email, $assignedUser->username],
-                    'body' => $mailBody,
-                    'body-txt' => nohtml($mailBody)
+                    'subject' => 'Nous avons bien reçu votre message !',
+                    'address' => $_POST["mail"],
+                    'body' => $_POST["message"]
                 ]);
+		$this->message = 'Mercizfkqzref';
+		return render('contact', $this->container);
+		
 	}
 	
     public function contact( Request $request, Response $response ){
