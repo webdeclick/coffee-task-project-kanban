@@ -86,6 +86,7 @@
     .page-dashboard .component-category-popover-edit {
         top: 105%;
         left: 0;
+        width: 100%;
     }
 
     .page-dashboard .category-menu-panel {

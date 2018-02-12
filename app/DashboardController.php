@@ -13,6 +13,10 @@ use App\Models\TasksModel;
 /**
  * Dashboard Controller
  * Tasks and categories management
+ *
+ * @package  CoffeeTask
+ * @version  v.1 (12/02/2018)
+ * @author   rivetchip
  */
 class DashboardController extends AbstractController {
 

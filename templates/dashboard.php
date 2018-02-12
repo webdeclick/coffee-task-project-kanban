@@ -5,6 +5,8 @@
 
 <?php include 'elements/api-task-modal.php'; ?>
 
+<!-- copy to  clipboard-->
+<textarea name="clipboard" id="clipboard"></textarea>
 
 
 <h2 class="page-title">
@@ -183,6 +185,7 @@
     <div id="task-{{ id }}" class="component-task" data-id="{{ id }}">
 
         <div class="task-inner {{ expire_class }}">
+            <button class="button-task-copy" data-id="{{ id }}"></button>
 
             <input class="check-expanded" id="check-task{{ id }}" type="checkbox" />
 

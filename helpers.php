@@ -1,19 +1,36 @@
 <?php
 
-
+/**
+ * Write to Slim\Response
+ *
+ * @param Response $response
+ * @param string $output
+ * @return void
+ */
 function write( $response, $output )
 {
     return $response->write($output);
 }
 
+/**
+ * Convert >HTML to entities
+ *
+ * @param string $input
+ * @return string
+ */
 function nohtml( $input )
 {
     return htmlentities($input, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 }
 
-
-// Render a template file
-
+/**
+ * Render a template file
+ *
+ * @param string $template
+ * @param array $data
+ * @throws RuntimeException
+ * @return string
+ */
 function render( $template, array $data = [] )
 {
     $file = 'templates/'.$template.'.php';
@@ -34,8 +51,13 @@ function render( $template, array $data = [] )
     return ob_get_clean();
 }
 
-// json encode
-
+/**
+ * Simple json encode
+ *
+ * @param array $data
+ * @param integer $options
+ * @return string
+ */
 function json( $data = [], $options = 0 )
 {
     $options = JSON_PRETTY_PRINT; // debug
@@ -43,8 +65,13 @@ function json( $data = [], $options = 0 )
     return json_encode($data, $options);
 }
 
-// pass word hash
-
+/**
+ * Password hash
+ *
+ * @param string $value
+ * @param string $salt
+ * @return string
+ */
 function passhash( $value, $salt = '' )
 {
     // fixme: random salt
@@ -52,15 +79,24 @@ function passhash( $value, $salt = '' )
     return hash('sha512', $value.$salt); // 128chars
 }
 
-// exit, and redrect to a page
-
+/**
+ * exit, and redrect to a page
+ *
+ * @param string $url
+ * @return void
+ */
 function redirect( $url )
 {
     return exit(header('Location: '.$url));
 }
 
-// guess the prefered language based on http header
-
+/**
+ * Guess the prefered language based on http header
+ *
+ * @param string $default
+ * @param array $langsAvailable
+ * @return string
+ */
 function getPreferedLanguage( $default, array $langsAvailable = [] )
 {
     static $prefered;
@@ -103,9 +139,12 @@ function getPreferedLanguage( $default, array $langsAvailable = [] )
     return $prefered = $default;
 }
 
-
-// basic String translation
-
+/**
+ * Basic String translation
+ *
+ * @param [type] $phrase
+ * @return void
+ */
 function __( $phrase )
 {
     static $translations = [];
@@ -128,9 +167,13 @@ function __( $phrase )
     }
 }
 
-
-// Fetch data from sessions
-
+/**
+ * Fetch data from sessions
+ *
+ * @param string $key
+ * @param mixed $value
+ * @return mixed
+ */
 function session( $key, $value = null )
 {
     $sess =& $_SESSION;
@@ -145,9 +188,14 @@ function session( $key, $value = null )
     }
 }
 
-
-// add events ; fire events ( second parameter is sended to callbacks )
-
+/**
+ * add events ; fire events
+ * second parameter is sended to callbacks
+ *
+ * @param string $event
+ * @param callable $callback
+ * @return void
+ */
 function event( $event, $callback = null )
 {
 	static $events = [];
@@ -173,6 +221,12 @@ function event( $event, $callback = null )
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
 
+/**
+ * Send mail function
+ *
+ * @param array $options
+ * @return bool
+ */
 function xmail( array $options = [] )
 {
     $result = false;

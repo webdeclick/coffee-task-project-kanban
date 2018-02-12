@@ -48,8 +48,8 @@ function initializeTaskModalEvents() {
     function locationHashChangeEvent( event ) {
         var hash = location.hash;
 
-        if( hash.startsWith('#task-') ) {
-            var taskId = hash.replace('#task-', '');
+        if( hash.startsWith('#t-') ) {
+            var taskId = hash.replace('#t-', '');
 
             if( taskId ) {
                 modalTaskOpenEvent(event, taskId);
@@ -133,9 +133,9 @@ function initializeTaskModalEvents() {
         popupScreen = document.getElementById('modal-popup-task');
         popupTaskContainer = popupScreen.querySelector('.modal-task-container');
 
-        // open modal ; via create buttons on categories list
-
-        //delegate(document, '[data-modal-task]', 'click', modalTaskOpenEvent);
+        if( !popupScreen || !popupTaskContainer ) {
+            return; // not exist
+        }
 
         // hash change url
 

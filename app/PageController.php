@@ -12,6 +12,10 @@ use Slim\Routing\Exceptions\MethodNotAllowedException;
 /**
  * Page Controller
  * Simple page rendering
+ *
+ * @package  CoffeeTask
+ * @version  v.1 (12/02/2018)
+ * @author   rivetchip
  */
 class PageController extends AbstractController {
 

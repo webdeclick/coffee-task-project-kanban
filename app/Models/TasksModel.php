@@ -7,6 +7,10 @@ use DateTime;
 
 /**
  * Tasks model
+ *
+ * @package  CoffeeTask
+ * @version  v.1 (12/02/2018)
+ * @author   rivetchip
  */
 class TasksModel extends AbstractModel {
 
