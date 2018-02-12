@@ -1,0 +1,2299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    API Documentation &raquo; \PHPMailer\PHPMailer\SMTP
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">API Documentation</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/PHPMailer.html">PHPMailer</a></li>
+                                                                        <li><a href="../namespaces/Slim.html">Slim</a></li>
+                                                                        <li><a href="../namespaces/App.html">App</a></li>
+                                                                        <li><a href="../namespaces/Database.html">Database</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method_authenticate" title="authenticate :: Perform SMTP authentication.">
+            <span class="description">Perform SMTP authentication.</span><pre>authenticate</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_client_send" title="client_send :: Send raw data to the server.">
+            <span class="description">Send raw data to the server.</span><pre>client_send</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_close" title="close :: Close the socket and clean up the state of the class.">
+            <span class="description">Close the socket and clean up the state of the class.</span><pre>close</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_connect" title="connect :: Connect to an SMTP server.">
+            <span class="description">Connect to an SMTP server.</span><pre>connect</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_connected" title="connected :: Check connection state.">
+            <span class="description">Check connection state.</span><pre>connected</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_data" title="data :: Send an SMTP DATA command.">
+            <span class="description">Send an SMTP DATA command.</span><pre>data</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                                                                                                                                <li class="method public">
+        <a href="#method_getDebugLevel" title="getDebugLevel :: Get debug output level.">
+            <span class="description">Get debug output level.</span><pre>getDebugLevel</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getDebugOutput" title="getDebugOutput :: Get debug output method.">
+            <span class="description">Get debug output method.</span><pre>getDebugOutput</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getError" title="getError :: Get the latest error.">
+            <span class="description">Get the latest error.</span><pre>getError</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getLastReply" title="getLastReply :: Get the last reply from the server.">
+            <span class="description">Get the last reply from the server.</span><pre>getLastReply</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getLastTransactionID" title="getLastTransactionID :: Get the queue/transaction ID of the last SMTP transaction
+If no reply has been received yet, it will return null.">
+            <span class="description">Get the queue/transaction ID of the last SMTP transaction
+If no reply has been received yet, it will return null.</span><pre>getLastTransactionID</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getServerExt" title="getServerExt :: Get metadata about the SMTP server from its HELO/EHLO response.">
+            <span class="description">Get metadata about the SMTP server from its HELO/EHLO response.</span><pre>getServerExt</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getServerExtList" title="getServerExtList :: Get SMTP extensions available on the server.">
+            <span class="description">Get SMTP extensions available on the server.</span><pre>getServerExtList</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getTimeout" title="getTimeout :: Get SMTP timeout.">
+            <span class="description">Get SMTP timeout.</span><pre>getTimeout</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getVerp" title="getVerp :: Get VERP address generation mode.">
+            <span class="description">Get VERP address generation mode.</span><pre>getVerp</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_hello" title="hello :: Send an SMTP HELO or EHLO command.">
+            <span class="description">Send an SMTP HELO or EHLO command.</span><pre>hello</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                <li class="method public">
+        <a href="#method_mail" title="mail :: Send an SMTP MAIL command.">
+            <span class="description">Send an SMTP MAIL command.</span><pre>mail</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_noop" title="noop :: Send an SMTP NOOP command.">
+            <span class="description">Send an SMTP NOOP command.</span><pre>noop</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                <li class="method public">
+        <a href="#method_quit" title="quit :: Send an SMTP QUIT command.">
+            <span class="description">Send an SMTP QUIT command.</span><pre>quit</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_recipient" title="recipient :: Send an SMTP RCPT command.">
+            <span class="description">Send an SMTP RCPT command.</span><pre>recipient</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                <li class="method public">
+        <a href="#method_reset" title="reset :: Send an SMTP RSET command.">
+            <span class="description">Send an SMTP RSET command.</span><pre>reset</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_sendAndMail" title="sendAndMail :: Send an SMTP SAML command.">
+            <span class="description">Send an SMTP SAML command.</span><pre>sendAndMail</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                                                                        <li class="method public">
+        <a href="#method_setDebugLevel" title="setDebugLevel :: Set debug output level.">
+            <span class="description">Set debug output level.</span><pre>setDebugLevel</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setDebugOutput" title="setDebugOutput :: Set debug output method.">
+            <span class="description">Set debug output method.</span><pre>setDebugOutput</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                <li class="method public">
+        <a href="#method_setTimeout" title="setTimeout :: Set SMTP timeout.">
+            <span class="description">Set SMTP timeout.</span><pre>setTimeout</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setVerp" title="setVerp :: Enable or disable VERP address generation.">
+            <span class="description">Enable or disable VERP address generation.</span><pre>setVerp</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_startTLS" title="startTLS :: Initiate a TLS (encrypted) session.">
+            <span class="description">Initiate a TLS (encrypted) session.</span><pre>startTLS</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_turn" title="turn :: Send an SMTP TURN command.">
+            <span class="description">Send an SMTP TURN command.</span><pre>turn</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_verify" title="verify :: Send an SMTP VRFY command.">
+            <span class="description">Send an SMTP VRFY command.</span><pre>verify</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                    <li class="method protected">
+                            <a href="#method_edebug" title="edebug :: Output debugging info via a user-selected method.">
+                                <span class="description">Output debugging info via a user-selected method.</span><pre>edebug</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method_errorHandler" title="errorHandler :: Reports an error number and string.">
+                                <span class="description">Reports an error number and string.</span><pre>errorHandler</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method_get_lines" title="get_lines :: Read the SMTP server&#039;s response.">
+                                <span class="description">Read the SMTP server&#039;s response.</span><pre>get_lines</pre>
+                            </a>
+                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li class="method protected">
+                            <a href="#method_hmac" title="hmac :: Calculate an MD5 HMAC hash.">
+                                <span class="description">Calculate an MD5 HMAC hash.</span><pre>hmac</pre>
+                            </a>
+                        </li>
+                                                                                                                                                        <li class="method protected">
+                            <a href="#method_parseHelloFields" title="parseHelloFields :: Parse a reply to HELO/EHLO command to discover server extensions.">
+                                <span class="description">Parse a reply to HELO/EHLO command to discover server extensions.</span><pre>parseHelloFields</pre>
+                            </a>
+                        </li>
+                                                                                                                                                        <li class="method protected">
+                            <a href="#method_recordLastTransactionID" title="recordLastTransactionID :: Extract and return the ID of the last SMTP transaction based on
+a list of patterns provided in SMTP::$smtp_transaction_id_patterns.">
+                                <span class="description">Extract and return the ID of the last SMTP transaction based on
+a list of patterns provided in SMTP::$smtp_transaction_id_patterns.</span><pre>recordLastTransactionID</pre>
+                            </a>
+                        </li>
+                                                                                                                                                        <li class="method protected">
+                            <a href="#method_sendCommand" title="sendCommand :: Send a command to an SMTP server and check its return code.">
+                                <span class="description">Send a command to an SMTP server and check its return code.</span><pre>sendCommand</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method_sendHello" title="sendHello :: Send an SMTP HELO or EHLO command.">
+                                <span class="description">Send an SMTP HELO or EHLO command.</span><pre>sendHello</pre>
+                            </a>
+                        </li>
+                                                                                                                                                        <li class="method protected">
+                            <a href="#method_setError" title="setError :: Set error messages and codes.">
+                                <span class="description">Set error messages and codes.</span><pre>setError</pre>
+                            </a>
+                        </li>
+                                                                                                                                                                                                                                    </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                                <li class="constant ">
+                    <a href="#constant_DEBUG_CLIENT" title="DEBUG_CLIENT :: Debug level to show client -&gt; server messages.">
+                        <span class="description">Debug level to show client -&gt; server messages.</span><pre>DEBUG_CLIENT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_DEBUG_CONNECTION" title="DEBUG_CONNECTION :: Debug level to show connection status, client -&gt; server and server -&gt; client messages.">
+                        <span class="description">Debug level to show connection status, client -&gt; server and server -&gt; client messages.</span><pre>DEBUG_CONNECTION</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_DEBUG_LOWLEVEL" title="DEBUG_LOWLEVEL :: Debug level to show all messages.">
+                        <span class="description">Debug level to show all messages.</span><pre>DEBUG_LOWLEVEL</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_DEBUG_OFF" title="DEBUG_OFF :: Debug level for no output.">
+                        <span class="description">Debug level for no output.</span><pre>DEBUG_OFF</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_DEBUG_SERVER" title="DEBUG_SERVER :: Debug level to show client -&gt; server and server -&gt; client messages.">
+                        <span class="description">Debug level to show client -&gt; server and server -&gt; client messages.</span><pre>DEBUG_SERVER</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_DEFAULT_PORT" title="DEFAULT_PORT :: The SMTP port to use if one is not specified.">
+                        <span class="description">The SMTP port to use if one is not specified.</span><pre>DEFAULT_PORT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_LE" title="LE :: SMTP line break constant.">
+                        <span class="description">SMTP line break constant.</span><pre>LE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_MAX_LINE_LENGTH" title="MAX_LINE_LENGTH :: The maximum line length allowed by RFC 2822 section 2.1.1.">
+                        <span class="description">The maximum line length allowed by RFC 2822 section 2.1.1.</span><pre>MAX_LINE_LENGTH</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VERSION" title="VERSION :: The PHPMailer SMTP version number.">
+                        <span class="description">The PHPMailer SMTP version number.</span><pre>VERSION</pre>
+                    </a>
+                </li>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>SMTP</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">PHPMailer RFC821 SMTP email transport class.</p>
+                <div class="details">
+                    <div class="long_description">
+                        <p>Implements RFC 821 SMTP commands and provides some utility methods for sending mail to an SMTP server.</p>
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        author
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Chris Ryan</p>
+                                    </td>
+                                </tr>
+                                                            <tr>
+                                    <th>
+                                        author
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Marcus Bointon <a href="mailto:phpmailer@synchromedia.co.uk">phpmailer@synchromedia.co.uk</a></p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Default</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method_authenticate"></a>
+                        <div class="element clickable method public  method_authenticate" data-toggle="collapse" data-target=".method_authenticate .collapse">
+                            <h2>Perform SMTP authentication.</h2>
+                            <pre>authenticate(string $username, string $password, string $authtype = null, \PHPMailer\PHPMailer\OAuth $OAuth = null) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Must be run after hello().</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    see
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                            <a href="../classes/PHPMailer.PHPMailer.SMTP.html#method_hello">\PHPMailer\PHPMailer\SMTP::hello()</a>
+                                                                                                                
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$username</h4>
+                                                <code>string</code><p><p>The user name</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$password</h4>
+                                                <code>string</code><p><p>The password</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$authtype</h4>
+                                                <code>string</code><p><p>The auth type (CRAM-MD5, PLAIN, LOGIN, XOAUTH2)</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$OAuth</h4>
+                                                <code><a href="../classes/PHPMailer.PHPMailer.OAuth.html">\PHPMailer\PHPMailer\OAuth</a></code><p><p>An optional OAuth instance for XOAUTH2 authentication</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>True if successfully authenticated</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_client_send"></a>
+                        <div class="element clickable method public  method_client_send" data-toggle="collapse" data-target=".method_client_send .collapse">
+                            <h2>Send raw data to the server.</h2>
+                            <pre>client_send(string $data, string $command = &#039;&#039;) : integer|boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>string</code><p><p>The data to send</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$command</h4>
+                                                <code>string</code><p><p>Optionally, the command this is part of, used only for controlling debug output</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>integer|boolean</code><p><p>The number of bytes sent to the server or false on error</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_close"></a>
+                        <div class="element clickable method public  method_close" data-toggle="collapse" data-target=".method_close .collapse">
+                            <h2>Close the socket and clean up the state of the class.</h2>
+                            <pre>close() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Don't use this function without first trying to use QUIT.</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    see
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                            <a href="../classes/PHPMailer.PHPMailer.SMTP.html#method_quit">\PHPMailer\PHPMailer\SMTP::quit()</a>
+                                                                                                                
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_connect"></a>
+                        <div class="element clickable method public  method_connect" data-toggle="collapse" data-target=".method_connect .collapse">
+                            <h2>Connect to an SMTP server.</h2>
+                            <pre>connect(string $host, integer $port = null, integer $timeout = 30, array $options = array()) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$host</h4>
+                                                <code>string</code><p><p>SMTP server IP or host name</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$port</h4>
+                                                <code>integer</code><p><p>The port number to connect to</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$timeout</h4>
+                                                <code>integer</code><p><p>How long to wait for the connection to open</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$options</h4>
+                                                <code>array</code><p><p>An array of options for stream_context_create()</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_connected"></a>
+                        <div class="element clickable method public  method_connected" data-toggle="collapse" data-target=".method_connected .collapse">
+                            <h2>Check connection state.</h2>
+                            <pre>connected() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>True if connected</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_data"></a>
+                        <div class="element clickable method public  method_data" data-toggle="collapse" data-target=".method_data .collapse">
+                            <h2>Send an SMTP DATA command.</h2>
+                            <pre>data(string $msg_data) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Issues a data command and sends the msg_data to the server,
+finializing the mail transaction. $msg_data is the message
+that is to be send with the headers. Each header needs to be
+on a single line followed by a <CRLF> with the message headers
+and the message body being separated by an additional <CRLF>.
+Implements RFC 821: DATA <CRLF>.</p></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$msg_data</h4>
+                                                <code>string</code><p><p>Message data to send</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_edebug"></a>
+                        <div class="element clickable method protected  method_edebug" data-toggle="collapse" data-target=".method_edebug .collapse">
+                            <h2>Output debugging info via a user-selected method.</h2>
+                            <pre>edebug(string $str, integer $level) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    see
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                            <a href="../classes/PHPMailer.PHPMailer.SMTP.html#property_Debugoutput">\PHPMailer\PHPMailer\SMTP::Debugoutput</a>
+                                                                                                                
+                                                                                                                                                                        
+                                                                                                                                                                            <a href="../classes/PHPMailer.PHPMailer.SMTP.html#property_do_debug">\PHPMailer\PHPMailer\SMTP::do_debug</a>
+                                                                                                                
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$str</h4>
+                                                <code>string</code><p><p>Debug string to output</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$level</h4>
+                                                <code>integer</code><p><p>The debug level of this message; see DEBUG_* constants</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_errorHandler"></a>
+                        <div class="element clickable method protected  method_errorHandler" data-toggle="collapse" data-target=".method_errorHandler .collapse">
+                            <h2>Reports an error number and string.</h2>
+                            <pre>errorHandler(integer $errno, string $errmsg, string $errfile = &#039;&#039;, integer $errline) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$errno</h4>
+                                                <code>integer</code><p><p>The error number returned by PHP</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$errmsg</h4>
+                                                <code>string</code><p><p>The error message returned by PHP</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$errfile</h4>
+                                                <code>string</code><p><p>The file the error occurred in</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$errline</h4>
+                                                <code>integer</code><p><p>The line number the error occurred on</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_get_lines"></a>
+                        <div class="element clickable method protected  method_get_lines" data-toggle="collapse" data-target=".method_get_lines .collapse">
+                            <h2>Read the SMTP server&#039;s response.</h2>
+                            <pre>get_lines() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Either before eof or socket timeout occurs on the operation.
+With SMTP we can tell if we have more lines to read if the
+4th character is '-' symbol. If it is a space then we don't
+need to read anything else.</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getDebugLevel"></a>
+                        <div class="element clickable method public  method_getDebugLevel" data-toggle="collapse" data-target=".method_getDebugLevel .collapse">
+                            <h2>Get debug output level.</h2>
+                            <pre>getDebugLevel() : integer</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getDebugOutput"></a>
+                        <div class="element clickable method public  method_getDebugOutput" data-toggle="collapse" data-target=".method_getDebugOutput .collapse">
+                            <h2>Get debug output method.</h2>
+                            <pre>getDebugOutput() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getError"></a>
+                        <div class="element clickable method public  method_getError" data-toggle="collapse" data-target=".method_getError .collapse">
+                            <h2>Get the latest error.</h2>
+                            <pre>getError() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getLastReply"></a>
+                        <div class="element clickable method public  method_getLastReply" data-toggle="collapse" data-target=".method_getLastReply .collapse">
+                            <h2>Get the last reply from the server.</h2>
+                            <pre>getLastReply() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getLastTransactionID"></a>
+                        <div class="element clickable method public  method_getLastTransactionID" data-toggle="collapse" data-target=".method_getLastTransactionID .collapse">
+                            <h2>Get the queue/transaction ID of the last SMTP transaction
+If no reply has been received yet, it will return null.</h2>
+                            <pre>getLastTransactionID() : boolean|null|string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>If no pattern was matched, it will return false.</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    see
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                            <a href="../classes/PHPMailer.PHPMailer.SMTP.html#method_recordLastTransactionID">\PHPMailer\PHPMailer\SMTP::recordLastTransactionID()</a>
+                                                                                                                
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean|null|string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getServerExt"></a>
+                        <div class="element clickable method public  method_getServerExt" data-toggle="collapse" data-target=".method_getServerExt .collapse">
+                            <h2>Get metadata about the SMTP server from its HELO/EHLO response.</h2>
+                            <pre>getServerExt(string $name) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>The method works in three ways, dependent on argument value and current state:</p>
+<ol>
+<li>HELO/EHLO has not been sent - returns null and populates $this-&gt;error.</li>
+<li>HELO has been sent -
+$name == 'HELO': returns server name
+$name == 'EHLO': returns boolean false
+$name == any other string: returns null and populates $this-&gt;error</li>
+<li>EHLO has been sent -
+$name == 'HELO'|'EHLO': returns the server name
+$name == any other string: if extension $name exists, returns True
+or its options (e.g. AUTH mechanisms supported). Otherwise returns False.</li>
+</ol></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$name</h4>
+                                                <code>string</code><p><p>Name of SMTP extension or 'HELO'|'EHLO'</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getServerExtList"></a>
+                        <div class="element clickable method public  method_getServerExtList" data-toggle="collapse" data-target=".method_getServerExtList .collapse">
+                            <h2>Get SMTP extensions available on the server.</h2>
+                            <pre>getServerExtList() : array|null</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array|null</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getTimeout"></a>
+                        <div class="element clickable method public  method_getTimeout" data-toggle="collapse" data-target=".method_getTimeout .collapse">
+                            <h2>Get SMTP timeout.</h2>
+                            <pre>getTimeout() : integer</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getVerp"></a>
+                        <div class="element clickable method public  method_getVerp" data-toggle="collapse" data-target=".method_getVerp .collapse">
+                            <h2>Get VERP address generation mode.</h2>
+                            <pre>getVerp() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_hello"></a>
+                        <div class="element clickable method public  method_hello" data-toggle="collapse" data-target=".method_hello .collapse">
+                            <h2>Send an SMTP HELO or EHLO command.</h2>
+                            <pre>hello(string $host = &#039;&#039;) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Used to identify the sending server to the receiving server.
+This makes sure that client and server are in a known state.
+Implements RFC 821: HELO <SP> <domain> <CRLF>
+and RFC 2821 EHLO.</p></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$host</h4>
+                                                <code>string</code><p><p>The host name or IP to connect to</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_hmac"></a>
+                        <div class="element clickable method protected  method_hmac" data-toggle="collapse" data-target=".method_hmac .collapse">
+                            <h2>Calculate an MD5 HMAC hash.</h2>
+                            <pre>hmac(string $data, string $key) : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Works like hash_hmac('md5', $data, $key)
+in case that function is not available.</p></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>string</code><p><p>The data to hash</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$key</h4>
+                                                <code>string</code><p><p>The key to hash with</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_mail"></a>
+                        <div class="element clickable method public  method_mail" data-toggle="collapse" data-target=".method_mail .collapse">
+                            <h2>Send an SMTP MAIL command.</h2>
+                            <pre>mail(string $from) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Starts a mail transaction from the email address specified in
+$from. Returns true if successful or false otherwise. If True
+the mail transaction is started and then one or more recipient
+commands may be called followed by a data command.
+Implements RFC 821: MAIL <SP> FROM:<reverse-path> <CRLF>.</p></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$from</h4>
+                                                <code>string</code><p><p>Source address of this message</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_noop"></a>
+                        <div class="element clickable method public  method_noop" data-toggle="collapse" data-target=".method_noop .collapse">
+                            <h2>Send an SMTP NOOP command.</h2>
+                            <pre>noop() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Used to keep keep-alives alive, doesn't actually do anything.</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_parseHelloFields"></a>
+                        <div class="element clickable method protected  method_parseHelloFields" data-toggle="collapse" data-target=".method_parseHelloFields .collapse">
+                            <h2>Parse a reply to HELO/EHLO command to discover server extensions.</h2>
+                            <pre>parseHelloFields(string $type) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>In case of HELO, the only parameter that can be discovered is a server name.</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$type</h4>
+                                                <code>string</code><p><p><code>HELO</code> or <code>EHLO</code></p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_quit"></a>
+                        <div class="element clickable method public  method_quit" data-toggle="collapse" data-target=".method_quit .collapse">
+                            <h2>Send an SMTP QUIT command.</h2>
+                            <pre>quit(boolean $close_on_error = true) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Closes the socket if there is no error or the $close_on_error argument is true.
+Implements from RFC 821: QUIT <CRLF>.</p></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$close_on_error</h4>
+                                                <code>boolean</code><p><p>Should the connection close if an error occurs?</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_recipient"></a>
+                        <div class="element clickable method public  method_recipient" data-toggle="collapse" data-target=".method_recipient .collapse">
+                            <h2>Send an SMTP RCPT command.</h2>
+                            <pre>recipient(string $address) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Sets the TO argument to $toaddr.
+Returns true if the recipient was accepted false if it was rejected.
+Implements from RFC 821: RCPT <SP> TO:<forward-path> <CRLF>.</p></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$address</h4>
+                                                <code>string</code><p><p>The address the message is being sent to</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_recordLastTransactionID"></a>
+                        <div class="element clickable method protected  method_recordLastTransactionID" data-toggle="collapse" data-target=".method_recordLastTransactionID .collapse">
+                            <h2>Extract and return the ID of the last SMTP transaction based on
+a list of patterns provided in SMTP::$smtp_transaction_id_patterns.</h2>
+                            <pre>recordLastTransactionID() : boolean|null|string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Relies on the host providing the ID in response to a DATA command.
+If no reply has been received yet, it will return null.
+If no pattern was matched, it will return false.</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean|null|string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_reset"></a>
+                        <div class="element clickable method public  method_reset" data-toggle="collapse" data-target=".method_reset .collapse">
+                            <h2>Send an SMTP RSET command.</h2>
+                            <pre>reset() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Abort any transaction that is currently in progress.
+Implements RFC 821: RSET <CRLF>.</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>True on success</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_sendAndMail"></a>
+                        <div class="element clickable method public  method_sendAndMail" data-toggle="collapse" data-target=".method_sendAndMail .collapse">
+                            <h2>Send an SMTP SAML command.</h2>
+                            <pre>sendAndMail(string $from) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Starts a mail transaction from the email address specified in $from.
+Returns true if successful or false otherwise. If True
+the mail transaction is started and then one or more recipient
+commands may be called followed by a data command. This command
+will send the message to the users terminal if they are logged
+in and send them an email.
+Implements RFC 821: SAML <SP> FROM:<reverse-path> <CRLF>.</p></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$from</h4>
+                                                <code>string</code><p><p>The address the message is from</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_sendCommand"></a>
+                        <div class="element clickable method protected  method_sendCommand" data-toggle="collapse" data-target=".method_sendCommand .collapse">
+                            <h2>Send a command to an SMTP server and check its return code.</h2>
+                            <pre>sendCommand(string $command, string $commandstring, integer|array $expect) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$command</h4>
+                                                <code>string</code><p><p>The command name - not sent to the server</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$commandstring</h4>
+                                                <code>string</code><p><p>The actual command to send</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$expect</h4>
+                                                <code>integer|array</code><p><p>One or more expected integer success codes</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>True on success</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_sendHello"></a>
+                        <div class="element clickable method protected  method_sendHello" data-toggle="collapse" data-target=".method_sendHello .collapse">
+                            <h2>Send an SMTP HELO or EHLO command.</h2>
+                            <pre>sendHello(string $hello, string $host) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Low-level implementation used by hello().</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    see
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                            <a href="../classes/PHPMailer.PHPMailer.SMTP.html#method_hello">\PHPMailer\PHPMailer\SMTP::hello()</a>
+                                                                                                                
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$hello</h4>
+                                                <code>string</code><p><p>The HELO string</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$host</h4>
+                                                <code>string</code><p><p>The hostname to say we are</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setDebugLevel"></a>
+                        <div class="element clickable method public  method_setDebugLevel" data-toggle="collapse" data-target=".method_setDebugLevel .collapse">
+                            <h2>Set debug output level.</h2>
+                            <pre>setDebugLevel(integer $level) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$level</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setDebugOutput"></a>
+                        <div class="element clickable method public  method_setDebugOutput" data-toggle="collapse" data-target=".method_setDebugOutput .collapse">
+                            <h2>Set debug output method.</h2>
+                            <pre>setDebugOutput(string|callable $method = &#039;echo&#039;) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$method</h4>
+                                                <code>string|callable</code><p><p>The name of the mechanism to use for debugging output, or a callable to handle it</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setError"></a>
+                        <div class="element clickable method protected  method_setError" data-toggle="collapse" data-target=".method_setError .collapse">
+                            <h2>Set error messages and codes.</h2>
+                            <pre>setError(string $message, string $detail = &#039;&#039;, string $smtp_code = &#039;&#039;, string $smtp_code_ex = &#039;&#039;) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$message</h4>
+                                                <code>string</code><p><p>The error message</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$detail</h4>
+                                                <code>string</code><p><p>Further detail on the error</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$smtp_code</h4>
+                                                <code>string</code><p><p>An associated SMTP error code</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$smtp_code_ex</h4>
+                                                <code>string</code><p><p>Extended SMTP code</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setTimeout"></a>
+                        <div class="element clickable method public  method_setTimeout" data-toggle="collapse" data-target=".method_setTimeout .collapse">
+                            <h2>Set SMTP timeout.</h2>
+                            <pre>setTimeout(integer $timeout) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$timeout</h4>
+                                                <code>integer</code><p><p>The timeout duration in seconds</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setVerp"></a>
+                        <div class="element clickable method public  method_setVerp" data-toggle="collapse" data-target=".method_setVerp .collapse">
+                            <h2>Enable or disable VERP address generation.</h2>
+                            <pre>setVerp(boolean $enabled = false) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$enabled</h4>
+                                                <code>boolean</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_startTLS"></a>
+                        <div class="element clickable method public  method_startTLS" data-toggle="collapse" data-target=".method_startTLS .collapse">
+                            <h2>Initiate a TLS (encrypted) session.</h2>
+                            <pre>startTLS() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_turn"></a>
+                        <div class="element clickable method public  method_turn" data-toggle="collapse" data-target=".method_turn .collapse">
+                            <h2>Send an SMTP TURN command.</h2>
+                            <pre>turn() : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>This is an optional command for SMTP that this class does not support.
+This method is here to make the RFC821 Definition complete for this class
+and <em>may</em> be implemented in future.
+Implements from RFC 821: TURN <CRLF>.</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                                                    </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_verify"></a>
+                        <div class="element clickable method public  method_verify" data-toggle="collapse" data-target=".method_verify .collapse">
+                            <h2>Send an SMTP VRFY command.</h2>
+                            <pre>verify(string $name) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                                                    </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$name</h4>
+                                                <code>string</code><p><p>The name to verify</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                    
+                                            <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+                                                    <a id="constant_VERSION"> </a>
+                            <div class="element clickable constant  constant_VERSION" data-toggle="collapse" data-target=".constant_VERSION .collapse">
+                                <h2>The PHPMailer SMTP version number.</h2>
+                                <pre>VERSION</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_LE"> </a>
+                            <div class="element clickable constant  constant_LE" data-toggle="collapse" data-target=".constant_LE .collapse">
+                                <h2>SMTP line break constant.</h2>
+                                <pre>LE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_DEFAULT_PORT"> </a>
+                            <div class="element clickable constant  constant_DEFAULT_PORT" data-toggle="collapse" data-target=".constant_DEFAULT_PORT .collapse">
+                                <h2>The SMTP port to use if one is not specified.</h2>
+                                <pre>DEFAULT_PORT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_MAX_LINE_LENGTH"> </a>
+                            <div class="element clickable constant  constant_MAX_LINE_LENGTH" data-toggle="collapse" data-target=".constant_MAX_LINE_LENGTH .collapse">
+                                <h2>The maximum line length allowed by RFC 2822 section 2.1.1.</h2>
+                                <pre>MAX_LINE_LENGTH</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_DEBUG_OFF"> </a>
+                            <div class="element clickable constant  constant_DEBUG_OFF" data-toggle="collapse" data-target=".constant_DEBUG_OFF .collapse">
+                                <h2>Debug level for no output.</h2>
+                                <pre>DEBUG_OFF</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_DEBUG_CLIENT"> </a>
+                            <div class="element clickable constant  constant_DEBUG_CLIENT" data-toggle="collapse" data-target=".constant_DEBUG_CLIENT .collapse">
+                                <h2>Debug level to show client -&gt; server messages.</h2>
+                                <pre>DEBUG_CLIENT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_DEBUG_SERVER"> </a>
+                            <div class="element clickable constant  constant_DEBUG_SERVER" data-toggle="collapse" data-target=".constant_DEBUG_SERVER .collapse">
+                                <h2>Debug level to show client -&gt; server and server -&gt; client messages.</h2>
+                                <pre>DEBUG_SERVER</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_DEBUG_CONNECTION"> </a>
+                            <div class="element clickable constant  constant_DEBUG_CONNECTION" data-toggle="collapse" data-target=".constant_DEBUG_CONNECTION .collapse">
+                                <h2>Debug level to show connection status, client -&gt; server and server -&gt; client messages.</h2>
+                                <pre>DEBUG_CONNECTION</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_DEBUG_LOWLEVEL"> </a>
+                            <div class="element clickable constant  constant_DEBUG_LOWLEVEL" data-toggle="collapse" data-target=".constant_DEBUG_LOWLEVEL .collapse">
+                                <h2>Debug level to show all messages.</h2>
+                                <pre>DEBUG_LOWLEVEL</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                            
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_do_debug"> </a>
+                            <div class="element clickable property  public property_do_debug" data-toggle="collapse" data-target=".property_do_debug .collapse">
+                                <h2>Debug output level.</h2>
+                                <pre>do_debug : integer</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"><p>Options:</p>
+<ul>
+<li>self::DEBUG_OFF (<code>0</code>) No debug output, default</li>
+<li>self::DEBUG_CLIENT (<code>1</code>) Client commands</li>
+<li>self::DEBUG_SERVER (<code>2</code>) Client commands and server responses</li>
+<li>self::DEBUG_CONNECTION (<code>3</code>) As DEBUG_SERVER plus connection status</li>
+<li>self::DEBUG_LOWLEVEL (<code>4</code>) Low-level data output, all messages.</li>
+</ul></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>integer</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_Debugoutput"> </a>
+                            <div class="element clickable property  public property_Debugoutput" data-toggle="collapse" data-target=".property_Debugoutput .collapse">
+                                <h2>How to handle debug output.</h2>
+                                <pre>Debugoutput : string|callable|\Psr\Log\LoggerInterface</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"><p>Options:</p>
+<ul>
+<li><code>echo</code> Output plain-text as-is, appropriate for CLI</li>
+<li><code>html</code> Output escaped, line breaks converted to <code>&lt;br&gt;</code>, appropriate for browser output</li>
+<li><code>error_log</code> Output to error log as configured in php.ini
+Alternatively, you can provide a callable expecting two params: a message string and the debug level:</li>
+</ul>
+<pre><code class="language-php">$smtp-&gt;Debugoutput = function($str, $level) {echo "debug level $level; message: $str";};</code></pre>
+<p>Alternatively, you can pass in an instance of a PSR-3 compatible logger, though only <code>debug</code>
+level output is used:</p>
+<pre><code class="language-php">$mail-&gt;Debugoutput = new myPsr3Logger;</code></pre></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string|callable|\Psr\Log\LoggerInterface</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_do_verp"> </a>
+                            <div class="element clickable property  public property_do_verp" data-toggle="collapse" data-target=".property_do_verp .collapse">
+                                <h2>Whether to use VERP.</h2>
+                                <pre>do_verp : boolean</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        see
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                                    <p>Info on VERP</p>
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>boolean</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_Timeout"> </a>
+                            <div class="element clickable property  public property_Timeout" data-toggle="collapse" data-target=".property_Timeout .collapse">
+                                <h2>The timeout value for connection, in seconds.</h2>
+                                <pre>Timeout : integer</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"><p>Default of 5 minutes (300sec) is from RFC2821 section 4.5.3.2.
+This needs to be quite high to function correctly with hosts using greetdelay as an anti-spam measure.</p></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        see
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>integer</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_Timelimit"> </a>
+                            <div class="element clickable property  public property_Timelimit" data-toggle="collapse" data-target=".property_Timelimit .collapse">
+                                <h2>How long to wait for commands to complete, in seconds.</h2>
+                                <pre>Timelimit : integer</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"><p>Default of 5 minutes (300sec) is from RFC2821 section 4.5.3.2.</p></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>integer</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_smtp_transaction_id_patterns"> </a>
+                            <div class="element clickable property  protected property_smtp_transaction_id_patterns" data-toggle="collapse" data-target=".property_smtp_transaction_id_patterns .collapse">
+                                <h2>Patterns to extract an SMTP transaction id from reply to a DATA command.</h2>
+                                <pre>smtp_transaction_id_patterns : array&lt;mixed,string&gt;</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"><p>The first capture group in each regex will be used as the ID.
+MS ESMTP returns the message ID, which may not be correct for internal tracking.</p></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array&lt;mixed,string&gt;</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_last_smtp_transaction_id"> </a>
+                            <div class="element clickable property  protected property_last_smtp_transaction_id" data-toggle="collapse" data-target=".property_last_smtp_transaction_id .collapse">
+                                <h2>The last transaction ID issued in response to a DATA command,
+if one was detected.</h2>
+                                <pre>last_smtp_transaction_id : string|boolean|null</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string|boolean|null</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_smtp_conn"> </a>
+                            <div class="element clickable property  protected property_smtp_conn" data-toggle="collapse" data-target=".property_smtp_conn .collapse">
+                                <h2>The socket for the server connection.</h2>
+                                <pre>smtp_conn : \PHPMailer\PHPMailer\?resource</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>\PHPMailer\PHPMailer\?resource</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_error"> </a>
+                            <div class="element clickable property  protected property_error" data-toggle="collapse" data-target=".property_error .collapse">
+                                <h2>Error information, if any, for the last SMTP command.</h2>
+                                <pre>error : array</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_helo_rply"> </a>
+                            <div class="element clickable property  protected property_helo_rply" data-toggle="collapse" data-target=".property_helo_rply .collapse">
+                                <h2>The reply the server sent to us for HELO.</h2>
+                                <pre>helo_rply : string|null</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"><p>If null, no HELO string has yet been received.</p></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string|null</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_server_caps"> </a>
+                            <div class="element clickable property  protected property_server_caps" data-toggle="collapse" data-target=".property_server_caps .collapse">
+                                <h2>The set of SMTP extensions sent in reply to EHLO command.</h2>
+                                <pre>server_caps : array|null</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"><p>Indexes of the array are extension names.
+Value at index 'HELO' or 'EHLO' (according to command that was sent)
+represents the server name. In case of HELO it is the only element of the array.
+Other values can be boolean TRUE or an array containing extension options.
+If null, no HELO/EHLO string has yet been received.</p></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array|null</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_last_reply"> </a>
+                            <div class="element clickable property  protected property_last_reply" data-toggle="collapse" data-target=".property_last_reply .collapse">
+                                <h2>The most recent reply received from the server.</h2>
+                                <pre>last_reply : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\PHPMailer\PHPMailer\SMTP"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/PHPMailer.PHPMailer.html">PHPMailer</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/PHPMailer.PHPMailer.SMTP.html">SMTP</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Mon, 12 Feb 2018 14:23:09 +0000.<br/>
+    </footer>
+    </body>
+</html>
