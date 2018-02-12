@@ -1668,6 +1668,7 @@ hr{
   .page-profile .project_card .thumb {
     padding-bottom: 60%;
     height:auto;
+    min-height: 120px;
     background-size: cover;
     background-position: center center;
   }
