@@ -7,6 +7,31 @@
         width: 100%;
     }
 
+    .page-projects .page-title {
+        flex-direction: column;
+    }
+    .page-projects #project-create-block {
+        margin-top: 15px;
+        width: 100%;
+    }
+    .page-projects .page-title {
+        position: relative;
+    }
+    .page-projects .component-project-popover {
+        width: 100%;
+    }
+    .page-projects .component-project {
+        margin-right: 0;
+    }
+
+    .page-projects .project-popover-new-footer {
+        flex-direction: column-reverse;
+    }
+    .page-projects .project-popover-button.button-project-cancel {
+        margin-right: 0;
+        margin-top: 10px;
+    }
+
     .page-dashboard .page-title {
         flex-direction: column;
     }
@@ -32,9 +57,10 @@
     .page-dashboard #category-create-block {
         width: 100%;
         margin-bottom: 10px;
+        position: relative;
     }
     .page-dashboard .component-category-popover {
-        top: 195px;
+        top: 110%;
     }
     .page-dashboard .component-category-popover-edit {
         top: 105%;
@@ -53,6 +79,18 @@
         margin: 10px 0;
     }
 
+    .page-dashboard .category-popover-footer {
+        flex-direction: column;
+    }
+    .page-dashboard .category-popover-button.button-category-cancel {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+
+
+    .cd-popup-container {
+        width: 100%;
+    }
 }
 
 
@@ -821,4 +859,6 @@
     border: solid 1px;
     border-color: #89C13E;
 	margin-bottom: 45px;
+}
+
 }

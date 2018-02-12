@@ -44,22 +44,32 @@
 
         <?php endif; ?>
       
-        
-
         <?php if($template=='dashboard'): ?>
             <!--3rd party scripts -->
-            <script type="text/javascript" src="/jscripts/3rdparty/moment/min/moment.min.js"></script>
+            <script type="text/javascript" src="/jscripts/3rdparty/moment/min/moment.min.js" defer></script>
 
-            <link type="text/css" rel="stylesheet" href="/jscripts/3rdparty/rome/dist/rome.css">
-            <script type="text/javascript" src="/jscripts/3rdparty/rome/dist/rome.standalone.min.js"></script>
+            <link type="text/css" rel="stylesheet" href="/jscripts/3rdparty/rome/dist/rome.css" defer>
+            <script type="text/javascript" src="/jscripts/3rdparty/rome/dist/rome.standalone.min.js" defer></script>
 
         <?php endif; ?>
 
-        <script type="text/javascript" src="/jscripts/modules.js"></script>
-        <script type="text/javascript" src="/jscripts/core.js"></script>
+        <script type="text/javascript" src="/jscripts/modules.js" defer></script>
+        <script type="text/javascript" src="/jscripts/core.js" defer></script>
 
         <script type="text/javascript" src="/jscripts/<?php echo $template; ?>.js"></script>
     <?php endif; ?>
+
+    <script type="text/javascript">
+    window.addEventListener('beforeunload', function(event){
+        var page = document.getElementById('page');
+        if( page ) {
+            page.innerHTML = '';
+            var loader = document.createElement('div')
+            loader.className = 'loader loader-page';
+            page.appendChild(loader);
+        }
+    });
+    </script>
 
 </head>
 <body class="body-<?php echo $template; ?>">
@@ -106,7 +116,7 @@
             <div class="menu-projects">
                 <div class="icon"></div>
                 <div>
-                    <label class="expander" for="check-myprojects">Mes Projets</label>
+                    <label class="expander" for="check-myprojects"><a href="/projects">Mes Projets</a></label>
                 </div>
             </div>
 

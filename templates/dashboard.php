@@ -4,6 +4,10 @@
 
 
 
+<?php include 'elements/api-task-modal.php'; ?>
+
+
+
 <h2 class="page-title">
     <div>Projet : <?php echo $dashboard->title; ?></div>
     
@@ -72,9 +76,9 @@
 
 
 
-<div id="modal-popup" class="modal-task-create cd-popup" role="alert">
+<div id="modal-popup-create" class="modal-task-create cd-popup" role="alert">
 
-	<div class="cd-popup-container">
+	<div class="cd-popup-container modal-task-create-container">
 
         <form method="post" class="newtask-form" enctype="multipart/form-data">
 
@@ -162,7 +166,7 @@
                     <footer class="category-popover-footer ha-footer">
                         <button class="category-popover-button button-category-cancel ha-button" data-category="{{ id }}">Annuler</button> 
                         <button class="category-popover-button button-category-save ha-button" data-category="{{ id }}">Valider</button> 
-                    </footer>  
+                    </footer>
 
                 </form>
             </div>

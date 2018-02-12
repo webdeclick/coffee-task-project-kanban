@@ -151,31 +151,18 @@ abstract class AbstractController {
      *
      * @return void
      */
-    protected function automaticPurge()
+    protected function automaticPurge( $projectId )
     {
         if( !$this->isLogged ) return;
 
         $userId = $this->userId;
 
-        $datetime = DatabaseDatetime();
+        //$datetime = DatabaseDatetime(); // now
 
         // update old tasks
 
-        TasksModel::automaticPurge($userId, $datetime);
-
-
-
-
-        
+        TasksModel::purgeOutdated($projectId);
     }
-
-
-//todo
-
-
-
-
-
 
 
 

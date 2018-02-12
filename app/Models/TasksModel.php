@@ -193,10 +193,82 @@ class TasksModel extends AbstractModel {
      * @param string $datetime
      * @return bool
      */
-    public static function automaticPurge( $userId, $datetime )
+    public static function purgeOutdated( $projectId )
     {
+	    $dbh = DatabaseFactory();
 
+	    $datetime = DatabaseDatetime();
+
+
+	    $result = $dbh->execute('
+            UPDATE @tasks
+            SET is_completed = "1", completed_at = :completed_at
+            WHERE
+                is_completed = "0" AND
+                end_at IS NOT NULL AND
+                end_at <= :date_now AND
+                project_id = :projectId
+        ', [
+            'projectId' => $projectId, 'completed_at' => $datetime, 'date_now' => $datetime
+        ]);
+
+	    return $result;
+    }
+
+    public static function getSingle( $taskId )
+    {
+        $dbh = DatabaseFactory();
+
+        $result = $dbh->row('
+        SELECT t.*, (
+            SELECT GROUP_CONCAT(f.id SEPARATOR "-")
+            FROM @files f WHERE f.task_id = t.id
+            AND is_deleted = :is_file_deleted AND is_validate = :is_file_validate
+            ORDER BY f.id ASC
+        ) files
+
+        FROM @tasks t
+        WHERE t.id = :taskId AND t.is_deleted = :is_deleted
+
+        ', [
+            'taskId' => $taskId,
+            'is_deleted' => false,
+            'is_file_validate' => true,
+            'is_file_deleted' => false
+        ]);
+
+        if( empty($result) ) {
+            return null;
+        }
+
+        // format taks :
+
+        $dateTime = new DateTime;
+
+
+        $files = array();
+
+        if( !empty($result['files']) )
+        {
+            $files = explode('-', $result['files']);
+        }
+
+        $result['files'] = $files;
+
+        // add expire date ; if set
+
+        if( isset($result['end_at']) )
+        {
+            $end_at = new DateTime($result['end_at']);
+    
+            $diff = $dateTime->diff($end_at);
+    
+            $result['days_expire'] = (float) $diff->format('%R%a'); //in days
+        }
+
+        return $result;
     }
 
 
 }
+

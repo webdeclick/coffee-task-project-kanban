@@ -24,6 +24,32 @@
 
     function initializeCategoriesEvents() {
 
+        // add events, new form project
+
+        categoryFormNew = document.getElementById('form-project-new');
+
+        categoryFormNew.addEventListener('submit', addProjectEvent);
+
+        // category create new block
+
+        var categoryCreateBlock = document.getElementById('project-create-block');
+
+        delegate(categoryCreateBlock, '.button-project-create-popover, .button-project-cancel', 'click', function( event ){
+            event.preventDefault();
+            
+            var target = event.target;
+
+            // show popover :
+
+            var popover = categoryCreateBlock.querySelector('#project-popover-new');
+
+            if( popover ) {
+                popover.classList.toggle('is-visible');
+            }
+        });
+
+        // delete project
+
         delegate(categoryList, '.component-project .project-delete', 'click', deleteProjectEvent);
 
         // new form element
@@ -57,18 +83,10 @@
 
                 var project = response[index];
 
+                project.background_url = '/img/project-bg-'+( project.id % 10 )+'.png'; // samir bg
+
                 appendTemplate('project', categoryList, project);
             }
-
-            // add the create new template
-
-            appendTemplate('project-new', categoryList, project);
-
-            // add events, new form project
-
-            categoryFormNew = document.getElementById('form-project-new');
-
-            categoryFormNew.addEventListener('submit', addProjectEvent);
         };
 
         var errorHandler = function( status, exception ) {

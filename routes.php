@@ -57,6 +57,7 @@ return [
 
     // tasks management api
 
+    'api-task.get' => ['get',   '/api/task/(\d+)', '\App\ApiController@taskGet'],
     'api-task.create' => ['post',   '/api/project/(\d+)/category/(\d+)/task/create', '\App\ApiController@taskCreate'],
     'api-task.update' => ['patch',  '/api/task/(\d+)/update', '\App\ApiController@taskUpdate'],
     'api-task.delete' => ['delete', '/api/task/(\d+)/delete', '\App\ApiController@taskDelete'],

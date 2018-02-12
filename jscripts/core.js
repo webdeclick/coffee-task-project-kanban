@@ -9,7 +9,18 @@ var api = {
 };
 
 
-// TODO
+var rome = rome || null;
+var DatetimePickerSimple = rome;
+
+function compileTemplate( template, scope ) {
+    return SimpleTemplate(template, scope);
+}
+
+function prettyDate( date ) {
+    return SimplePrettyDate(date);
+}
+
+initializeTaskModalEvents();
 
 
 function AjaxAPISimple( method, url, successHandler, errorHandler, data, progressHandler ) {
@@ -30,19 +41,114 @@ function AjaxAPISimple( method, url, successHandler, errorHandler, data, progres
 }
 
 
+function initializeTaskModalEvents() {
 
+    var popupScreen, popupTaskContainer;
 
+    function locationHashChangeEvent( event ) {
+        var hash = location.hash;
 
-var rome = rome || null;
-var DatetimePickerSimple = rome;
+        if( hash.startsWith('#task-') ) {
+            var taskId = hash.replace('#task-', '');
 
-function compileTemplate( template, scope ) {
-    return SimpleTemplate(template, scope);
+            if( taskId ) {
+                modalTaskOpenEvent(event, taskId);
+            }
+        }
+    }
+
+    function modalTaskOpenEvent( event, taskId ) {
+        event.preventDefault();
+
+        //hide previous popup
+        popupScreen.classList.remove('is-visible');
+
+        /*if( !taskId ) {
+            var target = event.target;
+
+            var taskId = target.getAttribute('data-modal-task');
+        }*/
+
+        if( !taskId ) {
+            return;
+        }
+
+        var errorHandler = function( status, exception ) {
+            jssnackbar('Impossible de voir cette tâche');
+        };
+
+        var successHandler = function( response ) {
+
+            if( response.error ) {
+                return errorHandler('TaskNotExist');
+            }
+
+            var task = response;
+
+            // pretty dates
+                                
+            task.pretty_created_at = prettyDate(task.created_at);
+                                
+            if( task.end_at ) {
+                task.pretty_end_at = prettyDate(task.end_at);
+            }
+
+            // files upload
+                                
+            var taskfiles = task.files;
+            var taskfilesurls = [];
+
+            if( taskfiles ) {
+
+                for( var findex in taskfiles ) {
+                    var fileid = taskfiles[findex];
+                    
+                    taskfilesurls.push('/file/'+fileid+'/picture');
+                }
+            }
+
+            task.files_url = taskfilesurls;
+
+            // render html
+
+            popupTaskContainer.innerHTML = '';
+            
+            appendTemplate('task', popupTaskContainer, task);
+
+            // open modal
+            popupScreen.classList.add('is-visible');
+        };
+        
+        AjaxAPISimple('GET', api.endPoint+'task/'+taskId, successHandler, errorHandler);
+    }
+
+    function modalTaskCloseEvent( event ) {
+        event.preventDefault();
+                
+        popupScreen.classList.remove('is-visible');
+    }
+
+    window.addEventListener('load', function( event ) {
+
+        popupScreen = document.getElementById('modal-popup-task');
+        popupTaskContainer = popupScreen.querySelector('.modal-task-container');
+
+        // open modal ; via create buttons on categories list
+
+        //delegate(document, '[data-modal-task]', 'click', modalTaskOpenEvent);
+
+        // hash change url
+
+        window.addEventListener('hashchange', locationHashChangeEvent);
+
+        locationHashChangeEvent(event);
+
+        // close modal ; nope button
+
+        delegate(popupScreen, '.cd-popup, .cd-popup-close, .cd-button-quit', 'click', modalTaskCloseEvent);
+    });
 }
 
-function prettyDate( date ) {
-    return SimplePrettyDate(date);
-}
 
 function appendTemplate( templateId, element, scope ) {
 
@@ -93,18 +199,24 @@ function htmlToNodes( html ) {
 
 function delegate( parent, target, eventType, callback ) {
 
-    // if( isString(parent) ) {
-    //     var parent = document.querySelector(parent);
-    // }
-
     parent.addEventListener(eventType, function( event ) {
-
         var element = event.target;
         var matchesCallback = element.matches || element.matchesSelector;
 
         if( (matchesCallback).call(element, target) ) {
             callback.call(element, event);
         }
+    });
+}
+
+// debouncing event
+
+function delayedListener( element, eventName, callback, delay ) {
+    var timeout;
+    delay = delay || 300;
+    element.addEventListener(eventName, function( event ) {
+        window.clearTimeout(timeout);
+        timeout = setTimeout(callback, delay);
     });
 }
 
@@ -183,13 +295,16 @@ function jssnackbar( text, duration ) {
 
     var snackbar = document.getElementById('snackbar');
 
-    snackbar.innerText = text;
-    
-    snackbar.classList.add('is-visible');
+    if( snackbar ) {
 
-    var timeoutId = setTimeout(function(){
-        snackbar.classList.remove('is-visible');
-    }, duration);
+        snackbar.innerText = text;
+    
+        snackbar.classList.add('is-visible');
+    
+        var timeoutId = setTimeout(function(){
+            snackbar.classList.remove('is-visible');
+        }, duration);
+    }
 }
 
 // progress bar
@@ -340,6 +455,15 @@ function findAncestor( el, selector ) // element.closest polyfill
 
     return el;
 }
+
+// pollyfill
+
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function(searchString, position){
+      return this.substr(position || 0, searchString.length) === searchString;
+  };
+}
+
 
 // function String.prototype.format = function()
 // {

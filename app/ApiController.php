@@ -34,6 +34,7 @@ class ApiController extends AbstractController {
             'UserNotLogged' => 'User not logged',
             'ProjectNotExist' => 'Project does not exist',
             'ProjectNotCreated' => 'Project cannot be created',
+            'TaskNotExist' => 'Task does not exist',
             'TaskNotCreated' => 'Task cannot be created',
             'TaskNotDeleted' => 'Task cannot be deleted',
             'TaskNotUpdated' => 'Task cannot be updated',
@@ -505,6 +506,40 @@ class ApiController extends AbstractController {
 
 
     /**
+     * Get a task
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param int $taskId
+     * @return string
+     */
+    public function taskGet( Request $request, Response $response, $taskId )
+    {
+        if( !$this->isLogged ) return $this->apiError('UserNotLogged');
+
+        $userId = $this->userId;
+
+        $task = TasksModel::getSingle($taskId);
+
+        if( !empty($task) ) // TODO use object
+        {
+            $projectId = $task['project_id'];
+            $categoryId = $task['category_id'];
+
+            // check persmission
+            if( !$this->canAction('task', 'read', $projectId, $taskId) ) {
+                return $this->apiError('CannotAction');
+            }
+
+            return json($task);
+        }
+
+
+        return $this->apiError('TaskNotExist');
+    }
+
+
+    /**
      * Create a task
      *
      * @param Request $request
@@ -708,6 +743,7 @@ class ApiController extends AbstractController {
         if( $task )
         {
             $projectId = $task->project_id;
+            $categoryId = $task->category_id;
 
             // check persmission
             if( !$this->canAction('task', 'update', $projectId, $taskId) ) {
@@ -720,48 +756,41 @@ class ApiController extends AbstractController {
 
             // send mail to the assignee :
 
+            $sendMailSuccess = false;
+
             $assignedUser = UserModel::find($task->assigned_to);
 
             if( $assignedUser )
             {
-                $email = $assignedUser->email;
+                $project = ProjectsModel::find($projectId);
+                $category = CategoryModel::find($categoryId);
 
+                $logo_blob = 'data:'.base64_encode(file_get_contents('img/logo-header.png'));
+//TODO
+                $mailBody = render('mails/task-complete', [
+                    'project' => $project, 'category' => $category, 'task' => $task, 'logo_blob' => $logo_blob
+                ]);
 
-                //$mail = xmail();
-                $mail = null;
+                $mail = xmail([
+                    'subject' => 'La tâche "'.nohtml($task->title).'" vient d\'être complétée',
+                    'address' => [$assignedUser->email, $assignedUser->username],
+                    'body' => $mailBody,
+                    'body-txt' => nohtml($mailBody)
+                ]);
 
                 if( $mail )
                 {
-                    // ok
-
+                    $sendMailSuccess = true;
                 }
-                else
-                {
-                    // error
-
-                }
-
-
-
             }
-
-            
-
-
-            //todo
-
-
-
-
-
 
             if( $result )
             {
-                return json(['message'=>'ok']);
+                return json(['message'=>'ok', 'send_mail' => $sendMailSuccess]);
             }
         }
         
-        return $this->apiError('TaskNotDeleted');
+        return $this->apiError('TaskNotUpdated');
     }
 
 }

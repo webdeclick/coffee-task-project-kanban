@@ -11,37 +11,34 @@
 </div>
 
 
-
-
-
-
-
 <script id="template-photos-folder" class="component-template" type="text/template">
 
     <div id="folder-{{ task_id }}" class="component-folder" data-id="{{ task_id }}">
 
-        <div class="folder-title">{{ &title }}</div>
+        <div class="folder-inner {{ expire_class }}">
 
-        <div class="folder-description">{{ &description }}</div>
+            <div class="folder-title">
+                <div>{{ &title }}</div>
+                <div>Assigné à : {{ user_fullname }}</div>
+            </div>
 
-        assigné : {{ user_fullname }}<br>
+            <div class="folder-description">{{ &description }}</div>
 
-        Complété ? {{ ?is_completed }}oui{{/}}<br>
-
-
-        {{ ?files }}
-            <div class="photos-container">
-            {{ #files : file }}
-                <div id="photo-{{ file.id }}" class="component-photo">
-                    <img class="photo-img" src="{{ file.photo_url }}" />
-                    <div class="photo-panel">
-                        <button class="photo-action" data-state="delete" data-id="{{ file.id }}"></button>
-                        <button class="photo-action" data-state="validate" data-id="{{ file.id }}"></button>
+            {{ ?files }}
+                <div class="photos-container">
+                {{ #files : file }}
+                    <div id="photo-{{ file.id }}" class="component-photo">
+                        <img class="photo-img" src="{{ file.photo_url }}" />
+                        <div class="photo-panel">
+                            <button class="photo-action" data-state="delete" data-id="{{ file.id }}"></button>
+                            <button class="photo-action" data-state="validate" data-id="{{ file.id }}"></button>
+                        </div>
                     </div>
+                {{/}}
                 </div>
             {{/}}
-            </div>
-        {{/}}
+
+        </div>
 
     </div>
 

@@ -171,9 +171,9 @@ function event( $event, $callback = null )
 
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\PHPMailerException;
+use PHPMailer\PHPMailer\Exception as PHPMailerException;
 
-function xmail()
+function xmail( array $options = [] )
 {
     $mail = new PHPMailer(true);
 
@@ -188,22 +188,36 @@ function xmail()
         $mail->Port = 587;                                    // TCP port to connect to
     
         //Recipients
-        $mail->setFrom('from@example.com', 'Mailer');
-        $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-        $mail->addAddress('ellen@example.com');               // Name is optional
-        $mail->addReplyTo('info@example.com', 'Information');
-        $mail->addCC('cc@example.com');
-        $mail->addBCC('bcc@example.com');
+        $mail->setFrom('from@coffeetask.com', 'CoffeeTask');
+        $mail->addReplyTo('from@coffeetask.com', 'CoffeeTask');
+
+        if( isset($options['address']) )
+        {
+            list($address, $recipient) = $options['address'];
+
+            $mail->addAddress($address, $recipient);     // Add a recipient
+        }
     
         //Content
-        $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = 'Here is the subject';
-        $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mail->isHTML(true);
     
-        $mail->send();
+        if( isset($options['subject']) )
+        {
+            $mail->Subject = 'CoffeeTask - '.$options['subject'];
+        }
 
-        return true;
+        if( isset($options['body']) )
+        {
+            $mail->Body = $options['body']; // html
+        }
+
+        if( isset($options['body-txt']) )
+        {
+            $mail->Body = $options['body-txt']; // text
+        }
+    
+        return $mail->send();
+
     
     } catch (PHPMailerException $e) {
         //echo 'Mailer Error: ' . $mail->ErrorInfo;

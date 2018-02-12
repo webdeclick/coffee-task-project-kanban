@@ -275,9 +275,9 @@ nav#panel .menu-mentions a:hover {
 /*//////////////////////////////// PAGE CONTENT ////////////////////////////////*/
 
 #page {
-    padding: 40px;
-    padding-top: 96px; /*menu 56px*/
-    height: 100vh;
+    margin: 40px;
+    padding-top: 56px; /*menu*/
+    /* height: 100vh; */
 }
 
 .page-title {
@@ -293,6 +293,41 @@ nav#panel .menu-mentions a:hover {
 
 
 /*//////////////////////////////// PAGE DES PROJETS ////////////////////////////////*/
+
+.page-projects .page-title {
+    color: #000;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+    font-weight: 300;
+    font-size: 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.page-projects .page-title-onside {
+    display: flex;
+    align-items: center;
+}
+
+.page-projects .button-project-create-popover {
+    font-size: 14px;
+    font-weight: 300;
+    background-color: #fff;
+    border: 0;
+    padding: 0 30px 0 10px;
+    min-height: 30px;
+
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.page-projects .button-project-create-popover:hover {
+    background-color: #4ebbf0;
+    color: #fff;
+}
+
+
 
 /* lsite des projets container */
 
@@ -317,37 +352,30 @@ nav#panel .menu-mentions a:hover {
 
     display: flex;
     flex-direction: column;
+    padding-bottom: 40px; /*dropdown*/
 }
-.page-projects .component-project,
-.page-projects .component-project-new {
+.page-projects .component-project {
     min-height: 150px;
 }
-.page-projects .component-project-new {
-    padding: 10px;
-}
 
-.page-projects #form-project-new,
-.page-projects #form-project-new[data-state="view"] {
-    display: none;
+.page-projects #project-create-block {
+    position: relative;
 }
-.page-projects #form-project-new[data-state="form"] {
-    display: block;
-    background: #fff;/*hide image, todo*/
+.page-projects .component-project-popover {
+    top: 110%;
+    right: 0;
+    width: 250px;
+}
+.page-projects .component-project-popover .connector {
+    right: 10%;
+    left: initial;
 }
 
 /* block projet nouveau */
 
-.page-projects .component-project.component-project-new {
-    display: flex;
-    cursor: pointer;
-
-    background: #fff url(../img/icon-plus.png) no-repeat center center;
-}
-
-
 .page-projects .project-header {
     background: #94d4ee url(../img/project-bg-1.png) no-repeat right center;
-    background-size: contain;
+    background-size: cover;/*contain*/
     height: 100px;
     display: flex;
     align-items: end;
@@ -373,14 +401,24 @@ nav#panel .menu-mentions a:hover {
     font-size: 16px;
     margin-top: auto;/*flex*/
 
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
     border-top: 1px solid #0000001a;
     background: url(../img/arrow-drop.png) no-repeat 95% center;
 }
+.page-projects .check-expanded:checked ~ .project-dropdown {
+    background-image: url(../img/arrow-drop2.png);
+}
 
-.page-projects .project-status {
+.page-projects .project-status,
+.page-projects .dropdown-menu.project-status {
     position: absolute;
     width: 100%;
-    top: 105%;
+    top: calc( 100% + 5px );/*connector*/
+    left: 0;
+
     border: 1px solid #C7C7C7;
     background: #fff;
     box-shadow: 0 3px 0 0 #42424233;
@@ -399,6 +437,9 @@ nav#panel .menu-mentions a:hover {
     top: -6px;
     left: 16px;
     transform: rotate(45deg);
+}
+.page-projects .project-status a {
+    color: #89C13E;
 }
 
 .page-projects .project-action {
@@ -428,15 +469,7 @@ nav#panel .menu-mentions a:hover {
     display: flex;
 }
 
-
-.page-projects .project-create {
-    width: 100%;
-    border: 0;
-    padding: 10px 15px;
-    color: #fff;
-    background-color: #33b5e5;
-}
-.page-projects .project-create-title {
+.page-projects .project-popover-title {
     margin: 0 0 20px;
     color: #33b5e5;
     padding-bottom: 5px;
@@ -452,6 +485,8 @@ nav#panel .menu-mentions a:hover {
     margin: 5px 0;
     padding: 10px 15px;
     font-size: 15px;
+    background-color: #fff;
+    color: #000;
 }
 .page-projects #form-project-new input:focus,
 .page-projects #form-project-new textarea:focus {
@@ -459,6 +494,21 @@ nav#panel .menu-mentions a:hover {
     color: #333;
 }
 
+.page-projects .project-popover-new-footer {
+    display: flex;
+    justify-content: space-between;
+}
+.page-projects .project-popover-button {
+    width: 100%;
+    border: 0;
+    padding: 10px 15px;
+    color: #fff;
+    background-color: #33b5e5;
+}
+.page-projects .project-popover-button.button-project-cancel {
+    background-color: #b6bece;
+    margin-right: 10px;
+}
 
 /*//////////////////////////////// PAGE PHOTOS FOLDER ////////////////////////////////*/
 
@@ -472,10 +522,18 @@ nav#panel .menu-mentions a:hover {
     margin-bottom: 15px;
     background-color: #fff;
 }
+
+.page-photos-folder .folder-inner {
+    padding-left: 10px;
+}
+
 .page-photos-folder .folder-title {
     font-size: 15px;
     padding-bottom: 5px;
     border-bottom: 1px solid #cacaca;
+
+    display: flex;
+    justify-content: space-between;
 }
 .page-photos-folder .folder-description {
     color: #7d7d7d;
@@ -485,13 +543,24 @@ nav#panel .menu-mentions a:hover {
 
 .page-photos-folder .photos-container {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .page-photos-folder .component-photo {
     position: relative;
     overflow: hidden;
     border-radius: 5px;
+    /* margin: 5px; */
+    margin-bottom: 5px;
+    margin-right: 5px;
 }
+.page-photos-folder .component-photo:first-child {
+    margin-left: 0;
+}
+.page-photos-folder .component-photo img {
+    display: block;
+}
+
 .page-photos-folder .photo-panel {
     display: none;
     position: absolute;
@@ -533,8 +602,6 @@ nav#panel .menu-mentions a:hover {
 
 .page-photos-folder .component-folder.component-folder-loading {
     /*image de chargement*/
-
-
 }
 
 
@@ -583,14 +650,10 @@ nav#panel .menu-mentions a:hover {
 
 /* liste d'un catégorie ( colonne ) */
 
-.page-dashboard .category-tasks-container {
-
-}
-
 .page-dashboard .component-category  {
     width: 100%;
     margin: 10px;
-    max-width: 33%;
+    max-width: 40%;
 }
 
 .page-dashboard .category-header {
@@ -600,10 +663,10 @@ nav#panel .menu-mentions a:hover {
     padding: 6px;
     margin-bottom: 15px;
 
-    position: relative;
-    /* position: -webkit-sticky;
+    /* position: relative; */
+    position: -webkit-sticky;
     position: sticky;
-    top: 61px; menu 56px */
+    top: 61px; /* menu 56px */
 
     display: flex;
     justify-content: space-between;
@@ -654,6 +717,7 @@ nav#panel .menu-mentions a:hover {
 
 .page-dashboard .category-menu-panel {
     box-shadow: 0 0 3px rgba(0,0,0,0.3);
+    right: 0;/*fix sticky TODO*/
 }
 
 /* créé une catégorie */
@@ -701,6 +765,8 @@ nav#panel .menu-mentions a:hover {
     margin: 5px 0;
     padding: 10px 15px;
     font-size: 15px;
+    background-color: #fff;
+    color: #000;
 }
 .page-dashboard .category-popover-form input:focus,
 .page-dashboard .category-popover-form textarea:focus {
@@ -809,6 +875,7 @@ nav#panel .menu-mentions a:hover {
     display: block;
     cursor: pointer;
     background-position: center center;
+    background-color: transparent;
 }
 .page-dashboard .button-task-delete {
     background-image: url(../img/task-delete.png);
@@ -829,40 +896,39 @@ nav#panel .menu-mentions a:hover {
 }
 
 /* expiration classes */
+.page-photos-folder .folder-inner,
 .page-dashboard .task-inner {
     border-left: 4px solid #000;
     padding-left: 10px;
 }
+.page-photos-folder .folder-inner.expire-completed,
 .page-dashboard .task-inner.expire-completed {
     border-left-color: #4ebbf0
 }
+.page-photos-folder .folder-inner.expire-expired,
 .page-dashboard .task-inner.expire-expired {
     border-left-color: #c22626;
 }
+.page-photos-folder .folder-inner.expire-15days,
 .page-dashboard .task-inner.expire-15days {
     border-left-color: #add139;
 }
+.page-photos-folder .folder-inner.expire-10days,
 .page-dashboard .task-inner.expire-10days {
     border-left-color: #ffb400;
 }
+.page-photos-folder .folder-inner.expire-5days,
 .page-dashboard .task-inner.expire-5days {
     border-left-color: #ee602e;
 }
+.page-photos-folder .folder-inner.expire-2days,
 .page-dashboard .task-inner.expire-2days {
     border-left-color: #db484f;
 }
 
-/* new button create */
-
-.page-dashboard .button-task-create-oncategory {
-
-}
-
 
 /* create modal */
-.page-dashboard .modal-task-create {
-    margin-top: 56px;/*menu*/
-}
+
 .page-dashboard .form-task-create {
     padding: 20px;
     padding-top: 0;
@@ -884,6 +950,8 @@ nav#panel .menu-mentions a:hover {
     margin: 5px 0;
     padding: 10px 15px;
     font-size: 15px;
+    background-color: #fff;
+    color: #000;
 }
 .page-dashboard .form-task-create input[type="text"]:focus,
 .page-dashboard .form-task-create textarea:focus {
@@ -915,12 +983,10 @@ nav#panel .menu-mentions a:hover {
     position: absolute;
     z-index: 9;
 }
-
-
-
-.page-dashboard .module-datetimepicker-container {
-    /* display: none; */
+.page-dashboard #new-task-progress {
+    margin-top: 15px;
 }
+
 
 #newtask-showhide-datetimepicker[type=checkbox]:checked + .module-datetimepicker-container,
 .module-datetimepicker-container.is-visible {
@@ -928,14 +994,16 @@ nav#panel .menu-mentions a:hover {
 }
 
 
+/* modal task */
 
-
-
-
-
-
-
-
+.modal-popup-container.cd-popup-container {
+    background-color: transparent;
+    box-shadow: none;
+}
+.modal-popup-container.cd-popup-container .cd-popup-close::before,
+.modal-popup-container.cd-popup-container .cd-popup-close::after {
+    background-color: #ccc;
+}
 
 
 
@@ -951,6 +1019,9 @@ nav#panel .menu-mentions a:hover {
     height: 100px;
     margin: 10px auto;
     animation: loader-spin 2s linear infinite;
+}
+.loader.loader-page {
+    border-top-color: #202020;
 }
 @keyframes loader-spin {
     0% { transform: rotate(0deg); }
@@ -989,7 +1060,7 @@ nav#panel .menu-mentions a:hover {
     border-radius: 2px;
     padding: 16px;
     position: fixed;
-    z-index: 1;
+    z-index: 9;
     left: 50%;
     bottom: 30px;
 
@@ -1025,6 +1096,7 @@ nav#panel .menu-mentions a:hover {
 
     position: fixed;
     top: 0;
+    left: 0;
     height: 100%;
     opacity: 0.9;
     padding-top: 150px;
@@ -1115,7 +1187,7 @@ nav#panel .menu-mentions a:hover {
 }
 
 .select .option {
-    background: #fff;
+    background-color: #fff;
     cursor: pointer;
 
     padding:0 30px 0 10px;
@@ -1205,6 +1277,9 @@ nav#panel .menu-mentions a:hover {
     margin: 0 auto;
 
     z-index: 9;
+
+    margin-top: 56px;/*menu*/
+    height: calc(100% - 56px);/*menu*/
 }
 .cd-popup.is-visible {
     opacity: 1;
@@ -1231,6 +1306,8 @@ nav#panel .menu-mentions a:hover {
     backface-visibility: hidden;
     transition-property: transform;
     transition-duration: 0.3s;
+
+    margin-top: 56px;/*menu*/
 }
 .cd-popup-container p {
     padding: 3em 1em;
@@ -1309,10 +1386,6 @@ nav#panel .menu-mentions a:hover {
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
     right: 8px;
-}
-
-.cd-popup-container .cd-popup-content {
-    /* padding: 8px 0; */
 }
 
 .is-visible .cd-popup-container {
@@ -1551,6 +1624,7 @@ hr{
     background-position: center center;
   }
   
+<<<<<<< HEAD
 
   /* PROFIL CARD + UPDATE PROFIL FORM
  
@@ -1678,4 +1752,219 @@ hr{
             box-shadow: 0 18px 35px rgba(50, 93, 56, 0.1), 0 8px 15px rgba(0, 0, 0, 0.07);
   }
   
+  /* PROFIL PAGE */
+  html,body {
+    background: #efefef;
+    font-family: "Arial";
+  }
   
+  .container {
+    max-width: 1250px;
+    margin: 30px auto 30px;
+    padding: 0 !important;
+    width: 90%;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
+  }
+  
+  .profil-header {
+    background: #eee;
+    background-image: url(../img/profil-header.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: red;
+    height: 250px;
+  }
+  
+  .profil-header i {
+    position: relative;
+    cursor: pointer;
+    right: -96%;
+    top: 25px;
+    font-size: 18px !important;
+    color: #fff;
+  }
+  
+  @media (max-width:800px) {
+    .profil-header {
+      height: 150px;
+    } 
+    
+    .profil-header i {
+      right: -90%;
+    }
+  }
+  
+ 
+  
+  .left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .photo {
+    width: 200px;
+    height: 200px;
+    margin-top: -120px;
+    border-radius: 100px;
+    border: 4px solid #fff;
+  }
+  
+  .active {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    position: absolute;
+    right: calc(50% - 70px);
+    top: 75px;
+    background-color: #FFC107;
+    border: 3px solid #fff;
+  }
+  
+  @media (max-width:990px) {
+    .active {
+      right: calc(50% - 60px);
+      top: 50px;
+    } 
+  }
+  
+  .name {
+    margin-top: 20px;
+    margin-bottom:10px;
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size: 18pt;
+    color: #777;
+  }
+  
+  .info {
+    margin-top: -5px;
+    margin-bottom: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11pt;
+    color: #aaa;
+  }
+  
+  .stats {
+    margin-top: 25px;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ededed;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  
+  .number-stat {
+    padding: 0px;
+    font-size: 14pt;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    color: #aaa;
+  }
+  
+  .desc-stat {
+    margin-top: -15px;
+    font-size: 10pt;
+    color: #bbb;
+  }
+  
+  .desc {
+    text-align: center;
+    margin-top: 25px;
+    margin: 25px 40px;
+    color: #999;
+    font-size: 11pt;
+    font-family: "Open Sans";
+    padding-bottom: 25px;
+    border-bottom: 1px solid #ededed;
+  }
+  
+  .social {
+    margin: 5px 0 12px 0;
+    text-align: center;
+    display: inline-block;
+    font-size: 20pt;
+  }
+  
+  .social i {
+    cursor: pointer;
+    margin: 0 15px;
+  }
+  
+  .social i:nth-child(1)  { color: #4267b2; }
+  .social i:nth-child(2)  { color: #1da1f2; }
+  .social i:nth-child(3)  { color: #bd081c; }
+  .social i:nth-child(4)  { color: #36465d; }
+  
+  .right {
+    padding: 0 25px 0 25px !important;
+  }
+  
+  .nav {
+    display: inline-flex;
+  }
+  
+  .nav li {
+    margin: 40px 30px 0 10px;
+    cursor: pointer;
+    font-size: 13pt;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #888;
+  }
+  
+  .nav li:hover, .nav li:nth-child(1)  { 
+    color: #999;
+    border-bottom: 2px solid #999;
+  }
+  
+  .follow {
+    position: absolute;
+    right: 8%;
+    top: 35px;
+    font-size: 11pt;
+    background-color: #42b1fa;
+    color: #fff;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: all .4s;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+  }
+  
+  .follow:hover {
+    box-shadow: 0 0 15px rgba(0,0,0,0.2), 0 0 15px rgba(0,0,0,0.2);
+  }
+  
+  @media (max-width:990px) {
+    .nav {
+      display: none;
+    }
+    
+    .follow {
+      width: 50%;
+      margin-left: 25%;
+      display: block;
+      position: unset;
+      text-align: center;
+    }
+  }
+  .gallery  {
+    margin-top: 35px;
+  }
+  
+  .gallery div {
+    margin-bottom: 30px;
+  }
+  
+  .gallery img {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
+    width: auto; 
+    height: auto;
+    cursor: pointer;
+    max-width: 100%;
+  }
