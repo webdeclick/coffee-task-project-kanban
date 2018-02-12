@@ -13,6 +13,7 @@
     <link type="text/css" rel="stylesheet" href="/style/style.css">
   
     <link type="text/css" rel="stylesheet" href="/style/responsive.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>        
 
     <!-- HTML5 -->
     <script type="text/javascript">
@@ -55,7 +56,6 @@
 
         <script type="text/javascript" src="/jscripts/modules.js" defer></script>
         <script type="text/javascript" src="/jscripts/core.js" defer></script>
-
         <script type="text/javascript" src="/jscripts/<?php echo $template; ?>.js"></script>
     <?php endif; ?>
 
