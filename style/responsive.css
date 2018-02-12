@@ -2,9 +2,30 @@
 
 @media screen and (max-width: 768px) {
 
+    #page {
+        margin: 30px;
+    }
+
     /*trigger*/
     nav#menu > #nav-trigger:checked ~ nav#panel {
         width: 100%;
+    }
+
+    .page-index .homepage-why {
+        flex-direction: column;
+    }
+    .page-index .homepage-panel {
+        padding: 0;
+    }
+    .page-index .homepage-panel {
+        text-align: center;
+    }
+    .page-index .homepage-text-title {
+        word-wrap: break-word;
+        font-size: 30px;
+    }
+    .homepage-text-desc {
+        font-size: 14px;
     }
 
     .page-projects .page-title {

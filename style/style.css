@@ -292,7 +292,37 @@ nav#panel .menu-mentions a:hover {
 }
 
 
+/*//////////////////////////////// PAGE HOME ////////////////////////////////*/
 
+.body-index {
+    background-color: #fff;
+}
+
+.page-index .homepage-why {
+    display: flex;
+    justify-content: space-between;
+}
+.homepage-desk img {
+    width: 100%;
+    height: auto;
+}
+
+.homepage-panel {
+    padding: 0 25px;
+}
+
+.homepage-text-title {
+    font-size: 45px;
+    line-height: 1.1em;
+    font-weight: bold;
+    color: #003945;
+    padding: 30px 0;
+}
+.homepage-text-desc {
+    font-size: 16px;
+    line-height: 1.5em;
+    color: #7B7B7B;
+}
 
 
 /*//////////////////////////////// PAGE DES PROJETS ////////////////////////////////*/
