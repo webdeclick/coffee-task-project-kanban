@@ -3,7 +3,6 @@
 <?php include 'elements/apierror.php'; ?>
 
 
-
 <?php include 'elements/api-task-modal.php'; ?>
 
 
@@ -61,18 +60,9 @@
 </h2>
 
 
-
-
-
-
 <div id="categories-list" class="categories-list categories-list-loading">
     <div class="loader"></div>
 </div>
-
-
-
-
-
 
 
 
@@ -132,6 +122,7 @@
     </div> <!-- popup -->
 
 </div> <!-- screen -->
+
 
 
 
