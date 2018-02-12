@@ -1606,7 +1606,7 @@ hr{
     }
   }
   
-  .project_card {
+  .page-profile .project_card {
     background: white;
     text-decoration: none;
     color: #444;
@@ -1625,12 +1625,12 @@ hr{
     -webkit-transition: all .1s ease-in;
     transition: all .1s ease-in;
   }
-  .project_card:hover {
+  .page-profile .project_card:hover {
     top: -2px;
     -webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
             box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
   }
-  .project_card article {
+  .page-profile .project_card article {
     padding: 20px;
     -webkit-box-flex: 1;
         -ms-flex: 1;
@@ -1646,18 +1646,18 @@ hr{
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
-  .project_card h1 {
+  .page-profile .project_card h1 {
     font-size: 20px;
     margin: 0;
     color: #333;
   }
-  .project_card p {
+  .page-profile .project_card p {
     -webkit-box-flex: 1;
         -ms-flex: 1;
             flex: 1;
     line-height: 1.4;
   }
-  .project_card span {
+  .page-profile .project_card span {
     font-size: 12px;
     font-weight: bold;
     color: #999;
@@ -1665,7 +1665,7 @@ hr{
     letter-spacing: .05em;
     margin: 2em 0 0 0;
   }
-  .project_card .thumb {
+  .page-profile .project_card .thumb {
     padding-bottom: 60%;
     height:auto;
     background-size: cover;
@@ -1677,7 +1677,7 @@ hr{
  
 
   /*- Card container -*/
-  .card-container {
+  .page-profile .card-container {
     position: relative;
     z-index: 1;
     margin: 32px auto;
@@ -1687,13 +1687,13 @@ hr{
             perspective: 1000px;
   }
   
-  img {
+  .page-profile img {
     max-width: 100%;
     max-height: 100%;
   }
   
   /*- Card body -*/
-  .card-body {
+  .page-profile .card-body {
     width: 100%;
     height: 100%;
     -webkit-transform-style: preserve-3d;
@@ -1703,12 +1703,12 @@ hr{
   }
   
   /*- Flipping the card -*/
-  .card-container:hover .card-body {
+  .page-profile .card-container:hover .card-body {
     -webkit-transform: rotateY(180deg);
             transform: rotateY(180deg);
   }
   
-  .card-container:hover > .card-body > .side-front {
+  .page-profile .card-container:hover > .card-body > .side-front {
     opacity: 0;
     visibility: hidden;
     -webkit-transition: opacity 1s ease-in, visibility .75s linear;
@@ -1716,7 +1716,7 @@ hr{
   }
   
   /*- Card sides -*/
-  .card-side {
+  .page-profile .card-side {
     position: absolute;
     top: 0;
     overflow: hidden;
@@ -1731,18 +1731,18 @@ hr{
   }
   
   /*- Front side -*/
-  .side-front [class^=col-xs]:first-of-type {
+  .page-profile .side-front [class^=col-xs]:first-of-type {
     padding-left: 0;
   }
   
-  .side-front-content {
+  .page-profile .side-front-content {
     padding-top: 32px;
     padding-right: 32px;
     padding-bottom: 32px;
   }
   
   /*- Back side -*/
-  .side-back {
+  .page-profile .side-back {
     z-index: 2;
     padding: 32px;
     text-align: center;
@@ -1751,18 +1751,18 @@ hr{
   }
   
   /*- Form -*/
-  .card-form {
+  .page-profile .card-form {
     margin-top: 32px;
   }
   
-  .card-form .row + .row,
-  .card-form .row + fieldset,
-  .card-form fieldset + fieldset {
+  .page-profile .card-form .row + .row,
+  .page-profile .card-form .row + fieldset,
+  .page-profile .card-form fieldset + fieldset {
     margin-top: 16px;
   }
   
-  input,
-  textarea {
+  .page-profile input,
+  .page-profile textarea {
     padding: 8px;
     width: 100%;
     border-top: 0;
@@ -1770,18 +1770,18 @@ hr{
     border-bottom: 1px solid #eee;
     border-left: 0;
   }
-  input:focus,
-  textarea:focus {
+  .page-profile input:focus,
+  .page-profile textarea:focus {
     outline: 0;
     border-bottom: 1px solid #8cc63f;
   }
   
-  textarea {
+  .page-profile textarea {
     max-height: 80px;
     resize: vertical;
   }
   
-  .btn-primary {
+  .page-profile .btn-primary {
     padding: 8px 16px;
     font-size: 16px;
     background-color: #8cc63f;
@@ -1793,19 +1793,13 @@ hr{
     transition: background-color .25s ease-in, box-shadow .25s ease-in;
     transition: background-color .25s ease-in, box-shadow .25s ease-in, -webkit-box-shadow .25s ease-in;
   }
-  .btn-primary:focus, .btn-primary:hover {
+  .page-profile .btn-primary:focus, .btn-primary:hover {
     background-color: #658f2f;
     -webkit-box-shadow: 0 18px 35px rgba(50, 93, 56, 0.1), 0 8px 15px rgba(0, 0, 0, 0.07);
             box-shadow: 0 18px 35px rgba(50, 93, 56, 0.1), 0 8px 15px rgba(0, 0, 0, 0.07);
   }
   
-  /* PROFIL PAGE */
-  html,body {
-    background: #efefef;
-    font-family: "Arial";
-  }
-  
-  .container {
+  .page-profile .container {
     max-width: 1250px;
     margin: 30px auto 30px;
     padding: 0 !important;
@@ -1814,7 +1808,7 @@ hr{
     box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
   }
   
-  .profil-header {
+  .page-profile .profil-header {
     background: #eee;
     background-image: url(../img/profil-header.png);
     background-repeat: no-repeat;
@@ -1824,7 +1818,7 @@ hr{
     height: 250px;
   }
   
-  .profil-header i {
+  .page-profile .profil-header i {
     position: relative;
     cursor: pointer;
     right: -96%;
@@ -1834,25 +1828,25 @@ hr{
   }
   
   @media (max-width:800px) {
-    .profil-header {
+    .page-profile .profil-header {
       height: 150px;
     } 
     
-    .profil-header i {
+    .page-profile .profil-header i {
       right: -90%;
     }
   }
   
  
   
-  .left {
+  .page-profile .left {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
   }
   
-  .photo {
+  .page-profile .photo {
     width: 200px;
     height: 200px;
     margin-top: -120px;
@@ -1860,7 +1854,7 @@ hr{
     border: 4px solid #fff;
   }
   
-  .active {
+  .page-profile .active {
     width: 20px;
     height: 20px;
     border-radius: 20px;
@@ -1872,13 +1866,13 @@ hr{
   }
   
   @media (max-width:990px) {
-    .active {
+    .page-profile .active {
       right: calc(50% - 60px);
       top: 50px;
     } 
   }
   
-  .name {
+  .page-profile .name {
     margin-top: 20px;
     margin-bottom:10px;
     font-family: "Open Sans";
@@ -1887,7 +1881,7 @@ hr{
     color: #777;
   }
   
-  .info {
+  .page-profile .info {
     margin-top: -5px;
     margin-bottom: 5px;
     font-family: 'Montserrat', sans-serif;
@@ -1895,7 +1889,7 @@ hr{
     color: #aaa;
   }
   
-  .stats {
+  .page-profile .stats {
     margin-top: 25px;
     text-align: center;
     padding-bottom: 20px;
@@ -1904,7 +1898,7 @@ hr{
   }
   
   
-  .number-stat {
+  .page-profile .number-stat {
     padding: 0px;
     font-size: 14pt;
     font-weight: bold;
@@ -1912,13 +1906,13 @@ hr{
     color: #aaa;
   }
   
-  .desc-stat {
+  .page-profile .desc-stat {
     margin-top: -15px;
     font-size: 10pt;
     color: #bbb;
   }
   
-  .desc {
+  .page-profile .desc {
     text-align: center;
     margin-top: 25px;
     margin: 25px 40px;
@@ -1929,32 +1923,32 @@ hr{
     border-bottom: 1px solid #ededed;
   }
   
-  .social {
+  .page-profile .social {
     margin: 5px 0 12px 0;
     text-align: center;
     display: inline-block;
     font-size: 20pt;
   }
   
-  .social i {
+  .page-profile .social i {
     cursor: pointer;
     margin: 0 15px;
   }
   
-  .social i:nth-child(1)  { color: #4267b2; }
-  .social i:nth-child(2)  { color: #1da1f2; }
-  .social i:nth-child(3)  { color: #bd081c; }
-  .social i:nth-child(4)  { color: #36465d; }
+  .page-profile .social i:nth-child(1)  { color: #4267b2; }
+  .page-profile .social i:nth-child(2)  { color: #1da1f2; }
+  .page-profile .social i:nth-child(3)  { color: #bd081c; }
+  .page-profile .social i:nth-child(4)  { color: #36465d; }
   
-  .right {
+  .page-profile .right {
     padding: 0 25px 0 25px !important;
   }
   
-  .nav {
+  .page-profile .nav {
     display: inline-flex;
   }
   
-  .nav li {
+  .page-profile .nav li {
     margin: 40px 30px 0 10px;
     cursor: pointer;
     font-size: 13pt;
@@ -1964,12 +1958,12 @@ hr{
     color: #888;
   }
   
-  .nav li:hover, .nav li:nth-child(1)  { 
+  .page-profile .nav li:hover, .nav li:nth-child(1)  { 
     color: #999;
     border-bottom: 2px solid #999;
   }
   
-  .follow {
+  .page-profile .follow {
     position: absolute;
     right: 8%;
     top: 35px;
@@ -1983,16 +1977,16 @@ hr{
     font-weight: 400;
   }
   
-  .follow:hover {
+  .page-profile .follow:hover {
     box-shadow: 0 0 15px rgba(0,0,0,0.2), 0 0 15px rgba(0,0,0,0.2);
   }
   
   @media (max-width:990px) {
-    .nav {
+    .page-profile .nav {
       display: none;
     }
     
-    .follow {
+    .page-profile .follow {
       width: 50%;
       margin-left: 25%;
       display: block;
@@ -2000,15 +1994,15 @@ hr{
       text-align: center;
     }
   }
-  .gallery  {
+  .page-profile .gallery  {
     margin-top: 35px;
   }
   
-  .gallery div {
+  .page-profile .gallery div {
     margin-bottom: 30px;
   }
   
-  .gallery img {
+  .page-profile .gallery img {
     box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
     width: auto; 
     height: auto;
