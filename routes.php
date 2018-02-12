@@ -32,6 +32,7 @@ return [
     'contact' => ['get', '/contact', '\App\PageController@contact'],
 	'contact.post' => ['post', '/contact/post', '\App\PageController@post_contact'],
     'mentions' => ['get', '/mentions', '\App\PageController@mentions'],
+    'sitemap' => ['get', '/sitemap', '\App\PageController@sitemap'],
 
     // projects api
 

@@ -82,5 +82,19 @@ class PageController extends AbstractController {
         return render('mentions', $this->container);
     }
 
+    /**
+     * Sitemap page
+     *
+     * @param Request $request
+     * @param Response $response
+     * @return string
+     */
+    public function sitemap( Request $request, Response $response )
+    {
+        $this->title = 'Plan du site';
+
+        return render('sitemap', $this->container);
+    }
+
 
 }

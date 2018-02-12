@@ -4,3 +4,4 @@ node_modules
 documentations/apidocs/*
 uploads/avatars/*
 uploads/files/*
+.vscode
