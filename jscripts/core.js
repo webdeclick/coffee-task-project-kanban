@@ -113,7 +113,7 @@ function initializeTaskModalEvents() {
 
             popupTaskContainer.innerHTML = '';
             
-            appendTemplate('task', popupTaskContainer, task);
+            appendTemplate('task-modal', popupTaskContainer, task);
 
             // open modal
             popupScreen.classList.add('is-visible');
