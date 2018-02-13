@@ -302,15 +302,20 @@ nav#panel .menu-mentions a:hover {
     background-color: #fff;
 }
 
+.page-index a {
+    color: #000;
+}
+
 .page-index .homepage-why {
     display: flex;
     justify-content: space-between;
+    font-weight: 400;
 }
+
 .page-index .homepage-desk img {
     width: 100%;
     height: auto;
 }
-
 .page-index .homepage-panel {
     padding: 0 25px;
 }
@@ -328,6 +333,14 @@ nav#panel .menu-mentions a:hover {
     color: #7B7B7B;
 }
 
+.page-index .perso-container {
+    padding: 20px 0;
+}
+
+.page-index .homepage-panel .button {
+    display: inline;
+    color: #fff;
+}
 
 /*//////////////////////////////// PAGE DES PROJETS ////////////////////////////////*/
 
