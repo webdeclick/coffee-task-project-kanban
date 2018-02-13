@@ -20,7 +20,7 @@
             <?php if( $isLogged ): ?>
                 <a href="/projects" class="button">Voir mes projets</a>
             <?php else: ?>
-                <a href="/login" class="button">Connexion</a> - <a href="/register">Inscription</a>
+                <a href="/login" class="button">Connexion</a>   <a href="/register" class="button signup_button" >Inscription</a>
             <?php endif; ?>
         </div>
     </div>
@@ -42,7 +42,7 @@
             <?php if( $isLogged ): ?>
                 <a href="/projects" class="button">Voir mes projets</a>
             <?php else: ?>
-                <a href="/login" class="button">Connexion</a> - <a href="/register">Inscription</a>
+                <a href="/login" class="button">Connexion</a>   <a href="/register"  class="button signup_button" >Inscription</a>
             <?php endif; ?>
         </div>
     </div>
