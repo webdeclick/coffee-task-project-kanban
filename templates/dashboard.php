@@ -20,9 +20,11 @@
             <br><br>
             Vous pouvez filtrer vos tâches à l’aide de l’outil “filtre” sur votre droite.
         </span></a>
+
         Projet : <?php echo $dashboard->title; ?></div>
     
     <div class="page-title-onside">
+
         <?php if($project_admin): ?>
             <div class="project-admin">Administrateur : <?php echo $project_admin->fullname; ?></div>
         <?php endif; ?>
@@ -152,10 +154,9 @@
 
 
 
-
 <script id="template-category" class="component-template" type="text/template">
 
-    <div id="category-{{ id }}" class="component-category color{{ color }}" data-id="{{ id }}">
+    <div id="category-{{ id }}" class="component-category category-color-{{ color }}" data-id="{{ id }}">
 
         <div class="category-header">
             <div class="category-icon"></div>
@@ -242,11 +243,10 @@
                         {{/}}
                     </div>
                     <div class="task-actions">
-                        {{ !is_completed }}
+                        <!--if !is_completed && is_deleted-->
+                        {{ ?can_do_action }}
                             <button class="button-task-complete" data-id="{{ id }}"></button>
-                        {{/}}
 
-                        {{ !is_deleted }}
                             <button class="button-task-delete" data-id="{{ id }}"></button>
                         {{/}}
                     </div>

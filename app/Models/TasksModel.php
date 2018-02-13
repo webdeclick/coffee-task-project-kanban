@@ -41,13 +41,6 @@ class TasksModel extends AbstractModel {
 
         $datetime = DatabaseDatetime(); // now
 
-        $dateFilterSign = '>=';
-
-        if( $is_olddate )
-        {
-            $dateFilterSign = '<';
-        }
-
         $attributes = [
             'projectId' => $projectId,
             'categoryId' => $categoryId,
@@ -75,9 +68,10 @@ class TasksModel extends AbstractModel {
         ';
         //LEFT JOIN @files f ON f.task_id = t.id
 
-        if( !$is_deleted && !$is_completed )
+
+        if( empty($filter) ) // if has no filter : show only after today
         {
-            $sql .= ' AND ( t.end_at '.$dateFilterSign.' :datetime '; // to now
+            $sql .= ' AND ( t.end_at >= :datetime '; // to now
 
             if( !$is_olddate ) {
                 $sql .= ' OR t.end_at IS NULL '; // task with also no end dates

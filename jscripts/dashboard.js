@@ -109,10 +109,17 @@
                     var task = tasks[index];
                     
                     // sql convert to bool :
+
+                    task.can_do_action = false;
                     
                     task.is_deleted = ( !!+task.is_deleted );
-                    
                     task.is_completed = ( !!+task.is_completed );
+
+                    if( !task.is_deleted && !task.is_completed ) {
+                        //if task is not delete or archive, we can sshow actions buttons
+
+                        task.can_do_action = true;
+                    }
                     
                     task.avatar_url = '/avatar/' + task.assigned_to;
                     
