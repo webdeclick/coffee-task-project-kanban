@@ -295,10 +295,11 @@ class AuthenticationController extends AbstractController {
 
         $fullname = $request->input('fullname');
         $email = $request->input('email');
-
+        $fonction = $request->input('fonction');
         $password1 = $request->input('password');
         $password2 = $request->input('password2');
-
+        $age = $request->input('age');
+        $phonenumber = $request->input('phone_number');
         //$avatar = $request->input('avatar');
 
         // change avatar
@@ -372,6 +373,27 @@ class AuthenticationController extends AbstractController {
         if( !empty($email) )
         {
             $userData['email'] = $email;
+        }
+
+        // change fonction
+
+        if( !empty($fonction) )
+        {
+            $userData['adresse'] = $fonction;
+        }
+
+        // change phone number
+
+        if( !empty($phonenumber) )
+        {
+            $userData['phone_number'] = $phonenumber;
+        }
+
+        // change age
+
+        if( !empty($age) )
+        {
+            $userData['age'] = $age;
         }
 
         // change name
