@@ -4,7 +4,9 @@ Simple Tasks manager project.
 
 
 
-todo: seek all todos
+
+
+TODOS, problems :
 
 slim MethodNotAllowedException() default array
 
