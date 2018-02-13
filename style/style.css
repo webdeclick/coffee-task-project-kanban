@@ -743,17 +743,20 @@ nav#panel .menu-mentions a:hover {
     justify-content: space-between;
     align-items: center;
 }
-.page-dashboard .component-category:nth-child(2n) .category-header {
+.page-dashboard .component-category.color0 .category-header {
+    background-color: #89C13E;
+}
+.page-dashboard .component-category.color1 .category-header {
     background-color: #f15a25;
 }
-.page-dashboard .component-category:nth-child(3n) .category-header {
+.page-dashboard .component-category.color2 .category-header {
     background-color: #4ebbf0;
 }
-.page-dashboard .component-category:nth-child(4n) .category-header {
-    background-color: #8c6137;
-}
-.page-dashboard .component-category:nth-child(5n) .category-header {
+.page-dashboard .component-category.color3 .category-header {
     background-color: #f12548;
+}
+.page-dashboard .component-category.color4 .category-header {
+    background-color: #8c6137;
 }
 
 

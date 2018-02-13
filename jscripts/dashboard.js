@@ -72,7 +72,7 @@
                 
                 var category = response[index];
                 var categoryId = category.id;
-                
+                category.color = categoryId %5;
                 appendTemplate('category', categoriesList, category);
                 
                 populateTasksList(categoryId, filter);

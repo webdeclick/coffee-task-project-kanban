@@ -155,7 +155,7 @@
 
 <script id="template-category" class="component-template" type="text/template">
 
-    <div id="category-{{ id }}" class="component-category category-color-{{ color }}" data-id="{{ id }}">
+    <div id="category-{{ id }}" class="component-category color{{ color }}" data-id="{{ id }}">
 
         <div class="category-header">
             <div class="category-icon"></div>
