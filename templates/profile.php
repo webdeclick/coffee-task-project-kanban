@@ -27,7 +27,7 @@
     <p class="info">Inscrit le <?php echo $user["created_at"]?></p>
     <p class="info"><?php echo $user["email"]?></p><br>
     <p class="info"><i class="fa fa-phone-square text_main_green profil_icon" aria-hidden="true"></i><?php echo $user["phone_number"]?:"Numéro non renseigné" ?> <p>
-    <p class="info"><i class="fa fa-home text_main_green profil_icon" aria-hidden="true"></i><?php echo $user["fonction"]?:"Fonction non renseignée"?> <p>
+    <p class="info"><i class="fa fa-address-card text_main_green profil_icon" aria-hidden="true"></i><?php echo $user["fonction"]?:"Fonction non renseignée"?> <p>
     <p class="info"><i class="fa fa-user text_main_green profil_icon" aria-hidden="true"></i><?php echo $user["age"]?:"Âge non renseigné"?> <p>
     <a href="#profilform" id="editform" class="text_main_green"><i class="fa fa-edit profil_icon" aria-hidden="true"></i>Modifier le profil</a>
    
@@ -42,7 +42,7 @@
             <div class="colGauche" style='margin-left:0px;'>	
                 <img class="profil_photo_preview" src="/avatar/<?php echo $userId; ?>" />
                 <label class="label_contact">Modifier l'image de profil</label>
-                <input class="input_contact" type="file" name="avatar" accept="image/*" value="Fichier">
+                <input class="input_contact" type="file" name="avatar" accept="image/*">
             </div>
             <div class="colDroit">
                 <input class="input_contact" type="text" name="fullname" placeholder="Nom complet">  

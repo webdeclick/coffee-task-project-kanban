@@ -293,8 +293,9 @@ class AuthenticationController extends AbstractController {
         $userId = $this->userId;
 
         $fullname = !empty($_POST['fullname']) ? $_POST['fullname'] : null;//$request->input('fullname');
-        //$email = !empty($_POST['email']) ? $_POST['email'] : null;//$request->input('email');
-
+        $age =  !empty($_POST['age']) ? $_POST['age'] : null;//$request->input('age');
+        $phonenumber =  !empty($_POST['phone_number']) ? $_POST['phone_number'] : null;//$request->input('phone_number');
+        $fonction =  !empty($_POST['fonction']) ? $_POST['fonction'] : null;//$request->input('fonction');
         $password1 = !empty($_POST['password']) ? $_POST['password'] : null;//$request->input('password');
         $password2 = !empty($_POST['password2']) ? $_POST['password2'] : null;//$request->input('password2');
 
@@ -364,6 +365,34 @@ class AuthenticationController extends AbstractController {
             // chmod the file to be readable by everyone
 
             chmod($attachmentFolder . $fileName, 0665);
+        }
+
+        // change email
+
+        if( !empty($email) )
+        {
+            $userData['email'] = $email;
+        }
+
+        // change fonction
+
+        if( !empty($fonction) )
+        {
+            $userData['adresse'] = $fonction;
+        }
+
+        // change phone number
+
+        if( !empty($phonenumber) )
+        {
+            $userData['phone_number'] = $phonenumber;
+        }
+
+        // change age
+
+        if( !empty($age) )
+        {
+            $userData['age'] = $age;
         }
 
         // change name
