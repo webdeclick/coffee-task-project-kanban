@@ -378,7 +378,7 @@ class AuthenticationController extends AbstractController {
 
         if( !empty($fonction) )
         {
-            $userData['adresse'] = $fonction;
+            $userData['address'] = $fonction;
         }
 
         // change phone number
@@ -433,7 +433,7 @@ class AuthenticationController extends AbstractController {
     
                 $user->save();
             }
-
+            var_dump($_POST); exit;
             $this->messages = 'Profil mis à jour!';
         }
 
