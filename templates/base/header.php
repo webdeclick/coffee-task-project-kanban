@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html coffee="☕">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>☕ CoffeeTask<?php echo (!empty($title)?' - '.$title:''); ?></title>
+    <title>CoffeeTask<?php echo (!empty($title)?' - '.$title:''); ?></title>
 
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/style/css/font-awesome.min.css">

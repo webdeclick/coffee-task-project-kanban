@@ -72,7 +72,9 @@
                 
                 var category = response[index];
                 var categoryId = category.id;
-                category.color = categoryId %5;
+
+                category.color = categoryId %5;//samir
+
                 appendTemplate('category', categoriesList, category);
                 
                 populateTasksList(categoryId, filter);
@@ -238,6 +240,8 @@
                 if( popover ) {
                     popover.classList.remove('is-visible');
                 }
+
+                category.color = categoryId %5;//samir
                 
                 appendTemplate('category', categoriesList, category);
                 

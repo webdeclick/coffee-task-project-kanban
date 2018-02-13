@@ -734,6 +734,8 @@ nav#panel .menu-mentions a:hover {
     width: 100%;
     margin: 10px;
     max-width: 40%;
+
+    min-width: 300px;/*samir*/
 }
 
 .page-dashboard .category-header {
@@ -754,19 +756,19 @@ nav#panel .menu-mentions a:hover {
     justify-content: space-between;
     align-items: center;
 }
-.page-dashboard .component-category.color0 .category-header {
+.page-dashboard .component-category.category-color-0 .category-header {
     background-color: #89C13E;
 }
-.page-dashboard .component-category.color1 .category-header {
+.page-dashboard .component-category.category-color-1 .category-header {
     background-color: #f15a25;
 }
-.page-dashboard .component-category.color2 .category-header {
+.page-dashboard .component-category.category-color-2 .category-header {
     background-color: #4ebbf0;
 }
-.page-dashboard .component-category.color3 .category-header {
+.page-dashboard .component-category.category-color-3 .category-header {
     background-color: #f12548;
 }
-.page-dashboard .component-category.color4 .category-header {
+.page-dashboard .component-category.category-color-4 .category-header {
     background-color: #8c6137;
 }
 
