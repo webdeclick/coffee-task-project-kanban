@@ -4,7 +4,16 @@
 
 
 <h2 class="page-title">
-    <div>MES PROJETS</div>
+    <div>
+        <a href="#" class="tooltip"><span>
+            Au milieu de cette page, vous trouverez vos différents projets (il est normal que vous n’ayez aucun projet lors de votre première connexion).
+            <br><br>
+            Il est possible de supprimer un projet via la croix rouge au survol d'un projet.
+            <br><br>
+            Si vous êtes administrateur, n'oubliez pas de valider les photos que les utilisateurs auront uploadé sur les tâches.
+        </span></a>
+        MES PROJETS
+    </div>
 
     <div id="project-create-block">
 
@@ -14,6 +23,15 @@
             <div class="connector"></div>
 
             <div class="project-popover-title">
+                <a href="#" class="tooltip"><span>
+                    Création de projet : Il faudra lui donner un nom, une description et lui assigner des utilisateurs ainsi qu’un modérateur.
+                    <br>
+                    Conseil : Choisissez un nom logique car ce nom sera utilisé et vu par tous les membres de votre projet.
+                    <br>
+                    Si vous êtes satisfait de toutes vos informations cliquer sur “Créer”.
+                    <br>
+                </span></a>
+
                 Ajouter un projet :
             </div>
 

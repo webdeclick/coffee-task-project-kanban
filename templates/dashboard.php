@@ -10,7 +10,17 @@
 
 
 <h2 class="page-title">
-    <div>Projet : <?php echo $dashboard->title; ?></div>
+    <div>
+        <a href="#" class="tooltip"><span>
+            Au milieu de cette page, vous trouverez vos différentes catégories et tâches.
+            <br><br>
+            Commencer par ajouter une catégorie via le bouton sur votre droite, puis une tâche via le bouton "+".
+            <br><br>
+            Vous avez la possibilité de valider une tâche mais aussi de la supprimer, il vous suffit de cliquer sur la flèche, afin de les faires apparaitres.
+            <br><br>
+            Vous pouvez filtrer vos tâches à l’aide de l’outil “filtre” sur votre droite.
+        </span></a>
+        Projet : <?php echo $dashboard->title; ?></div>
     
     <div class="page-title-onside">
         <?php if($project_admin): ?>
@@ -21,12 +31,17 @@
 
             <div id="category-create-block">
 
-                <a class="button-category-create-popover" data-category="new">Ajouter une catégorie</a> 
+                <a class="button-category-create-popover" data-category="new">
+                    Ajouter une catégorie
+                </a> 
 
                 <div id="category-popover-new" class="component-category-popover ha-popover">
                     <div class="connector"></div>
 
                     <div class="category-popover-title">
+                        <a href="#" class="tooltip"><span>
+                            Pour créer une catégorie il faut cliquer sur “Ajouter une catégorie” et lui donner un nom. 
+                        </span></a>
                         Ajouter une catégorie :
                     </div>
 
@@ -81,6 +96,16 @@
             <div class="form-task-create task-create-form cd-popup-content">
 
                 <div class="task-create-title">
+                    <a href="#" class="tooltip"><span>
+                        Commencez par lui donner un titre, ainsi qu’une description, cela vous permettra d'établir le travail à faire.
+                        <br>
+                        Ajouter une date de fin.
+                        <br>
+                        Puis assigner la tâche à l’utilisateur souhaité.
+                        <br>
+                        Il vous est possible d’ajouter jusqu'à 20 images, à votre convenance.
+                    </span></a>
+
                     Créer une nouvelle tâche
                 </div>
 

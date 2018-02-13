@@ -338,7 +338,7 @@ nav#panel .menu-mentions a:hover {
 }
 
 .page-index .perso-container {
-    padding: 20px 0;
+    padding: 25px 0;
 }
 
 .page-index .homepage-panel .button {
@@ -1169,6 +1169,9 @@ nav#panel .menu-mentions a:hover {
     line-height: 16px;
     box-shadow: 0 1px 3px 0 #0003, 0 1px 2px 0 #0000001a;
 }
+.button:hover {
+    background-color: rgb(114, 160, 53);
+}
 
 /* //////////////////// snackbar, notification at bottom ///////////////////// */
 
@@ -1621,6 +1624,59 @@ nav#panel .menu-mentions a:hover {
     -webkit-transform: rotate(45deg);
 }
 
+/* info tooltip */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+
+    background: url(../img/infotip.png) no-repeat center center;
+    background-size: cover;
+    height: 15px;
+    width: 15px;
+}
+.tooltip span {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 300;
+    color:#000;
+
+    visibility: hidden;
+
+    width: 220px;
+    top: 115%;
+    left: -14px;
+
+    position: absolute;
+    z-index: 99;
+
+    border: 1px solid #C7C7C7;
+    background: #FFF;
+    box-shadow: 0 1px 3px #0003;
+    padding: 10px;
+
+}
+.tooltip span::after {
+    content: '';
+    position: absolute;
+
+    width: 10px;
+    height: 10px;
+    margin: 0;
+    border-style: solid;
+    border-width: 1px 0 0 1px;
+    border-color: #C7C7C7 transparent transparent #C7C7C7;
+    background: inherit;
+    position: absolute;
+    top: -6px;
+    left: 15px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+.tooltip:focus span,
+.tooltip:hover span {
+    visibility: visible;
+}
 
 
 /* rome */
