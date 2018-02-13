@@ -2,7 +2,15 @@
 
 <?php include 'elements/apierror.php'; ?>
 
-<h2 class="page-title">Validation des photos</h2>
+<h2 class="page-title">
+    <a href="#" class="tooltip"><span>
+        Sur cette page, vous pouvez valider ou supprimer les différentes photos uploadées par les utilisateurs.
+        <br><br>
+        En cas de validation d'une photo, celle-ci apparaitra dans le détails de la tâche en question.
+    </span></a>
+
+    Validation des photos
+</h2>
 
 
 <div id="photos-list" class="photos-list photos-list-loading">

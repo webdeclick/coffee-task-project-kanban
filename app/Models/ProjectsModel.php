@@ -203,6 +203,8 @@ class ProjectsModel extends AbstractModel {
             ]
         );
 
+        $projectId = $dbh->lastInsertId();
+
 
         if( $result && is_array($data['users']) && !empty($data['users']) )
         {
@@ -226,13 +228,6 @@ class ProjectsModel extends AbstractModel {
                     );
                 }
             }
-        }
-
-        $projectId = false;
-
-        if( $result )
-        {
-            $projectId = $dbh->lastInsertId();
         }
 
         return $projectId;

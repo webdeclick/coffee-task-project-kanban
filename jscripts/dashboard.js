@@ -190,14 +190,16 @@
         // category create new block
         
         var categoryCreateBlock = document.getElementById('category-create-block');
+
+        // si pas admin, il ne l'a pas
         
-        delegate(categoryCreateBlock, '.button-category-create-popover, .button-category-cancel', 'click', function( event ){
+        categoryCreateBlock && delegate(categoryCreateBlock, '.button-category-create-popover, .button-category-cancel', 'click', function( event ){
             event.preventDefault();
             
             var target = event.target;
-            
+
             // show popover :
-            
+
             var popover = categoryCreateBlock.querySelector('#category-popover-new');
             
             if( popover ) {
@@ -212,7 +214,7 @@
         //     }
         // }, true);
         
-        delegate(categoryCreateBlock, '.button-category-create', 'click', function( event ){
+        categoryCreateBlock && delegate(categoryCreateBlock, '.button-category-create', 'click', function( event ){
             event.preventDefault();
             
             var target = event.target;
