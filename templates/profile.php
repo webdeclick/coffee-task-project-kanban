@@ -1,5 +1,5 @@
 <?php include 'base/header.php'; ?>
-<?php include 'elements/apisnackbar.php'; ?>
+
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>        
 
 
@@ -9,6 +9,9 @@
             $("#profilform").slideDown(500);
             $("#editform").slideUp(100);
         });
+    <?php if (isset($messages)) {?>
+      jssnackbar('Profil mis à jour.');
+    <?php } ?>
     });
 </script>
 
@@ -24,12 +27,10 @@
     <p class="info">Inscrit le <?php echo $user["created_at"]?></p>
     <p class="info"><?php echo $user["email"]?></p><br>
     <p class="info"><i class="fa fa-phone-square text_main_green profil_icon" aria-hidden="true"></i><?php echo $user["phone_number"]?:"Numéro non renseigné" ?> <p>
-    <p class="info"><i class="fa fa-home text_main_green profil_icon" aria-hidden="true"></i><?php echo $user["fonction"]?:"Adresse non renseignée"?> <p>
+    <p class="info"><i class="fa fa-home text_main_green profil_icon" aria-hidden="true"></i><?php echo $user["fonction"]?:"Fonction non renseignée"?> <p>
     <p class="info"><i class="fa fa-user text_main_green profil_icon" aria-hidden="true"></i><?php echo $user["age"]?:"Âge non renseigné"?> <p>
     <a href="#profilform" id="editform" class="text_main_green"><i class="fa fa-edit profil_icon" aria-hidden="true"></i>Modifier le profil</a>
-    <?php if (isset($messages)) {?>
-        <script> $( document ).ready(function() {jssnackbar('Profil mis à jour.')});</script>
-    <?php } ?>
+   
 
     <div id="profilform" style="display:none;">
         <div class="contactTitle">
@@ -48,13 +49,13 @@
                 <input  class="input_contact" type="text" name="fonction"placeholder="Fonction" >
                 <input  class="input_contact" type="text" name="phone" placeholder="Téléphone">
                 <input  class="input_contact" type="text" name="age" placeholder="Âge">
-                <input class="label_contact" type="password" name="password" placeholder="password">
-                <input class="label_contact" type="password" name="password2" placeholder="password">
+                <input class="label_contact" type="password" name="password" placeholder="Mot de passe">
+                <input class="label_contact" type="password" name="password2" placeholder="Mot de passe (confirmation)">
                 <button class="profil_button_contact" type="submit">Valider les informations</button>
             </div>
         </form>    
     </div>
 </div>
 
-
+<?php include 'elements/apisnackbar.php'; ?>
 <?php include 'base/footer.php'; ?>
