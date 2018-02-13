@@ -302,15 +302,23 @@ nav#panel .menu-mentions a:hover {
     background-color: #fff;
 }
 
+.page-index {
+    padding-top: 70px;
+}
+.page-index a {
+    color: #000;
+}
+
 .page-index .homepage-why {
     display: flex;
     justify-content: space-between;
+    font-weight: 400;
 }
+
 .page-index .homepage-desk img {
     width: 100%;
     height: auto;
 }
-
 .page-index .homepage-panel {
     padding: 0 25px;
 }
@@ -328,6 +336,14 @@ nav#panel .menu-mentions a:hover {
     color: #7B7B7B;
 }
 
+.page-index .perso-container {
+    padding: 20px 0;
+}
+
+.page-index .homepage-panel .button {
+    display: inline;
+    color: #fff;
+}
 
 /*//////////////////////////////// PAGE DES PROJETS ////////////////////////////////*/
 
@@ -712,7 +728,7 @@ nav#panel .menu-mentions a:hover {
     background-color: #41aeed;
     color: #fff;
     font-size: 16px;
-    line-height: 20px;
+    line-height: 22px;
     padding: 6px;
     margin-bottom: 15px;
 
@@ -1059,6 +1075,8 @@ nav#panel .menu-mentions a:hover {
     position: absolute;
     z-index: 9;
     margin-top: -3px;
+    font-size: 14px;
+    font-weight: 400;
 }
 .page-dashboard #new-task-progress {
     margin-top: 15px;
@@ -1364,9 +1382,9 @@ nav#panel .menu-mentions a:hover {
     transition: opacity 0.3s 0s, visibility 0s 0.3s;
 
     overflow-y: auto;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     margin: 0 auto;
 
     z-index: 9;
@@ -1401,6 +1419,10 @@ nav#panel .menu-mentions a:hover {
     transition-duration: 0.3s;
 
     margin-top: 56px;/*menu*/
+
+    /* remove flex*/
+    margin: 0 auto;
+    margin-top: 2%;
 }
 .cd-popup-container p {
     padding: 3em 1em;
@@ -1595,7 +1617,7 @@ nav#panel .menu-mentions a:hover {
 }
 .page-dashboard .rd-day-body {
     padding: 5px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
 }
 .page-dashboard .rd-day-body:hover {
     padding: 5px;
@@ -1611,7 +1633,9 @@ nav#panel .menu-mentions a:hover {
 .page-dashboard .rd-day-next-month {
     color: #C7C7C7;
 }
-
+.page-dashboard .rd-month-label {
+    padding: 5px 0;
+}
 
 /* CSS login */
 

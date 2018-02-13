@@ -28,6 +28,13 @@
         font-size: 14px;
     }
 
+    .page-index .homepage-why:nth-child(2n) .homepage-desk {
+        order: 1;
+    }
+    .page-index .homepage-why:nth-child(2n) .homepage-panel {
+        order: 2;
+    }
+
     .page-projects .page-title {
         flex-direction: column;
     }
@@ -112,6 +119,8 @@
 
     .cd-popup-container {
         width: 100%;
+        max-width: initial;
+        margin-top: 0;
     }
 }
 

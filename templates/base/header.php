@@ -157,4 +157,3 @@
 
 <div id="page" class="page-<?php echo $template; ?>">
 
-

@@ -514,25 +514,7 @@
 
         var dateFormat = 'YYYY-MM-DD HH:mm:ss';
 
-        DatetimePickerSimple(datetimePickerContainer, {
-            //appendTo: x,
-            autoClose: true,
-            date: true,
-            dayFormat: 'DD',
-            inputFormat: dateFormat,
-            time: true,
-            timeFormat: 'HH:mm',
-            min: new Date(),//today
-            // styles: { container: 'rd-container' }
-        })
-        .on('ready', function( value ) { // set value on open
-            var xmoment = this.getMoment();
-            var value = xmoment.add(1, 'hour').format(dateFormat);
-            
-            this.setValue(value);
-            //datetimePicker.value = value;
-        })
-        .on('data', function( value ) { // set value on click
+        function onDatepickerChangeData( value ){
             datetimePicker.value = value;
 
             if( datetimeLabelSpan ) {
@@ -548,7 +530,28 @@
             if( trigger ) {
                 trigger.checked = false;
             }
-        });
+        }
+
+        DatetimePickerSimple(datetimePickerContainer, {
+            //appendTo: x,
+            autoClose: true,
+            date: true,
+            dayFormat: 'DD',
+            inputFormat: dateFormat,
+            time: true,
+            timeFormat: 'HH:mm',
+            min: new Date(),//today
+            styles: { container: 'rd-container' }
+        })
+        .on('ready', function( value ) { // set value on open
+            var xmoment = this.getMoment();
+            var value = xmoment.add(1, 'hour').format(dateFormat);
+            
+            this.setValue(value);
+        })
+        .on('day', onDatepickerChangeData)
+        .on('time', onDatepickerChangeData);
+        //.on('data', onDatepickerChangeData);
         
         // open modal ; via create buttons on categories list
         
