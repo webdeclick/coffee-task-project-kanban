@@ -638,98 +638,100 @@
                 
                 forEach(filesElement.files, function( file, i ) { // todo: use 'for' to keep async promises and avoid .all
                 
-                var promise = new Promise(function( resolve, reject ) {
-                    
-                    var reader = new FileReader();
-                    
-                    reader.addEventListener('loadend', function( event ) {
-                        var blob = btoa(this.result); //b64
+                    var promise = new Promise(function( resolve, reject ) {
+
+                        var reader = new FileReader();
                         
-                        resolve({
-                            name: file.name,
-                            size: file.size,
-                            type: file.type,
-                            lastModified: file.lastModified,
-                            blob: blob 
+                        reader.addEventListener('loadend', function( event ) {
+                            var blob = btoa(this.result); //b64
+                            
+                            resolve({
+                                name: file.name,
+                                size: file.size,
+                                type: file.type,
+                                lastModified: file.lastModified,
+                                blob: blob 
+                            });
                         });
+                        
+                        reader.addEventListener('error', function( event ) {
+                            reject(this.error);
+                        });
+                        
+                        reader.readAsBinaryString(file);
                     });
                     
-                    reader.addEventListener('error', function( event ) {
-                        reject(this.error);
+                    promise.then(function( file ) {
+                        return file;
                     });
                     
-                    reader.readAsBinaryString(file);
+                    promises.push(promise);
+                });
+            
+                var results = Promise.all(promises);
+                
+                results.then(function( files ) {
+                    formData.files = files
+                    
+                    callbackPost();
                 });
                 
-                promise.then(function( file ) {
-                    return file;
+                results.catch(function( reason ) {
+                    jserror('Impossible d\'ajouter ces fichiers sur cette tâche', reason);
                 });
-                
-                promises.push(promise);
-            });
             
-            var results = Promise.all(promises);
-            
-            results.then(function( files ) {
-                formData.files = files
-                
+            } else {
+                // no files to add, so direct call
+
                 callbackPost();
-            });
-            
-            results.catch(function( reason ) {
-                jserror('Impossible d\'ajouter ces fichiers sur cette tâche', reason);
-            });
-            
-        } else {
-            // no files to add, so direct call
-            
-            callbackPost();
-        }
+            }
         
-        function callbackPost() {
-            
-            var successHandler = function( response ) {
+            function callbackPost() {
                 
-                // close modal
-                popupCreateScreen.classList.remove('is-visible');
+                var successHandler = function( response ) {
+                    
+                    // close modal
+                    popupCreateScreen.classList.remove('is-visible');
+                    
+                    isPopupCreateOpen = false;
+                    
+                    // append task to the list ; or self if has the admin permissions
+                    
+                    var xisPermissionSee = response.xisPermissionSee;
+                    
+                    if( xisPermissionSee ) {
+                        populateTasksList(categoryId);
+                    }
+                    
+                    // notification
+                    
+                    jssnackbar('Tâche créée!');
+                    
+                    jsprogressbar('new-task-progress', 'remove');
+                    
+                    submit.disabled = false; // re enable create task
+                };
                 
-                isPopupCreateOpen = false;
+                var errorHandler = function( status, exception ) {
+                    jserror('Impossible de créer cette tâche', status);
+                };
                 
-                // append task to the list ; or self if has the admin permissions
+                var progressHandler = function( percentComplete ) {
+                    if( percentComplete == 'unknown-size' ) return;
+                    
+                    jsprogressbar('new-task-progress', percentComplete);
+                };
                 
-                var xisPermissionSee = response.xisPermissionSee;
-                
-                if( xisPermissionSee ) {
-                    populateTasksList(categoryId);
-                }
-                
-                // notification
-                
-                jssnackbar('Tâche créée!');
-                
-                jsprogressbar('new-task-progress', 'remove');
-                
-                submit.disabled = false; // re enable create task
-            };
-            
-            var errorHandler = function( status, exception ) {
-                jserror('Impossible de créer cette tâche', status);
-            };
-            
-            var progressHandler = function( percentComplete ) {
-                if( percentComplete == 'unknown-size' ) return;
-                
-                jsprogressbar('new-task-progress', percentComplete);
-            };
-            
-            AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/create', successHandler, errorHandler, formData, progressHandler);
-        }
-    });
+                AjaxSimple('POST', api.endPoint+'project/'+projectId+'/category/'+categoryId+'/task/create', successHandler, errorHandler, formData, progressHandler);
+            }
+        });
+
+    }
     
     
     //close popup clicking ; esc keyboard
     
-    document.addEventListener('keydown', function( event ){ 
+    document.addEventListener('keydown', function( event ){
         
         if( isPopupCreateOpen ) {
             
@@ -742,52 +744,51 @@
             }
         }
     });
-}
 
-function populatePeoplesList() {
-    
-    var peoplesList = document.querySelector('.newtask-field-assigned-to');
-    
-    if( peoplesList ) {
+
+
+    function populatePeoplesList() {
         
-        var successHandler = function( response ) {
+        var peoplesList = document.querySelector('.newtask-field-assigned-to');
+        
+        if( peoplesList ) {
             
-            for( var index in response ) {
+            var successHandler = function( response ) {
                 
-                var people = response[index];
-                
-                appendTemplate('people-list-element', peoplesList, people);
-            }
-        };
-        
-        var errorHandler = function( status, exception ) {
-            jserror('Impossible de récupérer les personnes participant au projet ('+projectId+')', status);
-        };
-        
-        AjaxSimple('GET', api.endPoint+'project/'+projectId+'/peoples/list', successHandler, errorHandler);
+                for( var index in response ) {
+                    
+                    var people = response[index];
+                    
+                    appendTemplate('people-list-element', peoplesList, people);
+                }
+            };
+            
+            var errorHandler = function( status, exception ) {
+                jserror('Impossible de récupérer les personnes participant au projet ('+projectId+')', status);
+            };
+            
+            AjaxSimple('GET', api.endPoint+'project/'+projectId+'/peoples/list', successHandler, errorHandler);
+        }
     }
-}
 
-function initSearchEvents() {
-    
-    var filterDropdown = document.getElementById('dashboard-search-dropdown');
-    
-    var filterRadios = filterDropdown.querySelectorAll('.selectopt');
-    
-    var changeFilterHandler = function( event ) {
-        var target = event.target;
+    function initSearchEvents() {
         
-        var filter = target.value;
+        var filterDropdown = document.getElementById('dashboard-search-dropdown');
         
-        populateCategoriesAndTasksList(filter);
-    };
-    
-    forEach(filterRadios, function( radio, index ) {
-        radio.addEventListener('change', changeFilterHandler);
-    });
-    
-    
-}
+        var filterRadios = filterDropdown.querySelectorAll('.selectopt');
+        
+        var changeFilterHandler = function( event ) {
+            var target = event.target;
+            
+            var filter = target.value;
+            
+            populateCategoriesAndTasksList(filter);
+        };
+        
+        forEach(filterRadios, function( radio, index ) {
+            radio.addEventListener('change', changeFilterHandler);
+        });
+    }
 
 
 
