@@ -47,7 +47,7 @@
             <div class="colDroit">
                 <input class="input_contact" type="text" name="fullname" placeholder="Nom complet">  
                 <input  class="input_contact" type="text" name="fonction"placeholder="Fonction" >
-                <input  class="input_contact" type="text" name="phone_number" placeholder="Téléphone">
+                <input  class="input_contact" type="number" name="phone_number" placeholder="Téléphone">
                 <input  class="input_contact" type="text" name="age" placeholder="Âge">
                 <input class="label_contact" type="password" name="password" placeholder="Mot de passe">
                 <input class="label_contact" type="password" name="password2" placeholder="Mot de passe (confirmation)">

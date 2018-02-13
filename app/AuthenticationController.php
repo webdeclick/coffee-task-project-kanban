@@ -433,7 +433,7 @@ class AuthenticationController extends AbstractController {
     
                 $user->save();
             }
-            var_dump($_POST); exit;
+            
             $this->messages = 'Profil mis à jour!';
         }
 
