@@ -2265,3 +2265,7 @@ padding-right: 12px;
     background-color: #89C13E;
     border: solid 0px;
 }
+
+.input_login {
+    padding: 10px;
+}
