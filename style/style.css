@@ -27,6 +27,7 @@
     src: local('Open Sans Bold'), local('OpenSans-Bold'),
     url(fonts/OpenSans-Bold.ttf) format('truetype');
 }
+/*blue 4ebbf0 33b5e5*/
 
 
 html, body {
@@ -376,7 +377,7 @@ nav#panel .menu-mentions a:hover {
     cursor: pointer;
 }
 .page-projects .button-project-create-popover:hover {
-    background-color: #4ebbf0;
+    background-color: #89C13E;
     color: #fff;
 }
 
@@ -525,9 +526,9 @@ nav#panel .menu-mentions a:hover {
 
 .page-projects .project-popover-title {
     margin: 0 0 20px;
-    color: #33b5e5;
+    color: #89C13E;
     padding-bottom: 5px;
-    border-bottom: 2px solid #33b5e5;
+    border-bottom: 2px solid #89C13E;
     font-size: 16px;
 }
 .page-projects #form-project-new input,
@@ -544,7 +545,7 @@ nav#panel .menu-mentions a:hover {
 }
 .page-projects #form-project-new input:focus,
 .page-projects #form-project-new textarea:focus {
-    border: 1px solid #33b5e5;
+    border: 1px solid #89C13E;
     color: #333;
 }
 
@@ -557,7 +558,7 @@ nav#panel .menu-mentions a:hover {
     border: 0;
     padding: 10px 15px;
     color: #fff;
-    background-color: #33b5e5;
+    background-color: #89C13E;
 }
 .page-projects .project-popover-button.button-project-cancel {
     background-color: #b6bece;
@@ -725,7 +726,7 @@ nav#panel .menu-mentions a:hover {
 }
 
 .page-dashboard .category-header {
-    background-color: #41aeed;
+    background-color: #89C13E;
     color: #fff;
     font-size: 16px;
     line-height: 22px;
@@ -742,6 +743,21 @@ nav#panel .menu-mentions a:hover {
     justify-content: space-between;
     align-items: center;
 }
+.page-dashboard .component-category:nth-child(2n) .category-header {
+    background-color: #f15a25;
+}
+.page-dashboard .component-category:nth-child(3n) .category-header {
+    background-color: #4ebbf0;
+}
+.page-dashboard .component-category:nth-child(4n) .category-header {
+    background-color: #8c6137;
+}
+.page-dashboard .component-category:nth-child(5n) .category-header {
+    background-color: #f12548;
+}
+
+
+
 .page-dashboard .category-title {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -778,7 +794,7 @@ nav#panel .menu-mentions a:hover {
     cursor: pointer;
 }
 .page-dashboard .category-dropdown .category-menu-item:hover {
-    background-color: #4ebbf0;
+    background-color: #89C13E;
     color: #fff;
 }
 
@@ -819,16 +835,16 @@ nav#panel .menu-mentions a:hover {
     cursor: pointer;
 }
 .page-dashboard .button-category-create-popover:hover {
-    background-color: #4ebbf0;
+    background-color: #89C13E;
     color: #fff;
 }
 
 
 .page-dashboard .category-popover-title {
     margin: 0 0 20px;
-    color: #33b5e5;
+    color: #89C13E;
     padding-bottom: 5px;
-    border-bottom: 2px solid #33b5e5;
+    border-bottom: 2px solid #89C13E;
     font-size: 16px;
 }
 .page-dashboard .category-popover-form input,
@@ -845,7 +861,7 @@ nav#panel .menu-mentions a:hover {
 }
 .page-dashboard .category-popover-form input:focus,
 .page-dashboard .category-popover-form textarea:focus {
-    border: 1px solid #33b5e5;
+    border: 1px solid #89C13E;
     color: #333;
 }
 .page-dashboard .category-popover-button {
@@ -855,7 +871,7 @@ nav#panel .menu-mentions a:hover {
     border: 0;
     padding: 10px 15px;
     color: #fff;
-    background-color: #33b5e5;
+    background-color: #89C13E;
 }
 .page-dashboard .category-popover-button.button-category-cancel {
     background-color: #b6bece;
@@ -995,7 +1011,7 @@ nav#panel .menu-mentions a:hover {
 }
 .page-photos-folder .folder-inner.expire-completed,
 .page-dashboard .task-inner.expire-completed {
-    border-left-color: #4ebbf0
+    border-left-color: #89C13E
 }
 .page-photos-folder .folder-inner.expire-expired,
 .page-dashboard .task-inner.expire-expired {
@@ -1027,9 +1043,9 @@ nav#panel .menu-mentions a:hover {
 }
 .page-dashboard .task-create-title {
     margin: 0 0 20px;
-    color: #33b5e5;
+    color: #89C13E;
     padding-bottom: 5px;
-    border-bottom: 2px solid #33b5e5;
+    border-bottom: 2px solid #89C13E;
     font-size: 16px;
 }
 
@@ -1047,7 +1063,7 @@ nav#panel .menu-mentions a:hover {
 }
 .page-dashboard .form-task-create input[type="text"]:focus,
 .page-dashboard .form-task-create textarea:focus {
-    border: 1px solid #33b5e5;
+    border: 1px solid #89C13E;
     color: #333;
 }
 
@@ -1055,7 +1071,7 @@ nav#panel .menu-mentions a:hover {
 .page-dashboard .task-create-label-button {
     font-size: 14px;
     font-weight: 300;
-    background-color: #4ebbf0;
+    background-color: #89C13E;
     color: #fff;
     border: 0;
     padding: 0 30px 0 10px;
@@ -1319,7 +1335,7 @@ nav#panel .menu-mentions a:hover {
 }
 
 .select .option:hover {
-    background-color: #4ebbf0;
+    background-color: #89C13E;
     color: #fff;
 }
 
@@ -1448,7 +1464,7 @@ nav#panel .menu-mentions a:hover {
     transition: background-color 0.2s;
 }
 .cd-popup-container .cd-buttons .cd-button.cd-button-confirm {
-    background: #4ebbf0;
+    background: #89C13E;
 }
 .cd-popup-container .cd-buttons .cd-button.cd-button-quit {
     background: #b6bece;
@@ -1626,7 +1642,7 @@ nav#panel .menu-mentions a:hover {
 .page-dashboard .rd-day-selected,
 .page-dashboard .rd-time-selected,
 .page-dashboard .rd-time-option:hover {
-    background-color: #4ebbf0;
+    background-color: #89C13E;
 }
 .page-dashboard .rd-day-disabled,
 .page-dashboard .rd-day-prev-month,
