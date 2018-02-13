@@ -7,7 +7,7 @@
 
     <title>CoffeeTask<?php echo (!empty($title)?' - '.$title:''); ?></title>
 
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="/style/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="/style/normalize.css">
     <link type="text/css" rel="stylesheet" href="/style/style.css">
