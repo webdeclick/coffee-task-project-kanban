@@ -54,8 +54,8 @@
         text-align: center;
     }
     .btn {
-        background-color: #41aeed;
-        border: solid 1px #3498db;
+        background-color: #89C13E;
+        border: solid 1px #89C13E;
         box-sizing: border-box;
         color: #fff;
         cursor: pointer;
@@ -68,7 +68,7 @@
     }
 
     .category-header {
-        background-color: #41aeed;
+        background-color: #89C13E;
         color: #fff;
         font-size: 16px;
         padding: 6px;
@@ -82,7 +82,7 @@
         background-color: #fff;
     }
     .component-task-inner {
-        border-left: 3px solid #4ebbf0;
+        border-left: 3px solid #89C13E;
         padding-left: 10px;
     }
     .task-title {
