@@ -92,7 +92,7 @@
                 <label class="task-create-label-button" for="newtask-showhide-datetimepicker">Ajouter une date de fin <span></span></label>
                 <div class="expanded">
                     <div class="connector"></div>
-                    <div class="module-datetimepicker-container"></div>
+                    <div class="module-datetimepicker-container speech-bubble"></div>
                     <input name="end-at" type="hidden" class="module-datetimepicker newtask-field-end-at">
                 </div>
 

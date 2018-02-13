@@ -200,6 +200,10 @@ nav#panel #panel-inner {/*quick fix todo*/
 nav#panel .menu-avatar {
     text-align: center;
 }
+nav#panel .menu-avatar img {
+    height: auto;
+    max-width: 50px;
+}
 nav#panel .menu-welcome {
     text-align: center;
     font-size: 15px;
@@ -348,7 +352,7 @@ nav#panel .menu-mentions a:hover {
     font-weight: 300;
     background-color: #fff;
     border: 0;
-    padding: 0 30px 0 10px;
+    padding: 0 15px;
     min-height: 30px;
 
     display: flex;
@@ -644,17 +648,16 @@ nav#panel .menu-mentions a:hover {
 /*//////////////////////////////// PAGE DASHBOARD : CATEGORIES/TASKS LISTS ////////////////////////////////*/
 
 #clipboard {
-    /* display: none; */
-    /* opacity: 0; */
     height: 0;
     width: 0;
-    /* border: 0; */
     overflow: auto;
     outline: none;
-
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
     box-shadow: none;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 
 .page-dashboard .page-title {
@@ -709,6 +712,7 @@ nav#panel .menu-mentions a:hover {
     background-color: #41aeed;
     color: #fff;
     font-size: 16px;
+    line-height: 20px;
     padding: 6px;
     margin-bottom: 15px;
 
@@ -790,7 +794,7 @@ nav#panel .menu-mentions a:hover {
     font-weight: 300;
     background-color: #fff;
     border: 0;
-    padding: 0 30px 0 10px;
+    padding: 0 15px;
     min-height: 30px;
 
     display: flex;
@@ -1054,6 +1058,7 @@ nav#panel .menu-mentions a:hover {
 .page-dashboard .module-datetimepicker-container {
     position: absolute;
     z-index: 9;
+    margin-top: -3px;
 }
 .page-dashboard #new-task-progress {
     margin-top: 15px;
@@ -1519,7 +1524,7 @@ nav#panel .menu-mentions a:hover {
     background: #FFF;
     outline: none;
     font-size: 14px;
-    box-shadow: 0 3px 0 0 #42424233;
+    box-shadow: 0 1px 3px #0003;
     padding: 15px 15px 20px;
 
     max-width: 530px;
@@ -1551,11 +1556,60 @@ nav#panel .menu-mentions a:hover {
 
 }
 
+/* speech bubble */
+
+.speech-bubble {
+    position: relative;
+    border: 1px solid #C7C7C7;
+    background: #FFF;
+    box-shadow: 0 1px 3px #0003;
+    padding: 15px 15px 20px;
+}
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+
+    width: 10px;
+    height: 10px;
+    margin: 0;
+    border-style: solid;
+    border-width: 1px 0 0 1px;
+    border-color: #C7C7C7 transparent transparent #C7C7C7;
+    background: inherit;
+    position: absolute;
+    top: -6px;
+    left: 16px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+
 
 /* rome */
 
-.rd-time-list {
+.page-dashboard .rd-time-list {
     z-index: 9;
+}
+.page-dashboard .rd-container {
+    border: 0;
+}
+.page-dashboard .rd-day-body {
+    padding: 5px;
+    border-radius: 50%;
+}
+.page-dashboard .rd-day-body:hover {
+    padding: 5px;
+    background-color: #C7C7C7;
+}
+.page-dashboard .rd-day-selected,
+.page-dashboard .rd-time-selected,
+.page-dashboard .rd-time-option:hover {
+    background-color: #4ebbf0;
+}
+.page-dashboard .rd-day-disabled,
+.page-dashboard .rd-day-prev-month,
+.page-dashboard .rd-day-next-month {
+    color: #C7C7C7;
 }
 
 
