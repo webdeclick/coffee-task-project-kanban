@@ -1782,6 +1782,14 @@ hr{
     background-color: #89C13E;
 }
 
+.signup_button {
+    background-color: #352515;
+    
+}
+.signup_button:hover {
+    background-color: #0a0a0a;
+    
+}
 .text_main_green {
     color: #89C13E;
 }
@@ -2266,4 +2274,8 @@ padding-right: 12px;
     margin-bottom: 60px;
     background-color: #89C13E;
     border: solid 0px;
+}
+
+.input_login {
+    padding: 10px;
 }
