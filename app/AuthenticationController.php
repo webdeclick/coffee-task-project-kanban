@@ -292,18 +292,17 @@ class AuthenticationController extends AbstractController {
 
         $userId = $this->userId;
 
+        $fullname = !empty($_POST['fullname']) ? $_POST['fullname'] : null;//$request->input('fullname');
+        //$email = !empty($_POST['email']) ? $_POST['email'] : null;//$request->input('email');
 
-        $fullname = $request->input('fullname');
-        $email = $request->input('email');
-
-        $password1 = $request->input('password');
-        $password2 = $request->input('password2');
+        $password1 = !empty($_POST['password']) ? $_POST['password'] : null;//$request->input('password');
+        $password2 = !empty($_POST['password2']) ? $_POST['password2'] : null;//$request->input('password2');
 
         //$avatar = $request->input('avatar');
 
         // change avatar
 
-        if( !empty($_FILES['avatar']) )
+        if( !empty($_FILES['avatar']) && !empty($_FILES['avatar']['type']) )
         {
             $attachmentFolder = getcwd() . '/uploads/avatars/';
 
@@ -367,13 +366,6 @@ class AuthenticationController extends AbstractController {
             chmod($attachmentFolder . $fileName, 0665);
         }
 
-        // change email
-
-        if( !empty($email) )
-        {
-            $userData['email'] = $email;
-        }
-
         // change name
 
         if( !empty($fullname) )
@@ -415,6 +407,10 @@ class AuthenticationController extends AbstractController {
 
             $this->messages = 'Profil mis à jour!';
         }
+
+        // reinit user datas
+
+        $this->user = UserModel::find($userId);
 
         return render('profile', $this->container);
     }

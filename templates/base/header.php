@@ -122,7 +122,7 @@
             <?php if(!empty($projects)): ?>
                 <div class="menu-projects-list">
                     <?php foreach($projects as $project): ?>
-                        <div>
+                        <div id="header-project-<?php echo $project['project_id']; ?>">
                             - <a href="/dashboard/<?php echo $project['project_id']; ?>"><?php echo $project['title']; ?></a>
                         </div>
                     <?php endforeach; ?>

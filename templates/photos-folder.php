@@ -11,6 +11,18 @@
 </div>
 
 
+
+
+<script id="template-photos-folder-empty" class="component-template" type="text/template">
+    <div class="placeholder">
+        <div class="placeholder-title">
+            Toutes les photos ont été validés.
+        </div>
+        <img class="placeholder-image" src="/img/cat-empty-bowl.jpg" />
+    </div>
+</script>
+
+
 <script id="template-photos-folder" class="component-template" type="text/template">
 
     <div id="folder-{{ task_id }}" class="component-folder" data-id="{{ task_id }}">

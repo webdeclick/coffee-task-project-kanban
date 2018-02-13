@@ -64,6 +64,14 @@
                     // notification
                     jssnackbar('Photo supprimée!');
                 }
+
+                // get all folders :
+                var folders = document.querySelectorAll('.component-folder');
+                var folderCount = folders.length;
+                if( folderCount == 0 ) {
+                    // if empty ; add placeholder
+                    appendTemplate('photos-folder-empty', categoryList);
+                }
             };
 
             var errorHandler = function( status, exception ) {
@@ -83,6 +91,8 @@
 
             categoryList.innerHTML = '';
             categoryList.classList.remove('photos-list-loading');
+
+            var folderCount = 0;
 
             for( var index in response ) {
 
@@ -130,7 +140,15 @@
                 task.files = files;
 
                 appendTemplate('photos-folder', categoryList, task);
+
+                folderCount++;
             }
+
+            if( folderCount == 0 ) {
+                // add placeholder
+                appendTemplate('photos-folder-empty', categoryList);
+            }
+
         };
 
         var errorHandler = function( status, exception ) {
@@ -140,42 +158,5 @@
         AjaxSimple('GET', api.endPoint+'project/'+projectId+'/photos-folder', successHandler, errorHandler);
     }
 
-
-
-
-
-
-
-
-
-    function deleteProjectEvent( event ) {
-
-        var target = event.target;
-    
-        event.preventDefault(); // button
-
-        // find project block
-
-        var projectBlock = findAncestor(target, '.component-project');
-    
-        var projectId = projectBlock.getAttribute('data-id');
-    
-        // call ajax delete
-
-        categoryList.classList.add('projects-list-loading');
-    
-        var successHandler = function( response ) {
-
-            categoryList.classList.remove('projects-list-loading');
-
-            projectBlock.remove();
-        };
-    
-        var errorHandler = function( status, exception ) {
-            jserror('Impossible de supprimer ce projet', status);
-        };
-    
-        AjaxSimple('DELETE', api.endPoint+'project/'+projectId+'/delete', successHandler, errorHandler);
-    }
 
 })(this, document);

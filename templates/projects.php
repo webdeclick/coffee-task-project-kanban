@@ -37,9 +37,9 @@
 
             <form id="form-project-new" class="component-project-new" method="post" action="">
 
-                <input placeholder="Titre" id="project-new-title" name="title" type="text">
+                <input placeholder="Titre" id="project-new-title" name="title" type="text" required>
 
-                <textarea placeholder="Description" id="project-new-description" name="description"></textarea>
+                <textarea placeholder="Description" id="project-new-description" name="description" required></textarea>
 
                 <textarea placeholder="Liste d'utilisateurs (emails)" id="project-new-users" name="users"></textarea>
 
