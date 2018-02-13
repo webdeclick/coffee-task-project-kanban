@@ -67,13 +67,19 @@
             
             categoriesList.innerHTML = '';
             categoriesList.classList.remove('categories-list-loading');
+
+            var categories = response.categories;
+            var xisPermissionEdit = response.permissionEdit;
             
-            for( var index in response ) {
+            for( var index in categories ) {
                 
-                var category = response[index];
+                var category = categories[index];
                 var categoryId = category.id;
 
                 category.color = categoryId %5;//samir
+
+                // add permission
+                category.xisPermissionEdit = xisPermissionEdit;
 
                 appendTemplate('category', categoriesList, category);
                 
@@ -239,6 +245,10 @@
                 
                 var category = response.category;
                 var categoryId = category.id;
+                var xisPermissionEdit = response.permissionEdit;
+
+                // add permission
+                category.xisPermissionEdit = xisPermissionEdit;
                 
                 // append category template
                 
