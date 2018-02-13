@@ -7,6 +7,7 @@ use Slim\Http\Interfaces\ResponseInterface as Response;
 
 use App\Models\UserModel;
 
+use RuntimeException;
 
 /**
  * Authentication Controller
