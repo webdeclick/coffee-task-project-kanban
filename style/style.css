@@ -1600,7 +1600,7 @@ nav#panel .menu-mentions a:hover {
 
 }
 
-/* speech bubble */
+/* //////////////////// speech bubble (simple div) ///////////////////// */
 
 .speech-bubble {
     position: relative;
@@ -1627,7 +1627,8 @@ nav#panel .menu-mentions a:hover {
     -webkit-transform: rotate(45deg);
 }
 
-/* info tooltip */
+
+/* //////////////////// info tooltip (hover/focus) ///////////////////// */
 
 .tooltip {
     position: relative;
@@ -1727,6 +1728,11 @@ nav#panel .menu-mentions a:hover {
 .page-dashboard .rd-month-label {
     padding: 5px 0;
 }
+
+
+
+
+
 
 /* CSS login */
 
