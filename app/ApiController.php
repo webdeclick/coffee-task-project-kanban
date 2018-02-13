@@ -145,11 +145,11 @@ class ApiController extends AbstractController {
 
         $userId = $this->userId;
 
-        $project = ProjectsModel::createNew($userId, $data);
+        $projectId = ProjectsModel::createNew($userId, $data);
 
-        if( $project ) {
+        if( $projectId ) {
 
-            return json(['message'=>'ok']);
+            return json(['message'=>'ok', 'projectId' => $projectId]);
         }
 
         return $this->apiError('ProjectNotCreated');
