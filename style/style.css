@@ -1678,6 +1678,22 @@ nav#panel .menu-mentions a:hover {
     visibility: visible;
 }
 
+/* paceholder */
+
+.placeholder {
+    text-align: center;
+}
+.placeholder-title {
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: 400;
+}
+.placeholder-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
 
 /* rome */
 

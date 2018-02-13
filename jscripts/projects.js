@@ -119,8 +119,28 @@
         // call ajax create
     
         var successHandler = function( response ) {
+            var projectId = response.projectId;
+
             // set new visible
             toggleState(categoryFormNew, 'form', 'view');
+
+            // add project to header
+
+            var menuProjectsList = document.querySelector('#panel .menu-projects-list');
+            if( menuProjectsList ) {
+                var menuItem = document.createElement('div');
+                menuItem.setAttribute('id', 'header-project-'+projectId);
+
+                var prefix = document.createTextNode('- ');
+                menuItem.appendChild(prefix);
+
+                var menuItemLink = document.createElement('a');
+                menuItemLink.setAttribute('href', '/dashboard/'+projectId);
+                menuItemLink.innerText = formData['title'];
+
+                menuItem.appendChild(menuItemLink);
+                menuProjectsList.appendChild(menuItem);
+            }
 
             // repopulate projets list
             populateProjectsList();
@@ -161,6 +181,13 @@
             categoryList.classList.remove('projects-list-loading');
 
             projectBlock.remove();
+
+            // if project on the header ; delete it
+
+            var menuitem = document.getElementById('header-project-'+projectId);
+            if( menuitem ) {
+                menuitem.remove();
+            }
         };
     
         var errorHandler = function( status, exception ) {

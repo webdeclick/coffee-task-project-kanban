@@ -188,7 +188,7 @@ class ProjectsModel extends AbstractModel {
 
         // create project
 
-        $projectId = $dbh->execute(
+        $result = $dbh->execute(
             'INSERT INTO @projects SET
                 linked_admin = :linked_admin,
                 linked_manager = :linked_manager,
@@ -204,7 +204,7 @@ class ProjectsModel extends AbstractModel {
         );
 
 
-        if( $projectId && is_array($data['users']) && !empty($data['users']) )
+        if( $result && is_array($data['users']) && !empty($data['users']) )
         {
             foreach($data['users'] as $key => $user_email )
             {
@@ -226,6 +226,13 @@ class ProjectsModel extends AbstractModel {
                     );
                 }
             }
+        }
+
+        $projectId = false;
+
+        if( $result )
+        {
+            $projectId = $dbh->lastInsertId();
         }
 
         return $projectId;
