@@ -413,7 +413,7 @@ class AuthenticationController extends AbstractController {
                 $user->save();
             }
 
-            $this->messages = 'Profile mis à jour!';
+            $this->messages = 'Profil mis à jour!';
         }
 
         return render('profile', $this->container);
