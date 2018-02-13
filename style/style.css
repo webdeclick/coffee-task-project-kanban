@@ -302,6 +302,9 @@ nav#panel .menu-mentions a:hover {
     background-color: #fff;
 }
 
+.page-index {
+    padding-top: 70px;
+}
 .page-index a {
     color: #000;
 }

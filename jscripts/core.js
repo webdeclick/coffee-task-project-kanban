@@ -131,11 +131,12 @@ function initializeTaskModalEvents() {
     window.addEventListener('load', function( event ) {
 
         popupScreen = document.getElementById('modal-popup-task');
-        popupTaskContainer = popupScreen.querySelector('.modal-task-container');
 
-        if( !popupScreen || !popupTaskContainer ) {
+        if( !popupScreen ) {
             return; // not exist
         }
+
+        popupTaskContainer = popupScreen.querySelector('.modal-task-container');
 
         // hash change url
 
