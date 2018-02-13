@@ -198,7 +198,7 @@ class AuthenticationController extends AbstractController {
             $fileName = $uploadFolder.$default;
         }
 
-        list($resizeWidth, $resizeHeight) = [50, 50];
+        list($resizeWidth, $resizeHeight) = [200, 200];
 
         // $fileType = mime_content_type($fileName);
         // $fileSize = filesize($fileName);
