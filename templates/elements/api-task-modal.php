@@ -22,7 +22,7 @@
 
 <script id="template-task-modal" class="component-template" type="text/template">
 
-<div id="task-{{ id }}" class="component-task component-task-modal" data-id="{{ id }}">
+<div id="task-modal-{{ id }}" class="component-task component-task-modal" data-id="{{ id }}">
 
     <div class="task-inner {{ expire_class }}">
 

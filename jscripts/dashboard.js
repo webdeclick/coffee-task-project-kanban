@@ -541,6 +541,13 @@
 
                 datetimeLabelSpan.innerText = ' : ' + text;
             }
+
+            // hide popup
+
+            var trigger = document.getElementById('newtask-showhide-datetimepicker');
+            if( trigger ) {
+                trigger.checked = false;
+            }
         });
         
         // open modal ; via create buttons on categories list
